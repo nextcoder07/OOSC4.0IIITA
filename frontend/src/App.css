@@ -592,10 +592,11 @@ body {
 .admin-card-actions  { display: flex; gap: 6px; }
 .btn-delete { background: rgba(239,68,68,0.14); border: 1px solid rgba(239,68,68,0.32); color: #ef4444; font-size: 0.75rem; font-weight: 700; padding: 4px 10px; border-radius: 99px; cursor: pointer; transition: var(--transition-smooth); }
 .btn-delete:hover { background: #ef4444; color: #ffffff; }
-.btn-admin-mini { background: rgba(200,200,224,0.08); border: 1px solid rgba(200,200,224,0.18); color: var(--color-cyan); font-size: 0.74rem; font-weight: 700; padding: 6px 12px; border-radius: 999px; cursor: pointer; margin-right: 8px; transition: var(--transition-smooth); }
+.btn-admin-mini { background: rgba(200,200,224,0.08); border: 1px solid rgba(200,200,224,0.18); color: var(--color-cyan); font-size: 0.74rem; font-weight: 700; padding: 6px 12px; border-radius: 999px; cursor: pointer; transition: var(--transition-smooth); }
 .btn-admin-mini:hover { background: var(--color-cyan); color: var(--color-midnight); }
-.btn-delete-sponsor { position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); background: #ef4444; color: #ffffff; border: none; font-size: 0.72rem; font-weight: 700; padding: 2px 10px; border-radius: 99px; cursor: pointer; }
-.sponsor-admin-controls { display: flex; justify-content: center; gap: 8px; margin-top: 8px; }
+.btn-delete-sponsor { background: rgba(239,68,68,0.14); border: 1px solid rgba(239,68,68,0.32); color: #ef4444; font-size: 0.74rem; font-weight: 700; padding: 6px 12px; border-radius: 99px; cursor: pointer; transition: var(--transition-smooth); }
+.btn-delete-sponsor:hover { background: #ef4444; color: #ffffff; }
+.sponsor-admin-controls { display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 16px; padding-bottom: 12px; position: relative; z-index: 10; }
 
 .admin-modal-backdrop { position: fixed; inset: 0; z-index: 1200; background: rgba(0,0,0,0.65); display: flex; align-items: center; justify-content: center; padding: 24px; }
 .admin-modal-panel { width: min(100%,960px); max-height: calc(100vh - 48px); overflow-y: auto; background: rgba(12,12,16,0.99); border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; padding: 24px; box-shadow: 0 30px 80px rgba(0,0,0,0.60); }
