@@ -15,15 +15,10 @@ import './App.css'
 function App() {
   const [adminMode, setAdminMode] = useState(false)
   const [adminEmail, setAdminEmail] = useState('')
-  const [csrfToken, setCsrfToken] = useState('')
   
   // Auth Inputs
   const [loginEmail, setLoginEmail] = useState('')
   const [loginPassword, setLoginPassword] = useState('')
-  const [verificationEmail, setVerificationEmail] = useState('')
-  const [verificationPassword, setVerificationPassword] = useState('')
-  const [newPassword, setNewPassword] = useState('')
-  const [verificationToken, setVerificationToken] = useState('')
   
   const [adminMessage, setAdminMessage] = useState('')
   const [uploadUrl, setUploadUrl] = useState('')
@@ -43,9 +38,6 @@ function App() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [formStatus, setFormStatus] = useState('')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  
-  // Admin view toggle: 'login' | 'request_verification' | 'set_password'
-  const [adminView, setAdminView] = useState('login')
   
   // Schedule page active day tab
   const [activeDay, setActiveDay] = useState('Aug 28')
@@ -75,38 +67,9 @@ function App() {
     }
   }
 
-  // Fetch CSRF token on mount
-  useEffect(() => {
-    const fetchCsrf = async () => {
-      try {
-        const response = await fetch('/api/csrf-token')
-        const data = await response.json()
-        if (data && data.csrfToken) {
-          setCsrfToken(data.csrfToken)
-        }
-      } catch (error) {
-        console.warn('Could not load CSRF token. State modifications might fail.', error.message)
-      }
-    }
-    fetchCsrf()
-  }, [])
 
-  // Detect verification/reset token in URL
-  useEffect(() => {
-    const checkUrlToken = () => {
-      const urlParams = new URLSearchParams(window.location.search)
-      const token = urlParams.get('token')
-      const path = window.location.pathname
-      
-      if (token && (path.includes('/admin/verify') || path.includes('/admin/reset'))) {
-        setVerificationToken(token)
-        setAdminView('set_password')
-        setCurrentPage('admin')
-        window.history.replaceState({}, document.title, window.location.pathname + window.location.hash)
-      }
-    }
-    checkUrlToken()
-  }, [currentPage])
+
+
 
   // Handle back/forward buttons and hash navigation
   useEffect(() => {
@@ -125,7 +88,7 @@ function App() {
         if (!response.ok) return
         const data = await response.json()
         setAdminMode(true)
-        setAdminEmail(data.email)
+        setAdminEmail(data.email || '')
       } catch {
         setAdminMode(false)
         setAdminEmail('')
@@ -135,38 +98,7 @@ function App() {
     restoreSession()
   }, [])
 
-  // Handle email verification token in URL
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search)
-    const token = params.get('token')
-    
-    if (token && !adminMode) {
-      const verifyEmail = async () => {
-        try {
-          setAdminMessage('Verifying your email...')
-          const response = await fetch(`/admin/verify?token=${token}`, {
-            credentials: 'include',
-          })
-          const data = await response.json()
-          
-          if (!response.ok) {
-            setAdminMessage(`Verification failed: ${data.error}`)
-            setAdminView('login')
-            return
-          }
-          
-          setAdminMessage(data.message || 'Email verified! You can now login with your email and password.')
-          setAdminView('login')
-          // Clear token from URL
-          window.history.replaceState({}, document.title, window.location.pathname)
-        } catch (error) {
-          setAdminMessage('Verification error: ' + error.message)
-          setAdminView('login')
-        }
-      }
-      verifyEmail()
-    }
-  }, [])
+
 
   // Sponsor Tiers specified: Title, Platinum, Gold, Silver, Community Partner, Media Partner
   const sponsorCategories = useMemo(
@@ -251,9 +183,6 @@ function App() {
 
   const apiFetch = useCallback(async (path, options = {}) => {
     const headers = { ...(options.headers || {}) }
-    if (csrfToken) {
-      headers['X-CSRF-Token'] = csrfToken
-    }
 
     const response = await fetch(path, {
       ...options,
@@ -266,7 +195,7 @@ function App() {
       throw new Error(data?.error || response.statusText || 'Request failed')
     }
     return data
-  }, [csrfToken])
+  }, [])
 
   const updateResourceState = (resource, updater) => {
     if (resource === 'events') {
@@ -473,94 +402,7 @@ function App() {
     }
   }
 
-  const handleRequestVerification = async (e) => {
-    e.preventDefault()
-    if (!verificationEmail.trim()) {
-      setAdminMessage('Please provide a whitelisted IIITA email.')
-      return
-    }
-    if (!verificationPassword.trim()) {
-      setAdminMessage('Please create a password.')
-      return
-    }
-    // Min 8 chars, uppercase, lowercase, number, special char
-    const hasMinLength = verificationPassword.length >= 8
-    const hasUpper = /[A-Z]/.test(verificationPassword)
-    const hasLower = /[a-z]/.test(verificationPassword)
-    const hasNumber = /[0-9]/.test(verificationPassword)
-    const hasSpecial = /[^A-Za-z0-9]/.test(verificationPassword)
-    
-    if (!hasMinLength || !hasUpper || !hasLower || !hasNumber || !hasSpecial) {
-      setAdminMessage('Password must have: 8+ chars, uppercase, lowercase, number, special char (!@#$%^&*)')
-      return
-    }
 
-    try {
-      setAdminMessage('Setting up your account...')
-      const data = await apiFetch('/admin/request-verification', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          email: verificationEmail,
-          password: verificationPassword 
-        }),
-      })
-      setAdminMessage(data.message || 'Verification email sent! Check your inbox and click the confirmation link.')
-      setVerificationEmail('')
-      setVerificationPassword('')
-    } catch (error) {
-      setAdminMessage(error.message || 'Setup failed. Please try again.')
-    }
-  }
-
-  const validatePasswordLocal = (password) => {
-    return password.length >= 12 &&
-      /[A-Z]/.test(password) &&
-      /[a-z]/.test(password) &&
-      /[0-9]/.test(password) &&
-      /[^A-Za-z0-9]/.test(password)
-  }
-
-  const handleSetPassword = async (e) => {
-    e.preventDefault()
-    if (!newPassword) {
-      setAdminMessage('Please provide a password.')
-      return
-    }
-    if (!validatePasswordLocal(newPassword)) {
-      setAdminMessage('Password does not satisfy the security guidelines below.')
-      return
-    }
-
-    try {
-      setAdminMessage('Saving credentials...')
-      let data
-      try {
-        data = await apiFetch('/admin/verify-password', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ token: verificationToken, password: newPassword }),
-        })
-      } catch {
-        // Fallback to reset route if token was password reset request
-        data = await apiFetch('/admin/reset-password', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ token: verificationToken, password: newPassword }),
-        })
-      }
-
-      setAdminEmail(data.email)
-      setAdminMode(true)
-      setAdminMessage('Password successfully saved. Admin access granted!')
-      setNewPassword('')
-      setVerificationToken('')
-      setAdminView('login')
-      navigateTo('home')
-    } catch (error) {
-      setAdminMessage(error.message || 'Setting password failed.')
-    }
-  }
 
   const logout = async () => {
     try {
@@ -597,7 +439,6 @@ function App() {
           </div>
           
           <div className="login-panel-container">
-            {adminView === 'login' && (
               <form className="login-panel glass-card" onSubmit={handleLogin}>
                 <div className="form-group">
                   <label htmlFor="admin-email-field">Whitelisted Email</label>
@@ -627,120 +468,12 @@ function App() {
                   <button type="submit" className="btn btn-primary">
                     Sign In to Dashboard
                   </button>
-                  <button
-                    type="button"
-                    className="btn-text-link"
-                    onClick={() => {
-                      setAdminView('request_verification')
-                      setAdminMessage('')
-                    }}
-                  >
-                    First time? Request Verification Email
-                  </button>
                 </div>
                 {adminMessage && <p className="admin-status-message error">{adminMessage}</p>}
                 <div style={{ marginTop: '16px', padding: '12px', background: 'rgba(0,229,255,0.05)', borderRadius: '8px', borderLeft: '3px solid var(--color-cyan)', fontSize: '0.85rem', color: 'var(--color-text-muted)', lineHeight: '1.5' }}>
-                  <strong style={{ color: 'var(--color-cyan)' }}>First time setup:</strong> Click "Request Verification Email" above to start. You'll set a password, then login here.
+                  <strong style={{ color: 'var(--color-cyan)' }}>Access restricted:</strong> Only whitelisted university emails can access the admin dashboard.
                 </div>
               </form>
-            )}
-
-            {adminView === 'request_verification' && (
-              <form className="login-panel glass-card" onSubmit={handleRequestVerification}>
-                <h3 style={{ margin: '0 0 20px 0', fontSize: '1.2rem' }}>Admin Account Setup</h3>
-                <div className="form-group">
-                  <label htmlFor="verify-email-field">Whitelisted Email</label>
-                  <p className="field-tip">Enter your IIITA email from the whitelist.</p>
-                  <input
-                    id="verify-email-field"
-                    type="email"
-                    required
-                    value={verificationEmail}
-                    onChange={(event) => setVerificationEmail(event.target.value)}
-                    placeholder="authorized-email@iiita.ac.in"
-                    className="form-control"
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="verify-password-field">Create Password</label>
-                  <p className="field-tip">Choose a strong password to secure your account.</p>
-                  <input
-                    id="verify-password-field"
-                    type="password"
-                    required
-                    value={verificationPassword}
-                    onChange={(event) => setVerificationPassword(event.target.value)}
-                    placeholder="Create a strong password"
-                    className="form-control"
-                  />
-                </div>
-                
-                <div className="password-rules-box">
-                  <h5>Password Requirements</h5>
-                  <ul>
-                    <li className={verificationPassword.length >= 8 ? 'met' : ''}>✓ Minimum 8 characters</li>
-                    <li className={/[A-Z]/.test(verificationPassword) ? 'met' : ''}>✓ At least one UPPERCASE letter</li>
-                    <li className={/[a-z]/.test(verificationPassword) ? 'met' : ''}>✓ At least one lowercase letter</li>
-                    <li className={/[0-9]/.test(verificationPassword) ? 'met' : ''}>✓ At least one number (0-9)</li>
-                    <li className={/[^A-Za-z0-9]/.test(verificationPassword) ? 'met' : ''}>✓ At least one special character (!@#$%^&*)</li>
-                  </ul>
-                </div>
-
-                <div className="login-actions">
-                  <button type="submit" className="btn btn-primary">
-                    Send Verification Email
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    onClick={() => {
-                      setAdminView('login')
-                      setAdminMessage('')
-                    }}
-                  >
-                    Back to Sign In
-                  </button>
-                </div>
-                {adminMessage && <p className="admin-status-message info">{adminMessage}</p>}
-              </form>
-            )}
-
-            {adminView === 'set_password' && (
-              <form className="login-panel glass-card" onSubmit={handleSetPassword}>
-                <h3 style={{ margin: '0 0 20px 0', fontSize: '1.2rem' }}>Set Your Admin Password</h3>
-                <p className="field-tip" style={{ marginBottom: '20px' }}>Create a strong password for your admin account. After this, you'll be logged in and can access the dashboard.</p>
-                <div className="form-group">
-                  <label htmlFor="new-pw-field">Create Admin Password</label>
-                  <input
-                    id="new-pw-field"
-                    type="password"
-                    required
-                    value={newPassword}
-                    onChange={(event) => setNewPassword(event.target.value)}
-                    placeholder="Choose a strong password"
-                    className="form-control"
-                  />
-                </div>
-                
-                <div className="password-rules-box">
-                  <h5>Password Requirements</h5>
-                  <ul>
-                    <li className={newPassword.length >= 12 ? 'met' : ''}>✓ Minimum 12 characters</li>
-                    <li className={/[A-Z]/.test(newPassword) ? 'met' : ''}>✓ At least one UPPERCASE letter</li>
-                    <li className={/[a-z]/.test(newPassword) ? 'met' : ''}>✓ At least one lowercase letter</li>
-                    <li className={/[0-9]/.test(newPassword) ? 'met' : ''}>✓ At least one number (0-9)</li>
-                    <li className={/[^A-Za-z0-9]/.test(newPassword) ? 'met' : ''}>✓ At least one special character (!@#$%^&*)</li>
-                  </ul>
-                </div>
-
-                <div className="login-actions">
-                  <button type="submit" className="btn btn-primary">
-                    Confirm &amp; Activate Account
-                  </button>
-                </div>
-                {adminMessage && <p className="admin-status-message info">{adminMessage}</p>}
-              </form>
-            )}
           </div>
         </section>
       )

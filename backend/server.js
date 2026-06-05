@@ -3,7 +3,7 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import helmet from 'helmet'
 import cookieParser from 'cookie-parser'
-import csurf from 'csurf'
+import bcrypt from 'bcrypt'
 import rateLimit from 'express-rate-limit'
 import jwt from 'jsonwebtoken'
 import multer from 'multer'
@@ -24,9 +24,19 @@ const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || 'http://localhost:5173'
 const COOKIE_SECURE = process.env.NODE_ENV === 'production'
 const JWT_SECRET = process.env.JWT_SECRET ?? 'oosc-secret'
 const ACCESS_EXPIRES = '24h'
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL ?? 'admin@oosc.iiita.ac.in'
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD ?? 'StrongPassword'
+const ADMIN_PASSWORD_HASH = process.env.ADMIN_PASSWORD_HASH ?? ''
 const ADMIN_ROLE = process.env.ADMIN_ROLE ?? 'ADMIN'
+
+// ── Load admin whitelist ───────────────────────────────────────────────────────
+
+let allowedAdmins = []
+try {
+  allowedAdmins = JSON.parse(
+    fs.readFileSync(path.join(__dirname, 'allowedAdmins.json'), 'utf-8'),
+  )
+} catch (error) {
+  console.warn('Could not load allowedAdmins.json:', error.message)
+}
 
 // ── Middleware ──────────────────────────────────────────────────────────────────
 
@@ -48,12 +58,13 @@ fs.mkdirSync(uploadDir, { recursive: true })
 const storage = multer.diskStorage({
   destination: uploadDir,
   filename: (req, file, cb) => {
-    const safeName = `${Date.now()}-${file.originalname.replace(/[^a-zA-Z0-9.\-_.]/g, '_')}`
+    const safeName = `${Date.now()}-${file.originalname.replace(/[^a-zA-Z0-9.\-_]/g, '_')}`
     cb(null, safeName)
   },
 })
 const upload = multer({
   storage,
+  limits: { fileSize: 5 * 1024 * 1024 }, // 5 MB max
   fileFilter: (req, file, cb) => {
     const allowed = ['image/jpeg', 'image/png', 'image/webp', 'image/gif']
     if (allowed.includes(file.mimetype)) {
@@ -64,23 +75,14 @@ const upload = multer({
   },
 })
 
-// ── CSRF & rate limiting ───────────────────────────────────────────────────────
-
-const csrfProtection = csurf({
-  cookie: {
-    httpOnly: true,
-    secure: COOKIE_SECURE,
-    sameSite: 'strict',
-    maxAge: 60 * 60,
-  },
-})
+// ── Rate limiting ──────────────────────────────────────────────────────────────
 
 const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 20,
+  max: 5,
   standardHeaders: true,
   legacyHeaders: false,
-  message: { error: 'Too many requests, please try again later.' },
+  message: { error: 'Too many login attempts. Please try again in 15 minutes.' },
 })
 
 const generalLimiter = rateLimit({
@@ -98,15 +100,15 @@ const getClientIp = (req) =>
 const recordAudit = async ({ email, action, resource, ipAddress }) => {
   try {
     await prisma.auditLog.create({
-      data: { adminEmail: email, action, resource, ipAddress },
+      data: { adminEmail: email || 'unknown', action, resource, ipAddress },
     })
   } catch (error) {
-    console.error('Unable to record audit log', error)
+    console.error('Unable to record audit log', error.message)
   }
 }
 
 const createAccessToken = (admin) =>
-  jwt.sign({ username: admin.username, role: admin.role }, JWT_SECRET, { expiresIn: ACCESS_EXPIRES })
+  jwt.sign({ email: admin.email, role: admin.role }, JWT_SECRET, { expiresIn: ACCESS_EXPIRES })
 
 const setAuthCookie = (res, token) => {
   res.cookie('ooscAccessToken', token, {
@@ -121,17 +123,61 @@ const clearAuthCookie = (res) => {
   res.clearCookie('ooscAccessToken', { httpOnly: true, secure: COOKIE_SECURE, sameSite: 'strict' })
 }
 
+// ── Input sanitization ─────────────────────────────────────────────────────────
+
+const allowedFields = {
+  speakers: ['name', 'title', 'bio', 'photoURL', 'sortOrder', 'published'],
+  sponsors: ['name', 'logoURL', 'category', 'website', 'sortOrder', 'published'],
+  events: ['title', 'description', 'date', 'time', 'type', 'sortOrder', 'published'],
+  team: ['name', 'role', 'contact', 'photoURL', 'sortOrder', 'published'],
+}
+
+const sanitizeBody = (body, fields) => {
+  const clean = {}
+  for (const key of fields) {
+    if (body[key] !== undefined) {
+      clean[key] = body[key]
+    }
+  }
+  // Coerce types
+  if (clean.sortOrder !== undefined) clean.sortOrder = Number(clean.sortOrder) || 0
+  if (clean.published !== undefined) clean.published = Boolean(clean.published)
+  return clean
+}
+
+// ── Token blacklist (revoked tokens) ───────────────────────────────────────────
+
+const tokenBlacklist = new Set()
+
+// Periodically clean expired tokens from the blacklist
+setInterval(() => {
+  tokenBlacklist.forEach((token) => {
+    try {
+      jwt.verify(token, JWT_SECRET)
+    } catch {
+      tokenBlacklist.delete(token)
+    }
+  })
+}, 60 * 60 * 1000)
+
+// ── Auth middleware ────────────────────────────────────────────────────────────
+
 const authMiddleware = async (req, res, next) => {
   const token = req.cookies.ooscAccessToken || req.headers.authorization?.split(' ')[1]
   if (!token) {
     return res.status(401).json({ error: 'Unauthorized' })
   }
 
+  if (tokenBlacklist.has(token)) {
+    return res.status(401).json({ error: 'Session has been revoked. Please login again.' })
+  }
+
   try {
     req.user = jwt.verify(token, JWT_SECRET)
+    req.token = token
     next()
   } catch {
-    return res.status(401).json({ error: 'Invalid token' })
+    return res.status(401).json({ error: 'Invalid or expired token.' })
   }
 }
 
@@ -141,54 +187,69 @@ app.use('/api', generalLimiter)
 app.use('/admin/login', loginLimiter)
 app.use('/uploads', express.static(uploadDir))
 
-// ── CSRF token endpoint ────────────────────────────────────────────────────────
-
-app.get('/api/csrf-token', csrfProtection, (req, res) => {
-  res.json({ csrfToken: req.csrfToken() })
-})
-
 // ── Auth routes ────────────────────────────────────────────────────────────────
 
 app.get('/admin/me', authMiddleware, async (req, res) => {
-  res.json({ username: req.user.username, role: req.user.role })
+  res.json({ email: req.user.email, role: req.user.role })
 })
 
 app.post('/admin/login', async (req, res) => {
-  const username = String(req.body.email || req.body.username || '').trim()
+  const email = String(req.body.email || '').trim().toLowerCase()
   const password = String(req.body.password || '')
 
-  if (!username || !password) {
+  if (!email || !password) {
     return res.status(400).json({ error: 'Email and password are required.' })
   }
 
-  if (username !== ADMIN_EMAIL || password !== ADMIN_PASSWORD) {
+  // Check if email is in the admin whitelist
+  if (!allowedAdmins.includes(email)) {
     await recordAudit({
-      email: username,
-      action: 'Failed login attempt',
+      email,
+      action: 'Login rejected — email not in whitelist',
       resource: 'AdminAuth',
       ipAddress: getClientIp(req),
     })
-    return res.status(401).json({ error: 'Invalid username or password.' })
+    return res.status(401).json({ error: 'This email is not authorized for admin access.' })
   }
 
-  const admin = { username: ADMIN_EMAIL, role: ADMIN_ROLE }
+  // Verify password against bcrypt hash
+  let passwordValid = false
+  try {
+    passwordValid = await bcrypt.compare(password, ADMIN_PASSWORD_HASH)
+  } catch {
+    return res.status(500).json({ error: 'Authentication service error.' })
+  }
+
+  if (!passwordValid) {
+    await recordAudit({
+      email,
+      action: 'Failed login — wrong password',
+      resource: 'AdminAuth',
+      ipAddress: getClientIp(req),
+    })
+    return res.status(401).json({ error: 'Invalid password.' })
+  }
+
+  const admin = { email, role: ADMIN_ROLE }
   const token = createAccessToken(admin)
   setAuthCookie(res, token)
 
   await recordAudit({
-    email: ADMIN_EMAIL,
+    email,
     action: 'Logged in',
     resource: 'AdminAuth',
     ipAddress: getClientIp(req),
   })
 
-  res.json({ success: true, role: admin.role, username: admin.username })
+  res.json({ success: true, email, role: ADMIN_ROLE })
 })
 
 app.post('/admin/logout', authMiddleware, async (req, res) => {
+  // Blacklist the current token so it can't be reused
+  tokenBlacklist.add(req.token)
   clearAuthCookie(res)
   await recordAudit({
-    email: req.user.username,
+    email: req.user.email,
     action: 'Logged out',
     resource: 'AdminAuth',
     ipAddress: getClientIp(req),
@@ -199,48 +260,72 @@ app.post('/admin/logout', authMiddleware, async (req, res) => {
 // ── Generic CRUD factory ───────────────────────────────────────────────────────
 
 const createCrudRoutes = (name, model, orderFields = ['sortOrder'], hasPublished = true) => {
+  const fields = allowedFields[name] || []
+
   app.get(`/api/${name}`, async (req, res) => {
-    const includeDraft = req.query.includeDraft === '1'
-    const where = hasPublished && !includeDraft ? { published: true } : undefined
-    const opts = { orderBy: orderFields.map((field) => ({ [field]: 'asc' })) }
-    if (where) opts.where = where
-    const items = await model.findMany(opts)
-    res.json(items)
+    try {
+      const includeDraft = req.query.includeDraft === '1'
+      const where = hasPublished && !includeDraft ? { published: true } : undefined
+      const opts = { orderBy: orderFields.map((field) => ({ [field]: 'asc' })) }
+      if (where) opts.where = where
+      const items = await model.findMany(opts)
+      res.json(items)
+    } catch (error) {
+      console.error(`GET /api/${name} failed:`, error.message)
+      res.status(500).json({ error: 'Failed to fetch records.' })
+    }
   })
 
   app.post(`/api/${name}`, authMiddleware, async (req, res) => {
-    const item = await model.create({ data: req.body })
-    await recordAudit({
-      email: req.user.username,
-      action: `Created ${name}`,
-      resource: name,
-      ipAddress: getClientIp(req),
-    })
-    res.status(201).json(item)
+    try {
+      const data = sanitizeBody(req.body, fields)
+      const item = await model.create({ data })
+      await recordAudit({
+        email: req.user.email,
+        action: `Created ${name}`,
+        resource: name,
+        ipAddress: getClientIp(req),
+      })
+      res.status(201).json(item)
+    } catch (error) {
+      console.error(`POST /api/${name} failed:`, error.message)
+      res.status(500).json({ error: 'Failed to create record.' })
+    }
   })
 
   app.put(`/api/${name}/:id`, authMiddleware, async (req, res) => {
-    const id = Number(req.params.id)
-    const item = await model.update({ where: { id }, data: req.body })
-    await recordAudit({
-      email: req.user.username,
-      action: `Updated ${name}`,
-      resource: `${name}:${id}`,
-      ipAddress: getClientIp(req),
-    })
-    res.json(item)
+    try {
+      const id = Number(req.params.id)
+      const data = sanitizeBody(req.body, fields)
+      const item = await model.update({ where: { id }, data })
+      await recordAudit({
+        email: req.user.email,
+        action: `Updated ${name}`,
+        resource: `${name}:${id}`,
+        ipAddress: getClientIp(req),
+      })
+      res.json(item)
+    } catch (error) {
+      console.error(`PUT /api/${name}/${req.params.id} failed:`, error.message)
+      res.status(500).json({ error: 'Failed to update record.' })
+    }
   })
 
   app.delete(`/api/${name}/:id`, authMiddleware, async (req, res) => {
-    const id = Number(req.params.id)
-    await model.delete({ where: { id } })
-    await recordAudit({
-      email: req.user.username,
-      action: `Deleted ${name}`,
-      resource: `${name}:${id}`,
-      ipAddress: getClientIp(req),
-    })
-    res.status(204).send()
+    try {
+      const id = Number(req.params.id)
+      await model.delete({ where: { id } })
+      await recordAudit({
+        email: req.user.email,
+        action: `Deleted ${name}`,
+        resource: `${name}:${id}`,
+        ipAddress: getClientIp(req),
+      })
+      res.json({ success: true })
+    } catch (error) {
+      console.error(`DELETE /api/${name}/${req.params.id} failed:`, error.message)
+      res.status(500).json({ error: 'Failed to delete record.' })
+    }
   })
 }
 
@@ -286,7 +371,7 @@ app.post('/api/registration', async (req, res) => {
     })
     res.json({ success: true })
   } catch (error) {
-    console.error('Registration failed', error)
+    console.error('Registration failed', error.message)
     res.status(500).json({ error: 'Unable to register at this time.' })
   }
 })
