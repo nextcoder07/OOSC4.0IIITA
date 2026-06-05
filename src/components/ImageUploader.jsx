@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function ImageUploader({ token, onUpload, label = 'Upload image' }) {
+export default function ImageUploader({ onUpload, label = 'Upload image' }) {
   const [status, setStatus] = useState('')
   const [preview, setPreview] = useState('')
 

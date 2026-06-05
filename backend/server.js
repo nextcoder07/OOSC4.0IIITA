@@ -150,7 +150,7 @@ const authMiddleware = async (req, res, next) => {
   try {
     req.user = jwt.verify(token, JWT_SECRET)
     next()
-  } catch (error) {
+  } catch {
     return res.status(401).json({ error: 'Invalid token' })
   }
 }
@@ -256,17 +256,11 @@ app.post('/admin/refresh', async (req, res) => {
     const { accessToken } = createTokens(admin)
     setAuthCookies(res, accessToken, refreshToken)
     res.json({ success: true })
-  } catch (error) {
+  } catch {
     clearAuthCookies(res)
     return res.status(401).json({ error: 'Invalid refresh token.' })
   }
 })
-
-
-
-  res.status(201).json({ success: true, admin: { email: admin.email, role: admin.role } })
-})
-
 
 
 const createCrudRoutes = (name, model, orderFields = ['sortOrder'], hasPublished = true) => {

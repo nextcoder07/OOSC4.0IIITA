@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 export default function Registration({ onSubmit }) {
   const [form, setForm] = useState({
@@ -49,7 +49,7 @@ export default function Registration({ onSubmit }) {
         notes: '',
       })
       onSubmit && onSubmit()
-    } catch (err) {
+    } catch {
       setStatus('Submission failed. Please check your network and try again.')
     }
   }

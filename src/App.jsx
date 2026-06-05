@@ -1,7 +1,16 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import Footer from './components/Footer.jsx'
-import ImageUploader from './components/ImageUploader.jsx'
 import Registration from './components/Registration.jsx'
+import Hackathon from './components/Hackathon.jsx'
+import Contact from './components/Contact.jsx'
+import AdminLogin from './components/AdminLogin.jsx'
+import Schedule from './components/Schedule.jsx'
+import Speakers from './components/Speakers.jsx'
+import Sponsors from './components/Sponsors.jsx'
+import Team from './components/Team.jsx'
+import Home from './components/Home.jsx'
+import AdminTools from './components/AdminTools.jsx'
+import AdminModal from './components/AdminModal.jsx'
 import {
   aboutData,
   heroData,
@@ -28,7 +37,6 @@ function App() {
   const [modalMode, setModalMode] = useState('create')
   const [modalData, setModalData] = useState({})
   const [modalError, setModalError] = useState('')
-  const [isAdminRoute, setIsAdminRoute] = useState(window.location.pathname.startsWith('/admin/login'))
 
   const [hero] = useState(heroData)
   const [about] = useState(aboutData)
@@ -54,14 +62,6 @@ function App() {
     { key: 'register', label: 'Register' },
     { key: 'contact', label: 'Contact' },
   ], [])
-
-  const getRouteFromLocation = useCallback(() => {
-    if (window.location.pathname.startsWith('/admin/login')) {
-      return 'admin'
-    }
-    const hash = window.location.hash.replace('#', '')
-    return pageRoutes.some((route) => route.key === hash) ? hash || 'home' : 'home'
-  }, [pageRoutes])
 
   const navigateTo = (pageKey) => {
     if (pageKey === 'admin') return
@@ -92,7 +92,6 @@ function App() {
   useEffect(() => {
     const updateRoute = () => {
       const isAdmin = window.location.pathname.startsWith('/admin/login')
-      setIsAdminRoute(isAdmin)
       if (isAdmin) {
         setCurrentPage(adminMode ? 'home' : 'admin')
       } else {
@@ -431,7 +430,6 @@ function App() {
       setLoginUsername('')
       setLoginPassword('')
       window.history.pushState({}, '', '/')
-      setIsAdminRoute(false)
       setCurrentPage('home')
     } catch (error) {
       setAdminMessage(error.message || 'Invalid username or password.')
@@ -451,7 +449,6 @@ function App() {
     setAdminMode(false)
     setAdminMessage('Logged out.')
     window.history.pushState({}, '', '/')
-    setIsAdminRoute(false)
     setCurrentPage('home')
   }
 
@@ -468,586 +465,93 @@ function App() {
   const renderPage = () => {
     if (currentPage === 'admin') {
       return (
-        <section className="content-section admin-login-section" id="admin-login">
-          <div className="section-heading text-center">
-            <span>Admin Gateway</span>
-            <h2>OOSC 4.0 Dashboard Access</h2>
-            <p className="subtitle">This area is accessible only by direct admin URL and valid credentials.</p>
-          </div>
-
-          <div className="login-panel-container">
-            <form className="login-panel glass-card" onSubmit={handleLogin}>
-              <div className="form-group">
-                <label htmlFor="admin-username-field">Username</label>
-                <input
-                  id="admin-username-field"
-                  type="text"
-                  required
-                  value={loginUsername}
-                  onChange={(event) => setLoginUsername(event.target.value)}
-                  placeholder="Admin username"
-                  className="form-control"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="admin-password-field">Password</label>
-                <input
-                  id="admin-password-field"
-                  type="password"
-                  required
-                  value={loginPassword}
-                  onChange={(event) => setLoginPassword(event.target.value)}
-                  placeholder="••••••••••••"
-                  className="form-control"
-                />
-              </div>
-              <div className="login-actions">
-                <button type="submit" className="btn btn-primary">
-                  Sign In
-                </button>
-              </div>
-              {adminMessage && <p className="admin-status-message error">{adminMessage}</p>}
-            </form>
-          </div>
-        </section>
+        <AdminLogin
+          loginUsername={loginUsername}
+          setLoginUsername={setLoginUsername}
+          loginPassword={loginPassword}
+          setLoginPassword={setLoginPassword}
+          handleLogin={handleLogin}
+          adminMessage={adminMessage}
+        />
       )
     }
 
     switch (currentPage) {
       case 'schedule':
         return (
-          <section className="content-section" id="schedule">
-            <div className="section-heading split">
-              <div>
-                <span>Timeline</span>
-                <h2>Conference Schedule</h2>
-                <p>Track opening talks, workshops, hackathon check-ins, and panel discussions.</p>
-              </div>
-              {adminMode && (
-                <button type="button" className="btn btn-admin-add" onClick={() => openModal('events', 'create')}>
-                  + Add Timeline Slot
-                </button>
-              )}
-            </div>
-
-            {/* Days Tabs */}
-            <div className="schedule-tabs">
-              {[
-                { date: 'Aug 28', label: 'Day 1 (Aug 28)' },
-                { date: 'Aug 29', label: 'Day 2 (Aug 29)' },
-                { date: 'Aug 30', label: 'Day 3 (Aug 30)' },
-              ].map((dayTab) => (
-                <button
-                  key={dayTab.date}
-                  type="button"
-                  className={`tab-btn ${activeDay === dayTab.date ? 'active' : ''}`}
-                  onClick={() => setActiveDay(dayTab.date)}
-                >
-                  {dayTab.label}
-                </button>
-              ))}
-            </div>
-
-            <div className="timeline-container">
-              {filteredSchedule.length === 0 ? (
-                <div className="no-events glass-card">
-                  <p>No slots scheduled for this day yet.</p>
-                </div>
-              ) : (
-                <div className="timeline-list">
-                  {filteredSchedule.map((item) => (
-                    <article key={item.id} className="timeline-card glass-card">
-                      <div className="timeline-badge">{item.type || 'Session'}</div>
-                      <span className="timeline-time">{getEventTime(item)}</span>
-                      <h3>{item.title}</h3>
-                      <p>{getEventDesc(item)}</p>
-                      
-                      {adminMode && (
-                        <div className="admin-card-controls admin-card-actions">
-                          <button
-                            type="button"
-                            className="btn btn-admin-mini"
-                            onClick={() => editRecord('events', item)}
-                          >
-                            Edit
-                          </button>
-                          <button
-                            type="button"
-                            className="btn-delete"
-                            onClick={() => deleteRecord('events', item.id, setSchedule)}
-                          >
-                            Delete
-                          </button>
-                        </div>
-                      )}
-                    </article>
-                  ))}
-                </div>
-              )}
-            </div>
-          </section>
+          <Schedule
+            filteredSchedule={filteredSchedule}
+            activeDay={activeDay}
+            setActiveDay={setActiveDay}
+            adminMode={adminMode}
+            openModal={openModal}
+            editRecord={editRecord}
+            deleteRecord={deleteRecord}
+            setSchedule={setSchedule}
+            getEventTime={getEventTime}
+            getEventDesc={getEventDesc}
+          />
         )
 
       case 'speakers':
         return (
-          <section className="content-section speakers-section" id="speakers">
-            <div className="section-heading split">
-              <div>
-                <span>Experts</span>
-                <h2>Thought Leadership</h2>
-                <p>Featured technology leaders, academics, and research engineers guiding our tracks.</p>
-              </div>
-              {adminMode && (
-                <button type="button" className="btn btn-admin-add" onClick={() => openModal('speakers', 'create')}>
-                  + Add Speaker
-                </button>
-              )}
-            </div>
-
-            <div className="card-grid speaker-grid">
-              {speakers.map((speaker) => (
-                <article key={speaker.id} className="card speaker-card glass-card">
-                  <div className="image-wrapper">
-                    <img src={speaker.photoURL} alt={speaker.name} loading="lazy" />
-                  </div>
-                  <div className="card-content">
-                    <h3>{speaker.name}</h3>
-                    <p className="card-subtitle">{speaker.title}</p>
-                    <p className="card-description">{speaker.bio}</p>
-                    <div className="social-links">
-                      <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="social-icon" aria-label="LinkedIn">
-                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                      </a>
-                      <a href="https://github.com" target="_blank" rel="noreferrer" className="social-icon" aria-label="GitHub">
-                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                      </a>
-                    </div>
-                  </div>
-                  {adminMode && (
-                    <div className="admin-card-controls admin-card-actions">
-                      <button
-                        type="button"
-                        className="btn btn-admin-mini"
-                        onClick={() => editRecord('speakers', speaker)}
-                      >
-                        Edit
-                      </button>
-                      <button
-                        type="button"
-                        className="btn-delete"
-                        onClick={() => deleteRecord('speakers', speaker.id, setSpeakers)}
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  )}
-                </article>
-              ))}
-            </div>
-          </section>
+          <Speakers
+            speakers={speakers}
+            adminMode={adminMode}
+            openModal={openModal}
+            editRecord={editRecord}
+            deleteRecord={deleteRecord}
+            setSpeakers={setSpeakers}
+          />
         )
 
       case 'sponsors':
         return (
-          <section className="content-section" id="sponsors">
-            <div className="section-heading split">
-              <div>
-                <span>Partners</span>
-                <h2>Conference Supporters</h2>
-                <p>Academic institutions and corporate engineering partners supporting open systems research.</p>
-              </div>
-              {adminMode && (
-                <button type="button" className="btn btn-admin-add" onClick={() => openModal('sponsors', 'create')}>
-                  + Add Sponsor
-                </button>
-              )}
-            </div>
-
-            <div className="sponsors-wrapper">
-              {sortedSponsors.map(({ category, sponsors: group }) => {
-                if (group.length === 0 && !adminMode) return null
-                return (
-                  <div key={category} className="sponsor-tier-group">
-                    <div className="sponsor-tier-header">
-                      <h3>{category}</h3>
-                      <span className="divider-line"></span>
-                    </div>
-                    <div className="sponsor-logo-grid">
-                      {group.map((sponsor) => (
-                        <div key={sponsor.id} className="sponsor-card-outer">
-                          <a href={sponsor.website} target="_blank" rel="noreferrer" className="sponsor-card glass-card">
-                            <div className="logo-container">
-                              <img src={sponsor.logoURL} alt={sponsor.name} loading="lazy" />
-                            </div>
-                            <span className="sponsor-name">{sponsor.name}</span>
-                          </a>
-                          {adminMode && (
-                            <div className="sponsor-admin-controls">
-                              <button
-                                type="button"
-                                className="btn btn-admin-mini"
-                                onClick={() => editRecord('sponsors', sponsor)}
-                              >
-                                Edit
-                              </button>
-                              <button
-                                type="button"
-                                className="btn-delete-sponsor"
-                                onClick={() => deleteRecord('sponsors', sponsor.id, setSponsors)}
-                              >
-                                Delete
-                              </button>
-                            </div>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </section>
+          <Sponsors
+            sortedSponsors={sortedSponsors}
+            adminMode={adminMode}
+            openModal={openModal}
+            editRecord={editRecord}
+            deleteRecord={deleteRecord}
+            setSponsors={setSponsors}
+          />
         )
 
       case 'team':
         return (
-          <section className="content-section" id="team">
-            <div className="section-heading split">
-              <div>
-                <span>Steering Committee</span>
-                <h2>The Organizing Team</h2>
-                <p>Meet the faculty directors and student committees hosting OOSC 4.0 at IIIT Allahabad.</p>
-              </div>
-              {adminMode && (
-                <button type="button" className="btn btn-admin-add" onClick={() => openModal('team', 'create')}>
-                  + Add Team Member
-                </button>
-              )}
-            </div>
-
-            <div className="team-categories-container">
-              {Object.entries(categorizedTeam).map(([categoryName, members]) => {
-                if (members.length === 0 && !adminMode) return null
-                return (
-                  <div key={categoryName} className="team-category-section">
-                    <h3 className="team-category-title">{categoryName}</h3>
-                    <div className="card-grid team-grid">
-                      {members.map((member) => (
-                        <article key={member.id} className="card team-card glass-card">
-                          <div className="image-wrapper team-avatar">
-                            <img src={member.photoURL} alt={member.name} loading="lazy" />
-                          </div>
-                          <div className="card-content">
-                            <h3>{member.name}</h3>
-                            <p className="card-subtitle">{member.role}</p>
-                            <p className="contact-info-text">{member.contact}</p>
-                            <div className="social-links">
-                              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="social-icon" aria-label="LinkedIn">
-                                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                              </a>
-                            </div>
-                          </div>
-                          {adminMode && (
-                            <div className="admin-card-controls">
-                              <button
-                                type="button"
-                                className="btn btn-admin-mini"
-                                onClick={() => editRecord('team', member)}
-                              >
-                                Edit
-                              </button>
-                              <button
-                                type="button"
-                                className="btn-delete"
-                                onClick={() => deleteRecord('team', member.id, setTeam)}
-                              >
-                                Delete
-                              </button>
-                            </div>
-                          )}
-                        </article>
-                      ))}
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </section>
+          <Team
+            categorizedTeam={categorizedTeam}
+            adminMode={adminMode}
+            openModal={openModal}
+            editRecord={editRecord}
+            deleteRecord={deleteRecord}
+            setTeam={setTeam}
+          />
         )
 
       case 'hackathon':
-        return (
-          <section className="content-section hackathon-section" id="hackathon">
-            <div className="section-heading">
-              <span>Competition</span>
-              <h2>OOSC 4.0 Hackathon</h2>
-              <p>Join the flagship hackathon track for students, researchers, and open source builders.</p>
-            </div>
-            <div className="hackathon-content-grid">
-              <div className="glass-card">
-                <h3>What to Expect</h3>
-                <p>Teams will solve real systems, AI, and open source challenges in a fast-paced sprint supported by mentors.</p>
-              </div>
-              <div className="glass-card">
-                <h3>Who Should Participate</h3>
-                <ul>
-                  <li>Students passionate about software, hardware, and open collaboration</li>
-                  <li>Researchers and contributors exploring practical implementation</li>
-                  <li>Teams aiming to present strong solutions to judges and sponsors</li>
-                </ul>
-              </div>
-              <div className="glass-card">
-                <h3>Prizes & Support</h3>
-                <p>Top teams earn awards, mentorship sessions, and fast-track invitations to showcase at the closing ceremony.</p>
-              </div>
-            </div>
-          </section>
-        )
+        return <Hackathon />
 
       case 'register':
         return <Registration onSubmit={() => setAdminMessage('Registration interest captured successfully!')} />
 
       case 'contact':
         return (
-          <section className="content-section contact-section" id="contact">
-            <div className="contact-layout-grid">
-              <div className="contact-info-panel">
-                <div className="section-heading">
-                  <span>Connect</span>
-                  <h2>Contact the Organizers</h2>
-                  <p>Inquire about sponsorship opportunities, speaker submissions, or registration access keys.</p>
-                </div>
-
-                <div className="contact-details-cards">
-                  <div className="contact-detail-card glass-card">
-                    <span className="icon">✉</span>
-                    <div>
-                      <h4>Official Email</h4>
-                      <p>contact@oosc4.0.iiita.ac.in</p>
-                    </div>
-                  </div>
-                  <div className="contact-detail-card glass-card">
-                    <span className="icon">📞</span>
-                    <div>
-                      <h4>Call / WhatsApp</h4>
-                      <p>+91 7318 295 789</p>
-                    </div>
-                  </div>
-                  <div className="contact-detail-card glass-card">
-                    <span className="icon">📍</span>
-                    <div>
-                      <h4>Venue Location</h4>
-                      <p>CC-3, IIIT Allahabad, Devghat, Jhalwa, Prayagraj, UP 211015</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="map-wrapper glass-card">
-                  <iframe 
-                    title="IIIT Allahabad Campus Map"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3603.237248107936!2d81.76916531102919!3d25.430327377457788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398ffd42b938924b%3A0xc4aa002a2468307d!2sIndian%20Institute%20of%20Information%20Technology%2C%20Allahabad!5e0!3m2!1sen!2sin!4v1717320000000!5m2!1sen!2sin"
-                    width="100%" 
-                    height="100%" 
-                    style={{ border: 0, borderRadius: '18px', filter: 'invert(90%) hue-rotate(180deg) grayscale(40%)' }} 
-                    allowFullScreen="" 
-                    loading="lazy"
-                  ></iframe>
-                </div>
-              </div>
-
-              <div className="contact-form-panel glass-card">
-                <h3>Send an Inquiry</h3>
-                <p>Complete the form below to reach our communications committee.</p>
-                <form className="contact-form-elements" onSubmit={handleFormSubmit}>
-                  <div className="form-group">
-                    <label htmlFor="contact-name">Full Name</label>
-                    <input
-                      id="contact-name"
-                      type="text"
-                      value={form.name}
-                      onChange={(event) => setForm({ ...form, name: event.target.value })}
-                      required
-                      placeholder="Your name"
-                      className="form-control"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="contact-email">Email Address</label>
-                    <input
-                      id="contact-email"
-                      type="email"
-                      value={form.email}
-                      onChange={(event) => setForm({ ...form, email: event.target.value })}
-                      required
-                      placeholder="you@example.com"
-                      className="form-control"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="contact-msg">Message</label>
-                    <textarea
-                      id="contact-msg"
-                      rows="5"
-                      value={form.message}
-                      onChange={(event) => setForm({ ...form, message: event.target.value })}
-                      required
-                      placeholder="Write your message details..."
-                      className="form-control"
-                    />
-                  </div>
-                  <button type="submit" className="btn btn-primary btn-block">
-                    Submit Message
-                  </button>
-                  {formStatus && <p className="form-status-message">{formStatus}</p>}
-                </form>
-              </div>
-            </div>
-          </section>
+          <Contact
+            form={form}
+            setForm={setForm}
+            handleFormSubmit={handleFormSubmit}
+            formStatus={formStatus}
+          />
         )
-
-      default:
+      
+      case 'home':
         return (
-          <>
-            {/* Hero Section */}
-            <section className="hero-section" id="home">
-              <div className="hero-glow-blob"></div>
-              <div className="hero-content-outer">
-                <div className="hero-copy">
-                  <span className="eyebrow-accent">Opportunity Open Source Conference</span>
-                  <h1>{hero.title}</h1>
-                  <p className="hero-subtitle">{hero.subtitle}</p>
-                  <p className="hero-description">{hero.bannerText}</p>
-                  
-                  <div className="hero-actions">
-                    <button
-                      type="button"
-                      className="btn btn-primary"
-                      onClick={() => navigateTo('register')}
-                    >
-                      {hero.cta}
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-outline"
-                      onClick={() => navigateTo('speakers')}
-                    >
-                      Explore Key Speakers
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* Hero Transitional Info Cards */}
-            <section className="hero-transitional-details" id="home-details">
-              <div className="transitional-grid">
-                <div className="transitional-info-card glass-card">
-                  <span className="meta-icon">📅</span>
-                  <div>
-                    <h4>Conference Dates</h4>
-                    <p>{hero.dates}</p>
-                  </div>
-                </div>
-                <div className="transitional-info-card glass-card">
-                  <span className="meta-icon">📍</span>
-                  <div>
-                    <h4>Venue Hub</h4>
-                    <p>{hero.venue}</p>
-                  </div>
-                </div>
-                <div className="transitional-info-card glass-card">
-                  <h4>Why Join OOSC 4.0?</h4>
-                  <p>Connect with leading maintainers, explore high-throughput systems, and participate in collaborative hackathons with academic guidance.</p>
-                </div>
-                <div className="transitional-info-card glass-card highlight-border">
-                  <h4>Open Source &amp; Academia</h4>
-                  <p>Access developer workshops, server labs, and code sprints designed specifically to bridge academia with modern platforms.</p>
-                </div>
-              </div>
-            </section>
-
-            {/* About and Highlights Premium Section */}
-            <section className="content-section about-section" id="about">
-              <div className="about-grid">
-                <div className="about-text-content">
-                  <div className="section-heading">
-                    <span>OOSC Ecosystem</span>
-                    <h2>{about.heading}</h2>
-                    <p className="about-desc">{about.description}</p>
-                  </div>
-                  
-                  <div className="highlights-stack">
-                    {about.highlights.map((point, i) => (
-                      <div key={i} className="highlight-pill glass-card">
-                        <span className="highlight-bullet">✓</span>
-                        <p>{point}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Statistics cards */}
-                <div className="stats-dashboard">
-                  <div className="stat-card-gradient">
-                    <h3>500+</h3>
-                    <p>Developers &amp; Researchers</p>
-                  </div>
-                  <div className="stat-card-gradient">
-                    <h3>20+</h3>
-                    <p>Academic &amp; Core Speakers</p>
-                  </div>
-                  <div className="stat-card-gradient">
-                    <h3>10+</h3>
-                    <p>Enterprise Sponsors</p>
-                  </div>
-                  <div className="stat-card-gradient">
-                    <h3>3 Days</h3>
-                    <p>Sprints &amp; Tech Panels</p>
-                  </div>
-                  <div className="stat-card-gradient span-columns">
-                    <h3>National Level</h3>
-                    <p>Student and Lab Engagement</p>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* Event Overview Section */}
-            <section className="content-section" id="event-overview">
-              <div className="section-heading text-center">
-                <span>Core Activities</span>
-                <h2>Conference Focus Areas</h2>
-                <p className="subtitle">From research panels to coding sprints, explore the structural core of OOSC 4.0.</p>
-              </div>
-              <div className="event-overview-grid">
-                <div className="overview-card glass-card">
-                  <span className="overview-icon">🎤</span>
-                  <h3>Research Talks</h3>
-                  <p>In-depth technical sessions on server design, kernel optimizations, and state-of-the-art databases.</p>
-                </div>
-                <div className="overview-card glass-card">
-                  <span className="overview-icon">⚙️</span>
-                  <h3>Workshops</h3>
-                  <p>Interactive labs guiding developers through deployment orchestrations, API architectures, and systems diagnostics.</p>
-                </div>
-                <div className="overview-card glass-card">
-                  <span className="overview-icon">⚡</span>
-                  <h3>Hackathons</h3>
-                  <p>A multi-hour competitive sprint solving high-priority systems issues with direct coordinator support.</p>
-                </div>
-                <div className="overview-card glass-card">
-                  <span className="overview-icon">🤝</span>
-                  <h3>Networking Hub</h3>
-                  <p>Build links between leading research faculties, open source contributors, and corporate engineering advocates.</p>
-                </div>
-                <div className="overview-card glass-card">
-                  <span className="overview-icon">🌐</span>
-                  <h3>Code Sprints</h3>
-                  <p>Directly push contributions to whitelisted repositories and explore open system governance protocols.</p>
-                </div>
-              </div>
-            </section>
-          </>
+          <Home
+            hero={hero}
+            about={about}
+            navigateTo={navigateTo}
+          />
         )
     }
   }
@@ -1097,111 +601,31 @@ function App() {
 
       {/* Admin Quick Tools panel */}
       {adminMode && (
-        <section className="content-section admin-tools-bar glass-card" id="admin-tools">
-          <div className="admin-tools-header">
-            <div>
-              <h3>Admin Dashboard Quick Tools</h3>
-              <p>Logged in as: <strong>{adminUsername}</strong></p>
-            </div>
-            <button type="button" className="btn btn-secondary btn-sm" onClick={logout}>
-              Sign Out
-            </button>
-          </div>
-          
-          <div className="admin-tools-grid">
-            <div className="uploader-tool">
-              <h4>Media Asset Upload</h4>
-              <p>Drag and drop assets here. Copy the generated URL into metadata fields.</p>
-              <ImageUploader onUpload={setUploadUrl} />
-              {uploadUrl && (
-                <div className="generated-url-box">
-                  <span>Asset URL:</span>
-                  <code>{uploadUrl}</code>
-                  <button 
-                    type="button" 
-                    className="btn-copy" 
-                    onClick={() => {
-                      navigator.clipboard.writeText(uploadUrl)
-                      alert('Copied link!')
-                    }}
-                  >
-                    Copy
-                  </button>
-                </div>
-              )}
-            </div>
-
-            <div className="quick-management-actions">
-              <h4>Quick Page Modifiers</h4>
-              <p>Directly add metadata cards to the active database categories:</p>
-              <div className="actions-flex">
-                <button type="button" className="btn btn-admin-quick" onClick={() => openModal('speakers', 'create')}>+ Add Speaker</button>
-                <button type="button" className="btn btn-admin-quick" onClick={() => openModal('sponsors', 'create')}>+ Add Sponsor</button>
-                <button type="button" className="btn btn-admin-quick" onClick={() => openModal('events', 'create')}>+ Add Schedule Slot</button>
-                <button type="button" className="btn btn-admin-quick" onClick={() => openModal('team', 'create')}>+ Add Team Member</button>
-              </div>
-            </div>
-          </div>
-        </section>
+        <AdminTools
+          adminUsername={adminUsername}
+          logout={logout}
+          uploadUrl={uploadUrl}
+          setUploadUrl={setUploadUrl}
+          openModal={openModal}
+        />
       )}
 
       {/* Page Content Body */}
       <main className="page-body">{renderPage()}</main>
 
       {modalOpen && (
-        <div className="admin-modal-backdrop" role="dialog" aria-modal="true">
-          <div className="admin-modal-panel glass-card">
-            <div className="admin-modal-header">
-              <h3>{modalMode === 'create' ? `Add New ${resourceLabels[modalResource]}` : `Edit ${resourceLabels[modalResource]}`}</h3>
-              <button type="button" className="btn-close-modal" onClick={closeModal} aria-label="Close dialog">✕</button>
-            </div>
-            <div className="admin-modal-body">
-              {modalFieldMap[modalResource]?.map((field) => (
-                <div key={field.key} className="form-group modal-form-group">
-                  <label htmlFor={`modal-${field.key}`}>{field.label}</label>
-                  {field.type === 'textarea' ? (
-                    <textarea
-                      id={`modal-${field.key}`}
-                      value={modalData[field.key] ?? ''}
-                      onChange={(event) => setModalField(field.key, event.target.value)}
-                      className="form-control"
-                      rows="4"
-                    />
-                  ) : (
-                    <input
-                      id={`modal-${field.key}`}
-                      type={field.type}
-                      value={modalData[field.key] ?? ''}
-                      onChange={(event) => setModalField(field.key, event.target.value)}
-                      className="form-control"
-                    />
-                  )}
-                </div>
-              ))}
-              <div className="modal-upload-row">
-                <div>
-                  <p className="field-tip">Use upload or paste image/URL fields for live preview.</p>
-                  <ImageUploader onUpload={setModalImage} label="Upload image or logo" />
-                </div>
-                {((modalResource === 'sponsors' ? modalData.logoURL : modalData.photoURL) || '').length > 0 && (
-                  <div className="modal-preview-box">
-                    <span>Preview</span>
-                    <img src={modalResource === 'sponsors' ? modalData.logoURL : modalData.photoURL} alt="Preview" loading="lazy" />
-                  </div>
-                )}
-              </div>
-              {modalError && <p className="admin-status-message error modal-error">{modalError}</p>}
-            </div>
-            <div className="admin-modal-actions">
-              <button type="button" className="btn btn-secondary" onClick={closeModal}>
-                Cancel
-              </button>
-              <button type="button" className="btn btn-primary" onClick={saveModalRecord}>
-                {modalMode === 'create' ? 'Create' : 'Save Changes'}
-              </button>
-            </div>
-          </div>
-        </div>
+        <AdminModal
+          modalMode={modalMode}
+          modalResource={modalResource}
+          resourceLabels={resourceLabels}
+          closeModal={closeModal}
+          modalFieldMap={modalFieldMap}
+          modalData={modalData}
+          setModalField={setModalField}
+          setModalImage={setModalImage}
+          modalError={modalError}
+          saveModalRecord={saveModalRecord}
+        />
       )}
 
       {/* Footer Component */}
