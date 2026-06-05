@@ -1,5 +1,5 @@
 /* ─── GOOGLE FONTS ─────────────────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
 /* ─── BASE RESET ─────────────────────────────────────────────────────────── */
 * {
@@ -12,8 +12,8 @@
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   font-size: 16px;
   line-height: 1.6;
-  color: #f0f0f4;
-  background-color: #0d0d0f;
+  color: #F0F0EC;
+  background-color: #0F0F0F;
   scroll-behavior: smooth;
 }
 
@@ -26,27 +26,36 @@ body,
 
 body {
   font-family: 'Inter', sans-serif;
-  /* pure grey / dark-carbon background — no cyan or blue tints */
-  background:
-    radial-gradient(ellipse 70% 50% at 80% 0%,   rgba(255,255,255,0.03) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 10% 100%,  rgba(255,255,255,0.02) 0%, transparent 60%),
-    #0d0d0f;
-  color: #f0f0f4;
+  background: #0F0F0F;
+  color: #F0F0EC;
   overflow-x: hidden;
+  position: relative;
+}
+
+/* halftone dot texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 22px 22px;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* ─── SCROLLBAR ─────────────────────────────────────────────────────────── */
-::-webkit-scrollbar        { width: 8px; }
-::-webkit-scrollbar-track  { background: #0d0d0f; }
-::-webkit-scrollbar-thumb  { background: #2a2a30; border: 2px solid #0d0d0f; border-radius: 99px; }
-::-webkit-scrollbar-thumb:hover { background: #3a3a44; }
+::-webkit-scrollbar        { width: 6px; }
+::-webkit-scrollbar-track  { background: #0F0F0F; }
+::-webkit-scrollbar-thumb  { background: #E8736D; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #F09080; }
 
 /* ─── TYPOGRAPHY ─────────────────────────────────────────────────────────── */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: 'Bebas Neue', 'Impact', sans-serif;
   color: #ffffff;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 button, input, textarea, select { font: inherit; color: inherit; }
@@ -57,6 +66,6 @@ img { display: block; max-width: 100%; height: auto; }
 
 /* ─── SELECTION ──────────────────────────────────────────────────────────── */
 ::selection {
-  background-color: rgba(200, 200, 220, 0.28);
+  background-color: rgba(232, 115, 109, 0.35);
   color: #ffffff;
 }
