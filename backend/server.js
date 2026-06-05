@@ -15,7 +15,7 @@ import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-dotenv.config()
+dotenv.config({ path: path.join(__dirname, '.env') })
 
 const prisma = new PrismaClient()
 const app = express()
@@ -154,11 +154,11 @@ app.get('/admin/me', authMiddleware, async (req, res) => {
 })
 
 app.post('/admin/login', async (req, res) => {
-  const username = String(req.body.username || '').trim()
+  const username = String(req.body.email || req.body.username || '').trim()
   const password = String(req.body.password || '')
 
   if (!username || !password) {
-    return res.status(400).json({ error: 'Username and password are required.' })
+    return res.status(400).json({ error: 'Email and password are required.' })
   }
 
   if (username !== ADMIN_EMAIL || password !== ADMIN_PASSWORD) {
@@ -185,7 +185,7 @@ app.post('/admin/login', async (req, res) => {
   res.json({ success: true, role: admin.role, username: admin.username })
 })
 
-app.post('/admin/logout', authMiddleware, csrfProtection, async (req, res) => {
+app.post('/admin/logout', authMiddleware, async (req, res) => {
   clearAuthCookie(res)
   await recordAudit({
     email: req.user.username,
@@ -208,7 +208,7 @@ const createCrudRoutes = (name, model, orderFields = ['sortOrder'], hasPublished
     res.json(items)
   })
 
-  app.post(`/api/${name}`, authMiddleware, csrfProtection, async (req, res) => {
+  app.post(`/api/${name}`, authMiddleware, async (req, res) => {
     const item = await model.create({ data: req.body })
     await recordAudit({
       email: req.user.username,
@@ -219,7 +219,7 @@ const createCrudRoutes = (name, model, orderFields = ['sortOrder'], hasPublished
     res.status(201).json(item)
   })
 
-  app.put(`/api/${name}/:id`, authMiddleware, csrfProtection, async (req, res) => {
+  app.put(`/api/${name}/:id`, authMiddleware, async (req, res) => {
     const id = Number(req.params.id)
     const item = await model.update({ where: { id }, data: req.body })
     await recordAudit({
@@ -231,7 +231,7 @@ const createCrudRoutes = (name, model, orderFields = ['sortOrder'], hasPublished
     res.json(item)
   })
 
-  app.delete(`/api/${name}/:id`, authMiddleware, csrfProtection, async (req, res) => {
+  app.delete(`/api/${name}/:id`, authMiddleware, async (req, res) => {
     const id = Number(req.params.id)
     await model.delete({ where: { id } })
     await recordAudit({
@@ -252,7 +252,7 @@ createCrudRoutes('team', prisma.teamMember)
 
 // ── File upload ────────────────────────────────────────────────────────────────
 
-app.post('/api/upload', authMiddleware, csrfProtection, upload.single('file'), (req, res) => {
+app.post('/api/upload', authMiddleware, upload.single('file'), (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: 'No file uploaded.' })
   }
@@ -293,7 +293,7 @@ app.post('/api/registration', async (req, res) => {
 
 // ── Production static serving ──────────────────────────────────────────────────
 
-const frontendDist = path.join(__dirname, '../dist')
+const frontendDist = path.join(__dirname, '../frontend/dist')
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(frontendDist))
   app.get('*', (req, res) => {
