@@ -5,18 +5,15 @@ import helmet from 'helmet'
 import cookieParser from 'cookie-parser'
 import csurf from 'csurf'
 import rateLimit from 'express-rate-limit'
-import nodemailer from 'nodemailer'
 import jwt from 'jsonwebtoken'
 import multer from 'multer'
 import path from 'path'
 import fs from 'fs'
 import { PrismaClient } from '@prisma/client'
-
 import { fileURLToPath } from 'url'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-
 
 dotenv.config()
 
@@ -26,12 +23,12 @@ const port = Number(process.env.PORT ?? 4000)
 const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || 'http://localhost:5173'
 const COOKIE_SECURE = process.env.NODE_ENV === 'production'
 const JWT_SECRET = process.env.JWT_SECRET ?? 'oosc-secret'
-const REFRESH_SECRET = process.env.JWT_REFRESH_SECRET ?? 'oosc-refresh-secret'
 const ACCESS_EXPIRES = '24h'
-const REFRESH_EXPIRES = '7d'
-const ADMIN_USERNAME = process.env.ADMIN_USERNAME ?? 'ooscadmin'
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD ?? 'VeryStrongPassword123'
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL ?? 'admin@oosc.iiita.ac.in'
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD ?? 'StrongPassword'
 const ADMIN_ROLE = process.env.ADMIN_ROLE ?? 'ADMIN'
+
+// ── Middleware ──────────────────────────────────────────────────────────────────
 
 app.use(helmet())
 app.use(
@@ -43,6 +40,8 @@ app.use(
 )
 app.use(express.json())
 app.use(cookieParser())
+
+// ── File uploads ───────────────────────────────────────────────────────────────
 
 const uploadDir = path.join(__dirname, 'uploads')
 fs.mkdirSync(uploadDir, { recursive: true })
@@ -64,6 +63,8 @@ const upload = multer({
     }
   },
 })
+
+// ── CSRF & rate limiting ───────────────────────────────────────────────────────
 
 const csrfProtection = csurf({
   cookie: {
@@ -89,56 +90,35 @@ const generalLimiter = rateLimit({
   legacyHeaders: false,
 })
 
+// ── Helpers ────────────────────────────────────────────────────────────────────
+
 const getClientIp = (req) =>
   req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket.remoteAddress || 'unknown'
 
 const recordAudit = async ({ email, action, resource, ipAddress }) => {
   try {
     await prisma.auditLog.create({
-      data: {
-        adminEmail: email,
-        action,
-        resource,
-        ipAddress,
-      },
+      data: { adminEmail: email, action, resource, ipAddress },
     })
   } catch (error) {
     console.error('Unable to record audit log', error)
   }
 }
 
-const createTokens = (admin) => {
-  const accessToken = jwt.sign(
-    { username: admin.username, role: admin.role },
-    JWT_SECRET,
-    { expiresIn: ACCESS_EXPIRES },
-  )
-  const refreshToken = jwt.sign(
-    { username: admin.username },
-    REFRESH_SECRET,
-    { expiresIn: REFRESH_EXPIRES },
-  )
-  return { accessToken, refreshToken }
-}
+const createAccessToken = (admin) =>
+  jwt.sign({ username: admin.username, role: admin.role }, JWT_SECRET, { expiresIn: ACCESS_EXPIRES })
 
-const setAuthCookies = (res, accessToken, refreshToken) => {
-  res.cookie('ooscAccessToken', accessToken, {
+const setAuthCookie = (res, token) => {
+  res.cookie('ooscAccessToken', token, {
     httpOnly: true,
     secure: COOKIE_SECURE,
     sameSite: 'strict',
     maxAge: 24 * 60 * 60 * 1000,
   })
-  res.cookie('ooscRefreshToken', refreshToken, {
-    httpOnly: true,
-    secure: COOKIE_SECURE,
-    sameSite: 'strict',
-    maxAge: 7 * 24 * 60 * 60 * 1000,
-  })
 }
 
-const clearAuthCookies = (res) => {
+const clearAuthCookie = (res) => {
   res.clearCookie('ooscAccessToken', { httpOnly: true, secure: COOKIE_SECURE, sameSite: 'strict' })
-  res.clearCookie('ooscRefreshToken', { httpOnly: true, secure: COOKIE_SECURE, sameSite: 'strict' })
 }
 
 const authMiddleware = async (req, res, next) => {
@@ -155,49 +135,25 @@ const authMiddleware = async (req, res, next) => {
   }
 }
 
-const createTransporter = () => {
-  if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS) {
-    return nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT ?? 587),
-      secure: process.env.SMTP_SECURE === 'true',
-      auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
-    })
-  }
-  return nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-  })
-}
-
-const sendAdminEmail = async ({ to, subject, html, text }) => {
-  const transporter = createTransporter()
-  return transporter.sendMail({
-    from: process.env.EMAIL_FROM || process.env.SMTP_USER || process.env.EMAIL_USER,
-    to,
-    subject,
-    html,
-    text,
-  })
-}
+// ── Apply rate limiters & static files ─────────────────────────────────────────
 
 app.use('/api', generalLimiter)
 app.use('/admin/login', loginLimiter)
-
 app.use('/uploads', express.static(uploadDir))
+
+// ── CSRF token endpoint ────────────────────────────────────────────────────────
 
 app.get('/api/csrf-token', csrfProtection, (req, res) => {
   res.json({ csrfToken: req.csrfToken() })
 })
 
+// ── Auth routes ────────────────────────────────────────────────────────────────
+
 app.get('/admin/me', authMiddleware, async (req, res) => {
   res.json({ username: req.user.username, role: req.user.role })
 })
 
-app.post('/admin/login', csrfProtection, async (req, res) => {
+app.post('/admin/login', async (req, res) => {
   const username = String(req.body.username || '').trim()
   const password = String(req.body.password || '')
 
@@ -205,7 +161,7 @@ app.post('/admin/login', csrfProtection, async (req, res) => {
     return res.status(400).json({ error: 'Username and password are required.' })
   }
 
-  if (username !== ADMIN_USERNAME || password !== ADMIN_PASSWORD) {
+  if (username !== ADMIN_EMAIL || password !== ADMIN_PASSWORD) {
     await recordAudit({
       email: username,
       action: 'Failed login attempt',
@@ -215,12 +171,12 @@ app.post('/admin/login', csrfProtection, async (req, res) => {
     return res.status(401).json({ error: 'Invalid username or password.' })
   }
 
-  const admin = { username: ADMIN_USERNAME, role: ADMIN_ROLE }
-  const { accessToken, refreshToken } = createTokens(admin)
-  setAuthCookies(res, accessToken, refreshToken)
+  const admin = { username: ADMIN_EMAIL, role: ADMIN_ROLE }
+  const token = createAccessToken(admin)
+  setAuthCookie(res, token)
 
   await recordAudit({
-    email: ADMIN_USERNAME,
+    email: ADMIN_EMAIL,
     action: 'Logged in',
     resource: 'AdminAuth',
     ipAddress: getClientIp(req),
@@ -230,38 +186,17 @@ app.post('/admin/login', csrfProtection, async (req, res) => {
 })
 
 app.post('/admin/logout', authMiddleware, csrfProtection, async (req, res) => {
-  clearAuthCookies(res)
+  clearAuthCookie(res)
   await recordAudit({
     email: req.user.username,
     action: 'Logged out',
-    resource: 'AdminUser',
+    resource: 'AdminAuth',
     ipAddress: getClientIp(req),
   })
   res.json({ success: true })
 })
 
-app.post('/admin/refresh', async (req, res) => {
-  const refreshToken = req.cookies.ooscRefreshToken
-  if (!refreshToken) {
-    return res.status(401).json({ error: 'Missing refresh token.' })
-  }
-
-  try {
-    const payload = jwt.verify(refreshToken, REFRESH_SECRET)
-    if (payload.username !== ADMIN_USERNAME) {
-      return res.status(401).json({ error: 'Invalid refresh token.' })
-    }
-
-    const admin = { username: ADMIN_USERNAME, role: ADMIN_ROLE }
-    const { accessToken } = createTokens(admin)
-    setAuthCookies(res, accessToken, refreshToken)
-    res.json({ success: true })
-  } catch {
-    clearAuthCookies(res)
-    return res.status(401).json({ error: 'Invalid refresh token.' })
-  }
-})
-
+// ── Generic CRUD factory ───────────────────────────────────────────────────────
 
 const createCrudRoutes = (name, model, orderFields = ['sortOrder'], hasPublished = true) => {
   app.get(`/api/${name}`, async (req, res) => {
@@ -309,71 +244,22 @@ const createCrudRoutes = (name, model, orderFields = ['sortOrder'], hasPublished
   })
 }
 
-createCrudRoutes('speakers', prisma.speaker, ['sortOrder'], true)
-createCrudRoutes('sponsors', prisma.sponsor, ['sortOrder'], true)
-createCrudRoutes('events', prisma.event, ['sortOrder'], true)
-createCrudRoutes('team', prisma.teamMember, ['sortOrder'], true)
-createCrudRoutes('merch', prisma.merchItem, ['id'], true)
-createCrudRoutes('faqs', prisma.faq, ['sortOrder'], true)
+// Register CRUD for models the frontend actually uses
+createCrudRoutes('speakers', prisma.speaker)
+createCrudRoutes('sponsors', prisma.sponsor)
+createCrudRoutes('events', prisma.event)
+createCrudRoutes('team', prisma.teamMember)
 
-app.get('/api/content', async (req, res) => {
-  const content = await prisma.siteContent.findMany()
-  res.json(content)
-})
-
-app.post('/api/content', authMiddleware, csrfProtection, async (req, res) => {
-  const { key, value } = req.body
-  const content = await prisma.siteContent.upsert({
-    where: { key },
-    update: { value },
-    create: { key, value },
-  })
-  await recordAudit({
-    email: req.user.username,
-    action: 'Updated content',
-    resource: `SiteContent:${key}`,
-    ipAddress: getClientIp(req),
-  })
-  res.json(content)
-})
-
-app.patch('/api/:resource/reorder', authMiddleware, csrfProtection, async (req, res) => {
-  const { resource } = req.params
-  const ids = req.body?.ids
-  const models = {
-    speakers: prisma.speaker,
-    sponsors: prisma.sponsor,
-    events: prisma.event,
-    team: prisma.teamMember,
-  }
-
-  const model = models[resource]
-  if (!model || !Array.isArray(ids)) {
-    return res.status(400).json({ error: 'Invalid reorder request' })
-  }
-
-  const updates = ids.map((id, index) =>
-    model.update({ where: { id: Number(id) }, data: { sortOrder: index + 1 } }),
-  )
-
-  await Promise.all(updates)
-  await recordAudit({
-    email: req.user.username,
-    action: `Reordered ${resource}`,
-    resource,
-    ipAddress: getClientIp(req),
-  })
-  res.json({ success: true })
-})
+// ── File upload ────────────────────────────────────────────────────────────────
 
 app.post('/api/upload', authMiddleware, csrfProtection, upload.single('file'), (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: 'No file uploaded.' })
   }
-
-  const fileUrl = `/uploads/${req.file.filename}`
-  res.json({ url: fileUrl })
+  res.json({ url: `/uploads/${req.file.filename}` })
 })
+
+// ── Contact form ───────────────────────────────────────────────────────────────
 
 app.post('/api/contact', async (req, res) => {
   const { name, email, message } = req.body
@@ -381,19 +267,12 @@ app.post('/api/contact', async (req, res) => {
     return res.status(400).json({ error: 'Name, email, and message are required.' })
   }
 
-  try {
-    await sendAdminEmail({
-      to: process.env.EMAIL_TO,
-      subject: `OOSC 4.0 contact: ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
-      html: `<p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p>${message}</p>`,
-    })
-    res.json({ success: true, message: 'Contact message sent successfully.' })
-  } catch (error) {
-    console.error('Contact email failed', error)
-    res.status(500).json({ error: 'Unable to send email at this time.' })
-  }
+  // Log the contact message; email integration can be added later
+  console.log(`Contact from ${name} (${email}): ${message}`)
+  res.json({ success: true, message: 'Contact message received successfully.' })
 })
+
+// ── Registration ───────────────────────────────────────────────────────────────
 
 app.post('/api/registration', async (req, res) => {
   const { name, email, affiliation, message } = req.body
@@ -402,11 +281,8 @@ app.post('/api/registration', async (req, res) => {
   }
 
   try {
-    await prisma.lead.create({ data: { name, email, affiliation: affiliation || '', message: message || '' } })
-    await sendAdminEmail({
-      to: process.env.EMAIL_TO,
-      subject: `OOSC 4.0 registration: ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\nAffiliation: ${affiliation}\n\n${message}`,
+    await prisma.lead.create({
+      data: { name, email, affiliation: affiliation || '', message: message || '' },
     })
     res.json({ success: true })
   } catch (error) {
@@ -415,15 +291,7 @@ app.post('/api/registration', async (req, res) => {
   }
 })
 
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', database: !!process.env.DATABASE_URL })
-})
-
-app.get('/test', (req, res) => {
-  res.json({
-    status: 'working'
-  })
-})
+// ── Production static serving ──────────────────────────────────────────────────
 
 const frontendDist = path.join(__dirname, '../dist')
 if (process.env.NODE_ENV === 'production') {
@@ -432,6 +300,8 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.join(frontendDist, 'index.html'))
   })
 }
+
+// ── Start ──────────────────────────────────────────────────────────────────────
 
 app.listen(port, () => {
   console.log(`OOSC backend listening on http://localhost:${port}`)
