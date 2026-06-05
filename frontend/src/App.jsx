@@ -27,6 +27,7 @@ function App() {
   const [modalMode, setModalMode] = useState('create')
   const [modalData, setModalData] = useState({})
   const [modalError, setModalError] = useState('')
+  const [configModalOpen, setConfigModalOpen] = useState(false)
 
   const [hero] = useState(heroData)
   const [about] = useState(aboutData)
@@ -38,6 +39,8 @@ function App() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [formStatus, setFormStatus] = useState('')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  
+  const [siteConfig, setSiteConfig] = useState({})
   
   // Schedule page active day tab
   const [activeDay, setActiveDay] = useState('Aug 28')
@@ -96,6 +99,20 @@ function App() {
     }
 
     restoreSession()
+
+    // Fetch site config
+    const fetchConfig = async () => {
+      try {
+        const response = await fetch('/api/site-config')
+        if (response.ok) {
+          const data = await response.json()
+          setSiteConfig(data)
+        }
+      } catch (err) {
+        console.warn('Failed to fetch site config', err)
+      }
+    }
+    fetchConfig()
   }, [])
 
 
@@ -317,6 +334,20 @@ function App() {
     }
   }
 
+  const saveSiteConfig = async (key, value) => {
+    try {
+      await apiFetch('/api/site-config', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ key, value }),
+      })
+      setSiteConfig((prev) => ({ ...prev, [key]: value }))
+      setAdminMessage(`Updated config for ${key}`)
+    } catch (error) {
+      setAdminMessage(`Failed to update config: ${error.message}`)
+    }
+  }
+
   const editRecord = (resource, item) => {
     openModal(resource, 'edit', item)
   }
@@ -433,9 +464,9 @@ function App() {
       return (
         <section className="content-section admin-login-section" id="admin-login">
           <div className="section-heading text-center">
-            <span>Admin Gateway</span>
-            <h2>OOSC 4.0 Dashboard Access</h2>
-            <p className="subtitle">Whitelist authentication system for authorized university organizers.</p>
+            <span>{siteConfig.adminEyebrow || 'Admin Gateway'}</span>
+            <h2>{siteConfig.adminTitle || 'OOSC 4.0 Dashboard Access'}</h2>
+            <p className="subtitle">{siteConfig.adminSubtitle || 'Whitelist authentication system for authorized university organizers.'}</p>
           </div>
           
           <div className="login-panel-container">
@@ -485,9 +516,9 @@ function App() {
           <section className="content-section" id="schedule">
             <div className="section-heading split">
               <div>
-                <span>Timeline</span>
-                <h2>Conference Schedule</h2>
-                <p>Track opening talks, workshops, hackathon check-ins, and panel discussions.</p>
+                <span>{siteConfig.scheduleEyebrow || 'Timeline'}</span>
+                <h2>{siteConfig.scheduleTitle || 'Conference Schedule'}</h2>
+                <p>{siteConfig.scheduleSubtitle || 'Track opening talks, workshops, hackathon check-ins, and panel discussions.'}</p>
               </div>
               {adminMode && (
                 <button type="button" className="btn btn-admin-add" onClick={() => openModal('events', 'create')}>
@@ -559,9 +590,9 @@ function App() {
           <section className="content-section speakers-section" id="speakers">
             <div className="section-heading split">
               <div>
-                <span>Experts</span>
-                <h2>Thought Leadership</h2>
-                <p>Featured technology leaders, academics, and research engineers guiding our tracks.</p>
+                <span>{siteConfig.speakersEyebrow || 'Experts'}</span>
+                <h2>{siteConfig.speakersTitle || 'Thought Leadership'}</h2>
+                <p>{siteConfig.speakersSubtitle || 'Featured technology leaders, academics, and research engineers guiding our tracks.'}</p>
               </div>
               {adminMode && (
                 <button type="button" className="btn btn-admin-add" onClick={() => openModal('speakers', 'create')}>
@@ -618,9 +649,9 @@ function App() {
           <section className="content-section" id="sponsors">
             <div className="section-heading split">
               <div>
-                <span>Partners</span>
-                <h2>Conference Supporters</h2>
-                <p>Academic institutions and corporate engineering partners supporting open systems research.</p>
+                <span>{siteConfig.sponsorsEyebrow || 'Partners'}</span>
+                <h2>{siteConfig.sponsorsTitle || 'Conference Supporters'}</h2>
+                <p>{siteConfig.sponsorsSubtitle || 'Academic institutions and corporate engineering partners supporting open systems research.'}</p>
               </div>
               {adminMode && (
                 <button type="button" className="btn btn-admin-add" onClick={() => openModal('sponsors', 'create')}>
@@ -680,9 +711,9 @@ function App() {
           <section className="content-section" id="team">
             <div className="section-heading split">
               <div>
-                <span>Steering Committee</span>
-                <h2>The Organizing Team</h2>
-                <p>Meet the faculty directors and student committees hosting OOSC 4.0 at IIIT Allahabad.</p>
+                <span>{siteConfig.teamEyebrow || 'Steering Committee'}</span>
+                <h2>{siteConfig.teamTitle || 'The Organizing Team'}</h2>
+                <p>{siteConfig.teamSubtitle || 'Meet the faculty directors and student committees hosting OOSC 4.0 at IIIT Allahabad.'}</p>
               </div>
               {adminMode && (
                 <button type="button" className="btn btn-admin-add" onClick={() => openModal('team', 'create')}>
@@ -750,11 +781,11 @@ function App() {
               <div className="hackathon-hero-inner">
                 <div className="hackathon-badge">
                   <span className="badge-dot"></span>
-                  OOSC 4.0 · Hackathon 2025
+                  {siteConfig.hackathonBadge || 'OOSC 4.0 · Hackathon 2025'}
                 </div>
-                <h1>Build the Future of Open Systems</h1>
+                <h1>{siteConfig.hackathonTitle || 'Build the Future of Open Systems'}</h1>
                 <p className="theme-label">Event Theme</p>
-                <p className="theme-name">"AI × Open Source: Powering Intelligent Infrastructure"</p>
+                <p className="theme-name">"{siteConfig.hackathonTheme || 'AI × Open Source: Powering Intelligent Infrastructure'}"</p>
                 <div className="hackathon-stat-strip">
                   <div className="hstat"><span className="hstat-value">₹1,00,000+</span><span className="hstat-label">Prize Pool</span></div>
                   <div className="hstat"><span className="hstat-value">36 Hrs</span><span className="hstat-label">Duration</span></div>
@@ -981,9 +1012,9 @@ function App() {
             <div className="contact-layout-grid">
               <div className="contact-info-panel">
                 <div className="section-heading">
-                  <span>Connect</span>
-                  <h2>Contact the Organizers</h2>
-                  <p>Inquire about sponsorship opportunities, speaker submissions, or registration access keys.</p>
+                  <span>{siteConfig.contactEyebrow || 'Connect'}</span>
+                  <h2>{siteConfig.contactTitle || 'Contact the Organizers'}</h2>
+                  <p>{siteConfig.contactSubtitle || 'Inquire about sponsorship opportunities, speaker submissions, or registration access keys.'}</p>
                 </div>
 
                 <div className="contact-details-cards">
@@ -1081,9 +1112,9 @@ function App() {
               <div className="hero-glow-blob"></div>
               <div className="hero-content-outer">
                 <div className="hero-copy">
-                  <span className="eyebrow-accent">Opportunity Open Source Conference</span>
-                  <h1>{hero.title}</h1>
-                  <p className="hero-subtitle">{hero.subtitle}</p>
+                  <span className="eyebrow-accent">{siteConfig.heroEyebrow || 'Opportunity Open Source Conference'}</span>
+                  <h1>{siteConfig.heroTitle || hero.title}</h1>
+                  <p className="hero-subtitle">{siteConfig.heroSubtitle || hero.subtitle}</p>
                   <p className="hero-description">{hero.bannerText}</p>
                   
                   <div className="hero-actions">
@@ -1139,9 +1170,9 @@ function App() {
               <div className="about-grid">
                 <div className="about-text-content">
                   <div className="section-heading">
-                    <span>OOSC Ecosystem</span>
-                    <h2>{about.heading}</h2>
-                    <p className="about-desc">{about.description}</p>
+                    <span>{siteConfig.aboutEyebrow || 'OOSC Ecosystem'}</span>
+                    <h2>{siteConfig.aboutTitle || about.heading}</h2>
+                    <p className="about-desc">{siteConfig.aboutSubtitle || about.description}</p>
                   </div>
                   
                   <div className="highlights-stack">
@@ -1330,6 +1361,7 @@ function App() {
               <h4>Quick Page Modifiers</h4>
               <p>Directly add metadata cards to the active database categories:</p>
               <div className="actions-flex">
+                <button type="button" className="btn btn-admin-quick" onClick={() => setConfigModalOpen(true)}>⚙️ Edit Site Text</button>
                 <button type="button" className="btn btn-admin-quick" onClick={() => openModal('speakers', 'create')}>+ Add Speaker</button>
                 <button type="button" className="btn btn-admin-quick" onClick={() => openModal('sponsors', 'create')}>+ Add Sponsor</button>
                 <button type="button" className="btn btn-admin-quick" onClick={() => openModal('events', 'create')}>+ Add Schedule Slot</button>
@@ -1393,6 +1425,63 @@ function App() {
               </button>
               <button type="button" className="btn btn-primary" onClick={saveModalRecord}>
                 {modalMode === 'create' ? 'Create' : 'Save Changes'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {configModalOpen && (
+        <div className="admin-modal-backdrop" role="dialog" aria-modal="true">
+          <div className="admin-modal-panel glass-card" style={{ maxWidth: '600px', maxHeight: '90vh', overflowY: 'auto' }}>
+            <div className="admin-modal-header">
+              <h3>Edit Site Text Configurations</h3>
+              <button type="button" className="btn-close-modal" onClick={() => setConfigModalOpen(false)} aria-label="Close dialog">✕</button>
+            </div>
+            <div className="admin-modal-body">
+              <p className="field-tip" style={{ marginBottom: '16px' }}>
+                Leave empty to use default values. Changes save immediately.
+              </p>
+              {[
+                { key: 'heroTitle', label: 'Hero Title' },
+                { key: 'heroSubtitle', label: 'Hero Subtitle' },
+                { key: 'aboutTitle', label: 'About Heading' },
+                { key: 'aboutSubtitle', label: 'About Description' },
+                { key: 'scheduleTitle', label: 'Schedule Title' },
+                { key: 'scheduleSubtitle', label: 'Schedule Subtitle' },
+                { key: 'speakersTitle', label: 'Speakers Title' },
+                { key: 'speakersSubtitle', label: 'Speakers Subtitle' },
+                { key: 'sponsorsTitle', label: 'Sponsors Title' },
+                { key: 'sponsorsSubtitle', label: 'Sponsors Subtitle' },
+                { key: 'teamTitle', label: 'Team Title' },
+                { key: 'teamSubtitle', label: 'Team Subtitle' },
+                { key: 'hackathonTitle', label: 'Hackathon Title' },
+                { key: 'hackathonTheme', label: 'Hackathon Theme' },
+                { key: 'contactTitle', label: 'Contact Title' },
+                { key: 'contactSubtitle', label: 'Contact Subtitle' },
+              ].map(field => (
+                <div key={field.key} className="form-group modal-form-group">
+                  <label>{field.label}</label>
+                  <div style={{ display: 'flex', gap: '8px' }}>
+                    <input
+                      type="text"
+                      defaultValue={siteConfig[field.key] || ''}
+                      onBlur={(e) => {
+                        const val = e.target.value.trim()
+                        if (val !== (siteConfig[field.key] || '')) {
+                          saveSiteConfig(field.key, val)
+                        }
+                      }}
+                      className="form-control"
+                      placeholder="Default text"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="admin-modal-actions">
+              <button type="button" className="btn btn-primary" onClick={() => setConfigModalOpen(false)}>
+                Done
               </button>
             </div>
           </div>

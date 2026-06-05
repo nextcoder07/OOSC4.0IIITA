@@ -335,6 +335,46 @@ createCrudRoutes('sponsors', prisma.sponsor)
 createCrudRoutes('events', prisma.event)
 createCrudRoutes('team', prisma.teamMember)
 
+// ── Site Config ────────────────────────────────────────────────────────────────
+
+app.get('/api/site-config', async (req, res) => {
+  try {
+    const items = await prisma.siteConfig.findMany()
+    const config = items.reduce((acc, item) => {
+      acc[item.key] = item.value
+      return acc
+    }, {})
+    res.json(config)
+  } catch (error) {
+    console.error(`GET /api/site-config failed:`, error.message)
+    res.status(500).json({ error: 'Failed to fetch configs.' })
+  }
+})
+
+app.post('/api/site-config', authMiddleware, async (req, res) => {
+  try {
+    const { key, value } = req.body
+    if (!key) return res.status(400).json({ error: 'Key is required' })
+
+    const item = await prisma.siteConfig.upsert({
+      where: { key },
+      update: { value: String(value) },
+      create: { key, value: String(value) },
+    })
+    
+    await recordAudit({
+      email: req.user.email,
+      action: `Updated Site Config`,
+      resource: `SiteConfig:${key}`,
+      ipAddress: getClientIp(req),
+    })
+    res.json(item)
+  } catch (error) {
+    console.error(`POST /api/site-config failed:`, error.message)
+    res.status(500).json({ error: 'Failed to save config.' })
+  }
+})
+
 // ── File upload ────────────────────────────────────────────────────────────────
 
 app.post('/api/upload', authMiddleware, upload.single('file'), (req, res) => {
