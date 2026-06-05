@@ -5,8 +5,8 @@ export default function ReorderableGrid({
   admin,
   renderItem,
   onReorder,
-  containerClass = '',
-  itemClass = '',
+  containerClass = 'card-grid',
+  itemClass = 'card',
 }) {
   const [dragIndex, setDragIndex] = useState(null)
 
@@ -33,12 +33,12 @@ export default function ReorderableGrid({
   }
 
   return (
-    <div className={`card-grid ${containerClass}`.trim()}>
+    <div className={containerClass}>
       {items.map((item, index) => (
         <article
           key={item.id}
           draggable={admin}
-          className={`card ${itemClass} ${admin ? 'admin-draggable' : ''}`.trim()}
+          className={`${itemClass} ${admin ? 'admin-draggable' : ''}`.trim()}
           onDragStart={() => handleDragStart(index)}
           onDragOver={(event) => event.preventDefault()}
           onDrop={() => handleDrop(index)}

@@ -11,6 +11,7 @@ function AdminModal({
   setModalImage,
   modalError,
   saveModalRecord,
+  csrfToken,
 }) {
   return (
     <div className="admin-modal-backdrop" role="dialog" aria-modal="true">
@@ -49,7 +50,7 @@ function AdminModal({
           <div className="modal-upload-row">
             <div>
               <p className="field-tip">Use upload or paste image/URL fields for live preview.</p>
-              <ImageUploader onUpload={setModalImage} label="Upload image or logo" />
+              <ImageUploader onUpload={setModalImage} label="Upload image or logo" csrfToken={csrfToken} />
             </div>
             {((modalResource === 'sponsors' ? modalData.logoURL : modalData.photoURL) || '').length > 0 && (
               <div className="modal-preview-box">

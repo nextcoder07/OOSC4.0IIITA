@@ -1,3 +1,5 @@
+import ReorderableGrid from './ReorderableGrid.jsx'
+
 function Schedule({
   filteredSchedule,
   activeDay,
@@ -9,6 +11,8 @@ function Schedule({
   setSchedule,
   getEventTime,
   getEventDesc,
+  schedule,
+  reorderRecords,
 }) {
   return (
     <section className="content-section" id="schedule">
@@ -49,15 +53,26 @@ function Schedule({
             <p>No slots scheduled for this day yet.</p>
           </div>
         ) : (
-          <div className="timeline-list">
-            {filteredSchedule.map((item) => (
-              <article key={item.id} className="timeline-card glass-card">
-                <div className="timeline-badge">{item.type || 'Session'}</div>
-                <span className="timeline-time">{getEventTime(item)}</span>
-                <h3>{item.title}</h3>
-                <p>{getEventDesc(item)}</p>
-                
-                {adminMode && (
+          adminMode ? (
+            <ReorderableGrid
+              items={filteredSchedule}
+              admin={adminMode}
+              containerClass="timeline-list"
+              itemClass="timeline-card glass-card"
+              onReorder={(newItems) => {
+                const updatedSchedule = schedule.map((ev) => {
+                  const match = newItems.find((item) => item.id === ev.id)
+                  return match ? { ...ev, sortOrder: match.sortOrder } : ev
+                })
+                reorderRecords('events', updatedSchedule, setSchedule)
+              }}
+              renderItem={(item) => (
+                <>
+                  <div className="timeline-badge">{item.type || 'Session'}</div>
+                  <span className="timeline-time">{getEventTime(item)}</span>
+                  <h3>{item.title}</h3>
+                  <p>{getEventDesc(item)}</p>
+                  
                   <div className="admin-card-controls admin-card-actions">
                     <button
                       type="button"
@@ -74,10 +89,21 @@ function Schedule({
                       Delete
                     </button>
                   </div>
-                )}
-              </article>
-            ))}
-          </div>
+                </>
+              )}
+            />
+          ) : (
+            <div className="timeline-list">
+              {filteredSchedule.map((item) => (
+                <article key={item.id} className="timeline-card glass-card">
+                  <div className="timeline-badge">{item.type || 'Session'}</div>
+                  <span className="timeline-time">{getEventTime(item)}</span>
+                  <h3>{item.title}</h3>
+                  <p>{getEventDesc(item)}</p>
+                </article>
+              ))}
+            </div>
+          )
         )}
       </div>
     </section>

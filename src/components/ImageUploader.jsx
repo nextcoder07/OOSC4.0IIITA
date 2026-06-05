@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function ImageUploader({ onUpload, label = 'Upload image' }) {
+export default function ImageUploader({ onUpload, label = 'Upload image', csrfToken = '' }) {
   const [status, setStatus] = useState('')
   const [preview, setPreview] = useState('')
 
@@ -12,9 +12,14 @@ export default function ImageUploader({ onUpload, label = 'Upload image' }) {
     formData.append('file', file)
 
     try {
+      const headers = {}
+      if (csrfToken) {
+        headers['X-CSRF-Token'] = csrfToken
+      }
       const response = await fetch('/api/upload', {
         method: 'POST',
         credentials: 'include',
+        headers,
         body: formData,
       })
       const result = await response.json()

@@ -1836,3 +1836,50 @@
   }
 }
 
+/* ── Drag and Drop Reordering Aesthetics ────────────────────────────────────────── */
+.admin-draggable {
+  cursor: grab;
+  position: relative;
+  user-select: none;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.admin-draggable:active {
+  cursor: grabbing;
+  transform: scale(0.985);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 15px var(--color-cyan-glow);
+  border-color: var(--color-cyan) !important;
+}
+
+.admin-draggable[aria-grabbed="true"] {
+  opacity: 0.5;
+  border: 1px dashed var(--color-cyan) !important;
+}
+
+.drag-hint {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(6, 11, 38, 0.85);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  color: var(--color-cyan);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 8px;
+  border-radius: 6px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 5;
+}
+
+.admin-draggable:hover .drag-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+

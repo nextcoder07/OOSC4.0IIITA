@@ -1,3 +1,5 @@
+import ReorderableGrid from './ReorderableGrid.jsx'
+
 function Sponsors({
   sortedSponsors,
   adminMode,
@@ -5,6 +7,8 @@ function Sponsors({
   editRecord,
   deleteRecord,
   setSponsors,
+  sponsors,
+  reorderRecords,
 }) {
   return (
     <section className="content-section" id="sponsors">
@@ -30,16 +34,28 @@ function Sponsors({
                 <h3>{category}</h3>
                 <span className="divider-line"></span>
               </div>
-              <div className="sponsor-logo-grid">
-                {group.map((sponsor) => (
-                  <div key={sponsor.id} className="sponsor-card-outer">
-                    <a href={sponsor.website} target="_blank" rel="noreferrer" className="sponsor-card glass-card">
-                      <div className="logo-container">
-                        <img src={sponsor.logoURL} alt={sponsor.name} loading="lazy" />
-                      </div>
-                      <span className="sponsor-name">{sponsor.name}</span>
-                    </a>
-                    {adminMode && (
+              
+              {adminMode ? (
+                <ReorderableGrid
+                  items={group}
+                  admin={adminMode}
+                  containerClass="sponsor-logo-grid"
+                  itemClass="sponsor-card-outer"
+                  onReorder={(newTierSponsors) => {
+                    const updatedSponsors = sponsors.map((sp) => {
+                      const match = newTierSponsors.find((item) => item.id === sp.id)
+                      return match ? { ...sp, sortOrder: match.sortOrder } : sp
+                    })
+                    reorderRecords('sponsors', updatedSponsors, setSponsors)
+                  }}
+                  renderItem={(sponsor) => (
+                    <>
+                      <a href={sponsor.website} target="_blank" rel="noreferrer" className="sponsor-card glass-card">
+                        <div className="logo-container">
+                          <img src={sponsor.logoURL} alt={sponsor.name} loading="lazy" />
+                        </div>
+                        <span className="sponsor-name">{sponsor.name}</span>
+                      </a>
                       <div className="sponsor-admin-controls">
                         <button
                           type="button"
@@ -56,10 +72,23 @@ function Sponsors({
                           Delete
                         </button>
                       </div>
-                    )}
-                  </div>
-                ))}
-              </div>
+                    </>
+                  )}
+                />
+              ) : (
+                <div className="sponsor-logo-grid">
+                  {group.map((sponsor) => (
+                    <div key={sponsor.id} className="sponsor-card-outer">
+                      <a href={sponsor.website} target="_blank" rel="noreferrer" className="sponsor-card glass-card">
+                        <div className="logo-container">
+                          <img src={sponsor.logoURL} alt={sponsor.name} loading="lazy" />
+                        </div>
+                        <span className="sponsor-name">{sponsor.name}</span>
+                      </a>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           )
         })}

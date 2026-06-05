@@ -6,6 +6,7 @@ function AdminTools({
   uploadUrl,
   setUploadUrl,
   openModal,
+  csrfToken,
 }) {
   return (
     <section className="content-section admin-tools-bar glass-card" id="admin-tools">
@@ -23,7 +24,7 @@ function AdminTools({
         <div className="uploader-tool">
           <h4>Media Asset Upload</h4>
           <p>Drag and drop assets here. Copy the generated URL into metadata fields.</p>
-          <ImageUploader onUpload={setUploadUrl} />
+          <ImageUploader onUpload={setUploadUrl} csrfToken={csrfToken} />
           {uploadUrl && (
             <div className="generated-url-box">
               <span>Asset URL:</span>

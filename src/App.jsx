@@ -112,7 +112,7 @@ function App() {
   useEffect(() => {
     const restoreSession = async () => {
       try {
-        const response = await fetch('/admin/me', { credentials: 'include' })
+        const response = await fetch('/api/admin/me', { credentials: 'include' })
         if (!response.ok) return
         const data = await response.json()
         setAdminMode(true)
@@ -391,6 +391,25 @@ function App() {
     }
   }
 
+  const reorderRecords = async (resource, newItems, setter) => {
+    if (!adminMode) {
+      setAdminMessage('Log in as admin to reorder items.')
+      return
+    }
+
+    setter(newItems)
+    try {
+      await apiFetch(`/api/${resource}/reorder`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newItems.map((item) => ({ id: item.id, sortOrder: item.sortOrder }))),
+      })
+      setAdminMessage(`Reordered ${resource === 'events' ? 'schedule' : resource} successfully.`)
+    } catch (error) {
+      setAdminMessage(`Failed to save new order: ${error.message}`)
+    }
+  }
+
   const handleFormSubmit = async (event) => {
     event.preventDefault()
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
@@ -419,7 +438,7 @@ function App() {
     }
     try {
       setAdminMessage('Signing in...')
-      const data = await apiFetch('/admin/login', {
+      const data = await apiFetch('/api/admin/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: loginUsername, password: loginPassword }),
@@ -438,7 +457,7 @@ function App() {
 
   const logout = async () => {
     try {
-      await apiFetch('/admin/logout', {
+      await apiFetch('/api/admin/logout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
       })
@@ -490,6 +509,8 @@ function App() {
             setSchedule={setSchedule}
             getEventTime={getEventTime}
             getEventDesc={getEventDesc}
+            schedule={schedule}
+            reorderRecords={reorderRecords}
           />
         )
 
@@ -502,6 +523,7 @@ function App() {
             editRecord={editRecord}
             deleteRecord={deleteRecord}
             setSpeakers={setSpeakers}
+            reorderRecords={reorderRecords}
           />
         )
 
@@ -514,6 +536,8 @@ function App() {
             editRecord={editRecord}
             deleteRecord={deleteRecord}
             setSponsors={setSponsors}
+            sponsors={sponsors}
+            reorderRecords={reorderRecords}
           />
         )
 
@@ -526,6 +550,8 @@ function App() {
             editRecord={editRecord}
             deleteRecord={deleteRecord}
             setTeam={setTeam}
+            team={team}
+            reorderRecords={reorderRecords}
           />
         )
 
@@ -607,6 +633,7 @@ function App() {
           uploadUrl={uploadUrl}
           setUploadUrl={setUploadUrl}
           openModal={openModal}
+          csrfToken={csrfToken}
         />
       )}
 
@@ -625,6 +652,7 @@ function App() {
           setModalImage={setModalImage}
           modalError={modalError}
           saveModalRecord={saveModalRecord}
+          csrfToken={csrfToken}
         />
       )}
 
