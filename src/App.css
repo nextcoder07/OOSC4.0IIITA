@@ -52,7 +52,6 @@
 
 .glass-card:hover {
   border-color: var(--color-card-hover-border);
-  transform: translateY(-2px);
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 
               0 0 20px var(--color-cyan-glow);
 }
@@ -107,6 +106,7 @@
   font-weight: 700;
   color: var(--color-cyan);
   background: linear-gradient(135deg, var(--color-cyan) 0%, var(--color-electric) 100%);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -119,14 +119,15 @@
 
 .nav-link {
   background: transparent;
-  border: none;
+  border: 1px solid transparent;
   padding: 8px 18px;
   border-radius: var(--radius-btn);
   color: var(--color-text-sub);
   font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: -0.01em;
-  transition: var(--transition-smooth);
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  box-sizing: border-box;
 }
 
 .nav-link:hover,
@@ -207,7 +208,6 @@
 }
 
 .btn-nav-cta:hover {
-  transform: translateY(-1px);
   box-shadow: 0 6px 20px rgba(0, 229, 255, 0.35);
   filter: brightness(1.1);
 }
@@ -232,7 +232,6 @@
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
   box-shadow: 0 8px 24px var(--color-electric-glow);
   filter: brightness(1.15);
 }
@@ -247,7 +246,6 @@
 .btn-outline:hover {
   background: rgba(255, 255, 255, 0.08);
   border-color: #ffffff;
-  transform: translateY(-1px);
 }
 
 .btn-secondary {
@@ -402,6 +400,7 @@
   letter-spacing: -0.03em;
   margin-bottom: 12px;
   background: linear-gradient(135deg, #ffffff 40%, var(--color-text-sub) 100%);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -603,7 +602,6 @@
 .stat-card-gradient:hover {
   border-color: var(--color-cyan);
   box-shadow: 0 10px 30px var(--color-cyan-glow);
-  transform: translateY(-3px);
 }
 
 .stat-card-gradient h3 {
@@ -706,10 +704,6 @@
   transition: var(--transition-smooth);
 }
 
-.card:hover .image-wrapper img {
-  transform: scale(1.04);
-}
-
 .social-links {
   display: flex;
   gap: 10px;
@@ -723,7 +717,6 @@
 
 .social-icon:hover {
   color: var(--color-cyan);
-  transform: translateY(-2px);
 }
 
 /* TEAM SPECIFIC STYLING */
@@ -1738,7 +1731,6 @@
 .footer-socials a:hover {
   background: var(--color-cyan);
   color: var(--color-midnight);
-  transform: translateY(-2px);
 }
 
 .footer-links-column {

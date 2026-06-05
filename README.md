@@ -63,6 +63,8 @@ A full-stack web application for managing the Open Source Summer Camp (OOSC) eve
 	backend/.env
 	```
 
+You can also copy the provided example file `backend/.env.example` to `backend/.env`.
+
 	Add the following variables:
 
 	```env
@@ -86,7 +88,8 @@ A full-stack web application for managing the Open Source Summer Camp (OOSC) eve
 	JWT_REFRESH_SECRET=your-refresh-secret-key-change-this
 
 	# Admin Configuration
-	SUPER_ADMIN_EMAIL=admin@oosc.iiita.ac.in
+	ADMIN_USERNAME=admin@oosc.iiita.ac.in
+	ADMIN_PASSWORD=super-secure-password
 	```
 
 	**⚠️ SECURITY WARNING:**
@@ -95,18 +98,10 @@ A full-stack web application for managing the Open Source Summer Camp (OOSC) eve
 	- Generate strong random secrets for JWT
 	- Use Gmail app passwords, not your main password
 
-5. **Setup Allowed Admins**
+5. **Admin Access Setup**
 
-	Edit `backend/allowedAdmins.json`:
-	```json
-	[
-	  "admin1@iiita.ac.in",
-	  "admin2@iiita.ac.in",
-	  "admin3@iiita.ac.in"
-	]
-	```
-
-	Only emails in this list can request admin access.
+	Admin authentication is now based solely on `ADMIN_USERNAME` and `ADMIN_PASSWORD` in your `.env` file.
+	There is no longer any `backend/allowedAdmins.json` whitelist dependency.
 
 ## 📦 Running the Application
 
@@ -200,9 +195,8 @@ SMTP_SECURE=false
 - ✅ Check backend console for errors: `cd backend && node server.js`
 
 **Can't login - "Forbidden" error**
-- ✅ Verify email is in `backend/allowedAdmins.json`
-- ✅ Complete the first-time verification flow (email + password setup)
-- ✅ Make sure email is verified before trying to login
+- ✅ Confirm `ADMIN_USERNAME` and `ADMIN_PASSWORD` are set correctly in `.env`
+- ✅ Ensure the backend is restarted after `.env` changes
 
 **Email not received**
 - ✅ Check spam/junk folder
@@ -231,7 +225,6 @@ OOSCWEB/
 ├── backend/
 │   ├── server.js        # Express server
 │   ├── .env             # Environment variables (KEEP SECRET!)
-│   ├── allowedAdmins.json
 │   ├── uploads/         # Uploaded images
 │   ├── prisma/
 │   │   └── schema.prisma
@@ -246,12 +239,12 @@ OOSCWEB/
 ## 🔗 API Endpoints
 
 ### Auth Routes
-- `POST /admin/request-verification` - Request verification (email + password)
-- `GET /admin/verify?token=...` - Verify email & activate account
-- `POST /admin/login` - Login with email + password
+- `POST /admin/login` - Login using `ADMIN_USERNAME` and `ADMIN_PASSWORD` from environment variables
 - `POST /admin/logout` - Logout
 - `POST /admin/refresh` - Refresh JWT token
 - `GET /admin/me` - Get current admin info
+
+> Admin access is only available through the direct `/admin/login` path. No public navigation exposes admin functionality.
 
 ### CRUD Routes (Protected)
 - `GET /api/speakers` - List all speakers
