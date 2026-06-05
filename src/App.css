@@ -242,7 +242,6 @@ body {
   padding: 14px 28px;
 }
 .btn-primary:hover {
-  transform: translateY(-2px);
   box-shadow: 0 8px 24px var(--color-electric-glow);
   filter: brightness(1.14);
 }
@@ -349,7 +348,10 @@ body {
   font-weight: 800;
   letter-spacing: -0.03em;
   margin-bottom: 12px;
-  background: linear-gradient(135deg, #ffffff 35%, #7878a0 100%);
+
+  background: linear-gradient(135deg, #ffffff 40%, var(--color-text-sub) 100%);
+  background-clip: text;
+
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

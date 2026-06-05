@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -32,16 +32,16 @@ model Sponsor {
 }
 
 model Event {
-  id        Int      @id @default(autoincrement())
-  title     String
+  id          Int      @id @default(autoincrement())
+  title       String
   description String
-  date      String
-  time      String
-  type      String
-  sortOrder Int      @default(0)
-  published Boolean  @default(true)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  date        String
+  time        String
+  type        String
+  sortOrder   Int      @default(0)
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model TeamMember {
@@ -56,33 +56,6 @@ model TeamMember {
   updatedAt DateTime @updatedAt
 }
 
-model MerchItem {
-  id           Int      @id @default(autoincrement())
-  title        String
-  description  String
-  imageURL     String?
-  purchaseLink String?
-  published Boolean  @default(true)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-}
-
-model SiteContent {
-  key   String @id
-  value String
-  published Boolean @default(true)
-}
-
-model Faq {
-  id        Int      @id @default(autoincrement())
-  question  String
-  answer    String
-  sortOrder Int      @default(0)
-  published Boolean @default(true)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
 model Lead {
   id          Int      @id @default(autoincrement())
   name        String
@@ -90,38 +63,6 @@ model Lead {
   affiliation String?
   message     String?
   createdAt   DateTime @default(now())
-}
-
-model Announcement {
-  id        Int      @id @default(autoincrement())
-  title     String
-  body      String
-  published Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-enum Role {
-  SUPER_ADMIN
-  ADMIN
-  CONTENT_MANAGER
-}
-
-model AdminUser {
-  id                       Int       @id @default(autoincrement())
-  email                    String    @unique
-  passwordHash             String?
-  role                     Role      @default(ADMIN)
-  isVerified               Boolean   @default(false)
-  verificationToken        String?
-  verificationTokenExpires DateTime?
-  resetToken               String?
-  resetTokenExpires        DateTime?
-  failedLoginAttempts      Int       @default(0)
-  lockedUntil              DateTime?
-  lastLogin                DateTime?
-  createdAt                DateTime  @default(now())
-  updatedAt                DateTime  @updatedAt
 }
 
 model AuditLog {
