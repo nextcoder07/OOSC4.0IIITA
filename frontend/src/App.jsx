@@ -86,6 +86,10 @@ function App() {
       setCurrentPage(getPageFromHash())
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
+    
+    // Sync initial state with URL on mount
+    setCurrentPage(getPageFromHash())
+    
     window.addEventListener('hashchange', handleHashChange)
     return () => window.removeEventListener('hashchange', handleHashChange)
   }, [getPageFromHash])

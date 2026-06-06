@@ -12,6 +12,7 @@ import fs from 'fs'
 import { PrismaClient } from '@prisma/client'
 import { fileURLToPath } from 'url'
 import xss from 'xss'
+import nodemailer from 'nodemailer'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -440,15 +441,49 @@ app.post('/api/upload', authMiddleware, upload.single('file'), (req, res) => {
 
 // ── Contact form ───────────────────────────────────────────────────────────────
 
+// Configure nodemailer transporter
+const transporter = nodemailer.createTransport({
+  service: 'gmail', // Standard configuration for Gmail
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+})
+
 app.post('/api/contact', async (req, res) => {
   const { name, email, message } = req.body
   if (!name || !email || !message) {
     return res.status(400).json({ error: 'Name, email, and message are required.' })
   }
 
-  // Log the contact message; email integration can be added later
-  console.log(`Contact from ${name} (${email}): ${message}`)
-  res.json({ success: true, message: 'Contact message received successfully.' })
+  try {
+    // 1. Save to database
+    await prisma.contactMessage.create({
+      data: { name, email, message },
+    })
+
+    // 2. Send the email
+    if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+      await transporter.sendMail({
+        from: `"${name}" <${process.env.EMAIL_FROM || process.env.EMAIL_USER}>`,
+        to: process.env.EMAIL_TO || process.env.EMAIL_USER,
+        replyTo: email,
+        subject: `[OOSC 4.0 Contact Form] New message from ${name}`,
+        text: `You have received a new inquiry from the OOSC 4.0 website.\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+        html: `<p>You have received a new inquiry from the OOSC 4.0 website.</p>
+               <p><strong>Name:</strong> ${name}<br>
+               <strong>Email:</strong> ${email}</p>
+               <p><strong>Message:</strong></p>
+               <blockquote style="border-left: 4px solid #ccc; padding-left: 10px;">${message.replace(/\n/g, '<br>')}</blockquote>`,
+      })
+    }
+
+    console.log(`Contact processed from ${name} (${email})`)
+    res.json({ success: true, message: 'Contact message received successfully.' })
+  } catch (error) {
+    console.error('Contact form error:', error)
+    res.status(500).json({ error: 'Failed to process contact message.' })
+  }
 })
 
 // ── Registration ───────────────────────────────────────────────────────────────
