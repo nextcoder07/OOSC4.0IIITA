@@ -13,6 +13,8 @@ import { PrismaClient } from '@prisma/client'
 import { fileURLToPath } from 'url'
 import xss from 'xss'
 import nodemailer from 'nodemailer'
+import { v2 as cloudinary } from 'cloudinary'
+import { CloudinaryStorage } from 'multer-storage-cloudinary'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -101,22 +103,42 @@ app.use((req, res, next) => {
 
 // ── File uploads ───────────────────────────────────────────────────────────────
 
-const uploadDir = process.env.VERCEL ? '/tmp/uploads' : path.join(__dirname, 'uploads')
-try {
-  if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir, { recursive: true })
-  }
-} catch (e) {
-  console.warn('Could not create upload directory:', e.message)
-}
+let storage
 
-const storage = multer.diskStorage({
-  destination: uploadDir,
-  filename: (req, file, cb) => {
-    const safeName = `${Date.now()}-${file.originalname.replace(/[^a-zA-Z0-9.\-_]/g, '_')}`
-    cb(null, safeName)
-  },
-})
+// If Cloudinary credentials exist, use Cloudinary storage
+if (process.env.CLOUDINARY_CLOUD_NAME && process.env.CLOUDINARY_API_KEY && process.env.CLOUDINARY_API_SECRET) {
+  cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+  })
+
+  storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+      folder: 'oosc-4.0',
+      allowed_formats: ['jpg', 'jpeg', 'png', 'webp', 'gif'],
+    },
+  })
+} else {
+  // Fallback to local storage
+  const uploadDir = process.env.VERCEL ? '/tmp/uploads' : path.join(__dirname, 'uploads')
+  try {
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true })
+    }
+  } catch (e) {
+    console.warn('Could not create upload directory:', e.message)
+  }
+
+  storage = multer.diskStorage({
+    destination: uploadDir,
+    filename: (req, file, cb) => {
+      const safeName = `${Date.now()}-${file.originalname.replace(/[^a-zA-Z0-9.\-_]/g, '_')}`
+      cb(null, safeName)
+    },
+  })
+}
 const upload = multer({
   storage,
   limits: { fileSize: 5 * 1024 * 1024 }, // 5 MB max
@@ -436,7 +458,14 @@ app.post('/api/upload', authMiddleware, upload.single('file'), (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: 'No file uploaded.' })
   }
-  res.json({ url: `/uploads/${req.file.filename}` })
+  
+  // If uploaded to Cloudinary, req.file.path is the cloud URL
+  // If local, we return the relative /uploads/ path
+  const fileUrl = req.file.path && req.file.path.startsWith('http') 
+    ? req.file.path 
+    : `/uploads/${req.file.filename}`
+
+  res.json({ url: fileUrl })
 })
 
 // ── Contact form ───────────────────────────────────────────────────────────────
