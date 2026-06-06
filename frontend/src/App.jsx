@@ -501,8 +501,8 @@ function App() {
                   </button>
                 </div>
                 {adminMessage && <p className="admin-status-message error">{adminMessage}</p>}
-                <div style={{ marginTop: '16px', padding: '12px', background: 'rgba(0,229,255,0.05)', borderRadius: '8px', borderLeft: '3px solid var(--color-cyan)', fontSize: '0.85rem', color: 'var(--color-text-muted)', lineHeight: '1.5' }}>
-                  <strong style={{ color: 'var(--color-cyan)' }}>Access restricted:</strong> Only whitelisted university emails can access the admin dashboard.
+                <div className="admin-notice">
+                  <strong>Access restricted:</strong> Only whitelisted university emails can access the admin dashboard.
                 </div>
               </form>
           </div>
@@ -809,7 +809,7 @@ function App() {
                 <br />
                 <p className="problem-statement-text">Your challenge: design and prototype an AI-augmented open-source tool or platform across one of these tracks:</p>
                 <br />
-                <div className="rules-list" style={{ marginTop: '8px' }}>
+                <div className="rules-list mt-sm">
                   {[
                     { track: 'Track A — Intelligent DevOps', desc: 'Build an AI-powered CI/CD pipeline optimizer or automated incident-response bot.' },
                     { track: 'Track B — Smart Data Systems', desc: 'Create a self-tuning database engine or an ML-driven query planner for open-source databases.' },
@@ -817,11 +817,11 @@ function App() {
                   ].map((t, i) => (
                     <div key={i} className="rule-item">
                       <span className="rule-num">{String.fromCharCode(65 + i)}</span>
-                      <p><strong style={{ color: '#ffffff' }}>{t.track}:</strong> {t.desc}</p>
+                      <p><strong>{t.track}:</strong> {t.desc}</p>
                     </div>
                   ))}
                 </div>
-                <p className="problem-statement-text" style={{ marginTop: '16px' }}>
+                <p className="problem-statement-text mt-md">
                   All solutions must be open-source, reproducible, and include a live demo or working prototype.
                 </p>
               </div>
@@ -831,8 +831,8 @@ function App() {
                   <div className="hk-icon">👥</div>
                   <h3>Who Can Participate</h3>
                 </div>
-                <p style={{ fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--color-text-muted)', marginBottom: '12px' }}>Eligibility</p>
-                <div className="eligibility-list" style={{ marginBottom: '24px' }}>
+                <p className="panel-subheading">Eligibility</p>
+                <div className="eligibility-list mb-md">
                   {[
                     'Undergraduate & postgraduate students from any recognised university in India.',
                     'Research scholars and PhD students are welcome.',
@@ -847,8 +847,8 @@ function App() {
                     </div>
                   ))}
                 </div>
-                <p style={{ fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--color-text-muted)', marginBottom: '12px' }}>Team Composition</p>
-                <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                <p className="panel-subheading">Team Composition</p>
+                <div className="pill-row">
                   {[
                     { icon: '👤', label: 'Min 2 members' },
                     { icon: '👥', label: 'Max 4 members' },
@@ -886,7 +886,7 @@ function App() {
                   <p className="prize-desc">Cash + trophies + exclusive swag kits and 6-month access to premium dev tooling subscriptions</p>
                 </div>
               </div>
-              <p style={{ fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--color-text-muted)', margin: '24px 0 12px' }}>Special Category Awards</p>
+              <p className="panel-subheading mt-section">Special Category Awards</p>
               <div className="special-prizes">
                 {[
                   { icon: '💡', label: 'Best Innovation — ₹10,000' },
@@ -990,7 +990,7 @@ function App() {
                 <h3>Ready to Build?</h3>
                 <p>Registration is open until August 10, 2025. Spots are limited — secure your team today.</p>
               </div>
-              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+              <div className="actions-row">
                 <button type="button" className="btn btn-primary" onClick={() => navigateTo('register')}>
                   Register Your Team
                 </button>
@@ -1047,7 +1047,7 @@ function App() {
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3603.237248107936!2d81.76916531102919!3d25.430327377457788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398ffd42b938924b%3A0xc4aa002a2468307d!2sIndian%20Institute%20of%20Information%20Technology%2C%20Allahabad!5e0!3m2!1sen!2sin!4v1717320000000!5m2!1sen!2sin"
                     width="100%" 
                     height="100%" 
-                    style={{ border: 0, borderRadius: '18px', filter: 'invert(90%) hue-rotate(180deg) grayscale(40%)' }} 
+                    className="map-iframe" 
                     allowFullScreen="" 
                     loading="lazy"
                   ></iframe>
@@ -1433,13 +1433,13 @@ function App() {
 
       {configModalOpen && (
         <div className="admin-modal-backdrop" role="dialog" aria-modal="true">
-          <div className="admin-modal-panel glass-card" style={{ maxWidth: '600px', maxHeight: '90vh', overflowY: 'auto' }}>
+          <div className="admin-modal-panel glass-card admin-modal-panel--narrow">
             <div className="admin-modal-header">
               <h3>Edit Site Text Configurations</h3>
               <button type="button" className="btn-close-modal" onClick={() => setConfigModalOpen(false)} aria-label="Close dialog">✕</button>
             </div>
             <div className="admin-modal-body">
-              <p className="field-tip" style={{ marginBottom: '16px' }}>
+              <p className="field-tip mb-tip">
                 Leave empty to use default values. Changes save immediately.
               </p>
               {[
@@ -1462,7 +1462,7 @@ function App() {
               ].map(field => (
                 <div key={field.key} className="form-group modal-form-group">
                   <label>{field.label}</label>
-                  <div style={{ display: 'flex', gap: '8px' }}>
+                  <div className="flex-gap-sm">
                     <input
                       type="text"
                       defaultValue={siteConfig[field.key] || ''}

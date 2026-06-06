@@ -37,15 +37,14 @@ export default function Registration() {
         </div>
 
         {/* Google Form Right Side */}
-        <div className="contact-form-panel glass-card" style={{ padding: '0', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-          <div style={{ padding: '16px', background: 'rgba(255,255,255,0.03)', borderBottom: '1px solid rgba(255,255,255,0.08)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--color-text-sub)' }}>Registration Form</span>
+        <div className="contact-form-panel glass-card registration-form-panel">
+          <div className="registration-form-header">
+            <span className="registration-form-label">Registration Form</span>
             <a 
               href="https://docs.google.com/forms/d/e/1FAIpQLSeZdxKgPh47KOgQvQzy_ChtiXLzmsbzDyRASR-MUbNuzXZ6oQ/viewform?usp=sharing&ouid=110152741337293500969" 
               target="_blank" 
               rel="noopener noreferrer"
               className="btn btn-admin-mini"
-              style={{ textDecoration: 'none', margin: 0 }}
             >
               Open in New Tab ↗
             </a>
@@ -54,7 +53,7 @@ export default function Registration() {
             src="https://docs.google.com/forms/d/e/1FAIpQLSeZdxKgPh47KOgQvQzy_ChtiXLzmsbzDyRASR-MUbNuzXZ6oQ/viewform?usp=sharing&ouid=110152741337293500969"
             width="100%"
             height="800"
-            style={{ border: 0, backgroundColor: 'transparent' }}
+            className="registration-form-iframe"
             title="OOSC 4.0 Registration Form"
           >
             Loading Google Form...
