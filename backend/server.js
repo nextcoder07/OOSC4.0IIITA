@@ -11,6 +11,7 @@ import path from 'path'
 import fs from 'fs'
 import { PrismaClient } from '@prisma/client'
 import { fileURLToPath } from 'url'
+import xss from 'xss'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -40,7 +41,28 @@ try {
 
 // ── Middleware ──────────────────────────────────────────────────────────────────
 
-app.use(helmet())
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+        styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+        imgSrc: ["'self'", "data:", "https:", "http:"],
+        fontSrc: ["'self'", "https://fonts.gstatic.com"],
+        connectSrc: ["'self'", "http://localhost:*", "ws://localhost:*"],
+      },
+    },
+    hsts: {
+      maxAge: 31536000,
+      includeSubDomains: true,
+      preload: true,
+    },
+    xssFilter: true, // Prevent reflected XSS
+    noSniff: true, // Prevent MIME-type sniffing
+    frameguard: { action: 'deny' }, // Prevent clickjacking
+  })
+)
 app.use(
   cors({
     origin: CLIENT_ORIGIN,
@@ -48,8 +70,33 @@ app.use(
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   }),
 )
-app.use(express.json())
+app.use(express.json({ limit: '10kb' })) // Limit body size to prevent DoS
 app.use(cookieParser())
+
+// ── XSS Sanitization Middleware ────────────────────────────────────────────────
+const sanitizeInput = (obj) => {
+  if (typeof obj === 'string') {
+    return xss(obj)
+  }
+  if (Array.isArray(obj)) {
+    return obj.map(sanitizeInput)
+  }
+  if (typeof obj === 'object' && obj !== null) {
+    const newObj = {}
+    for (const key in obj) {
+      newObj[key] = sanitizeInput(obj[key])
+    }
+    return newObj
+  }
+  return obj
+}
+
+app.use((req, res, next) => {
+  if (req.body) req.body = sanitizeInput(req.body)
+  if (req.query) req.query = sanitizeInput(req.query)
+  if (req.params) req.params = sanitizeInput(req.params)
+  next()
+})
 
 // ── File uploads ───────────────────────────────────────────────────────────────
 
