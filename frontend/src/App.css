@@ -117,7 +117,7 @@ body {
   background: rgba(17, 17, 17, 0.92);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: none;
-  overflow: hidden;
+  overflow: visible;
   --mouse-x: 50%;
   --mouse-y: 50%;
   --glow-opacity: 0;
@@ -595,6 +595,9 @@ body {
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-brutal), var(--shadow-panel);
 }
+.site-footer:hover {
+  transform: none;
+}
 .footer-grid-outer { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.25fr; gap: 40px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 36px; }
 .footer-brand-column { display: flex; flex-direction: column; gap: 16px; }
 .footer-logo { display: flex; align-items: center; gap: 8px; }
@@ -613,7 +616,7 @@ body {
   color: #f5efe5;
   transition: var(--transition-smooth);
 }
-.footer-socials a:hover { background: var(--color-accent); color: var(--color-text-on-dark); border-color: var(--color-accent); transform: translate(-2px, -2px); box-shadow: 3px 3px 0 #000000; }
+.footer-socials a:hover { background: var(--color-accent); color: var(--color-text-on-dark); border-color: var(--color-accent); box-shadow: 3px 3px 0 #000000; }
 .footer-links-column { display: flex; flex-direction: column; gap: 16px; }
 .footer-links-column h4 { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: #f5efe5; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; }
 .footer-links-column ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }

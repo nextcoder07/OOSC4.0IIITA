@@ -12,13 +12,6 @@
   position: relative;
   overflow: hidden;
 }
-.hackathon-hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at top right, rgba(217, 48, 37, 0.14), transparent 35%);
-  pointer-events: none;
-}
 .hackathon-hero-inner {
   position: relative;
   z-index: 1;
