@@ -57,7 +57,7 @@ export default function Contact({
               <div className="contact-form-panel glass-card">
                 <h3>Send an Inquiry</h3>
                 <p>Complete the form below to reach our communications committee.</p>
-                <form className="contact-form-elements" onSubmit={handleFormSubmit}>
+                <form className="contact-form-elements" onSubmit={submitContact}>
                   <div className="form-group">
                     <label htmlFor="contact-name">Full Name</label>
                     <input

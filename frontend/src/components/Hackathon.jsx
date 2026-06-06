@@ -1,7 +1,8 @@
 import React from 'react';
 
 export default function Hackathon({
-  siteConfig
+  siteConfig,
+  navigate
 }) {
   return (
     <div className="hackathon-body" id="hackathon">
@@ -221,10 +222,10 @@ export default function Hackathon({
                 <p>Registration is open until August 10, 2025. Spots are limited — secure your team today.</p>
               </div>
               <div className="actions-row">
-                <button type="button" className="btn btn-primary" onClick={() => navigateTo('register')}>
+                <button type="button" className="btn btn-primary" onClick={() => navigate('register')}>
                   Register Your Team
                 </button>
-                <button type="button" className="btn btn-outline" onClick={() => navigateTo('contact')}>
+                <button type="button" className="btn btn-outline" onClick={() => navigate('contact')}>
                   Ask a Question
                 </button>
               </div>
