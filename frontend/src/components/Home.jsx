@@ -9,6 +9,7 @@ function Home({ hero, about, navigateTo }) {
             <span className="eyebrow-accent">Opportunity Open Source Conference</span>
             <h1>{hero.title}</h1>
             <p className="hero-subtitle">{hero.subtitle}</p>
+            <p className="hero-date-badge">📅 28-30 August, 2026</p>
             <p className="hero-description">{hero.bannerText}</p>
             
             <div className="hero-actions">

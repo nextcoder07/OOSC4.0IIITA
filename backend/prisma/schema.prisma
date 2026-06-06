@@ -3,32 +3,39 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 model Speaker {
-  id        Int      @id @default(autoincrement())
-  name      String
-  title     String
-  bio       String
-  photoURL  String?   
-  sortOrder Int      @default(0)
-  published Boolean  @default(true)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           Int      @id @default(autoincrement())
+  name         String
+  title        String
+  bio          String
+  photoURL     String?   
+  sortOrder    Int      @default(0)
+  published    Boolean  @default(true)
+  organization String?
+  linkedin     String?
+  github       String?
+  twitter      String?
+  website      String?
+  email        String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
 model Sponsor {
-  id        Int      @id @default(autoincrement())
-  name      String
-  logoURL   String?
-  category  String
-  website   String?
-  sortOrder Int      @default(0)
-  published Boolean  @default(true)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          Int      @id @default(autoincrement())
+  name        String
+  logoURL     String?
+  category    String
+  website     String?
+  description String?
+  sortOrder   Int      @default(0)
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model Event {
@@ -38,6 +45,11 @@ model Event {
   date        String
   time        String
   type        String
+  speaker     String?
+  venue       String?
+  startTime   String?
+  endTime     String?
+  track       String?
   sortOrder   Int      @default(0)
   published   Boolean  @default(true)
   createdAt   DateTime @default(now())
@@ -45,15 +57,19 @@ model Event {
 }
 
 model TeamMember {
-  id        Int      @id @default(autoincrement())
-  name      String
-  role      String
-  contact   String
-  photoURL  String?
-  sortOrder Int      @default(0)
-  published Boolean  @default(true)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id         Int      @id @default(autoincrement())
+  name       String
+  role       String
+  contact    String
+  photoURL   String?
+  department String?
+  linkedin   String?
+  github     String?
+  email      String?
+  sortOrder  Int      @default(0)
+  published  Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }
 
 model Lead {
@@ -63,6 +79,28 @@ model Lead {
   affiliation String?
   message     String?
   createdAt   DateTime @default(now())
+}
+
+model Setting {
+  key   String @id
+  value String
+}
+
+model MediaAsset {
+  id        Int      @id @default(autoincrement())
+  url       String
+  filename  String
+  category  String   @default("General")
+  createdAt DateTime @default(now())
+}
+
+model ContactMessage {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
 }
 
 model AuditLog {

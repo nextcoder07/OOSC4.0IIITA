@@ -4,10 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "vite frontend",
+    "build": "vite build frontend",
     "lint": "eslint .",
-    "preview": "vite preview",
+    "preview": "vite preview frontend",
     "server": "node backend/server.js",
     "prisma:generate": "npx prisma generate --schema=backend/prisma/schema.prisma",
     "prisma:db:push": "npx prisma db push --schema=backend/prisma/schema.prisma"
