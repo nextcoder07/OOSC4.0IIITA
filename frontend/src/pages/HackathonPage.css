@@ -7,8 +7,8 @@
 .hackathon-hero {
   padding: 40px 36px;
   border-radius: var(--radius-card);
-  background: linear-gradient(180deg, rgba(232, 232, 228, 0.1), rgba(17, 17, 17, 0.15));
-  border: 1px solid rgba(232, 232, 228, 0.12);
+  background: linear-gradient(180deg, rgba(248, 244, 236, 0.1), rgba(17, 17, 17, 0.24));
+  border: 1px solid rgba(255, 255, 255, 0.08);
   position: relative;
   overflow: hidden;
 }
@@ -16,12 +16,20 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at top right, rgba(217, 48, 37, 0.15), transparent 35%);
+  background: radial-gradient(circle at top right, rgba(217, 48, 37, 0.14), transparent 35%);
   pointer-events: none;
 }
 .hackathon-hero-inner {
   position: relative;
   z-index: 1;
+}
+.hackathon-body h1,
+.hackathon-body h2,
+.hackathon-body h3,
+.hackathon-body h4,
+.hackathon-body h5,
+.hackathon-body h6 {
+  text-shadow: none !important;
 }
 .hackathon-badge {
   display: inline-flex;
@@ -29,8 +37,8 @@
   gap: 10px;
   padding: 10px 16px;
   border-radius: 999px;
-  background: rgba(217, 48, 37, 0.1);
-  color: var(--color-accent);
+  background: rgba(255, 250, 242, 0.15);
+  color: #d73b2d;
   font-weight: 700;
   letter-spacing: 0.04em;
   margin-bottom: 18px;
@@ -39,25 +47,25 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--color-accent);
+  background: #d73b2d;
   display: inline-block;
 }
 .hackathon-hero h1 {
   margin: 0 0 10px;
   font-size: clamp(2.2rem, 2.5vw, 3.2rem);
-  color: var(--color-text-on-dark);
+  color: #f5efe5;
 }
 .theme-label {
   display: block;
   margin-bottom: 6px;
   font-size: 0.95rem;
-  color: var(--color-text-on-panel-sub);
+  color: #d9cfc3;
 }
 .theme-name {
   margin: 0 0 24px;
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--color-accent);
+  color: #eab595;
   line-height: 1.2;
 }
 .hackathon-stat-strip {
@@ -69,8 +77,9 @@
 .hstat {
   padding: 14px 16px;
   border-radius: var(--radius-btn);
-  background: rgba(232, 232, 228, 0.08);
-  color: var(--color-text-on-panel);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #f6eee3;
 }
 .hstat-value {
   display: block;
@@ -78,7 +87,7 @@
   font-weight: 700;
 }
 .hstat-label {
-  color: var(--color-text-on-panel-sub);
+  color: #d8c9b8;
   font-size: 0.95rem;
 }
 .hk-grid-2 {
@@ -89,6 +98,8 @@
 .hk-card {
   padding: 28px;
   border-radius: var(--radius-card);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 .hk-card-title {
   display: flex;
@@ -100,7 +111,7 @@
   width: 44px;
   height: 44px;
   border-radius: 16px;
-  background: rgba(217, 48, 37, 0.12);
+  background: rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,8 +120,11 @@
 .problem-statement-text,
 .panel-subheading {
   margin: 0 0 12px;
-  color: var(--color-text-on-panel-sub);
+  color: #f1e9d8;
   line-height: 1.75;
+}
+.hk-card h3 {
+  color: #f5efe5;
 }
 .rules-list,
 .eligibility-list,
@@ -129,14 +143,14 @@
 .step-item {
   padding: 16px;
   border-radius: var(--radius-btn);
-  background: rgba(232, 232, 228, 0.06);
-  border: 1px solid rgba(232, 232, 228, 0.08);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 .rule-num,
 .elig-check,
 .step-num {
   font-weight: 700;
-  color: var(--color-accent);
+  color: #d73b2d;
   margin-right: 12px;
 }
 .pill-row,
@@ -147,8 +161,8 @@
 }
 .special-prize-pill {
   padding: 12px 14px;
-  background: rgba(217, 48, 37, 0.08);
-  color: var(--color-text-on-panel);
+  background: rgba(255, 255, 255, 0.08);
+  color: #f4eee4;
   border-radius: 999px;
   font-size: 0.95rem;
 }
@@ -157,6 +171,8 @@
 }
 .prize-card {
   min-height: 190px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 .prize-medal {
   font-size: 1.6rem;
@@ -169,7 +185,7 @@
 }
 .prize-amount {
   margin: 6px 0 10px;
-  color: var(--color-accent);
+  color: #eab595;
   font-size: 1.1rem;
 }
 .dates-timeline {
@@ -193,23 +209,23 @@
   background: var(--color-text-on-panel-sub);
 }
 .date-dot.active {
-  background: var(--color-accent);
-  box-shadow: 0 0 0 6px rgba(217, 48, 37, 0.12);
+  background: #e9a37a;
+  box-shadow: 0 0 0 6px rgba(233, 163, 122, 0.14);
 }
 .date-info p {
   margin: 0;
 }
 .date-label {
   font-weight: 700;
-  color: var(--color-text-on-panel);
+  color: #f5efe5;
 }
 .date-value {
-  color: var(--color-accent);
+  color: #e9a37a;
   font-weight: 700;
   margin-top: 6px;
 }
 .date-desc {
-  color: var(--color-text-on-panel-sub);
+  color: #e1d5c3;
 }
 .step-item {
   display: flex;
@@ -219,18 +235,28 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: rgba(217, 48, 37, 0.12);
+  background: rgba(255, 255, 255, 0.08);
+  color: #f5efe5;
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .step-content h4 {
   margin: 0 0 6px;
+  color: #f5efe5;
 }
 .step-content p {
   margin: 0;
-  color: var(--color-text-on-panel-sub);
+  color: #e8dcc8;
   line-height: 1.7;
+}
+.hk-card p,
+.rule-item p,
+.eligibility-item p,
+.prize-card p,
+.hackathon-cta-strip p {
+  color: #e8dcc8;
 }
 .hackathon-cta-strip {
   padding: 24px;
@@ -238,7 +264,8 @@
   display: flex;
   justify-content: space-between;
   gap: 18px;
-  background: rgba(232, 232, 228, 0.05);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 .actions-row {
   display: flex;

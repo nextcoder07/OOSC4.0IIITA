@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import Footer from './components/Footer.jsx'
 import ImageUploader from './components/ImageUploader.jsx'
@@ -47,7 +47,58 @@ function App() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [formStatus, setFormStatus] = useState('')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  
+  const headerRef = useRef(null)
+  const rafRef = useRef(null)
+
+  const scheduleNavbarGlow = useCallback((x, y) => {
+    const nav = headerRef.current
+    if (!nav) return
+
+    if (rafRef.current) cancelAnimationFrame(rafRef.current)
+    rafRef.current = requestAnimationFrame(() => {
+      if (!nav) return
+      nav.style.setProperty('--mouse-x', `${x}px`)
+      nav.style.setProperty('--mouse-y', `${y}px`)
+      nav.style.setProperty('--glow-opacity', '1')
+      rafRef.current = null
+    })
+  }, [])
+
+  const handleNavbarPointerMove = useCallback((event) => {
+    const nav = headerRef.current
+    if (!nav) return
+    const rect = nav.getBoundingClientRect()
+    scheduleNavbarGlow(event.clientX - rect.left, event.clientY - rect.top)
+  }, [scheduleNavbarGlow])
+
+  const handleNavbarPointerLeave = useCallback(() => {
+    const nav = headerRef.current
+    if (!nav) return
+    nav.style.setProperty('--glow-opacity', '0')
+  }, [])
+
+  const handleNavbarPointerEnter = useCallback(() => {
+    const nav = headerRef.current
+    if (!nav) return
+    nav.style.setProperty('--glow-opacity', '1')
+  }, [])
+
+  useEffect(() => {
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
+    }
+  }, [])
+
+  useEffect(() => {
+    const onPointerUp = () => {
+      const nav = headerRef.current
+      if (!nav) return
+      nav.style.setProperty('--glow-opacity', '0')
+    }
+    window.addEventListener('pointerup', onPointerUp, { passive: true })
+    return () => window.removeEventListener('pointerup', onPointerUp)
+  }, [])
+
   const [siteConfig, setSiteConfig] = useState({})
   
   // Schedule page active day tab
@@ -593,7 +644,14 @@ function App() {
 
   return (
     <div className="app-shell">
-      <header className="site-header glass-header">
+      <header
+        ref={headerRef}
+        className="site-header glass-header"
+        onPointerMove={handleNavbarPointerMove}
+        onPointerDown={handleNavbarPointerMove}
+        onPointerEnter={handleNavbarPointerEnter}
+        onPointerLeave={handleNavbarPointerLeave}
+      >
         <button
           type="button"
           className="brand"
