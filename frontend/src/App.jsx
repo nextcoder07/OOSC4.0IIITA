@@ -1478,13 +1478,9 @@ function App() {
             </button>
           ))}
           <div className="mobile-actions-divider"></div>
-          {adminMode ? (
+          {adminMode && (
             <button type="button" className="nav-action-btn logout-btn" onClick={logout}>
               Logout
-            </button>
-          ) : (
-            <button type="button" className="nav-action-btn admin-btn" onClick={() => navigateTo('admin')}>
-              Admin Portal
             </button>
           )}
         </nav>
@@ -1498,13 +1494,9 @@ function App() {
           >
             Register Now
           </button>
-          {adminMode ? (
+          {adminMode && (
             <button type="button" className="btn btn-admin active" onClick={logout}>
               Logout
-            </button>
-          ) : (
-            <button type="button" className="btn btn-admin" onClick={() => navigateTo('admin')}>
-              Admin
             </button>
           )}
         </div>
