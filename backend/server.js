@@ -126,7 +126,7 @@ const clearAuthCookie = (res) => {
 // ── Input sanitization ─────────────────────────────────────────────────────────
 
 const allowedFields = {
-  speakers: ['name', 'title', 'bio', 'photoURL', 'sortOrder', 'published'],
+  speakers: ['name', 'title', 'bio', 'photoURL', 'linkedin', 'github', 'sortOrder', 'published'],
   sponsors: ['name', 'logoURL', 'category', 'website', 'sortOrder', 'published'],
   events: ['title', 'description', 'date', 'time', 'type', 'sortOrder', 'published'],
   team: ['name', 'role', 'contact', 'photoURL', 'sortOrder', 'published'],

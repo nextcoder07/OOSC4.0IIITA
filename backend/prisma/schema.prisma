@@ -8,27 +8,34 @@ datasource db {
 }
 
 model Speaker {
-  id        Int      @id @default(autoincrement())
-  name      String
-  title     String
-  bio       String
-  photoURL  String?   
-  sortOrder Int      @default(0)
-  published Boolean  @default(true)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           Int      @id @default(autoincrement())
+  name         String
+  title        String
+  bio          String
+  photoURL     String?
+  sortOrder    Int      @default(0)
+  published    Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  email        String?
+  github       String?
+  linkedin     String?
+  organization String?
+  twitter      String?
+  website      String?
 }
 
 model Sponsor {
-  id        Int      @id @default(autoincrement())
-  name      String
-  logoURL   String?
-  category  String
-  website   String?
-  sortOrder Int      @default(0)
-  published Boolean  @default(true)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          Int      @id @default(autoincrement())
+  name        String
+  logoURL     String?
+  category    String
+  website     String?
+  sortOrder   Int      @default(0)
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  description String?
 }
 
 model Event {
@@ -42,18 +49,29 @@ model Event {
   published   Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  endTime     String?
+  speaker     String?
+  startTime   String?
+  track       String?
+  venue       String?
 }
 
 model TeamMember {
-  id        Int      @id @default(autoincrement())
-  name      String
-  role      String
-  contact   String
-  photoURL  String?
-  sortOrder Int      @default(0)
-  published Boolean  @default(true)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id         Int      @id @default(autoincrement())
+  name       String
+  role       String
+  contact    String
+  photoURL   String?
+  sortOrder  Int      @default(0)
+  published  Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  department String?
+  email      String?
+  github     String?
+  linkedin   String?
+  twitter    String?
+  website    String?
 }
 
 model Lead {
@@ -80,4 +98,26 @@ model SiteConfig {
   value     String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model ContactMessage {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model MediaAsset {
+  id        Int      @id @default(autoincrement())
+  url       String
+  filename  String
+  category  String   @default("General")
+  createdAt DateTime @default(now())
+}
+
+model Setting {
+  key   String @id
+  value String
 }
