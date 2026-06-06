@@ -1,4 +1,5 @@
 import React from 'react'
+import './ContactPage.css'
 
 export default function ContactPage({ siteConfig, form, setForm, formStatus, handleFormSubmit }) {
   return (

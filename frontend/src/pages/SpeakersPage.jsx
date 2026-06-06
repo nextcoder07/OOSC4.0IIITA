@@ -1,4 +1,5 @@
 import React from 'react'
+import './SpeakersPage.css'
 
 export default function SpeakersPage({
   siteConfig, adminMode, speakers,

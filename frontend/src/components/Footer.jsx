@@ -9,8 +9,7 @@ export default function Footer() {
         {/* Brand Block */}
         <div className="footer-brand-column">
           <div className="footer-logo">
-            <span className="brand-mark">OOSC</span>
-            <span className="brand-text">4.0</span>
+            <img src="/OOSC_logo.png" alt="OOSC logo" className="footer-logo-img" />
           </div>
           <p className="footer-tagline">
             Opportunity Open Source Conference. Hosted by the Indian Institute of Information Technology, Allahabad.

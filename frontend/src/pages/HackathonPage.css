@@ -1,0 +1,270 @@
+.hackathon-body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-top: 12px;
+}
+.hackathon-hero {
+  padding: 40px 36px;
+  border-radius: var(--radius-card);
+  background: linear-gradient(180deg, rgba(232, 232, 228, 0.1), rgba(17, 17, 17, 0.15));
+  border: 1px solid rgba(232, 232, 228, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+.hackathon-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(217, 48, 37, 0.15), transparent 35%);
+  pointer-events: none;
+}
+.hackathon-hero-inner {
+  position: relative;
+  z-index: 1;
+}
+.hackathon-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(217, 48, 37, 0.1);
+  color: var(--color-accent);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 18px;
+}
+.badge-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  display: inline-block;
+}
+.hackathon-hero h1 {
+  margin: 0 0 10px;
+  font-size: clamp(2.2rem, 2.5vw, 3.2rem);
+  color: var(--color-text-on-dark);
+}
+.theme-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+  color: var(--color-text-on-panel-sub);
+}
+.theme-name {
+  margin: 0 0 24px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  line-height: 1.2;
+}
+.hackathon-stat-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+.hstat {
+  padding: 14px 16px;
+  border-radius: var(--radius-btn);
+  background: rgba(232, 232, 228, 0.08);
+  color: var(--color-text-on-panel);
+}
+.hstat-value {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.hstat-label {
+  color: var(--color-text-on-panel-sub);
+  font-size: 0.95rem;
+}
+.hk-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.hk-card {
+  padding: 28px;
+  border-radius: var(--radius-card);
+}
+.hk-card-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.hk-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 16px;
+  background: rgba(217, 48, 37, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+.problem-statement-text,
+.panel-subheading {
+  margin: 0 0 12px;
+  color: var(--color-text-on-panel-sub);
+  line-height: 1.75;
+}
+.rules-list,
+.eligibility-list,
+.special-prizes,
+.prizes-grid,
+.dates-timeline,
+.steps-list {
+  display: grid;
+  gap: 14px;
+}
+.rule-item,
+.eligibility-item,
+.special-prize-pill,
+.prize-card,
+.date-item,
+.step-item {
+  padding: 16px;
+  border-radius: var(--radius-btn);
+  background: rgba(232, 232, 228, 0.06);
+  border: 1px solid rgba(232, 232, 228, 0.08);
+}
+.rule-num,
+.elig-check,
+.step-num {
+  font-weight: 700;
+  color: var(--color-accent);
+  margin-right: 12px;
+}
+.pill-row,
+.special-prizes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.special-prize-pill {
+  padding: 12px 14px;
+  background: rgba(217, 48, 37, 0.08);
+  color: var(--color-text-on-panel);
+  border-radius: 999px;
+  font-size: 0.95rem;
+}
+.prizes-grid {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+.prize-card {
+  min-height: 190px;
+}
+.prize-medal {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+.prize-position {
+  margin: 0;
+  font-weight: 700;
+}
+.prize-amount {
+  margin: 6px 0 10px;
+  color: var(--color-accent);
+  font-size: 1.1rem;
+}
+.dates-timeline {
+  border-radius: var(--radius-card);
+  padding: 20px;
+}
+.date-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: flex-start;
+}
+.date-dot-col {
+  display: flex;
+  align-items: center;
+}
+.date-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-text-on-panel-sub);
+}
+.date-dot.active {
+  background: var(--color-accent);
+  box-shadow: 0 0 0 6px rgba(217, 48, 37, 0.12);
+}
+.date-info p {
+  margin: 0;
+}
+.date-label {
+  font-weight: 700;
+  color: var(--color-text-on-panel);
+}
+.date-value {
+  color: var(--color-accent);
+  font-weight: 700;
+  margin-top: 6px;
+}
+.date-desc {
+  color: var(--color-text-on-panel-sub);
+}
+.step-item {
+  display: flex;
+  gap: 16px;
+}
+.step-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(217, 48, 37, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.step-content h4 {
+  margin: 0 0 6px;
+}
+.step-content p {
+  margin: 0;
+  color: var(--color-text-on-panel-sub);
+  line-height: 1.7;
+}
+.hackathon-cta-strip {
+  padding: 24px;
+  border-radius: var(--radius-card);
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  background: rgba(232, 232, 228, 0.05);
+}
+.actions-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+@media (max-width: 900px) {
+  .hk-grid-2,
+  .hackathon-cta-strip {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+  .hackathon-hero {
+    padding: 36px 24px;
+  }
+  .hackathon-cta-strip {
+    padding: 24px;
+    align-items: flex-start;
+  }
+  .hk-card {
+    padding: 20px;
+  }
+  .hackathon-stat-strip {
+    gap: 18px;
+  }
+  .eligibility-list {
+    grid-template-columns: 1fr;
+  }
+}

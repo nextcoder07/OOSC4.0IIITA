@@ -600,8 +600,7 @@ function App() {
           onClick={() => navigateTo('home')}
           title="Back to home"
         >
-          <span className="brand-mark">OOSC</span>
-          <span className="brand-text">4.0</span>
+          <img src="/OOSC_logo.png" alt="OOSC logo" className="brand-logo" />
         </button>
 
         {/* Mobile Hamburger menu toggle button */}

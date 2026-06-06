@@ -1,4 +1,5 @@
 import React from 'react'
+import './SponsorsPage.css'
 
 export default function SponsorsPage({
   siteConfig, adminMode, sortedSponsors,

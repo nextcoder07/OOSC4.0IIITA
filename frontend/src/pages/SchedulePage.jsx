@@ -1,4 +1,5 @@
 import React from 'react'
+import './SchedulePage.css'
 
 export default function SchedulePage({
   siteConfig, adminMode, filteredSchedule, activeDay, setActiveDay,

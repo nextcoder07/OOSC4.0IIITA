@@ -1,4 +1,5 @@
 import React from 'react'
+import './AdminLoginPage.css'
 
 export default function AdminLoginPage({
   siteConfig, loginEmail, setLoginEmail, loginPassword, setLoginPassword,

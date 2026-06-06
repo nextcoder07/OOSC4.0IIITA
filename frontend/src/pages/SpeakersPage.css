@@ -1,0 +1,64 @@
+.speakers-section {
+  padding-top: 12px;
+}
+.speaker-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin-top: 28px;
+}
+.speaker-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+}
+.speaker-card .image-wrapper {
+  width: 100%;
+  min-height: 230px;
+  overflow: hidden;
+}
+.speaker-card .image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.speaker-card .card-content {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.card-subtitle {
+  margin: 0;
+  color: var(--color-text-on-panel-sub);
+}
+.card-description {
+  margin: 0;
+  color: var(--color-text-on-panel-sub);
+  line-height: 1.7;
+  min-height: 60px;
+}
+.social-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+.social-icon {
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  background: rgba(232, 232, 228, 0.08);
+  color: var(--color-text-on-panel);
+  transition: var(--transition-smooth);
+}
+.social-icon:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}

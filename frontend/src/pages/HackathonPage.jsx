@@ -1,4 +1,5 @@
 import React from 'react'
+import './HackathonPage.css'
 
 export default function HackathonPage({ siteConfig, navigateTo }) {
   return (

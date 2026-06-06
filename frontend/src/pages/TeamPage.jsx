@@ -1,4 +1,5 @@
 import React from 'react'
+import './TeamPage.css'
 
 export default function TeamPage({
   siteConfig, adminMode, categorizedTeam,
