@@ -1269,3 +1269,54 @@ body {
   .hackathon-stat-strip { gap: 18px; }
   .hk-card { padding: 20px; }
 }
+
+/* ─── DRAG AND DROP STYLES ─────────────────────────────────────────────────── */
+.admin-draggable {
+  cursor: grab;
+  user-select: none;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.admin-draggable:active {
+  cursor: grabbing;
+}
+
+.admin-draggable.dragging {
+  opacity: 0.35;
+  border: 1px dashed var(--color-cyan) !important;
+  transform: scale(0.97);
+  box-shadow: none !important;
+}
+
+.admin-draggable.drag-over {
+  border: 2px dashed var(--color-cyan) !important;
+  transform: scale(1.02);
+  background: rgba(200, 200, 224, 0.08) !important;
+  box-shadow: 0 0 15px var(--color-cyan-glow) !important;
+}
+
+.drag-hint {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 14px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  letter-spacing: 0.08em;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  align-self: center;
+  transition: var(--transition-smooth);
+}
+
+.admin-draggable:hover .drag-hint {
+  color: #ffffff;
+  background: rgba(200, 200, 224, 0.12);
+  border-color: rgba(200, 200, 224, 0.24);
+}
+

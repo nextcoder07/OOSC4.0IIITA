@@ -45,6 +45,12 @@ function App() {
   // Schedule page active day tab
   const [activeDay, setActiveDay] = useState('Aug 28')
 
+  // Drag and drop state variables
+  const [draggedResource, setDraggedResource] = useState(null)
+  const [draggedIndex, setDraggedIndex] = useState(null)
+  const [draggedCategory, setDraggedCategory] = useState(null)
+  const [dragOverIndex, setDragOverIndex] = useState(null)
+
   const pageRoutes = useMemo(() => [
     { key: 'home', label: 'Home' },
     { key: 'hackathon', label: 'Hackathon' },
@@ -389,6 +395,137 @@ function App() {
     }
   }
 
+  const handleReorder = async (resource, reorderedItems) => {
+    if (!adminMode) return
+
+    updateResourceState(resource, () => reorderedItems)
+    setAdminMessage('Updating order...')
+
+    try {
+      const originalList = {
+        speakers,
+        sponsors,
+        events: schedule,
+        team,
+      }[resource]
+
+      const updates = reorderedItems.filter((item) => {
+        const originalItem = originalList.find((orig) => orig.id === item.id)
+        return !originalItem || originalItem.sortOrder !== item.sortOrder
+      })
+
+      if (updates.length > 0) {
+        await Promise.all(
+          updates.map((item) =>
+            apiFetch(`/api/${resource}/${item.id}`, {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(item),
+            })
+          )
+        )
+      }
+      setAdminMessage('Order updated successfully.')
+    } catch (error) {
+      console.error('Failed to update order in database:', error)
+      setAdminMessage(`Error updating order: ${error.message}`)
+
+      try {
+        const freshData = await apiFetch(`/api/${resource}`)
+        updateResourceState(resource, () => freshData)
+      } catch (refetchError) {
+        console.error('Failed to revert order:', refetchError)
+      }
+    }
+  }
+
+  const handleDragStart = (e, resource, index, category = null) => {
+    if (!adminMode) {
+      e.preventDefault()
+      return
+    }
+    setDraggedResource(resource)
+    setDraggedIndex(index)
+    setDraggedCategory(category)
+  }
+
+  const handleDragOver = (e, resource, index, category = null) => {
+    if (!adminMode || draggedResource !== resource || draggedCategory !== category) {
+      return
+    }
+    e.preventDefault()
+    if (dragOverIndex !== index) {
+      setDragOverIndex(index)
+    }
+  }
+
+  const handleDragEnd = () => {
+    setDraggedResource(null)
+    setDraggedIndex(null)
+    setDraggedCategory(null)
+    setDragOverIndex(null)
+  }
+
+  const handleDrop = async (e, resource, index, category = null) => {
+    e.preventDefault()
+    if (!adminMode || draggedResource !== resource || draggedCategory !== category || draggedIndex === null || draggedIndex === index) {
+      handleDragEnd()
+      return
+    }
+
+    let activeArray = []
+    if (resource === 'speakers') {
+      activeArray = [...speakers]
+    } else if (resource === 'sponsors') {
+      activeArray = sponsors.filter((s) => s.category === category).sort((a, b) => a.sortOrder - b.sortOrder)
+    } else if (resource === 'events') {
+      activeArray = schedule.filter((item) => {
+        const dayStr = item.date || item.dateTime || ''
+        return dayStr.includes(activeDay)
+      }).sort((a, b) => a.sortOrder - b.sortOrder)
+    } else if (resource === 'team') {
+      activeArray = categorizedTeam[category]
+    }
+
+    if (activeArray.length === 0) {
+      handleDragEnd()
+      return
+    }
+
+    const reordered = [...activeArray]
+    const [moved] = reordered.splice(draggedIndex, 1)
+    reordered.splice(index, 0, moved)
+
+    const normalized = reordered.map((item, order) => ({
+      ...item,
+      sortOrder: order + 1,
+    }))
+
+    if (resource === 'speakers') {
+      await handleReorder('speakers', normalized)
+    } else if (resource === 'sponsors') {
+      const otherSponsors = sponsors.filter((s) => s.category !== category)
+      const mergedSponsors = [...otherSponsors, ...normalized]
+      await handleReorder('sponsors', mergedSponsors)
+    } else if (resource === 'events') {
+      const otherEvents = schedule.filter((item) => {
+        const dayStr = item.date || item.dateTime || ''
+        return !dayStr.includes(activeDay)
+      })
+      const mergedEvents = [...otherEvents, ...normalized]
+      await handleReorder('events', mergedEvents)
+    } else if (resource === 'team') {
+      const otherTeam = team.filter((member) => {
+        return !activeArray.some((orig) => orig.id === member.id)
+      })
+      const mergedTeam = [...otherTeam, ...normalized]
+      await handleReorder('team', mergedTeam)
+    }
+
+    handleDragEnd()
+  }
+
+
   const handleFormSubmit = async (event) => {
     event.preventDefault()
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
@@ -552,8 +689,16 @@ function App() {
                 </div>
               ) : (
                 <div className="timeline-list">
-                  {filteredSchedule.map((item) => (
-                    <article key={item.id} className="timeline-card glass-card">
+                  {filteredSchedule.map((item, index) => (
+                    <article
+                      key={item.id}
+                      draggable={adminMode}
+                      className={`timeline-card glass-card ${adminMode ? 'admin-draggable' : ''} ${draggedResource === 'events' && draggedIndex === index ? 'dragging' : ''} ${draggedResource === 'events' && dragOverIndex === index ? 'drag-over' : ''}`.trim()}
+                      onDragStart={(e) => handleDragStart(e, 'events', index)}
+                      onDragOver={(e) => handleDragOver(e, 'events', index)}
+                      onDragEnd={handleDragEnd}
+                      onDrop={(e) => handleDrop(e, 'events', index)}
+                    >
                       <div className="timeline-badge">{item.type || 'Session'}</div>
                       <span className="timeline-time">{getEventTime(item)}</span>
                       <h3>{item.title}</h3>
@@ -576,6 +721,11 @@ function App() {
                             Delete
                           </button>
                         </div>
+                      )}
+                      {adminMode && (
+                        <span className="drag-hint" aria-hidden="true">
+                          ✥ Drag to Reorder
+                        </span>
                       )}
                     </article>
                   ))}
@@ -602,8 +752,16 @@ function App() {
             </div>
 
             <div className="card-grid speaker-grid">
-              {speakers.map((speaker) => (
-                <article key={speaker.id} className="card speaker-card glass-card">
+              {speakers.map((speaker, index) => (
+                <article
+                  key={speaker.id}
+                  draggable={adminMode}
+                  className={`card speaker-card glass-card ${adminMode ? 'admin-draggable' : ''} ${draggedResource === 'speakers' && draggedIndex === index ? 'dragging' : ''} ${draggedResource === 'speakers' && dragOverIndex === index ? 'drag-over' : ''}`.trim()}
+                  onDragStart={(e) => handleDragStart(e, 'speakers', index)}
+                  onDragOver={(e) => handleDragOver(e, 'speakers', index)}
+                  onDragEnd={handleDragEnd}
+                  onDrop={(e) => handleDrop(e, 'speakers', index)}
+                >
                   <div className="image-wrapper">
                     <img src={speaker.photoURL} alt={speaker.name} loading="lazy" />
                   </div>
@@ -638,6 +796,11 @@ function App() {
                       </button>
                     </div>
                   )}
+                  {adminMode && (
+                    <span className="drag-hint" aria-hidden="true">
+                      ✥ Drag to Reorder
+                    </span>
+                  )}
                 </article>
               ))}
             </div>
@@ -670,8 +833,16 @@ function App() {
                       <span className="divider-line"></span>
                     </div>
                     <div className="sponsor-logo-grid">
-                      {group.map((sponsor) => (
-                        <div key={sponsor.id} className="sponsor-card-outer">
+                      {group.map((sponsor, index) => (
+                        <div
+                          key={sponsor.id}
+                          draggable={adminMode}
+                          className={`sponsor-card-outer ${adminMode ? 'admin-draggable' : ''} ${draggedResource === 'sponsors' && draggedCategory === category && draggedIndex === index ? 'dragging' : ''} ${draggedResource === 'sponsors' && draggedCategory === category && dragOverIndex === index ? 'drag-over' : ''}`.trim()}
+                          onDragStart={(e) => handleDragStart(e, 'sponsors', index, category)}
+                          onDragOver={(e) => handleDragOver(e, 'sponsors', index, category)}
+                          onDragEnd={handleDragEnd}
+                          onDrop={(e) => handleDrop(e, 'sponsors', index, category)}
+                        >
                           <a href={sponsor.website} target="_blank" rel="noreferrer" className="sponsor-card glass-card">
                             <div className="logo-container">
                               <img src={sponsor.logoURL} alt={sponsor.name} loading="lazy" />
@@ -695,6 +866,11 @@ function App() {
                                 Delete
                               </button>
                             </div>
+                          )}
+                          {adminMode && (
+                            <span className="drag-hint" aria-hidden="true" style={{ marginTop: '8px', display: 'flex' }}>
+                              ✥ Drag to Reorder
+                            </span>
                           )}
                         </div>
                       ))}
@@ -729,8 +905,16 @@ function App() {
                   <div key={categoryName} className="team-category-section">
                     <h3 className="team-category-title">{categoryName}</h3>
                     <div className="card-grid team-grid">
-                      {members.map((member) => (
-                        <article key={member.id} className="card team-card glass-card">
+                      {members.map((member, index) => (
+                        <article
+                          key={member.id}
+                          draggable={adminMode}
+                          className={`card team-card glass-card ${adminMode ? 'admin-draggable' : ''} ${draggedResource === 'team' && draggedCategory === categoryName && draggedIndex === index ? 'dragging' : ''} ${draggedResource === 'team' && draggedCategory === categoryName && dragOverIndex === index ? 'drag-over' : ''}`.trim()}
+                          onDragStart={(e) => handleDragStart(e, 'team', index, categoryName)}
+                          onDragOver={(e) => handleDragOver(e, 'team', index, categoryName)}
+                          onDragEnd={handleDragEnd}
+                          onDrop={(e) => handleDrop(e, 'team', index, categoryName)}
+                        >
                           <div className="image-wrapper team-avatar">
                             <img src={member.photoURL} alt={member.name} loading="lazy" />
                           </div>
@@ -761,6 +945,11 @@ function App() {
                                 Delete
                               </button>
                             </div>
+                          )}
+                          {adminMode && (
+                            <span className="drag-hint" aria-hidden="true">
+                              ✥ Drag to Reorder
+                            </span>
                           )}
                         </article>
                       ))}
