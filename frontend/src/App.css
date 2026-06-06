@@ -333,12 +333,20 @@ body {
 .content-section {
   position: relative;
   padding: 48px;
-  background: var(--color-panel);
+  background: linear-gradient(180deg, rgba(248, 244, 236, 0.1), rgba(17, 17, 17, 0.24));
   color: var(--color-text-on-panel);
-  border: 2px solid var(--color-border);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-brutal), var(--shadow-panel);
   overflow: hidden;
+}
+.content-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(circle at top left, rgba(217, 48, 37, 0.12), transparent 32%);
 }
 
 .section-heading { margin-bottom: 36px; max-width: 680px; }
