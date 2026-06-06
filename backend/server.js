@@ -104,6 +104,7 @@ app.use((req, res, next) => {
 // ── File uploads ───────────────────────────────────────────────────────────────
 
 let storage
+const uploadDir = process.env.VERCEL ? '/tmp/uploads' : path.join(__dirname, 'uploads')
 
 // If Cloudinary credentials exist, use Cloudinary storage
 if (process.env.CLOUDINARY_CLOUD_NAME && process.env.CLOUDINARY_API_KEY && process.env.CLOUDINARY_API_SECRET) {
@@ -122,7 +123,6 @@ if (process.env.CLOUDINARY_CLOUD_NAME && process.env.CLOUDINARY_API_KEY && proce
   })
 } else {
   // Fallback to local storage
-  const uploadDir = process.env.VERCEL ? '/tmp/uploads' : path.join(__dirname, 'uploads')
   try {
     if (!fs.existsSync(uploadDir)) {
       fs.mkdirSync(uploadDir, { recursive: true })
