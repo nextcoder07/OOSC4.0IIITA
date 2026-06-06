@@ -14,7 +14,7 @@ export const heroData = {
   title: 'OOSC 4.0',
   subtitle: 'Open Source Systems Conference at IIITA',
   dates: 'Aug 28–30, 2026',
-  venue: 'International Institute of Information Technology, Allahabad',
+  venue: 'Indian Institute of Information Technology, Allahabad',
   cta: 'Register Interest',
   bannerText: 'Building the next generation of open source systems, AI, and community-driven research.',
 };
