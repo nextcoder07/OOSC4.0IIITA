@@ -62,10 +62,10 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 900 !important;
   letter-spacing: -0.04em !important;
   text-transform: uppercase !important;
-  text-shadow: 
-    0 4px 0 rgba(128, 128, 128, 0.4),
-    0 8px 0 rgba(128, 128, 128, 0.2),
-    0 12px 0 rgba(128, 128, 128, 0.1) !important;
+}
+
+h4 {
+  text-shadow: none !important;
 }
 
 label, .tag, .label, [class*="-tagline"], [class*="-label"] {

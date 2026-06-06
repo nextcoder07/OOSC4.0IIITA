@@ -1,7 +1,8 @@
 .hero-section {
-  padding: 54px 0 36px;
+  padding: 54px 24px 36px;
   position: relative;
   overflow: hidden;
+  border-radius: 24px;
 }
 .hero-section::before {
   content: '';
@@ -9,6 +10,7 @@
   inset: 0;
   background: radial-gradient(circle at top left, rgba(217, 48, 37, 0.12), transparent 32%);
   pointer-events: none;
+  border-radius: inherit;
 }
 .hero-content-outer {
   width: 100%;
