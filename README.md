@@ -1,266 +1,265 @@
-# OOSC 4.0 Website
+# OOSC 4.0 — Open Source Systems Conference
 
-A full-stack web application for managing the Open Source Summer Camp (OOSC) event. Features admin dashboard with CRUD operations for speakers, sponsors, events/schedule, and team members. Built with React + Vite (frontend) and Express.js + Prisma (backend).
+> **Full-stack conference management platform for OOSC 4.0 at IIIT Allahabad**
+> Built with React + Vite · Express.js + Prisma · MySQL (Aiven) · Cloudinary
 
-## 🌟 Features
+---
 
-- **Admin Dashboard** - Manage speakers, sponsors, events, and team members
-- **Email Verification** - Secure admin onboarding with email confirmation
-- **Image Upload** - Drag-and-drop image uploads with live preview
-- **Responsive Design** - Works on desktop, tablet, and mobile devices
-- **JWT Authentication** - Secure admin authentication with access/refresh tokens
-- **Audit Logging** - Track all admin actions with IP addresses
-- **Mobile Friendly** - Slide-out options and responsive modals on small screens
+## ✨ Features
+
+| Area | Description |
+|------|-------------|
+| **Multi-Page SPA** | React Router–driven architecture with 8 dedicated page components |
+| **Admin Dashboard** | Authenticated CRUD for speakers, sponsors, events & team members |
+| **Drag & Drop** | Reorder cards (speakers, sponsors, schedule, team) via drag‑and‑drop |
+| **Cloud Image Storage** | Cloudinary-backed image uploads with drag‑and‑drop preview |
+| **JWT Auth** | Access + refresh token flow with secure HTTP‑only cookies |
+| **Contact Form** | Server‑side email delivery via Nodemailer |
+| **Responsive Design** | Mobile hamburger menu, adaptive grids, glassmorphism UI |
+| **Hackathon Portal** | Dedicated page with tracks, prizes, rules, dates & registration CTA |
+
+---
 
 ## 📋 Tech Stack
 
 ### Frontend
-- **React 19.2.6** - UI framework
-- **Vite 8.0.12** - Build tool
-- **CSS3** - Custom styling with CSS variables
+- **React 19** — UI framework
+- **React Router DOM** — Client-side routing
+- **Vite 8** — Build tool & dev server
+- **Vanilla CSS** — Custom design system with CSS variables
 
 ### Backend
-- **Express.js** - Web server
-- **Prisma 5.22.0** - ORM
-- **MySQL (Aiven)** - Database
-- **Nodemailer** - Email service
-- **bcrypt** - Password hashing
-- **JWT** - Authentication
-- **Multer** - File uploads
+- **Express.js** — REST API server
+- **Prisma 5** — Type-safe ORM
+- **MySQL (Aiven)** — Cloud-hosted relational database
+- **Cloudinary** — Image storage & CDN
+- **Nodemailer** — Email delivery
+- **bcrypt + JWT** — Authentication & password hashing
+- **Helmet + CORS + Rate Limiting** — Security middleware
+
+---
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 16+ and npm
-- MySQL database (or Aiven account)
-- Gmail account (for email verification) OR SMTP server
+- **Node.js 18+** and npm
+- MySQL database ([Aiven](https://aiven.io) free tier works)
+- [Cloudinary](https://cloudinary.com) account (free tier)
+- Gmail account or SMTP server (for contact emails)
 
-### Installation
+### 1. Clone & Install
 
-1. **Clone the repository**
-	```bash
-	git clone <repo-url>
-	cd OOSCWEB
-	```
-
-2. **Install dependencies**
-	```bash
-	npm install
-	cd backend && npm install && cd ..
-	```
-
-3. **Setup Database**
-	```bash
-	cd backend
-	npx prisma migrate dev
-	```
-
-4. **Configure Environment Variables**
-
-	**IMPORTANT:** Create a `.env` file in the `backend` folder (NOT in the root):
-   
-	```bash
-	backend/.env
-	```
-
-You can also copy the provided example file `backend/.env.example` to `backend/.env`.
-
-	Add the following variables:
-
-	```env
-	# Database (Get from Aiven or your MySQL provider)
-	DATABASE_URL="mysql://user:password@host:port/dbname?ssl-mode=REQUIRED"
-
-	# Email Configuration (Use Gmail app password)
-	EMAIL_USER=your-gmail@gmail.com
-	EMAIL_PASS=your-16-char-app-password
-	EMAIL_FROM=your-gmail@gmail.com
-
-	# Or use custom SMTP (instead of Gmail)
-	SMTP_HOST=smtp.yourserver.com
-	SMTP_PORT=587
-	SMTP_USER=your-email@company.com
-	SMTP_PASS=your-password
-	SMTP_SECURE=false
-
-	# JWT Secrets (Generate strong random strings)
-	JWT_SECRET=your-super-secret-jwt-key-change-this
-	JWT_REFRESH_SECRET=your-refresh-secret-key-change-this
-
-	# Admin Configuration
-	ADMIN_USERNAME=admin@oosc.iiita.ac.in
-	ADMIN_PASSWORD=super-secure-password
-	```
-
-	**⚠️ SECURITY WARNING:**
-	- Never commit `.env` to git (it's in `.gitignore`)
-	- Never share `.env` credentials
-	- Generate strong random secrets for JWT
-	- Use Gmail app passwords, not your main password
-
-5. **Admin Access Setup**
-
-	Admin authentication is now based solely on `ADMIN_USERNAME` and `ADMIN_PASSWORD` in your `.env` file.
-	There is no longer any `backend/allowedAdmins.json` whitelist dependency.
-
-## 📦 Running the Application
-
-### Development Mode
-
-**Terminal 1 - Frontend (React + Vite)**
 ```bash
-npm run dev
+git clone https://github.com/0xshellghost/OOSC4.0IIITA.git
+cd OOSC4.0IIITA
+npm install
 ```
-Frontend runs on: http://localhost:5173
 
-**Terminal 2 - Backend (Express.js)**
+### 2. Configure Environment
+
+Create `backend/.env`:
+
+```env
+# Database (Aiven MySQL)
+DATABASE_URL="mysql://user:password@host:port/dbname?ssl-mode=REQUIRED"
+
+# Cloudinary (for image uploads)
+CLOUDINARY_CLOUD_NAME=your-cloud-name
+CLOUDINARY_API_KEY=your-api-key
+CLOUDINARY_API_SECRET=your-api-secret
+
+# JWT Secrets (use strong random strings)
+JWT_SECRET=your-super-secret-jwt-key
+JWT_REFRESH_SECRET=your-refresh-secret-key
+
+# Admin Credentials
+ADMIN_USERNAME=admin@oosc.iiita.ac.in
+ADMIN_PASSWORD=your-secure-password
+
+# Email (Gmail app password or custom SMTP)
+EMAIL_USER=your-gmail@gmail.com
+EMAIL_PASS=xxxx-xxxx-xxxx-xxxx
+EMAIL_FROM=your-gmail@gmail.com
+```
+
+> ⚠️ **Never commit `.env` to git.** It is already in `.gitignore`.
+
+### 3. Setup Database
+
+```bash
+cd backend
+npx prisma migrate dev
+cd ..
+```
+
+### 4. Run Locally
+
+**Terminal 1 — Backend:**
 ```bash
 cd backend
 node server.js
 ```
-Backend runs on: http://localhost:5000
+→ API server starts on **http://localhost:5000**
 
-### Production Build
+**Terminal 2 — Frontend:**
+```bash
+npm run dev
+```
+→ Dev server starts on **http://localhost:5173**
+
+Open **http://localhost:5173** in your browser.
+
+### 5. Production Build
 
 ```bash
 npm run build
 ```
+Creates optimized output in `frontend/dist/`.
 
-Creates optimized build in `dist/` folder.
+---
 
-## 🔐 Admin Setup & Login
+## 🗂️ Project Structure
 
-### First-Time Admin Onboarding
+```
+OOSC4.0IIITA/
+├── frontend/
+│   └── src/
+│       ├── App.jsx                # Root component — layout, state, routes
+│       ├── App.css                # Global design system & styles
+│       ├── main.jsx               # Entry point with BrowserRouter
+│       ├── data.js                # Static fallback data
+│       ├── pages/                 # ← Page components (one per route)
+│       │   ├── HomePage.jsx       #   /
+│       │   ├── HackathonPage.jsx  #   /hackathon
+│       │   ├── SchedulePage.jsx   #   /schedule
+│       │   ├── SpeakersPage.jsx   #   /speakers
+│       │   ├── SponsorsPage.jsx   #   /sponsors
+│       │   ├── TeamPage.jsx       #   /team
+│       │   ├── ContactPage.jsx    #   /contact
+│       │   └── AdminLoginPage.jsx #   /admin
+│       └── components/            # Shared / reusable components
+│           ├── Footer.jsx
+│           ├── ImageUploader.jsx
+│           ├── Registration.jsx
+│           └── ...
+├── backend/
+│   ├── server.js                  # Express API server
+│   ├── .env                       # Environment variables (SECRET)
+│   └── prisma/
+│       └── schema.prisma          # Database schema
+├── package.json                   # Root package with all dependencies
+├── vite.config.js                 # Vite configuration
+└── README.md
+```
 
-1. Click **"First time? Request Verification Email"** on the login page
-2. Enter your **whitelisted email** and **create a strong password**
-	- Password must have: 8+ chars, UPPERCASE, lowercase, number, special character
-3. Click **"Send Verification Email"**
-4. Check your inbox for verification email
-5. Click **"Verify Email & Activate Account"** link
-6. You're verified! Now you can **login** with your email + password
+---
 
-### Admin Features
+## 🛣️ Routes
 
-Once logged in, you can:
+| Path | Component | Description |
+|------|-----------|-------------|
+| `/` | `HomePage` | Hero banner, about section, stats, event overview |
+| `/hackathon` | `HackathonPage` | Problem statements, prizes, rules, dates, registration |
+| `/schedule` | `SchedulePage` | 3-day conference timeline with day tabs |
+| `/speakers` | `SpeakersPage` | Speaker cards with bio, photo, social links |
+| `/sponsors` | `SponsorsPage` | Sponsor tiers (Title → Community) with logos |
+| `/team` | `TeamPage` | Organizing committee by category |
+| `/register` | `Registration` | Google Form–based registration |
+| `/contact` | `ContactPage` | Contact form, map, email/phone info |
+| `/admin` | `AdminLoginPage` | Admin login panel |
 
-- **Speakers** - Add/edit/delete speaker profiles with photos
-- **Sponsors** - Manage sponsors by tier (Title, Platinum, Gold, Silver, Community, Media)
-- **Schedule** - Add/edit/delete timeline events by day
-- **Team** - Manage team member profiles
+---
 
-All changes are saved to database immediately.
+## 🔗 API Endpoints
+
+### Authentication
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/admin/login` | Login with env credentials |
+| `POST` | `/admin/logout` | Clear auth cookies |
+| `POST` | `/admin/refresh` | Refresh JWT token |
+| `GET` | `/admin/me` | Get current admin session |
+
+### Resources (Protected — require admin JWT)
+| Resource | GET (list) | POST (create) | PUT (update) | DELETE |
+|----------|-----------|---------------|-------------|--------|
+| Speakers | `/api/speakers` | `/api/speakers` | `/api/speakers/:id` | `/api/speakers/:id` |
+| Sponsors | `/api/sponsors` | `/api/sponsors` | `/api/sponsors/:id` | `/api/sponsors/:id` |
+| Events | `/api/events` | `/api/events` | `/api/events/:id` | `/api/events/:id` |
+| Team | `/api/team` | `/api/team` | `/api/team/:id` | `/api/team/:id` |
+
+### Other
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/api/upload` | Upload image to Cloudinary |
+| `POST` | `/api/contact` | Submit contact form email |
+
+---
 
 ## 🗄️ Database Schema
 
-### Key Models
+| Model | Key Fields |
+|-------|-----------|
+| `AdminUser` | email, password (hashed), verified, role |
+| `Speaker` | name, title, bio, photoURL, linkedin, github, sortOrder |
+| `Sponsor` | name, logoURL, website, category, sortOrder |
+| `Event` | title, date, time, type, details, sortOrder |
+| `TeamMember` | name, role, category, photoURL, contact, sortOrder |
+| `AuditLog` | action, resource, adminEmail, ipAddress, timestamp |
+| `SiteConfig` | key, value (dynamic site configuration) |
+| `ContactMessage` | name, email, message, createdAt |
 
-- **AdminUser** - Admin accounts with email, password, verification status, roles
-- **Speaker** - Speaker profiles with bio, photo, sort order
-- **Sponsor** - Sponsor info with logo, category, website
-- **Event** - Timeline events with date, time, description
-- **TeamMember** - Team profiles with role, contact info
-- **AuditLog** - Logs all admin actions for security
+Full schema: [`backend/prisma/schema.prisma`](backend/prisma/schema.prisma)
 
-See `backend/prisma/schema.prisma` for full schema.
+---
+
+## 🔐 Admin Access
+
+1. Navigate to `/admin` in the browser
+2. Login with the `ADMIN_USERNAME` and `ADMIN_PASSWORD` from your `.env`
+3. Once authenticated, every page shows admin controls:
+   - **+ Add** buttons for creating new records
+   - **Edit / Delete** buttons on each card
+   - **Drag to Reorder** capability on all card grids
+   - **Site Config** modal for editing section titles & subtitles
+
+---
+
+## 🐛 Troubleshooting
+
+| Issue | Fix |
+|-------|-----|
+| **Blank page** | Check browser console for errors. Ensure `npm install` was run. |
+| **Can't login** | Verify `ADMIN_USERNAME` / `ADMIN_PASSWORD` in `backend/.env`. Restart backend. |
+| **Database error** | Check `DATABASE_URL`. For Aiven, ensure `?ssl-mode=REQUIRED` is appended. |
+| **Images not uploading** | Verify Cloudinary credentials in `.env`. Check free tier quota. |
+| **Contact email not sent** | Use Gmail App Password (not regular password). Check spam folder. |
+| **401 on /admin/me** | Expected for non-authenticated users. Not a bug. |
+
+---
 
 ## 📧 Email Setup
 
-### Option 1: Gmail (Recommended for Testing)
+### Gmail (Recommended for testing)
+1. Go to [Google App Passwords](https://myaccount.google.com/apppasswords)
+2. Generate a 16-character app password
+3. Set `EMAIL_USER` and `EMAIL_PASS` in `backend/.env`
 
-1. Go to [Google Account Security](https://myaccount.google.com/apppasswords)
-2. Select "Mail" and "Windows"
-3. Copy the 16-character app password
-4. Add to `backend/.env`:
-	```env
-	EMAIL_USER=your-gmail@gmail.com
-	EMAIL_PASS=xxxx-xxxx-xxxx-xxxx
-	```
-
-### Option 2: Custom SMTP
-
-Add these to `backend/.env`:
+### Custom SMTP
 ```env
-SMTP_HOST=smtp.company.com
+SMTP_HOST=smtp.yourserver.com
 SMTP_PORT=587
 SMTP_USER=your-email@company.com
 SMTP_PASS=your-password
 SMTP_SECURE=false
 ```
 
-## 🐛 Troubleshooting
+---
 
-**502 Bad Gateway Error**
-- ✅ Make sure `.env` has valid `EMAIL_USER` and `EMAIL_PASS`
-- ✅ Check backend console for errors: `cd backend && node server.js`
+## 👥 Team
 
-**Can't login - "Forbidden" error**
-- ✅ Confirm `ADMIN_USERNAME` and `ADMIN_PASSWORD` are set correctly in `.env`
-- ✅ Ensure the backend is restarted after `.env` changes
-
-**Email not received**
-- ✅ Check spam/junk folder
-- ✅ Check backend console for verification link
-- ✅ Verify `EMAIL_USER` and `EMAIL_PASS` are correct
-
-**Database connection error**
-- ✅ Check `DATABASE_URL` in `backend/.env`
-- ✅ Ensure MySQL server is running
-- ✅ For Aiven: add `?ssl-mode=REQUIRED` to connection string
-
-## 📁 Project Structure
-
-```
-OOSCWEB/
-├── src/
-│   ├── App.jsx          # Main React component
-│   ├── App.css          # Styles (including modal)
-│   ├── main.jsx         # Entry point
-│   ├── data.js          # Sample data
-│   └── components/      # React components
-│       ├── Footer.jsx
-│       ├── FAQ.jsx
-│       ├── ImageUploader.jsx
-│       └── Registration.jsx
-├── backend/
-│   ├── server.js        # Express server
-│   ├── .env             # Environment variables (KEEP SECRET!)
-│   ├── uploads/         # Uploaded images
-│   ├── prisma/
-│   │   └── schema.prisma
-│   └── package.json
-├── public/              # Static assets
-├── index.html
-├── package.json
-├── vite.config.js
-└── README.md
-```
-
-## 🔗 API Endpoints
-
-### Auth Routes
-- `POST /admin/login` - Login using `ADMIN_USERNAME` and `ADMIN_PASSWORD` from environment variables
-- `POST /admin/logout` - Logout
-- `POST /admin/refresh` - Refresh JWT token
-- `GET /admin/me` - Get current admin info
-
-> Admin access is only available through the direct `/admin/login` path. No public navigation exposes admin functionality.
-
-### CRUD Routes (Protected)
-- `GET /api/speakers` - List all speakers
-- `POST /api/speakers` - Create speaker
-- `PUT /api/speakers/:id` - Update speaker
-- `DELETE /api/speakers/:id` - Delete speaker
-
-Same pattern for: `/api/sponsors`, `/api/events`, `/api/team`
-
-### Image Upload
-- `POST /api/upload` - Upload image, returns URL
+Developed for the **OOSC 4.0 Conference** at **IIIT Allahabad** (Aug 28–30, 2026).
 
 ## 📝 License
 
 Private project. All rights reserved.
-
-## 👥 Support
-
-For issues, contact the OOSC development team.
