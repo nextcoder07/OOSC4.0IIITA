@@ -1,3 +1,29 @@
+#schedule {
+  padding: 28px;
+  border-radius: var(--radius-card);
+  background: linear-gradient(180deg, rgba(248, 244, 236, 0.1), rgba(17, 17, 17, 0.24));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
+  position: relative;
+  overflow: hidden;
+}
+#schedule::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(circle at top left, rgba(217, 48, 37, 0.12), transparent 34%);
+}
+.timeline-container {
+  padding: 28px;
+  border-radius: var(--radius-card);
+  background: rgba(17, 17, 17, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+}
 .schedule-tabs {
   display: flex;
   gap: 8px;
@@ -51,6 +77,10 @@
   padding: 24px 28px;
   position: relative;
   border-left: 4px solid var(--color-accent);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-card);
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.08);
 }
 .timeline-card::after {
   content: '';
