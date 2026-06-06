@@ -74,7 +74,7 @@ body {
 /* ─── PANEL CARDS (formerly glass) ─────────────────────────────────────────── */
 .glass-card {
   position: relative;
-  background: var(--color-panel);
+  background: rgba(255, 255, 255, 0.05);
   color: var(--color-text-on-panel);
   border: 2px solid var(--color-border);
   border-radius: var(--radius-card);
@@ -97,7 +97,7 @@ body {
 
 /* dark-context panel variant */
 .glass-card--dark {
-  background: var(--color-bg);
+  background:rgba(255, 255, 255, 0.05);;
   color: var(--color-text-on-dark);
   border-color: var(--color-border-on-dark);
   box-shadow: 3px 3px 0 rgba(217, 48, 37, 0.15), var(--shadow-panel);
@@ -161,6 +161,7 @@ body {
   cursor: pointer;
   padding: 0;
 }
+
 
 .brand-mark {
   font-family: 'Space Grotesk', sans-serif;
