@@ -100,8 +100,15 @@ app.use((req, res, next) => {
 
 // ── File uploads ───────────────────────────────────────────────────────────────
 
-const uploadDir = path.join(__dirname, 'uploads')
-fs.mkdirSync(uploadDir, { recursive: true })
+const uploadDir = process.env.VERCEL ? '/tmp/uploads' : path.join(__dirname, 'uploads')
+try {
+  if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true })
+  }
+} catch (e) {
+  console.warn('Could not create upload directory:', e.message)
+}
+
 const storage = multer.diskStorage({
   destination: uploadDir,
   filename: (req, file, cb) => {
@@ -475,6 +482,10 @@ if (process.env.NODE_ENV === 'production') {
 
 // ── Start ──────────────────────────────────────────────────────────────────────
 
-app.listen(port, () => {
-  console.log(`OOSC backend listening on http://localhost:${port}`)
-})
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+  app.listen(port, () => {
+    console.log(`OOSC backend listening on http://localhost:${port}`)
+  })
+}
+
+export default app

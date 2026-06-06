@@ -10,7 +10,8 @@
     "preview": "vite preview frontend",
     "server": "node backend/server.js",
     "prisma:generate": "npx prisma generate --schema=backend/prisma/schema.prisma",
-    "prisma:db:push": "npx prisma db push --schema=backend/prisma/schema.prisma"
+    "prisma:db:push": "npx prisma db push --schema=backend/prisma/schema.prisma",
+    "postinstall": "npm run prisma:generate"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",
