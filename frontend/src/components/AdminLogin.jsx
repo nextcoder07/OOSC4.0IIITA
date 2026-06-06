@@ -1,55 +1,59 @@
-function AdminLogin({
-  loginUsername,
-  setLoginUsername,
+import React from 'react';
+
+export default function AdminLogin({
+  loginEmail,
+  setLoginEmail,
   loginPassword,
   setLoginPassword,
   handleLogin,
   adminMessage,
+  siteConfig
 }) {
   return (
     <section className="content-section admin-login-section" id="admin-login">
-      <div className="section-heading text-center">
-        <span>Admin Gateway</span>
-        <h2>OOSC 4.0 Dashboard Access</h2>
-        <p className="subtitle">This area is accessible only by direct admin URL and valid credentials.</p>
-      </div>
-
-      <div className="login-panel-container">
-        <form className="login-panel glass-card" onSubmit={handleLogin}>
-          <div className="form-group">
-            <label htmlFor="admin-username-field">Username</label>
-            <input
-              id="admin-username-field"
-              type="text"
-              required
-              value={loginUsername}
-              onChange={(event) => setLoginUsername(event.target.value)}
-              placeholder="Admin username"
-              className="form-control"
-            />
+          <div className="section-heading text-center">
+            <span>{siteConfig.adminEyebrow || 'Admin Gateway'}</span>
+            <h2>{siteConfig.adminTitle || 'OOSC 4.0 Dashboard Access'}</h2>
+            <p className="subtitle">{siteConfig.adminSubtitle || 'Whitelist authentication system for authorized university organizers.'}</p>
           </div>
-          <div className="form-group">
-            <label htmlFor="admin-password-field">Password</label>
-            <input
-              id="admin-password-field"
-              type="password"
-              required
-              value={loginPassword}
-              onChange={(event) => setLoginPassword(event.target.value)}
-              placeholder="••••••••••••"
-              className="form-control"
-            />
+          
+          <div className="login-panel-container">
+              <form className="login-panel glass-card" onSubmit={handleLogin}>
+                <div className="form-group">
+                  <label htmlFor="admin-email-field">Whitelisted Email</label>
+                  <input
+                    id="admin-email-field"
+                    type="email"
+                    required
+                    value={loginEmail}
+                    onChange={(event) => setLoginEmail(event.target.value)}
+                    placeholder="name@iiita.ac.in"
+                    className="form-control"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="admin-pw-field">Password</label>
+                  <input
+                    id="admin-pw-field"
+                    type="password"
+                    required
+                    value={loginPassword}
+                    onChange={(event) => setLoginPassword(event.target.value)}
+                    placeholder="••••••••••••"
+                    className="form-control"
+                  />
+                </div>
+                <div className="login-actions">
+                  <button type="submit" className="btn btn-primary">
+                    Sign In to Dashboard
+                  </button>
+                </div>
+                {adminMessage && <p className="admin-status-message error">{adminMessage}</p>}
+                <div className="admin-notice">
+                  <strong>Access restricted:</strong> Only whitelisted university emails can access the admin dashboard.
+                </div>
+              </form>
           </div>
-          <div className="login-actions">
-            <button type="submit" className="btn btn-primary">
-              Sign In
-            </button>
-          </div>
-          {adminMessage && <p className="admin-status-message error">{adminMessage}</p>}
-        </form>
-      </div>
-    </section>
-  )
+        </section>
+  );
 }
-
-export default AdminLogin
