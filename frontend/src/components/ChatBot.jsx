@@ -424,15 +424,13 @@ export default function ChatBot({ navigateTo }) {
           <div ref={messagesEndRef} />
         </div>
 
-        {messages.length <= 2 && (
-          <div className="cb-quick-actions">
-            {quickActions.map((action, i) => (
-              <button key={i} type="button" className="cb-quick-chip" onClick={() => handleSend(action.query)}>
-                {action.label}
-              </button>
-            ))}
-          </div>
-        )}
+        <div className="cb-quick-actions">
+          {quickActions.map((action, i) => (
+            <button key={i} type="button" className="cb-quick-chip" onClick={() => handleSend(action.query)}>
+              {action.label}
+            </button>
+          ))}
+        </div>
 
         <div className="cb-input-area">
           <input ref={inputRef} type="text" className="cb-input" value={input}
