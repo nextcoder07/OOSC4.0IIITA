@@ -524,29 +524,46 @@ app.post('/api/sponsor-apply', async (req, res) => {
   }
 
   try {
-    // Optionally log this into the database (we can reuse ContactMessage or create a new table,
-    // but the instruction specifically asked for nodemailer integration, so email is the priority)
-    
-    if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
-      await transporter.sendMail({
-        from: `"${name}" <${process.env.EMAIL_FROM || process.env.EMAIL_USER}>`,
-        to: process.env.EMAIL_TO || process.env.EMAIL_USER,
-        replyTo: email,
-        subject: `[OOSC 4.0 Sponsor App] New application from ${organization}`,
-        text: `You have received a new sponsorship application.\n\nName: ${name}\nEmail: ${email}\nOrganization: ${organization}\n\nMessage/Details:\n${message || 'None provided'}`,
-        html: `<p>You have received a new sponsorship application.</p>
-               <p><strong>Name:</strong> ${name}<br>
-               <strong>Email:</strong> ${email}<br>
-               <strong>Organization:</strong> ${organization}</p>
-               <p><strong>Additional Details:</strong></p>
-               <blockquote style="border-left: 4px solid #ccc; padding-left: 10px;">${(message || 'None provided').replace(/\n/g, '<br>')}</blockquote>`,
+    // 1. Attempt to save to the database (in a try/catch so it doesn't block the email if DB is down)
+    try {
+      await prisma.contactMessage.create({
+        data: {
+          name: name,
+          email: email,
+          message: `[SPONSOR APPLICATION]\nOrganization: ${organization}\nDetails: ${message || 'None'}`
+        }
       })
+    } catch (dbError) {
+      console.warn('Sponsor DB save failed:', dbError.message)
+    }
+
+    // 2. Attempt to send the email
+    if (process.env.EMAIL_USER && process.env.EMAIL_PASS && process.env.EMAIL_USER !== 'your-email@example.com') {
+      try {
+        await transporter.sendMail({
+          from: `"${name}" <${process.env.EMAIL_FROM || process.env.EMAIL_USER}>`,
+          to: process.env.EMAIL_TO || process.env.EMAIL_USER,
+          replyTo: email,
+          subject: `[OOSC 4.0 Sponsor App] New application from ${organization}`,
+          text: `You have received a new sponsorship application.\n\nName: ${name}\nEmail: ${email}\nOrganization: ${organization}\n\nMessage/Details:\n${message || 'None provided'}`,
+          html: `<p>You have received a new sponsorship application.</p>
+                 <p><strong>Name:</strong> ${name}<br>
+                 <strong>Email:</strong> ${email}<br>
+                 <strong>Organization:</strong> ${organization}</p>
+                 <p><strong>Additional Details:</strong></p>
+                 <blockquote style="border-left: 4px solid #ccc; padding-left: 10px;">${(message || 'None provided').replace(/\n/g, '<br>')}</blockquote>`,
+        })
+      } catch (emailError) {
+        console.warn('Sponsor email failed to send:', emailError.message)
+      }
+    } else {
+       console.warn('Skipping email send because EMAIL_USER is not configured properly.')
     }
 
     console.log(`Sponsor application processed from ${name} at ${organization}`)
     res.json({ success: true, message: 'Sponsor application received successfully.' })
   } catch (error) {
-    console.error('Sponsor form error:', error)
+    console.error('Sponsor form database error:', error)
     res.status(500).json({ error: 'Failed to process sponsor application.' })
   }
 })
