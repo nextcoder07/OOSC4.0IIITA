@@ -11,6 +11,7 @@ import TeamPage from './pages/TeamPage.jsx'
 import HackathonPage from './pages/HackathonPage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
 import AdminLoginPage from './pages/AdminLoginPage.jsx'
+import ChatBot from './components/ChatBot.jsx'
 import {
   aboutData,
   heroData,
@@ -957,6 +958,9 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* Chatbot Assistant */}
+      <ChatBot navigateTo={navigateTo} />
     </div>
   )
 }
