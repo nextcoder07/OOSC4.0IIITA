@@ -41,3 +41,46 @@
 .team-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
+
+@media (max-width: 1024px) {
+  .team-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 868px) {
+  .team-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .team-category-title {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 580px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+  .team-avatar {
+    width: 100px;
+    height: 100px;
+    margin: 16px auto 0;
+  }
+  .team-category-title {
+    font-size: 1rem;
+  }
+  .team-categories-container {
+    gap: 24px;
+  }
+  .team-category-section {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-avatar {
+    width: 80px;
+    height: 80px;
+    margin: 12px auto 0;
+  }
+}

@@ -57,7 +57,7 @@ body {
 .app-shell {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 24px 60px;
+  padding: 0 20px 60px;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -67,8 +67,8 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 48px;
-  margin-top: 20px;
+  gap: 42px;
+  margin-top: 16px;
 }
 
 /* ─── PANEL CARDS (formerly glass) ─────────────────────────────────────────── */
@@ -111,8 +111,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 20px;
-  margin: 10px 0 14px;
+  padding: 6px 14px;
+  margin: 6px 0 10px;
   border-radius: var(--radius-card);
   background: rgba(17, 17, 17, 0.92);
   border: 0.5px solid rgba(255, 255, 255, 0.1);
@@ -165,7 +165,7 @@ body {
 
 .brand-mark {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--color-text-on-dark);
   letter-spacing: -0.04em;
@@ -173,7 +173,7 @@ body {
 
 .brand-text {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 1rem;
+  font-size: 0.85rem;
   font-weight: 500;
   color: var(--color-accent);
   letter-spacing: 0.08em;
@@ -181,7 +181,7 @@ body {
 
 .brand-logo {
   display: block;
-  width: 72px;
+  width: 60px;
   max-width: 100%;
   height: auto;
 }
@@ -202,11 +202,11 @@ body {
 .nav-link {
   background: transparent;
   border: 2px solid transparent;
-  padding: 8px 14px;
+  padding: 5px 10px;
   border-radius: var(--radius-btn);
   color: var(--color-text-on-dark-sub);
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.78rem;
+  font-size: 0.7rem;
   font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -273,13 +273,15 @@ body {
   background: var(--color-accent);
   color: var(--color-text-on-dark);
   border-color: var(--color-accent);
-  box-shadow: 3px 3px 0 #000000;
+  box-shadow: 2px 2px 0 #000000;
+  padding: 6px 14px;
+  font-size: 0.78rem;
 }
 .btn-nav-cta:hover {
   background: var(--color-accent-hover);
   border-color: var(--color-accent-hover);
   transform: translate(-1px, -1px);
-  box-shadow: 4px 4px 0 #000000;
+  box-shadow: 3px 3px 0 #000000;
 }
 
 .btn-admin {
@@ -333,7 +335,7 @@ body {
 /* ─── CONTENT SECTIONS ───────────────────────────────────────────────────────── */
 .content-section {
   position: relative;
-  padding: 48px;
+  padding: 44px;
   background: linear-gradient(180deg, rgba(248, 244, 236, 0.1), rgba(17, 17, 17, 0.24));
   color: var(--color-text-on-panel);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -665,19 +667,20 @@ body {
 }
 
 @media (max-width: 868px) {
-  .site-header { padding: 12px 20px; }
+  .site-header { padding: 6px 12px; gap: 10px; }
+  .brand-mark { font-size: 1.1rem; }
   .hamburger-toggle { display: flex; }
   .header-actions { display: none; }
   .main-nav {
     position: absolute;
-    top: calc(100% + 12px);
+    top: calc(100% + 8px);
     left: 0; right: 0;
     flex-direction: column;
     background: var(--color-bg);
     border: 2px solid var(--color-text-on-dark);
     border-radius: var(--radius-card);
-    padding: 24px;
-    box-shadow: 4px 4px 0 var(--color-accent);
+    padding: 12px;
+    box-shadow: 3px 3px 0 var(--color-accent);
     transform: translateY(-20px);
     opacity: 0;
     pointer-events: none;
@@ -685,7 +688,7 @@ body {
     z-index: 100;
   }
   .main-nav.mobile-open { transform: translateY(0); opacity: 1; pointer-events: all; }
-  .nav-link { width: 100%; text-align: center; padding: 12px 0; }
+  .nav-link { width: 100%; text-align: center; padding: 8px 6px; font-size: 0.68rem; }
   .mobile-actions-divider { display: block; }
   .nav-action-btn { display: block; }
   .admin-btn { background: var(--color-panel-inset); border: 2px solid var(--color-border-on-dark); color: var(--color-text-on-dark); margin-top: 10px; }
@@ -700,12 +703,55 @@ body {
   .modal-upload-row { grid-template-columns: 1fr; }
 }
 
+@media (max-width: 768px) {
+  .page-body { gap: 32px; margin-top: 12px; }
+  .content-section { padding: 32px 20px; }
+  .card-grid { gap: 18px; }
+  .section-heading { margin-bottom: 28px; }
+  .section-heading h2 { font-size: clamp(1.5rem, 2.5vw, 2rem); }
+}
+
 @media (max-width: 580px) {
-  .app-shell { padding: 0 16px 40px; }
-  .content-section { padding: 24px; }
-  .card-grid { grid-template-columns: 1fr; }
-  .footer-grid-outer { grid-template-columns: 1fr; gap: 24px; }
+  .app-shell { padding: 0 12px 32px; }
+  .site-header { padding: 5px 10px; margin: 4px 0 8px; }
+  .brand-logo { width: 48px; }
+  .brand-mark { font-size: 1rem; }
+  .btn-nav-cta { padding: 5px 12px; font-size: 0.7rem; box-shadow: 1px 1px 0 #000000; }
+  .btn-nav-cta:hover { box-shadow: 2px 2px 0 #000000; }
+  .nav-link { padding: 6px 5px; font-size: 0.64rem; }
+  .main-nav { padding: 10px; gap: 4px; }
+  .mobile-actions-divider { margin: 10px 0; }
+  .nav-action-btn { padding: 8px; font-size: 0.7rem; }
+  .content-section { padding: 18px 16px; border-radius: 12px; }
+  .card-grid { grid-template-columns: 1fr; gap: 14px; }
+  .section-heading { margin-bottom: 20px; }
+  .section-heading h2 { font-size: clamp(1.25rem, 2vw, 1.75rem); margin-bottom: 10px; }
+  .section-heading p { font-size: 0.95rem; }
+  .footer-grid-outer { grid-template-columns: 1fr; gap: 20px; }
   .footer-bottom-bar { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .btn { padding: 8px 16px; font-size: 0.8rem; }
+  .btn-primary { padding: 10px 20px; }
+  .admin-tools-grid { grid-template-columns: 1fr; gap: 24px; padding: 0; }
+  .admin-modal-panel { padding: 14px; }
+  .modal-upload-row { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .app-shell { padding: 0 10px 28px; }
+  .site-header { padding: 4px 8px; margin: 3px 0 6px; }
+  .brand-logo { width: 42px; }
+  .brand-mark { font-size: 0.95rem; }
+  .btn-nav-cta { padding: 4px 10px; font-size: 0.65rem; }
+  .nav-link { padding: 5px 4px; font-size: 0.6rem; }
+  .main-nav { padding: 8px; }
+  .content-section { padding: 14px 12px; }
+  .card-grid { gap: 12px; }
+  .section-heading h2 { font-size: clamp(1.1rem, 1.8vw, 1.5rem); }
+  .section-heading p { font-size: 0.9rem; }
+  .btn { padding: 7px 14px; font-size: 0.75rem; }
+  .card-content { padding: 16px; }
+  .card h3 { font-size: 1rem; }
+  .toggle-bar { height: 1.5px; }
 }
 
 /* ─── DRAG AND DROP STYLES ─────────────────────────────────────────────────── */

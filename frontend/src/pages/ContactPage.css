@@ -116,6 +116,20 @@
 
 @media (max-width: 580px) {
   .contact-form-panel {
-    padding: 20px;
+    padding: 18px;
+  }
+  .contact-form-label {
+    font-size: 0.72rem;
+  }
+  .contact-form-input,
+  .contact-form-textarea {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-form-panel {
+    padding: 14px;
   }
 }

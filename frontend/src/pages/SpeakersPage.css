@@ -62,3 +62,55 @@
   border-color: var(--color-accent);
   color: var(--color-accent);
 }
+
+@media (max-width: 868px) {
+  .speaker-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 18px;
+  }
+  .speaker-card .image-wrapper {
+    min-height: 180px;
+  }
+  .speaker-card .card-content {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 580px) {
+  .speakers-section {
+    padding-top: 8px;
+  }
+  .speaker-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .speaker-card .image-wrapper {
+    min-height: 140px;
+  }
+  .speaker-card .card-content {
+    padding: 12px;
+    gap: 8px;
+  }
+  .card-subtitle {
+    font-size: 0.8rem;
+  }
+  .card-description {
+    font-size: 0.75rem;
+    min-height: 45px;
+  }
+  .social-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .speaker-grid {
+    grid-template-columns: 1fr;
+  }
+  .speaker-card .image-wrapper {
+    min-height: 160px;
+  }
+}

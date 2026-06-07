@@ -67,5 +67,18 @@
 @media (max-width: 580px) {
   .sponsor-logo-grid {
     grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .sponsor-logo {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sponsor-logo {
+    padding: 10px;
+  }
+  .sponsor-name {
+    font-size: 0.8rem;
   }
 }

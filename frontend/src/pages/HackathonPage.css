@@ -296,3 +296,52 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 580px) {
+  .hackathon-hero {
+    padding: 24px 16px;
+  }
+  .hackathon-hero h2 {
+    font-size: clamp(1.3rem, 2vw, 1.8rem);
+  }
+  .hackathon-hero p {
+    font-size: 0.9rem;
+  }
+  .hackathon-cta-strip {
+    padding: 16px;
+    gap: 12px;
+  }
+  .hk-card {
+    padding: 14px;
+  }
+  .hk-card h3 {
+    font-size: 1rem;
+  }
+  .hackathon-stat-strip {
+    gap: 12px;
+    grid-template-columns: 1fr;
+  }
+  .actions-row {
+    gap: 8px;
+  }
+  .actions-row .btn {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hackathon-hero {
+    padding: 18px 12px;
+  }
+  .hackathon-hero h2 {
+    font-size: clamp(1.1rem, 1.6vw, 1.5rem);
+  }
+  .hackathon-cta-strip {
+    padding: 12px;
+  }
+  .hk-card {
+    padding: 12px;
+  }
+}
