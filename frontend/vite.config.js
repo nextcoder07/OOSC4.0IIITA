@@ -8,7 +8,9 @@ export default defineConfig({
     proxy: {
       '/api': 'http://localhost:4000',
       '/uploads': 'http://localhost:4000',
-      '/admin': 'http://localhost:4000',
+      '/admin/login': 'http://localhost:4000',
+      '/admin/logout': 'http://localhost:4000',
+      '/admin/me': 'http://localhost:4000',
     },
   },
 })

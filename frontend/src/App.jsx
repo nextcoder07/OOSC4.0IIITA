@@ -292,7 +292,7 @@ function App() {
     ],
     sponsors: [
       { key: 'name', label: 'Sponsor Name', type: 'text' },
-      { key: 'category', label: 'Category', type: 'text' },
+      { key: 'category', label: 'Category', type: 'select', options: sponsorCategories },
       { key: 'website', label: 'Website URL', type: 'text' },
       { key: 'logoURL', label: 'Logo URL / Upload Link', type: 'text' },
       { key: 'sortOrder', label: 'Sort Order', type: 'number' },
@@ -856,6 +856,18 @@ function App() {
                       className="form-control"
                       rows="4"
                     />
+                  ) : field.type === 'select' ? (
+                    <select
+                      id={`modal-${field.key}`}
+                      value={modalData[field.key] ?? ''}
+                      onChange={(event) => setModalField(field.key, event.target.value)}
+                      className="form-control"
+                    >
+                      <option value="" disabled>Select {field.label}</option>
+                      {field.options?.map((opt) => (
+                        <option key={opt} value={opt}>{opt}</option>
+                      ))}
+                    </select>
                   ) : (
                     <input
                       id={`modal-${field.key}`}
