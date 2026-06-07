@@ -28,14 +28,14 @@
   display: flex;
   gap: 8px;
   margin-bottom: 32px;
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 2px solid var(--color-border-on-dark);
   padding-bottom: 16px;
   overflow-x: auto;
 }
 .tab-btn {
   background: transparent;
-  border: 2px solid var(--color-border);
-  color: var(--color-text-on-panel-sub);
+  border: 2px solid var(--color-border-on-dark);
+  color: var(--color-text-on-dark-sub);
   padding: 10px 20px;
   border-radius: var(--radius-btn);
   font-family: 'JetBrains Mono', monospace;
@@ -48,8 +48,9 @@
   transition: var(--transition-smooth);
 }
 .tab-btn:hover {
-  color: var(--color-text-on-panel);
-  background: var(--color-panel-inset);
+  color: var(--color-text-on-dark);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--color-border-on-dark);
 }
 .tab-btn.active {
   background: var(--color-accent);
@@ -71,7 +72,7 @@
   bottom: 8px;
   left: 4px;
   width: 2px;
-  background: var(--color-border);
+  background: var(--color-border-on-dark);
 }
 .timeline-card {
   padding: 24px 28px;
@@ -81,6 +82,7 @@
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-card);
   box-shadow: 0 4px 0 rgba(0, 0, 0, 0.08);
+  color: var(--color-text-on-dark);
 }
 .timeline-card::after {
   content: '';
@@ -110,9 +112,17 @@
 .timeline-time {
   display: block;
   font-weight: 700;
-  color: var(--color-text-on-panel);
+  color: var(--color-text-on-dark);
   font-size: 1.05rem;
   margin-bottom: 6px;
+}
+.timeline-card h3 {
+  color: var(--color-text-on-dark);
+  margin-bottom: 8px;
+}
+.timeline-card p {
+  color: var(--color-text-on-dark-sub);
+  line-height: 1.6;
 }
 @media (max-width: 760px) {
   .schedule-tabs {
