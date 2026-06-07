@@ -72,12 +72,6 @@
   max-height: 100%;
   max-width: 90%;
   object-fit: contain;
-  filter: grayscale(100%) contrast(1.2);
-  transition: var(--transition-smooth);
-}
-
-.sponsor-card:hover .logo-container img {
-  filter: grayscale(0%) contrast(1.1);
 }
 
 .sponsor-name {

@@ -54,7 +54,13 @@ export default function Sponsors({
                           onDragEnd={handleDragEnd}
                           onDrop={(e) => handleDrop(e, 'sponsors', index, category)}
                         >
-                          <a href={sponsor.website} target="_blank" rel="noreferrer" className="sponsor-card glass-card" draggable={false}>
+                          <a 
+                            href={sponsor.website ? (sponsor.website.trim().startsWith('http://') || sponsor.website.trim().startsWith('https://') ? sponsor.website.trim() : `https://${sponsor.website.trim()}`) : '#'} 
+                            target="_blank" 
+                            rel="noreferrer" 
+                            className="sponsor-card glass-card" 
+                            draggable={false}
+                          >
                             <div className="logo-container">
                               <img src={sponsor.logoURL} alt={sponsor.name} loading="lazy" draggable={false} />
                             </div>
