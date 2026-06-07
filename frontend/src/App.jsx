@@ -27,11 +27,11 @@ import './App.css'
 function App() {
   const [adminMode, setAdminMode] = useState(false)
   const [adminEmail, setAdminEmail] = useState('')
-  
+
   // Auth Inputs
   const [loginEmail, setLoginEmail] = useState('')
   const [loginPassword, setLoginPassword] = useState('')
-  
+
   const [adminMessage, setAdminMessage] = useState('')
   const [uploadUrl, setUploadUrl] = useState('')
   const [modalOpen, setModalOpen] = useState(false)
@@ -103,7 +103,7 @@ function App() {
   }, [])
 
   const [siteConfig, setSiteConfig] = useState({})
-  
+
   // Schedule page active day tab
   const [activeDay, setActiveDay] = useState('Aug 28')
 
@@ -203,43 +203,44 @@ function App() {
       'Hospitality & Logistics Team': [],
     }
 
-    team.forEach((member) => {
+    const sortedTeam = [...team].sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0))
+    sortedTeam.forEach((member) => {
       const role = member.role ? member.role.toLowerCase() : ''
       const name = member.name ? member.name.toLowerCase() : ''
-      
+
       if (
-        role.includes('faculty') || 
-        role.includes('professor') || 
-        name.startsWith('dr.') || 
+        role.includes('faculty') ||
+        role.includes('professor') ||
+        name.startsWith('dr.') ||
         name.startsWith('prof.')
       ) {
         groups['Faculty Coordinators'].push(member)
       } else if (
-        role.includes('tech') || 
-        role.includes('developer') || 
-        role.includes('web') || 
+        role.includes('tech') ||
+        role.includes('developer') ||
+        role.includes('web') ||
         role.includes('system')
       ) {
         groups['Technical Team'].push(member)
       } else if (
-        role.includes('design') || 
-        role.includes('creative') || 
-        role.includes('art') || 
+        role.includes('design') ||
+        role.includes('creative') ||
+        role.includes('art') ||
         role.includes('ui')
       ) {
         groups['Design Team'].push(member)
       } else if (
-        role.includes('hospitality') || 
-        role.includes('logistics') || 
-        role.includes('venue') || 
+        role.includes('hospitality') ||
+        role.includes('logistics') ||
+        role.includes('venue') ||
         role.includes('catering') ||
         role.includes('sponsor')
       ) {
         groups['Hospitality & Logistics Team'].push(member)
       } else if (
-        role.includes('chair') || 
-        role.includes('lead') || 
-        role.includes('head') || 
+        role.includes('chair') ||
+        role.includes('lead') ||
+        role.includes('head') ||
         role.includes('core')
       ) {
         groups['Core Team'].push(member)
@@ -524,7 +525,7 @@ function App() {
 
     let activeArray = []
     if (resource === 'speakers') {
-      activeArray = [...speakers]
+      activeArray = [...speakers].sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0))
     } else if (resource === 'sponsors') {
       activeArray = sponsors.filter((s) => s.category === category).sort((a, b) => a.sortOrder - b.sortOrder)
     } else if (resource === 'events') {
@@ -725,7 +726,7 @@ function App() {
               Sign Out
             </button>
           </div>
-          
+
           <div className="admin-tools-grid">
             <div className="uploader-tool">
               <h4>Media Asset Upload</h4>
@@ -735,9 +736,9 @@ function App() {
                 <div className="generated-url-box">
                   <span>Asset URL:</span>
                   <code>{uploadUrl}</code>
-                  <button 
-                    type="button" 
-                    className="btn-copy" 
+                  <button
+                    type="button"
+                    className="btn-copy"
                     onClick={() => {
                       navigator.clipboard.writeText(uploadUrl)
                       alert('Copied link!')
@@ -929,26 +930,58 @@ function App() {
                 { key: 'sponsorsSubtitle', label: 'Sponsors Subtitle' },
                 { key: 'teamTitle', label: 'Team Title' },
                 { key: 'teamSubtitle', label: 'Team Subtitle' },
+                { key: 'hackathonBadge', label: 'Hackathon Badge' },
                 { key: 'hackathonTitle', label: 'Hackathon Title' },
                 { key: 'hackathonTheme', label: 'Hackathon Theme' },
+                { key: 'hackathonPrizePool', label: 'Hackathon Prize Pool' },
+                { key: 'hackathonDuration', label: 'Hackathon Duration' },
+                { key: 'hackathonTeamSize', label: 'Hackathon Team Size' },
+                { key: 'hackathonDates', label: 'Hackathon Dates' },
+                { key: 'hackathonVenue', label: 'Hackathon Venue' },
+                { key: 'hackathonProblemStatement', label: 'Problem Statement', type: 'textarea' },
+                { key: 'hackathonTracks', label: 'Tracks (JSON or List)', type: 'textarea' },
+                { key: 'hackathonEligibility', label: 'Eligibility List', type: 'textarea' },
+                { key: 'hackathonTeamComposition', label: 'Team Composition List', type: 'textarea' },
+                { key: 'hackathonPrizes', label: 'Prizes List', type: 'textarea' },
+                { key: 'hackathonSpecialPrizes', label: 'Special Prizes List', type: 'textarea' },
+                { key: 'hackathonRules', label: 'Rules List', type: 'textarea' },
+                { key: 'hackathonTimeline', label: 'Timeline Dates', type: 'textarea' },
+                { key: 'hackathonSteps', label: 'Registration Steps', type: 'textarea' },
+                { key: 'hackathonCtaReady', label: 'CTA Heading' },
+                { key: 'hackathonCtaDesc', label: 'CTA Description' },
                 { key: 'contactTitle', label: 'Contact Title' },
                 { key: 'contactSubtitle', label: 'Contact Subtitle' },
               ].map(field => (
                 <div key={field.key} className="form-group modal-form-group">
                   <label>{field.label}</label>
                   <div className="flex-gap-sm">
-                    <input
-                      type="text"
-                      defaultValue={siteConfig[field.key] || ''}
-                      onBlur={(e) => {
-                        const val = e.target.value.trim()
-                        if (val !== (siteConfig[field.key] || '')) {
-                          saveSiteConfig(field.key, val)
-                        }
-                      }}
-                      className="form-control"
-                      placeholder="Default text"
-                    />
+                    {field.type === 'textarea' ? (
+                      <textarea
+                        defaultValue={siteConfig[field.key] || ''}
+                        onBlur={(e) => {
+                          const val = e.target.value.trim()
+                          if (val !== (siteConfig[field.key] || '')) {
+                            saveSiteConfig(field.key, val)
+                          }
+                        }}
+                        className="form-control"
+                        placeholder="Default text"
+                        rows="3"
+                      />
+                    ) : (
+                      <input
+                        type="text"
+                        defaultValue={siteConfig[field.key] || ''}
+                        onBlur={(e) => {
+                          const val = e.target.value.trim()
+                          if (val !== (siteConfig[field.key] || '')) {
+                            saveSiteConfig(field.key, val)
+                          }
+                        }}
+                        className="form-control"
+                        placeholder="Default text"
+                      />
+                    )}
                   </div>
                 </div>
               ))}
