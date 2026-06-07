@@ -1,12 +1,15 @@
 .team-avatar {
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  margin: 24px auto 0;
+  border-radius: 0px;
+  width: 100%;
+ 
+  margin: 0px auto 0;
   border: 2px solid var(--color-border);
   overflow: hidden;
   aspect-ratio: 1/1;
+  overflow: hidden;
 }
+
+
 .team-card {
   text-align: center;
   display: flex;
@@ -33,7 +36,7 @@
 }
 .team-category-title {
   font-size: 1.3rem;
-  color: var(--color-text-on-panel);
+  color: rgb(240, 233, 233);
   border-left: 4px solid var(--color-accent);
   padding-left: 12px;
   margin-bottom: 4px;

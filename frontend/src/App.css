@@ -392,12 +392,12 @@ body {
 
 /* ─── SPEAKER / TEAM CARDS ───────────────────────────────────────────────────── */
 .card-content { padding: 24px; display: flex; flex-direction: column; flex: 1; }
-.card h3 { font-size: 1.15rem; margin-bottom: 6px; color: var(--color-text-on-panel); }
+.card h3 { font-size: 1.15rem; margin-bottom: 6px; color: rgb(253, 248, 248); }
 
 
 /* ─── TEAM ───────────────────────────────────────────────────────────────────── */
 
-
+                                                                                                                             
 
 
 /* ─── REGISTRATION FORM PANEL ────────────────────────────────────────────────── */
