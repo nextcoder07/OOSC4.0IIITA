@@ -11,6 +11,8 @@ import TeamPage from './pages/TeamPage.jsx'
 import HackathonPage from './pages/HackathonPage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
 import AdminLoginPage from './pages/AdminLoginPage.jsx'
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage.jsx'
+import TermsOfUsePage from './pages/TermsOfUsePage.jsx'
 import ChatBot from './components/ChatBot.jsx'
 import {
   aboutData,
@@ -830,6 +832,8 @@ function App() {
               handleLogin={handleLogin} adminMessage={adminMessage}
             />
           } />
+          <Route path="/privacy" element={<PrivacyPolicyPage />} />
+          <Route path="/terms" element={<TermsOfUsePage />} />
         </Routes>
       </main>
 

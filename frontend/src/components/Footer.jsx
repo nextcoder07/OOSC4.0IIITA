@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -44,19 +45,19 @@ export default function Footer() {
         <div className="footer-links-column">
           <h4>Academic Links</h4>
           <ul>
-            <li><a href="https://iiita.ac.in" target="_blank" rel="noreferrer">IIIT Allahabad</a></li>
+            <li><a href="https://www.iiita.ac.in" target="_blank" rel="noreferrer">IIIT Allahabad</a></li>
             <li><a href="https://it.iiita.ac.in" target="_blank" rel="noreferrer">Department of IT</a></li>
-            <li><a href="https://iiita.ac.in" target="_blank" rel="noreferrer">Research Labs</a></li>
-            <li><a href="#register">Register Interest</a></li>
-            <li><a href="#contact">Inquiries</a></li>
+            <li><a href="https://www.iiita.ac.in" target="_blank" rel="noreferrer">Research Labs</a></li>
+            <li><Link to="/register">Register Interest</Link></li>
+            <li><Link to="/contact">Inquiries</Link></li>
           </ul>
         </div>
 
         {/* Contact info column */}
         <div className="footer-links-column">
           <h4>Contact Hub</h4>
-          <p className="contact-item"><strong>Email:</strong> contact@oosc4.0.iiita.ac.in</p>
-          <p className="contact-item"><strong>Phone:</strong> +91 7318 295 789</p>
+          <p className="contact-item"><strong>Email:</strong> contact.oosc4.0@gmail.com</p>
+          <p className="contact-item"><strong>Phone:</strong> +91 XXXXXXXXXX</p>
           <p className="contact-item"><strong>Office:</strong> CC-3 Ground Floor, IIIT-A</p>
         </div>
 
@@ -68,12 +69,12 @@ export default function Footer() {
           © {year} Indian Institute of Information Technology, Allahabad. All rights reserved.
         </div>
         <div className="footer-policies">
-          <a href="#privacy">Privacy Policy</a>
+          <Link to="/privacy">Privacy Policy</Link>
           <span className="dot">•</span>
-          <a href="#terms">Terms of Use</a>
+          <Link to="/terms">Terms of Use</Link>
           <span className="dot">•</span>
-          <span className="open-source-credits">
-            Built Open Source (React &amp; Node)
+          <span className="made-with-love">
+            Made with ❤️ at IIITA
           </span>
         </div>
       </div>
