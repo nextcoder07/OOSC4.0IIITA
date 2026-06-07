@@ -86,9 +86,9 @@
 .timeline-card {
   padding: 24px 28px;
   position: relative;
-  border-left: 4px solid var(--color-accent);
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 4px solid var(--color-accent);
   border-radius: var(--radius-card);
   box-shadow: 0 4px 0 rgba(0, 0, 0, 0.08);
   color: var(--color-text-on-dark);
@@ -141,7 +141,7 @@
 
 @media (max-width: 760px) {
   .schedule-tabs {
-    justify-content: center;
+    justify-content: flex-start;
   }
 }
 
@@ -171,6 +171,10 @@
 
   .timeline-card {
     padding: 16px 20px;
+  }
+
+  .timeline-card::after {
+    left: -20px;
   }
 
   .timeline-badge {
@@ -204,6 +208,10 @@
 
   .timeline-card {
     padding: 12px 16px;
+  }
+
+  .timeline-card::after {
+    left: -18px;
   }
 
   .timeline-time {

@@ -275,7 +275,7 @@
     grid-template-columns: 1fr;
   }
 
-  .span-columns {
+  .stat-card-gradient.span-columns {
     grid-column: auto;
   }
 }
@@ -349,7 +349,7 @@
     gap: 8px;
   }
 
-  .transitional-details-grid {
+  .transitional-grid {
     grid-template-columns: 1fr;
     gap: 14px;
   }
