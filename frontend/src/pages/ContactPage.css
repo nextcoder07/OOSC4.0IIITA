@@ -3,12 +3,14 @@
   grid-template-columns: 1.05fr 0.95fr;
   gap: 32px;
 }
+
 .contact-details-cards {
   display: flex;
   flex-direction: column;
   gap: 12px;
   margin-bottom: 24px;
 }
+
 .contact-detail-card {
   display: flex;
   align-items: center;
@@ -17,6 +19,7 @@
   background: var(--color-panel-inset);
   border: 2px solid var(--color-border);
 }
+
 .contact-detail-card .icon {
   font-size: 1.3rem;
   background: var(--color-accent);
@@ -29,54 +32,64 @@
   justify-content: center;
   border: 2px solid var(--color-border);
 }
+
 .contact-detail-card h4 {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.72rem;
-  color:rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: 2px;
 }
+
 .contact-detail-card p {
   font-size: 1rem;
   font-weight: 600;
   color: rgb(206, 204, 204);
 }
+
 .map-wrapper {
   height: 250px;
   overflow: hidden;
   padding: 0;
   border: 2px solid var(--color-border);
 }
+
 .map-iframe {
   border: 0;
   width: 100%;
   height: 100%;
   filter: grayscale(30%) contrast(1.1);
 }
+
 .contact-form-panel {
   padding: 40px;
 }
+
 .contact-form-panel h3 {
   font-size: 1.5rem;
   margin-bottom: 8px;
-  color:rgb(255, 255, 255)
+  color: rgb(255, 255, 255)
 }
+
 .contact-form-panel p {
   color: rgb(206, 204, 204);
   font-size: 0.95rem;
   margin-bottom: 24px;
 }
+
 .contact-form-elements {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
+
 .form-group {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
+
 .form-group label {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.8rem;
@@ -85,6 +98,7 @@
   letter-spacing: 0.06em;
   color: rgb(206, 204, 204);
 }
+
 .form-control {
   background: var(--color-panel-inset);
   border: 2px solid var(--color-border);
@@ -94,14 +108,17 @@
   font-size: 0.95rem;
   transition: var(--transition-smooth);
 }
+
 .form-control:focus {
   border-color: var(--color-accent);
   outline: none;
   box-shadow: 3px 3px 0 var(--color-accent-dim);
 }
+
 .btn-block {
   width: 100%;
 }
+
 .form-status-message {
   font-weight: 700;
   color: var(--color-accent);
@@ -119,9 +136,11 @@
   .contact-form-panel {
     padding: 18px;
   }
+
   .contact-form-label {
     font-size: 0.72rem;
   }
+
   .contact-form-input,
   .contact-form-textarea {
     padding: 10px 12px;

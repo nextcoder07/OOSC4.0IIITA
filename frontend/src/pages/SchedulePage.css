@@ -7,6 +7,7 @@
   position: relative;
   overflow: hidden;
 }
+
 #schedule::before {
   content: '';
   position: absolute;
@@ -15,6 +16,7 @@
   border-radius: inherit;
   background: radial-gradient(circle at top left, rgba(217, 48, 37, 0.12), transparent 34%);
 }
+
 .timeline-container {
   padding: 28px;
   border-radius: var(--radius-card);
@@ -24,6 +26,7 @@
   position: relative;
   overflow: hidden;
 }
+
 .schedule-tabs {
   display: flex;
   gap: 8px;
@@ -32,6 +35,7 @@
   padding-bottom: 16px;
   overflow-x: auto;
 }
+
 .tab-btn {
   background: transparent;
   border: 2px solid var(--color-border-on-dark);
@@ -47,17 +51,20 @@
   white-space: nowrap;
   transition: var(--transition-smooth);
 }
+
 .tab-btn:hover {
   color: var(--color-text-on-dark);
   background: rgba(255, 255, 255, 0.08);
   border-color: var(--color-border-on-dark);
 }
+
 .tab-btn.active {
   background: var(--color-accent);
   color: var(--color-text-on-dark);
   border-color: var(--color-accent);
   font-weight: 700;
 }
+
 .timeline-list {
   display: flex;
   flex-direction: column;
@@ -65,6 +72,7 @@
   position: relative;
   padding-left: 20px;
 }
+
 .timeline-list::before {
   content: '';
   position: absolute;
@@ -74,6 +82,7 @@
   width: 2px;
   background: var(--color-border-on-dark);
 }
+
 .timeline-card {
   padding: 24px 28px;
   position: relative;
@@ -84,6 +93,7 @@
   box-shadow: 0 4px 0 rgba(0, 0, 0, 0.08);
   color: var(--color-text-on-dark);
 }
+
 .timeline-card::after {
   content: '';
   position: absolute;
@@ -95,6 +105,7 @@
   background: var(--color-accent);
   border: 2px solid var(--color-border);
 }
+
 .timeline-badge {
   display: inline-block;
   font-family: 'JetBrains Mono', monospace;
@@ -109,6 +120,7 @@
   margin-bottom: 12px;
   letter-spacing: 0.08em;
 }
+
 .timeline-time {
   display: block;
   font-weight: 700;
@@ -116,14 +128,17 @@
   font-size: 1.05rem;
   margin-bottom: 6px;
 }
+
 .timeline-card h3 {
   color: #ffffff;
   margin-bottom: 8px;
 }
+
 .timeline-card p {
   color: var(--color-text-on-dark-sub);
   line-height: 1.6;
 }
+
 @media (max-width: 760px) {
   .schedule-tabs {
     justify-content: center;
@@ -134,24 +149,30 @@
   #schedule {
     padding: 16px;
   }
+
   .timeline-container {
     padding: 16px;
   }
+
   .schedule-tabs {
     gap: 6px;
     margin-bottom: 24px;
     padding-bottom: 12px;
   }
+
   .tab-btn {
     padding: 8px 14px;
     font-size: 0.7rem;
   }
+
   .timeline-list {
     padding-left: 16px;
   }
+
   .timeline-card {
     padding: 16px 20px;
   }
+
   .timeline-badge {
     font-size: 0.6rem;
   }
@@ -161,24 +182,30 @@
   #schedule {
     padding: 12px;
   }
+
   .timeline-container {
     padding: 12px;
   }
+
   .schedule-tabs {
     gap: 4px;
     margin-bottom: 18px;
   }
+
   .tab-btn {
     padding: 7px 12px;
     font-size: 0.65rem;
   }
+
   .timeline-list {
     padding-left: 14px;
     gap: 16px;
   }
+
   .timeline-card {
     padding: 12px 16px;
   }
+
   .timeline-time {
     font-size: 0.9rem;
   }
