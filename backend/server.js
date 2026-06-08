@@ -21,6 +21,10 @@ const __dirname = path.dirname(__filename)
 
 dotenv.config({ path: path.join(__dirname, '.env') })
 
+if (process.env.DATABASE_URL) process.env.DATABASE_URL = process.env.DATABASE_URL.trim()
+if (process.env.ADMIN_PASSWORD_HASH) process.env.ADMIN_PASSWORD_HASH = process.env.ADMIN_PASSWORD_HASH.trim()
+if (process.env.JWT_SECRET) process.env.JWT_SECRET = process.env.JWT_SECRET.trim()
+
 const prisma = new PrismaClient()
 const app = express()
 const port = Number(process.env.PORT ?? 4000)
@@ -171,6 +175,15 @@ const generalLimiter = rateLimit({
   message: { error: 'Too many requests. Please try again later.' },
 })
 
+const publicApiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 200,
+  standardHeaders: true,
+  legacyHeaders: false,
+  skipFailedRequests: true,
+  message: { error: 'Too many requests. Please try again later.' },
+})
+
 // ── Helpers ────────────────────────────────────────────────────────────────────
 
 const getClientIp = (req) =>
@@ -262,7 +275,7 @@ const authMiddleware = async (req, res, next) => {
 
 // ── Apply rate limiters & static files ─────────────────────────────────────────
 
-app.use('/api', generalLimiter)
+
 app.use('/admin/login', loginLimiter)
 app.use('/uploads', express.static(uploadDir))
 
@@ -481,7 +494,7 @@ const transporter = nodemailer.createTransport({
   },
 })
 
-app.post('/api/contact', async (req, res) => {
+app.post('/api/contact', publicApiLimiter, async (req, res) => {
   const { name, email, message } = req.body
   if (!name || !email || !message) {
     return res.status(400).json({ error: 'Name, email, and message are required.' })
@@ -519,7 +532,7 @@ app.post('/api/contact', async (req, res) => {
 
 // ── Sponsor Application form ───────────────────────────────────────────────────
 
-app.post('/api/sponsor-apply', async (req, res) => {
+app.post('/api/sponsor-apply', publicApiLimiter, async (req, res) => {
   const { name, email, organization, message } = req.body
   if (!name || !email || !organization) {
     return res.status(400).json({ error: 'Name, email, and organization are required.' })
@@ -572,7 +585,7 @@ app.post('/api/sponsor-apply', async (req, res) => {
 
 // ── Registration ───────────────────────────────────────────────────────────────
 
-app.post('/api/registration', async (req, res) => {
+app.post('/api/registration', publicApiLimiter, async (req, res) => {
   const { name, email, affiliation, message } = req.body
   if (!name || !email) {
     return res.status(400).json({ error: 'Name and email are required.' })
@@ -601,10 +614,20 @@ if (process.env.NODE_ENV === 'production') {
 
 // ── Start ──────────────────────────────────────────────────────────────────────
 
-if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
-  app.listen(port, () => {
-    console.log(`OOSC backend listening on http://localhost:${port}`)
-  })
+const startServer = async () => {
+  try {
+    await prisma.$connect()
+    if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+      app.listen(port, () => {
+        console.log(`OOSC backend listening on http://localhost:${port}`)
+      })
+    }
+  } catch (error) {
+    console.error('Database connection failed:', error.message)
+    process.exit(1)
+  }
 }
+
+startServer()
 
 export default app
