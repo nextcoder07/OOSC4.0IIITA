@@ -33,11 +33,11 @@ export default function Footer() {
         <div className="footer-links-column">
           <h4>Conference</h4>
           <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#schedule">Schedule</a></li>
-            <li><a href="#speakers">Speakers</a></li>
-            <li><a href="#sponsors">Sponsors</a></li>
-            <li><a href="#team">Our Team</a></li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/schedule">Schedule</Link></li>
+            <li><Link to="/speakers">Speakers</Link></li>
+            <li><Link to="/sponsors">Sponsors</Link></li>
+            <li><Link to="/team">Our Team</Link></li>
           </ul>
         </div>
 
@@ -47,7 +47,7 @@ export default function Footer() {
           <ul>
             <li><a href="https://www.iiita.ac.in" target="_blank" rel="noreferrer">IIIT Allahabad</a></li>
             <li><a href="https://it.iiita.ac.in" target="_blank" rel="noreferrer">Department of IT</a></li>
-            <li><a href="https://www.iiita.ac.in" target="_blank" rel="noreferrer">Research Labs</a></li>
+            <li><a href="https://www.iiita.ac.in/research" target="_blank" rel="noreferrer">Research Labs</a></li>
             <li><Link to="/register">Register Interest</Link></li>
             <li><Link to="/contact">Inquiries</Link></li>
           </ul>
@@ -56,9 +56,9 @@ export default function Footer() {
         {/* Contact info column */}
         <div className="footer-links-column">
           <h4>Contact Hub</h4>
-          <p className="contact-item"><strong>Email:</strong> contact.oosc4.0@gmail.com</p>
-          <p className="contact-item"><strong>Phone:</strong> +91 XXXXXXXXXX</p>
-          <p className="contact-item"><strong>Office:</strong> CC-3 Ground Floor, IIIT-A</p>
+          <p className="contact-item"><strong>Email:</strong> <a href="mailto:contact.oosc4.0@gmail.com">contact.oosc4.0@gmail.com</a></p>
+          <p className="contact-item"><strong>Phone:</strong> <a href="tel:+917318295789">+91 7318 295 789</a></p>
+          <p className="contact-item"><strong>Office:</strong> <a href="https://www.google.com/maps/search/IIIT+Allahabad" target="_blank" rel="noreferrer">CC-3 Ground Floor, IIIT-A</a></p>
         </div>
 
       </div>

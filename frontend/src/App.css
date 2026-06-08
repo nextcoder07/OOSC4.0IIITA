@@ -125,7 +125,7 @@ body {
   padding: 6px 12px;
   margin: 4px 0 8px;
   border-radius: var(--radius-card);
-  background: rgba(17, 17, 17, 0.92);
+  background: #1B1416;
   border: 0.5px solid rgba(255, 255, 255, 0.1);
   box-shadow: none;
   overflow: visible;
@@ -1085,6 +1085,48 @@ body {
   transform: none;
 }
 
+.footer-grid-outer {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.3fr) repeat(3, minmax(180px, 1fr));
+  gap: 40px;
+  align-items: start;
+}
+
+.footer-brand-column {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+}
+
+.footer-tagline,
+.footer-sub-tagline {
+  max-width: 100%;
+  line-height: 1.8;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 16px;
+}
+
+.footer-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-logo-img {
+  width: 100%;
+  max-width: 64px;
+  height: auto;
+}
+
 .hk-card-title { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
 .hk-card-title .hk-icon {
   font-size: 1.4rem;
@@ -1288,7 +1330,7 @@ body {
     left: 0;
     right: 0;
     flex-direction: column;
-    background: var(--color-bg);
+    background: #1B1416;
     border: 2px solid var(--color-text-on-dark);
     border-radius: var(--radius-card);
     padding: 12px;
