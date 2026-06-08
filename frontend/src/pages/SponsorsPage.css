@@ -40,12 +40,18 @@
 
 .sponsor-logo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  justify-content: center;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  grid-auto-flow: dense;
   gap: 16px;
+  width: min(100%, 1280px);
+  margin: 0 auto;
 }
 
 .sponsor-card-outer {
   position: relative;
+  width: min(100%, 352px);
 }
 
 .sponsor-card {
@@ -54,13 +60,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  height: 140px;
+  height: 186px;
   text-align: center;
   gap: 4px;
 }
 
 .logo-container {
-  height: 100px;
+  height: 145px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -70,7 +76,7 @@
 
 .logo-container img {
   max-height: 100%;
-  max-width: 90%;
+  max-width: 100%;
   object-fit: contain;
 }
 
@@ -88,8 +94,13 @@
 
 @media (max-width: 580px) {
   .sponsor-logo-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(min(33.333vw, 198px), 1fr));
     gap: 14px;
+  }
+
+  .sponsor-card-outer {
+    max-width: 33.333vw;
+    width: 100%;
   }
 
   .sponsor-card {
@@ -97,7 +108,7 @@
   }
 
   .logo-container {
-    height: 80px;
+    height: 88px;
   }
 }
 
@@ -107,7 +118,7 @@
   }
 
   .logo-container {
-    height: 70px;
+    height: 77px;
   }
 
   .sponsor-name {

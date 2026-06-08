@@ -4,9 +4,13 @@
 
 .speaker-grid {
   display: grid;
+  justify-content: center;
   gap: 24px;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
   margin-top: 28px;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .speaker-card {
@@ -14,11 +18,13 @@
   flex-direction: column;
   overflow: hidden;
   border-radius: var(--radius-card);
+  width: 100%;
+  max-width: 360px;
 }
 
 .speaker-card .image-wrapper {
   width: 100%;
-  min-height: 230px;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
 }
 
@@ -30,28 +36,29 @@
 }
 
 .speaker-card .card-content {
-  padding: 22px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .speaker-card .card-content h3 {
   color: #ffffff !important;
-  margin-bottom: 4px;
-  font-size: 1.15rem;
+  margin: 0;
+  font-size: 1.08rem;
 }
 
 .card-subtitle {
   margin: 0;
   color: var(--color-text-on-dark-sub);
+  font-size: 0.95rem;
 }
 
 .card-description {
   margin: 0;
   color: var(--color-text-on-dark-sub);
-  line-height: 1.7;
-  min-height: 60px;
+  line-height: 1.6;
+  min-height: 40px;
 }
 
 .social-links {
@@ -100,9 +107,14 @@
   }
 
   .speaker-grid {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(50vw, 180px), 1fr));
     gap: 12px;
     margin-top: 16px;
+  }
+
+  .speaker-card {
+    max-width: 50vw;
+    width: 100%;
   }
 
   .speaker-card .image-wrapper {

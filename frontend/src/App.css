@@ -58,7 +58,7 @@ body {
 .app-shell {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 20px 60px;
+  padding: 0 6px 32px;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -68,8 +68,15 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 42px;
-  margin-top: 80px;
+  gap: 16px;
+}
+
+.page-body--inner {
+  margin-top: 12px;
+}
+
+.page-body--home {
+  margin-top: 12px;
 }
 
 /* ─── PANEL CARDS (formerly glass) ─────────────────────────────────────────── */
@@ -110,13 +117,13 @@ body {
 /* ─── NAVIGATION HEADER ──────────────────────────────────────────────────────── */
 .site-header {
   position: sticky;
-  top: 12px;
+  top: 8px;
   z-index: 100;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 6px 14px;
-  margin: 6px 0 10px;
+  padding: 6px 12px;
+  margin: 4px 0 8px;
   border-radius: var(--radius-card);
   background: rgba(17, 17, 17, 0.92);
   border: 0.5px solid rgba(255, 255, 255, 0.1);
@@ -367,7 +374,7 @@ body {
 /* ─── CONTENT SECTIONS ───────────────────────────────────────────────────────── */
 .content-section {
   position: relative;
-  padding: 44px;
+  padding: 32px;
   background: linear-gradient(180deg, rgba(248, 244, 236, 0.1), rgba(17, 17, 17, 0.24));
   color: var(--color-text-on-panel);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -424,7 +431,8 @@ body {
 .section-heading.split {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: flex-start;
+  flex-wrap: wrap;
   gap: 24px;
   max-width: 100%;
 }
@@ -467,7 +475,7 @@ body {
 .card h3 {
   font-size: 1.15rem;
   margin-bottom: 6px;
-  color: rgb(253, 248, 248);
+  color: #ffffff;
 }
 
 
@@ -964,8 +972,8 @@ body {
 .admin-status-overlay {
   position: fixed;
   bottom: 24px;
-  right: 24px;
-  z-index: 1000;
+  right: calc(28px + 58px + 16px);
+  z-index: 10001;
 }
 
 .admin-toast {
@@ -1087,9 +1095,9 @@ body {
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
-.hk-card-title h3 { font-size: 1.1rem; font-weight: 700; color: var(--color-text-on-panel); }
+.hk-card-title h3 { font-size: 1.1rem; font-weight: 700; color: #ffffff; }
 
-.hk-card p { font-size: 0.95rem; color: var(--color-text-on-panel-sub); line-height: 1.7; }
+.hk-card p { font-size: 0.95rem; color: #d8c9b8; line-height: 1.7; }
 
 .problem-statement-text { font-size: 1rem; color: var(--color-text-on-panel-sub); line-height: 1.75; white-space: pre-line; }
 

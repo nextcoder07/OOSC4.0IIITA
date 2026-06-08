@@ -784,7 +784,7 @@ function App() {
       )}
 
       {/* Page Content Body */}
-      <main className="page-body">
+      <main className={`page-body ${currentPage === 'home' ? 'page-body--home' : 'page-body--inner'}`}>
         {apiError && (
           <div className="api-error-banner" style={{ margin: '0 1rem 1rem', padding: '1rem', background: '#f8d7da', color: '#842029', borderRadius: '10px', border: '1px solid #f5c2c7' }}>
             <strong>Data load issue:</strong> {apiError}

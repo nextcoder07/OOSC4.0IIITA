@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding-top: 12px;
+  padding-top: 0;
 }
 
 .hackathon-hero {
@@ -129,7 +129,7 @@
   width: 44px;
   height: 44px;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -139,12 +139,45 @@
 .problem-statement-text,
 .panel-subheading {
   margin: 0 0 12px;
-  color: #f1e9d8;
+  color: #ffffff;
   line-height: 1.75;
 }
 
-.hk-card h3 {
-  color: #f5efe5;
+.hackathon-body .panel-subheading,
+.hackathon-body .panel-subheading.mt-section {
+  color: #ffffff !important;
+}
+
+.hk-card h3,
+.hk-card-title h3,
+.hackathon-cta-strip h3,
+.step-content h4,
+.date-label,
+.prize-position,
+.date-value,
+.hstat-value {
+  color: #ffffff;
+}
+
+.hk-card p,
+.rule-item p,
+.eligibility-item p,
+.prize-card p,
+.hackathon-cta-strip p,
+.step-content p,
+.date-info p,
+.problem-statement-text {
+  color: #d8c9b8;
+}
+
+.hk-card strong,
+.rule-item p strong,
+.eligibility-item p strong,
+.prize-card p strong,
+.step-content p strong,
+.date-info p strong,
+.hackathon-cta-strip p strong {
+  color: #ffffff;
 }
 
 .rules-list,
@@ -157,16 +190,30 @@
   gap: 14px;
 }
 
-.rule-item,
-.eligibility-item,
-.special-prize-pill,
-.prize-card,
-.date-item,
-.step-item {
+.hackathon-body .rule-item,
+.hackathon-body .eligibility-item,
+.hackathon-body .special-prize-pill,
+.hackathon-body .prize-card,
+.hackathon-body .date-item,
+.hackathon-body .step-item,
+.hackathon-body .hackathon-cta-strip {
   padding: 16px;
   border-radius: var(--radius-btn);
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hackathon-body .rule-item p {
+  color: #d8c9b8 !important;
+}
+
+.hackathon-body .rule-item p strong,
+.hackathon-body .eligibility-item p strong,
+.hackathon-body .prize-card p strong,
+.hackathon-body .step-content p strong,
+.hackathon-body .date-info p strong,
+.hackathon-body .hackathon-cta-strip p strong {
+  color: #ffffff !important;
 }
 
 .rule-num,
@@ -184,12 +231,16 @@
   gap: 12px;
 }
 
-.special-prize-pill {
+.hackathon-body .special-prize-pill {
   padding: 12px 14px;
-  background: rgba(255, 255, 255, 0.08);
-  color: #f4eee4;
+  background: rgba(255, 255, 255, 0.05);
+  color: #d8c9b8 !important;
   border-radius: 999px;
   font-size: 0.95rem;
+}
+
+.hackathon-body .special-prize-pill span {
+  color: #d8c9b8 !important;
 }
 
 .prizes-grid {
@@ -258,13 +309,13 @@
 }
 
 .date-value {
-  color: #e9a37a;
+  color: #d8c9b8;
   font-weight: 700;
   margin-top: 6px;
 }
 
 .date-desc {
-  color: #e1d5c3;
+  color: #d8c9b8;
 }
 
 .step-item {
@@ -299,8 +350,10 @@
 .rule-item p,
 .eligibility-item p,
 .prize-card p,
-.hackathon-cta-strip p {
-  color: #e8dcc8;
+.hackathon-cta-strip p,
+.step-content p,
+.date-info p {
+  color: #d8c9b8;
 }
 
 .hackathon-cta-strip {
@@ -309,7 +362,7 @@
   display: flex;
   justify-content: space-between;
   gap: 18px;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
