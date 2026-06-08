@@ -17,9 +17,9 @@ export default function ImageUploader({ onUpload, label = 'Upload image' }) {
         credentials: 'include',
         body: formData,
       })
-      const result = await response.json()
+      const result = await response.json().catch(() => null)
       if (!response.ok) {
-        throw new Error(result?.error || 'Upload failed')
+        throw new Error(result?.error || response.statusText || 'Upload failed')
       }
       const url = result.url
       setStatus('Upload successful')

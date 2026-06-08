@@ -17,10 +17,6 @@ import ChatBot from './components/ChatBot.jsx'
 import {
   aboutData,
   heroData,
-  scheduleData,
-  speakersData,
-  sponsorsData,
-  teamData,
 } from './data.js'
 import './App.css'
 
@@ -43,10 +39,11 @@ function App() {
 
   const [hero] = useState(heroData)
   const [about] = useState(aboutData)
-  const [speakers, setSpeakers] = useState(speakersData)
-  const [sponsors, setSponsors] = useState(sponsorsData)
-  const [schedule, setSchedule] = useState(scheduleData)
-  const [team, setTeam] = useState(teamData)
+  const [speakers, setSpeakers] = useState([])
+  const [sponsors, setSponsors] = useState([])
+  const [schedule, setSchedule] = useState([])
+  const [team, setTeam] = useState([])
+  const [apiError, setApiError] = useState('')
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [formStatus, setFormStatus] = useState('')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -140,9 +137,7 @@ function App() {
   useEffect(() => {
     const restoreSession = async () => {
       try {
-        const response = await fetch('/admin/me', { credentials: 'include' })
-        if (!response.ok) return
-        const data = await response.json()
+        const data = await apiFetch('/admin/me')
         setAdminMode(true)
         setAdminEmail(data.email || '')
       } catch {
@@ -156,11 +151,8 @@ function App() {
     // Fetch site config
     const fetchConfig = async () => {
       try {
-        const response = await fetch('/api/site-config')
-        if (response.ok) {
-          const data = await response.json()
-          setSiteConfig(data)
-        }
+        const data = await apiFetch('/api/site-config')
+        setSiteConfig(data)
       } catch (err) {
         console.warn('Failed to fetch site config', err)
       }
@@ -184,12 +176,33 @@ function App() {
   )
 
   const sortedSponsors = useMemo(() => {
-    return sponsorCategories.map((category) => ({
-      category,
-      sponsors: sponsors
-        .filter((item) => item.category === category)
-        .sort((a, b) => a.sortOrder - b.sortOrder),
-    }))
+    const grouped = new Map()
+    sponsors.forEach((item) => {
+      const category = item.category?.trim() || 'Others'
+      const normalizedCategory = category || 'Others'
+      const current = grouped.get(normalizedCategory) || []
+      current.push(item)
+      grouped.set(normalizedCategory, current)
+    })
+
+    const ordered = []
+    sponsorCategories.forEach((category) => {
+      const group = grouped.get(category) || []
+      ordered.push({
+        category,
+        sponsors: group.sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0)),
+      })
+      grouped.delete(category)
+    })
+
+    grouped.forEach((group, category) => {
+      ordered.push({
+        category,
+        sponsors: group.sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0)),
+      })
+    })
+
+    return ordered
   }, [sponsors, sponsorCategories])
 
   // Group team members dynamically by roles
@@ -410,22 +423,27 @@ function App() {
 
   useEffect(() => {
     const loadData = async () => {
-      try {
-        const [speakerRes, sponsorRes, eventRes, teamRes] =
-          await Promise.all([
-            apiFetch('/api/speakers'),
-            apiFetch('/api/sponsors'),
-            apiFetch('/api/events'),
-            apiFetch('/api/team'),
-          ])
+      setApiError('')
+      const resources = [
+        { path: '/api/speakers', setter: setSpeakers, name: 'speakers' },
+        { path: '/api/sponsors', setter: setSponsors, name: 'sponsors' },
+        { path: '/api/events', setter: setSchedule, name: 'events' },
+        { path: '/api/team', setter: setTeam, name: 'team' },
+      ]
 
-        setSpeakers(speakerRes)
-        setSponsors(sponsorRes)
-        setSchedule(eventRes)
-        setTeam(teamRes)
-      } catch (error) {
-        console.warn('Backend fetch failed, using local sample data.', error.message)
-      }
+      await Promise.all(
+        resources.map(async (resource) => {
+          try {
+            const data = await apiFetch(resource.path)
+            resource.setter(Array.isArray(data) ? data : [])
+          } catch (error) {
+            const message = error?.message || `${resource.name} load failed.`
+            console.warn(`Failed to load ${resource.name}:`, message)
+            setApiError((current) => current || `Failed to load ${resource.name}: ${message}`)
+            resource.setter([])
+          }
+        }),
+      )
     }
     loadData()
   }, [adminMode, apiFetch])
@@ -767,6 +785,11 @@ function App() {
 
       {/* Page Content Body */}
       <main className="page-body">
+        {apiError && (
+          <div className="api-error-banner" style={{ margin: '0 1rem 1rem', padding: '1rem', background: '#f8d7da', color: '#842029', borderRadius: '10px', border: '1px solid #f5c2c7' }}>
+            <strong>Data load issue:</strong> {apiError}
+          </div>
+        )}
         <Routes>
           <Route path="/" element={
             <HomePage hero={hero} about={about} siteConfig={siteConfig} navigateTo={navigateTo} />
