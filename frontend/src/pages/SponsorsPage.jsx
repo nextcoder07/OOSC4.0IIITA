@@ -101,8 +101,8 @@ export default function SponsorsPage({
 
       {/* ── SPONSOR APPLICATION FORM ── */}
       <div className="sponsor-application-section" style={{ marginTop: '4rem', padding: '2rem', background: 'rgba(255, 255, 255, 0.05)', borderRadius: '12px', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
-        <h3 style={{ marginBottom: '1rem', color: 'var(--color-primary)' }}>Become a Sponsor</h3>
-        <p style={{ marginBottom: '2rem', color: 'var(--color-text-dim)' }}>Interested in partnering with us? Fill out the form below and our team will get back to you with our sponsorship prospectus.</p>
+        <h3 style={{ marginBottom: '1rem', color: '#d93025' }}>Become a Sponsor</h3>
+        <p style={{ marginBottom: '2rem', color: '#ffffff' }}>Interested in partnering with us? Fill out the form below and our team will get back to you with our sponsorship prospectus.</p>
         
         <form onSubmit={handleSponsorSubmit} className="contact-form">
           <div className="form-group">
