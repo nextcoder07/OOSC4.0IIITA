@@ -13,7 +13,7 @@
   font-size: 16px;
   line-height: 1.6;
   color: #e8e8e4;
-  background-color: #111111;
+  background-color: #000000;
   scroll-behavior: smooth;
 }
 
@@ -38,7 +38,7 @@ body::before {
   position: fixed;
   inset: 0;
   background-color: #111111;
-  background-image: radial-gradient(#1a1a1a 2px, transparent 2px);
+  background-image: black;
   background-size: 8px 8px;
   pointer-events: none;
   z-index: 0;

@@ -58,7 +58,7 @@ body {
 .app-shell {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 6px 32px;
+  padding: 0 5px 32px;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -117,14 +117,14 @@ body {
 /* ─── NAVIGATION HEADER ──────────────────────────────────────────────────────── */
 .site-header {
   position: sticky;
-  top: 8px;
+  top: 0;
   z-index: 100;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 6px 12px;
-  margin: 4px 0 8px;
-  border-radius: var(--radius-card);
+  padding: 6px 22px;
+  margin: 0 0 8px;
+  border-radius: 0;
   background: #1B1416;
   border: 0.5px solid rgba(255, 255, 255, 0.1);
   box-shadow: none;
@@ -155,7 +155,7 @@ body {
   content: '';
   position: absolute;
   inset: 2px;
-  border-radius: calc(var(--radius-card) - 2px);
+  border-radius: 0;
   background: inherit;
   pointer-events: none;
 }
@@ -1117,8 +1117,8 @@ body {
   width: 72px;
   height: 72px;
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: transparent;
+  border: none;
 }
 
 .footer-logo-img {
@@ -1308,7 +1308,7 @@ body {
 
 @media (max-width: 868px) {
   .site-header {
-    padding: 6px 12px;
+    padding: 6px 22px;
     gap: 10px;
   }
 
@@ -1440,7 +1440,7 @@ body {
   }
 
   .site-header {
-    padding: 5px 10px;
+    padding: 5px 18px;
     margin: 4px 0 8px;
   }
 
@@ -1545,7 +1545,7 @@ body {
   }
 
   .site-header {
-    padding: 4px 8px;
+    padding: 4px 14px;
     margin: 3px 0 6px;
   }
 
