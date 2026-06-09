@@ -32,21 +32,9 @@ body {
   position: relative;
 }
 
-/* subtle dot-grid texture */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-color: #111111;
-  background-image: radial-gradient(#1a1a1a 2px, transparent 2px);
-  background-size: 8px 8px;
-  pointer-events: none;
-  z-index: 0;
-}
-
+/* #root baseline */
 #root {
   position: relative;
-  z-index: 1;
 }
 
 /* ─── SCROLLBAR ─────────────────────────────────────────────────────────── */
