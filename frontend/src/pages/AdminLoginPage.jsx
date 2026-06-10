@@ -10,7 +10,7 @@ export default function AdminLoginPage({
       <div className="section-heading text-center">
         <span>{siteConfig.adminEyebrow || 'Admin Gateway'}</span>
         <h2>{siteConfig.adminTitle || 'OOSC 4.0 Dashboard Access'}</h2>
-        <p className="subtitle">{siteConfig.adminSubtitle || 'Whitelist authentication system for authorized university organizers.'}</p>
+        <p className="subtitle">{siteConfig.adminSubtitle || 'Whitelist authentication system for authorized organizers.'}</p>
       </div>
       
       <div className="login-panel-container">
@@ -23,7 +23,7 @@ export default function AdminLoginPage({
                 required
                 value={loginEmail}
                 onChange={(event) => setLoginEmail(event.target.value)}
-                placeholder="name@iiita.ac.in"
+                placeholder="admin@example.com"
                 className="form-control"
               />
             </div>
@@ -46,7 +46,7 @@ export default function AdminLoginPage({
             </div>
             {adminMessage && <p className="admin-status-message error">{adminMessage}</p>}
             <div className="admin-notice">
-              <strong>Access restricted:</strong> Only whitelisted university emails can access the admin dashboard.
+              <strong>Access restricted:</strong> Only whitelisted personnel can access the admin dashboard.
             </div>
           </form>
       </div>

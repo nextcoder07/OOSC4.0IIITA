@@ -84,37 +84,7 @@
   gap: 20px;
 }
 
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.form-group label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.8rem;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: rgb(206, 204, 204);
-}
-
-.form-control {
-  background: var(--color-panel-inset);
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-card);
-  padding: 12px 16px;
-  color: var(--color-text-on-panel);
-  font-size: 0.95rem;
-  transition: var(--transition-smooth);
-}
-
-.form-control:focus {
-  border-color: var(--color-accent);
-  outline: none;
-  box-shadow: 3px 3px 0 var(--color-accent-dim);
-}
-
+/* Global form styles (.form-group, .form-control) moved to App.css to fix styling across lazy-loaded pages */
 .btn-block {
   width: 100%;
 }
