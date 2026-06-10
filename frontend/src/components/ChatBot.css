@@ -359,15 +359,10 @@
 /* ─── QUICK ACTION CHIPS ────────────────────────────────────────────────────── */
 .cb-quick-actions {
   display: flex;
-  overflow-x: auto;
-  white-space: nowrap;
+  flex-wrap: wrap;
   gap: 6px;
   padding: 8px 16px 12px;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
-  scrollbar-width: none; /* Hide scrollbar for cleaner look */
-}
-.cb-quick-actions::-webkit-scrollbar {
-  display: none;
 }
 
 .cb-quick-chip {
