@@ -1,4 +1,5 @@
 import React from 'react'
+import { GripVertical } from 'lucide-react'
 import './TeamPage.css'
 
 export default function TeamPage({
@@ -61,7 +62,7 @@ export default function TeamPage({
                       </div>
                     )}
                     {adminMode && (
-                      <span className="drag-hint" aria-hidden="true">✥ Drag to Reorder</span>
+                      <span className="drag-hint" aria-hidden="true" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><GripVertical size={16} /> Drag to Reorder</span>
                     )}
                   </article>
                 ))}

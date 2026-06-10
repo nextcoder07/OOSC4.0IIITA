@@ -1,3 +1,5 @@
+import { Check, ExternalLink } from 'lucide-react'
+
 export default function Registration() {
   return (
     <section className="content-section" id="register">
@@ -13,21 +15,21 @@ export default function Registration() {
 
           <div className="contact-details-cards">
             <div className="contact-detail-card glass-card">
-              <span className="icon">✓</span>
+              <span className="icon"><Check size={24} /></span>
               <div>
                 <h4>Attendee Access</h4>
                 <p>Gain access to all keynotes, labs, and interactive panels.</p>
               </div>
             </div>
             <div className="contact-detail-card glass-card">
-              <span className="icon">✓</span>
+              <span className="icon"><Check size={24} /></span>
               <div>
                 <h4>Speaker Proposals</h4>
                 <p>Present your projects and systems research to a national audience.</p>
               </div>
             </div>
             <div className="contact-detail-card glass-card">
-              <span className="icon">✓</span>
+              <span className="icon"><Check size={24} /></span>
               <div>
                 <h4>Sponsors &amp; Ambassadors</h4>
                 <p>Host workshop modules or promote open science within your community.</p>
@@ -46,7 +48,7 @@ export default function Registration() {
               rel="noopener noreferrer"
               className="btn btn-admin-mini"
             >
-              Open in New Tab ↗
+              <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>Open in New Tab <ExternalLink size={16} /></span>
             </a>
           </div>
           <iframe

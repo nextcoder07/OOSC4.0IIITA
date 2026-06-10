@@ -1,4 +1,5 @@
 import React from 'react'
+import { Calendar, MapPin, Check, Mic, Settings, Zap, Handshake, Globe } from 'lucide-react'
 import './HomePage.css'
 
 export default function HomePage({ hero, about, siteConfig, navigateTo }) {
@@ -38,14 +39,14 @@ export default function HomePage({ hero, about, siteConfig, navigateTo }) {
       <section className="hero-transitional-details" id="home-details">
         <div className="transitional-grid">
           <div className="transitional-info-card glass-card">
-            <span className="meta-icon">📅</span>
+            <span className="meta-icon"><Calendar size={24} /></span>
             <div>
               <h4>Conference Dates</h4>
               <p>{hero.dates}</p>
             </div>
           </div>
           <div className="transitional-info-card glass-card">
-            <span className="meta-icon">📍</span>
+            <span className="meta-icon"><MapPin size={24} /></span>
             <div>
               <h4>Venue Hub</h4>
               <p>{hero.venue}</p>
@@ -75,7 +76,7 @@ export default function HomePage({ hero, about, siteConfig, navigateTo }) {
             <div className="highlights-stack">
               {about.highlights.map((point, i) => (
                 <div key={i} className="highlight-pill glass-card">
-                  <span className="highlight-bullet">✓</span>
+                  <span className="highlight-bullet"><Check size={16} /></span>
                   <p>{point}</p>
                 </div>
               ))}
@@ -117,27 +118,27 @@ export default function HomePage({ hero, about, siteConfig, navigateTo }) {
         </div>
         <div className="event-overview-grid">
           <div className="overview-card glass-card">
-            <span className="overview-icon">🎤</span>
+            <span className="overview-icon"><Mic size={32} /></span>
             <h3>Research Talks</h3>
             <p>In-depth technical sessions on server design, kernel optimizations, and state-of-the-art databases.</p>
           </div>
           <div className="overview-card glass-card">
-            <span className="overview-icon">⚙️</span>
+            <span className="overview-icon"><Settings size={32} /></span>
             <h3>Workshops</h3>
             <p>Interactive labs guiding developers through deployment orchestrations, API architectures, and systems diagnostics.</p>
           </div>
           <div className="overview-card glass-card">
-            <span className="overview-icon">⚡</span>
+            <span className="overview-icon"><Zap size={32} /></span>
             <h3>Hackathons</h3>
             <p>A multi-hour competitive sprint solving high-priority systems issues with direct coordinator support.</p>
           </div>
           <div className="overview-card glass-card">
-            <span className="overview-icon">🤝</span>
+            <span className="overview-icon"><Handshake size={32} /></span>
             <h3>Networking Hub</h3>
             <p>Build links between leading research faculties, open source contributors, and corporate engineering advocates.</p>
           </div>
           <div className="overview-card glass-card">
-            <span className="overview-icon">🌐</span>
+            <span className="overview-icon"><Globe size={32} /></span>
             <h3>Code Sprints</h3>
             <p>Directly push contributions to whitelisted repositories and explore open system governance protocols.</p>
           </div>

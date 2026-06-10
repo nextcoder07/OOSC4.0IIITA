@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
+import { Calendar, PenLine, Zap, Mic, ClipboardList, Trophy, Mail, Map, Bot } from 'lucide-react'
 import './ChatBot.css'
 
 // ─── KNOWLEDGE BASE ────────────────────────────────────────────────────────────
@@ -210,14 +211,14 @@ const knowledgeBase = [
 ]
 
 const quickActions = [
-  { label: '📅 When & Where?', query: 'when and where is the conference?' },
-  { label: '📝 Register', query: 'how to register?' },
-  { label: '⚡ Hackathon', query: 'tell me about the hackathon' },
-  { label: '🎤 Speakers', query: 'who are the speakers?' },
-  { label: '📋 Schedule', query: 'what is the schedule?' },
-  { label: '🏆 Prizes', query: 'what are the prizes?' },
-  { label: '📬 Contact', query: 'how to contact organizers?' },
-  { label: '🗺️ All Pages', query: 'show me all pages' },
+  { label: <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Calendar size={14} /> When & Where?</span>, query: 'when and where is the conference?' },
+  { label: <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><PenLine size={14} /> Register</span>, query: 'how to register?' },
+  { label: <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Zap size={14} /> Hackathon</span>, query: 'tell me about the hackathon' },
+  { label: <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Mic size={14} /> Speakers</span>, query: 'who are the speakers?' },
+  { label: <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><ClipboardList size={14} /> Schedule</span>, query: 'what is the schedule?' },
+  { label: <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Trophy size={14} /> Prizes</span>, query: 'what are the prizes?' },
+  { label: <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Mail size={14} /> Contact</span>, query: 'how to contact organizers?' },
+  { label: <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Map size={14} /> All Pages</span>, query: 'show me all pages' },
 ]
 
 // ─── INTENT-BASED MATCHER ──────────────────────────────────────────────────────
@@ -386,7 +387,7 @@ export default function ChatBot({ navigateTo }) {
       <div className={`cb-window ${isOpen ? 'cb-window-open' : ''}`}>
         <div className="cb-header">
           <div className="cb-header-info">
-            <div className="cb-avatar"><span>🤖</span></div>
+            <div className="cb-avatar"><Bot size={24} /></div>
             <div>
               <h4 className="cb-header-title">OOSC 4.0 Assistant</h4>
               <span className="cb-status-dot" /><span className="cb-status-text">Online</span>
@@ -402,7 +403,7 @@ export default function ChatBot({ navigateTo }) {
         <div className="cb-messages">
           {messages.map((msg, i) => (
             <div key={i} className={`cb-msg ${msg.sender === 'bot' ? 'cb-msg-bot' : 'cb-msg-user'}`}>
-              {msg.sender === 'bot' && <div className="cb-msg-avatar">🤖</div>}
+              {msg.sender === 'bot' && <div className="cb-msg-avatar"><Bot size={16} /></div>}
               <div className={`cb-msg-bubble ${msg.sender === 'bot' ? 'cb-bubble-bot' : 'cb-bubble-user'}`}>
                 <div className="cb-msg-content">{renderMessageText(msg.text)}</div>
                 {msg.nav && (
@@ -415,7 +416,7 @@ export default function ChatBot({ navigateTo }) {
           ))}
           {isTyping && (
             <div className="cb-msg cb-msg-bot">
-              <div className="cb-msg-avatar">🤖</div>
+              <div className="cb-msg-avatar"><Bot size={16} /></div>
               <div className="cb-msg-bubble cb-bubble-bot cb-typing-bubble">
                 <div className="cb-typing-dots"><span /><span /><span /></div>
               </div>

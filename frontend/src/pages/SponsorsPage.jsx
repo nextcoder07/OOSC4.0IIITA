@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { GripVertical } from 'lucide-react'
 import './SponsorsPage.css'
 
 export default function SponsorsPage({
@@ -89,7 +90,9 @@ export default function SponsorsPage({
                       </div>
                     )}
                     {adminMode && (
-                      <span className="drag-hint" aria-hidden="true" style={{ marginTop: '8px', display: 'flex' }}>✥ Drag to Reorder</span>
+                      <span className="drag-hint" aria-hidden="true" style={{ marginTop: '8px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        <GripVertical size={16} /> Drag to Reorder
+                      </span>
                     )}
                   </div>
                 ))}

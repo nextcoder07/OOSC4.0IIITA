@@ -1,4 +1,5 @@
 import React from 'react'
+import { Target, Users, Check, User, Globe, Trophy, Medal, Star, Lightbulb, Leaf, Palette, Zap, Bot, ClipboardList, Calendar, Rocket } from 'lucide-react'
 import './HackathonPage.css'
 
 export default function HackathonPage({ siteConfig, navigateTo }) {
@@ -29,7 +30,7 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
       <div className="hk-grid-2">
         <div className="hk-card">
           <div className="hk-card-title">
-            <div className="hk-icon">🎯</div>
+            <div className="hk-icon"><Target size={32} /></div>
             <h3>Problem Statement</h3>
           </div>
           {siteConfig.hackathonProblemStatement ? (
@@ -68,7 +69,7 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
 
         <div className="hk-card">
           <div className="hk-card-title">
-            <div className="hk-icon">👥</div>
+            <div className="hk-icon"><Users size={32} /></div>
             <h3>Who Can Participate</h3>
           </div>
           <p className="panel-subheading">Eligibility</p>
@@ -82,17 +83,17 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
               'Faculty members may mentor but cannot compete for prizes.',
             ]).map((item, i) => (
               <div key={i} className="eligibility-item">
-                <span className="elig-check">✓</span>
+                <span className="elig-check"><Check size={16} /></span>
                 <p>{item}</p>
               </div>
             ))}
           </div>
           <p className="panel-subheading">Team Composition</p>
           <div className="pill-row">
-            {(siteConfig.hackathonTeamComposition ? siteConfig.hackathonTeamComposition.split('\n').filter(t => t.trim()).map(t => { const parts = t.split('||'); return { icon: parts[0] || '👥', label: parts[1] || '' } }) : [
-              { icon: '👤', label: 'Min 2 members' },
-              { icon: '👥', label: 'Max 4 members' },
-              { icon: '🌐', label: 'Cross-institution teams OK' },
+            {(siteConfig.hackathonTeamComposition ? siteConfig.hackathonTeamComposition.split('\n').filter(t => t.trim()).map(t => { const parts = t.split('||'); return { icon: parts[0] || <Users size={16} />, label: parts[1] || '' } }) : [
+              { icon: <User size={16} />, label: 'Min 2 members' },
+              { icon: <Users size={16} />, label: 'Max 4 members' },
+              { icon: <Globe size={16} />, label: 'Cross-institution teams OK' },
             ]).map((t, i) => (
               <div key={i} className="special-prize-pill"><span>{t.icon}</span> {t.label}</div>
             ))}
@@ -103,17 +104,17 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
       {/* ── PRIZES ── */}
       <div className="hk-card">
         <div className="hk-card-title">
-          <div className="hk-icon">🏆</div>
+          <div className="hk-icon"><Trophy size={32} /></div>
           <h3>Prizes &amp; Rewards</h3>
         </div>
         <div className="prizes-grid">
           {(siteConfig.hackathonPrizes ? siteConfig.hackathonPrizes.split('\n').filter(p => p.trim()).map(p => { 
             const parts = p.split('||'); 
-            return { medal: parts[0] || '🏆', position: parts[1] || '', amount: parts[2] || '', desc: parts[3] || '', class: parts[4] || 'gold' }; 
+            return { medal: parts[0] || <Trophy size={32} />, position: parts[1] || '', amount: parts[2] || '', desc: parts[3] || '', class: parts[4] || 'gold' }; 
           }) : [
-            { medal: '🥇', position: '1st Place', amount: '₹50,000', desc: 'Cash + trophies + fast-track internship interviews with Title Sponsors + OOSC Featured Project badge', class: 'gold' },
-            { medal: '🥈', position: '2nd Place', amount: '₹30,000', desc: 'Cash + trophies + mentorship sessions with senior open-source engineers from partner companies', class: 'silver' },
-            { medal: '🥉', position: '3rd Place', amount: '₹20,000', desc: 'Cash + trophies + exclusive swag kits and 6-month access to premium dev tooling subscriptions', class: 'bronze' },
+            { medal: <Medal size={32} color="#fbbf24" />, position: '1st Place', amount: '₹50,000', desc: 'Cash + trophies + fast-track internship interviews with Title Sponsors + OOSC Featured Project badge', class: 'gold' },
+            { medal: <Medal size={32} color="#94a3b8" />, position: '2nd Place', amount: '₹30,000', desc: 'Cash + trophies + mentorship sessions with senior open-source engineers from partner companies', class: 'silver' },
+            { medal: <Medal size={32} color="#b45309" />, position: '3rd Place', amount: '₹20,000', desc: 'Cash + trophies + exclusive swag kits and 6-month access to premium dev tooling subscriptions', class: 'bronze' },
           ]).map((prize, i) => (
             <div key={i} className={`prize-card ${prize.class}`}>
               <div className="prize-medal">{prize.medal}</div>
@@ -126,13 +127,13 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
         <p className="panel-subheading mt-section">Special Category Awards</p>
         <div className="special-prizes">
           {(siteConfig.hackathonSpecialPrizes ? siteConfig.hackathonSpecialPrizes.split('\n').filter(p => p.trim()).map(p => {
-            const parts = p.split('||'); return { icon: parts[0] || '⭐', label: parts[1] || '' };
+            const parts = p.split('||'); return { icon: parts[0] || <Star size={16} />, label: parts[1] || '' };
           }) : [
-            { icon: '💡', label: 'Best Innovation — ₹10,000' },
-            { icon: '🌱', label: 'Best Open-Source Impact — ₹10,000' },
-            { icon: '🎨', label: 'Best UI/UX Design — ₹5,000' },
-            { icon: '⚡', label: 'Best Rookie Team — ₹5,000' },
-            { icon: '🤖', label: 'Best AI Integration — ₹5,000' },
+            { icon: <Lightbulb size={16} />, label: 'Best Innovation — ₹10,000' },
+            { icon: <Leaf size={16} />, label: 'Best Open-Source Impact — ₹10,000' },
+            { icon: <Palette size={16} />, label: 'Best UI/UX Design — ₹5,000' },
+            { icon: <Zap size={16} />, label: 'Best Rookie Team — ₹5,000' },
+            { icon: <Bot size={16} />, label: 'Best AI Integration — ₹5,000' },
           ]).map((p, i) => (
             <div key={i} className="special-prize-pill"><span>{p.icon}</span> {p.label}</div>
           ))}
@@ -143,7 +144,7 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
       <div className="hk-grid-2">
         <div className="hk-card">
           <div className="hk-card-title">
-            <div className="hk-icon">📋</div>
+            <div className="hk-icon"><ClipboardList size={32} /></div>
             <h3>Rules &amp; Guidelines</h3>
           </div>
           <div className="rules-list">
@@ -167,7 +168,7 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
 
         <div className="hk-card">
           <div className="hk-card-title">
-            <div className="hk-icon">📅</div>
+            <div className="hk-icon"><Calendar size={32} /></div>
             <h3>Important Dates</h3>
           </div>
           <div className="dates-timeline">
@@ -200,7 +201,7 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
       {/* ── HOW TO REGISTER / SUBMIT ── */}
       <div className="hk-card">
         <div className="hk-card-title">
-          <div className="hk-icon">🚀</div>
+          <div className="hk-icon"><Rocket size={32} /></div>
           <h3>How to Register &amp; Submit</h3>
         </div>
         <div className="steps-list">

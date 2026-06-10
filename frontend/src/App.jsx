@@ -22,6 +22,7 @@ import {
   heroData,
 } from './data.js'
 import './App.css'
+import { Settings, X } from 'lucide-react'
 // Eagerly load all page styles to fix CSS bugs caused by cross-file dependencies and lazy-loading
 import './pages/HomePage.css'
 import './pages/SchedulePage.css'
@@ -840,7 +841,7 @@ function App() {
               <h4>Quick Page Modifiers</h4>
               <p>Directly add metadata cards to the active database categories:</p>
               <div className="actions-flex">
-                <button type="button" className="btn btn-admin-quick" onClick={() => setConfigModalOpen(true)}>⚙️ Edit Site Text</button>
+                <button type="button" className="btn btn-admin-quick" onClick={() => setConfigModalOpen(true)} style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Settings size={16} /> Edit Site Text</button>
                 <button type="button" className="btn btn-admin-quick" onClick={() => openModal('speakers', 'create')}>+ Add Speaker</button>
                 <button type="button" className="btn btn-admin-quick" onClick={() => openModal('sponsors', 'create')}>+ Add Sponsor</button>
                 <button type="button" className="btn btn-admin-quick" onClick={() => openModal('events', 'create')}>+ Add Schedule Slot</button>
@@ -938,7 +939,7 @@ function App() {
           <div className="admin-modal-panel glass-card">
             <div className="admin-modal-header">
               <h3>{modalMode === 'create' ? `Add New ${resourceLabels[modalResource]}` : `Edit ${resourceLabels[modalResource]}`}</h3>
-              <button type="button" className="btn-close-modal" onClick={closeModal} aria-label="Close dialog">✕</button>
+              <button type="button" className="btn-close-modal" onClick={closeModal} aria-label="Close dialog"><X size={20} /></button>
             </div>
             <div className="admin-modal-body">
               {modalFieldMap[modalResource]?.map((field) => (
@@ -1006,7 +1007,7 @@ function App() {
           <div className="admin-modal-panel glass-card admin-modal-panel--narrow">
             <div className="admin-modal-header">
               <h3>Edit Site Text Configurations</h3>
-              <button type="button" className="btn-close-modal" onClick={() => setConfigModalOpen(false)} aria-label="Close dialog">✕</button>
+              <button type="button" className="btn-close-modal" onClick={() => setConfigModalOpen(false)} aria-label="Close dialog"><X size={20} /></button>
             </div>
             <div className="admin-modal-body">
               <p className="field-tip mb-tip">
@@ -1112,7 +1113,7 @@ function App() {
         <div className="admin-status-overlay">
           <div className="admin-toast glass-card">
             <span>{adminMessage}</span>
-            <button type="button" onClick={() => setAdminMessage('')}>✕</button>
+            <button type="button" onClick={() => setAdminMessage('')}><X size={16} /></button>
           </div>
         </div>
       )}
