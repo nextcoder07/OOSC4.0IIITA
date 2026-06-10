@@ -22,6 +22,16 @@ import {
   heroData,
 } from './data.js'
 import './App.css'
+// Eagerly load all page styles to fix CSS bugs caused by cross-file dependencies and lazy-loading
+import './pages/HomePage.css'
+import './pages/SchedulePage.css'
+import './pages/SpeakersPage.css'
+import './pages/SponsorsPage.css'
+import './pages/TeamPage.css'
+import './pages/HackathonPage.css'
+import './pages/ContactPage.css'
+import './pages/AdminLoginPage.css'
+import './pages/PolicyPage.css'
 
 function App() {
   const [adminMode, setAdminMode] = useState(false)
