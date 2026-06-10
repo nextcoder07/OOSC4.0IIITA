@@ -11,7 +11,7 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
         <div className="hackathon-hero-inner">
           <div className="hackathon-badge">
             <span className="badge-dot"></span>
-            {siteConfig.hackathonBadge || "OOSC'25 · Hackathon 2025"}
+            {siteConfig.hackathonBadge || 'OOSC 4.0 · Hackathon 2025'}
           </div>
           <h1>{siteConfig.hackathonTitle || 'Build the Future of Open Systems'}</h1>
           <p className="theme-label">Event Theme</p>
@@ -21,7 +21,7 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
             <div className="hstat"><span className="hstat-value">{siteConfig.hackathonDuration || '36 Hrs'}</span><span className="hstat-label">Duration</span></div>
             <div className="hstat"><span className="hstat-value">{siteConfig.hackathonTeamSize || '2–4'}</span><span className="hstat-label">Team Size</span></div>
             <div className="hstat"><span className="hstat-value">{siteConfig.hackathonDates || 'Aug 28–30'}</span><span className="hstat-label">Event Dates</span></div>
-            <div className="hstat"><span className="hstat-value">{siteConfig.hackathonVenue || 'IIT Kanpur'}</span><span className="hstat-label">Venue</span></div>
+            <div className="hstat"><span className="hstat-value">{siteConfig.hackathonVenue || 'IIITA'}</span><span className="hstat-label">Venue</span></div>
           </div>
         </div>
       </div>
@@ -77,7 +77,7 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
             {(siteConfig.hackathonEligibility ? siteConfig.hackathonEligibility.split('\n').filter(i => i.trim()) : [
               'Undergraduate & postgraduate students from any recognised university in India.',
               'Research scholars and PhD students are welcome.',
-              'Participants from IIT Kanpur receive priority registration slots.',
+              'Participants from IIIT Allahabad receive priority registration slots.',
               'International students enrolled in Indian universities are eligible.',
               'Alumni (graduated ≤ 2 years ago) may join as wild-card entries.',
               'Faculty members may mentor but cannot compete for prizes.',
@@ -155,7 +155,7 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
               'Plagiarism or use of undisclosed AI-generated code is grounds for immediate disqualification.',
               'Each participant may only be a member of one team. Switching teams after registration closes is not permitted.',
               "Judges' decisions on all prize allocations are final. Disputes must be raised within 2 hours of results announcement.",
-              'Participants must adhere to the OOSC\'25 Code of Conduct. Harassment will result in removal.',
+              'Participants must adhere to the OOSC 4.0 Code of Conduct. Harassment will result in removal.',
               'Use of cloud APIs (OpenAI, Hugging Face, etc.) is permitted but must be disclosed in the project README.',
             ]).map((rule, i) => (
               <div key={i} className="rule-item">
@@ -211,7 +211,7 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
             { title: 'Form Your Team',           desc: 'Assemble 2–4 members. Designate one Team Lead who will manage registration and submissions.' },
             { title: 'Register on the Portal',   desc: 'Click "Register Now" and complete the team form. All members must provide a valid institutional email.' },
             { title: 'Confirm on DevPost',       desc: "You'll receive a DevPost project invite after approval. Join using the same email — this is your submission platform." },
-            { title: 'Attend Kick-off (Aug 28)', desc: 'Report to IIT Kanpur Campus by 8:30 AM. Carry valid student ID. Remote participation is available for outstation teams.' },
+            { title: 'Attend Kick-off (Aug 28)', desc: 'Report to CC-3, IIITA by 8:30 AM. Carry valid student ID. Remote participation is available for outstation teams.' },
             { title: 'Build & Commit',           desc: 'Work in your public GitHub repository. Ensure it is public and licensed before the deadline.' },
             { title: 'Record Your Demo Video',   desc: 'Create a ≤ 3-minute screen-recorded demo. Upload to YouTube (unlisted) or Google Drive and save the link.' },
             { title: 'Submit on DevPost',        desc: 'Before Aug 30, 9:00 PM IST — submit your GitHub repo, demo video URL, and project description on DevPost.' },
