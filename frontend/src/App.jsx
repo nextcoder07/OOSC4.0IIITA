@@ -1,18 +1,21 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState, lazy, Suspense } from 'react'
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
+import ErrorBoundary from './components/ErrorBoundary.jsx'
 import Footer from './components/Footer.jsx'
 import ImageUploader from './components/ImageUploader.jsx'
-import Registration from './components/Registration.jsx'
 import HomePage from './pages/HomePage.jsx'
-import SchedulePage from './pages/SchedulePage.jsx'
-import SpeakersPage from './pages/SpeakersPage.jsx'
-import SponsorsPage from './pages/SponsorsPage.jsx'
-import TeamPage from './pages/TeamPage.jsx'
-import HackathonPage from './pages/HackathonPage.jsx'
-import ContactPage from './pages/ContactPage.jsx'
-import AdminLoginPage from './pages/AdminLoginPage.jsx'
-import PrivacyPolicyPage from './pages/PrivacyPolicyPage.jsx'
-import TermsOfUsePage from './pages/TermsOfUsePage.jsx'
+
+const Registration = lazy(() => import('./components/Registration.jsx'))
+const SchedulePage = lazy(() => import('./pages/SchedulePage.jsx'))
+const SpeakersPage = lazy(() => import('./pages/SpeakersPage.jsx'))
+const SponsorsPage = lazy(() => import('./pages/SponsorsPage.jsx'))
+const TeamPage = lazy(() => import('./pages/TeamPage.jsx'))
+const HackathonPage = lazy(() => import('./pages/HackathonPage.jsx'))
+const ContactPage = lazy(() => import('./pages/ContactPage.jsx'))
+const AdminLoginPage = lazy(() => import('./pages/AdminLoginPage.jsx'))
+const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage.jsx'))
+const TermsOfUsePage = lazy(() => import('./pages/TermsOfUsePage.jsx'))
+
 import ChatBot from './components/ChatBot.jsx'
 import {
   aboutData,
@@ -820,7 +823,9 @@ function App() {
             <strong>Data load issue:</strong> {apiError}
           </div>
         )}
-        <Routes>
+        <ErrorBoundary>
+          <Suspense fallback={<div style={{ padding: '2rem', textAlign: 'center', color: '#94a3b8' }}>Loading view...</div>}>
+            <Routes>
           <Route path="/" element={
             <HomePage hero={hero} about={about} siteConfig={siteConfig} navigateTo={navigateTo} />
           } />
@@ -889,6 +894,8 @@ function App() {
           <Route path="/privacy" element={<PrivacyPolicyPage />} />
           <Route path="/terms" element={<TermsOfUsePage />} />
         </Routes>
+        </Suspense>
+        </ErrorBoundary>
       </main>
 
       {modalOpen && (

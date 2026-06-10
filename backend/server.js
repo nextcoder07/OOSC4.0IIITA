@@ -35,16 +35,7 @@ const ACCESS_EXPIRES = '24h'
 const ADMIN_PASSWORD_HASH = process.env.ADMIN_PASSWORD_HASH ?? ''
 const ADMIN_ROLE = process.env.ADMIN_ROLE ?? 'ADMIN'
 
-// ── Load admin whitelist ───────────────────────────────────────────────────────
-
-let allowedAdmins = []
-try {
-  allowedAdmins = JSON.parse(
-    fs.readFileSync(path.join(__dirname, 'allowedAdmins.json'), 'utf-8'),
-  )
-} catch (error) {
-  console.warn('Could not load allowedAdmins.json:', error.message)
-}
+// ── Admin whitelist is now managed dynamically via DB ───────────────
 
 // ── Middleware ──────────────────────────────────────────────────────────────────
 
@@ -294,7 +285,8 @@ app.post('/admin/login', async (req, res) => {
   }
 
   // Check if email is in the admin whitelist
-  if (!allowedAdmins.includes(email)) {
+  const whitelistEntry = await prisma.adminWhitelist.findUnique({ where: { email } })
+  if (!whitelistEntry) {
     await recordAudit({
       email,
       action: 'Login rejected — email not in whitelist',
@@ -611,6 +603,13 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.join(frontendDist, 'index.html'))
   })
 }
+
+// ── Global Error Handler ───────────────────────────────────────────────────────
+
+app.use((err, req, res, next) => {
+  console.error('Unhandled error:', err)
+  res.status(500).json({ error: 'Internal server error.' })
+})
 
 // ── Start ──────────────────────────────────────────────────────────────────────
 
