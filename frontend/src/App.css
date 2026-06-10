@@ -1876,3 +1876,37 @@ body::after {
   background: rgba(200, 200, 224, 0.12);
   border-color: rgba(200, 200, 224, 0.24);
 }
+/* ─── THEME TOGGLE ──────────────────────────────────────────────────────────── */
+html[data-theme="light"] {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* Re-invert images and videos so they look normal */
+html[data-theme="light"] img,
+html[data-theme="light"] video {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* Ensure the root background handles the inversion cleanly */
+html[data-theme="light"] body {
+  background-color: var(--color-bg);
+}
+
+.theme-toggle-btn {
+  background: transparent;
+  border: 2px solid var(--color-border-on-dark);
+  color: var(--color-text-on-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.theme-toggle-btn:hover {
+  background: var(--color-accent-dim);
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}

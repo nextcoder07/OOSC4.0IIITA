@@ -22,7 +22,7 @@ import {
   heroData,
 } from './data.js'
 import './App.css'
-import { Settings, X } from 'lucide-react'
+import { Settings, X, Sun, Moon } from 'lucide-react'
 // Eagerly load all page styles to fix CSS bugs caused by cross-file dependencies and lazy-loading
 import './pages/HomePage.css'
 import './pages/SchedulePage.css'
@@ -37,6 +37,12 @@ import './pages/PolicyPage.css'
 function App() {
   const [adminMode, setAdminMode] = useState(false)
   const [adminEmail, setAdminEmail] = useState('')
+  const [theme, setTheme] = useState(localStorage.getItem('oosc-theme') || 'dark')
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+    localStorage.setItem('oosc-theme', theme)
+  }, [theme])
 
   // Auth Inputs
   const [loginEmail, setLoginEmail] = useState('')
@@ -786,6 +792,15 @@ function App() {
 
         {/* Header Desktop actions */}
         <div className="header-actions">
+          <button
+            type="button"
+            className="theme-toggle-btn"
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            title="Toggle Theme"
+            aria-label="Toggle Theme"
+          >
+            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
           <button
             type="button"
             className="btn btn-nav-cta"
