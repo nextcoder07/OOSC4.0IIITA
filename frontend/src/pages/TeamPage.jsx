@@ -2,6 +2,92 @@ import React from 'react'
 import { GripVertical } from 'lucide-react'
 import './TeamPage.css'
 
+const TeamCategoryRow = ({
+  categoryName, members, adminMode,
+  draggedResource, draggedIndex, draggedCategory, dragOverIndex,
+  handleDragStart, handleDragOver, handleDragEnd, handleDrop,
+  editRecord, deleteRecord, setTeam
+}) => {
+  const scrollRef = React.useRef(null);
+  const [isDown, setIsDown] = React.useState(false);
+  const [startX, setStartX] = React.useState(0);
+  const [scrollLeftPos, setScrollLeftPos] = React.useState(0);
+
+  const onMouseDown = (e) => {
+    if (adminMode) return;
+    setIsDown(true);
+    setStartX(e.pageX - scrollRef.current.offsetLeft);
+    setScrollLeftPos(scrollRef.current.scrollLeft);
+  };
+
+  const onMouseLeave = () => {
+    setIsDown(false);
+  };
+
+  const onMouseUp = () => {
+    setIsDown(false);
+  };
+
+  const onMouseMove = (e) => {
+    if (!isDown || adminMode) return;
+    e.preventDefault();
+    const x = e.pageX - scrollRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    scrollRef.current.scrollLeft = scrollLeftPos - walk;
+  };
+
+  return (
+    <div className="team-category-section">
+      <h3 className="team-category-title">{categoryName}</h3>
+      <div 
+        className={`card-grid team-grid ${!adminMode ? 'scrollable' : ''} ${isDown ? 'active' : ''}`}
+        ref={scrollRef}
+        onMouseDown={onMouseDown}
+        onMouseLeave={onMouseLeave}
+        onMouseUp={onMouseUp}
+        onMouseMove={onMouseMove}
+      >
+        {members.map((member, index) => (
+          <article
+            key={member.id}
+            draggable={adminMode}
+            className={`card team-card glass-card ${adminMode ? 'admin-draggable' : ''} ${draggedResource === 'team' && draggedCategory === categoryName && draggedIndex === index ? 'dragging' : ''} ${draggedResource === 'team' && draggedCategory === categoryName && dragOverIndex === index ? 'drag-over' : ''}`.trim()}
+            onDragStart={(e) => handleDragStart(e, 'team', index, categoryName)}
+            onDragOver={(e) => handleDragOver(e, 'team', index, categoryName)}
+            onDragEnd={handleDragEnd}
+            onDrop={(e) => handleDrop(e, 'team', index, categoryName)}
+          >
+            <div className="image-wrapper team-avatar">
+              <img src={member.photoURL} alt={member.name} loading="lazy" draggable={false} />
+            </div>
+            <div className="card-content">
+              <h3>{member.name}</h3>
+              {member.role ? <p className="card-subtitle">{member.role}</p> : null}
+              {member.contact ? <p className="contact-info-text">{member.contact}</p> : null}
+              {member.linkedin && (
+                <div className="social-links">
+                  <a href={member.linkedin} target="_blank" rel="noreferrer" className="social-icon" aria-label="LinkedIn">
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                  </a>
+                </div>
+              )}
+            </div>
+            {adminMode && (
+              <div className="admin-card-controls">
+                <button type="button" className="btn btn-admin-mini" onClick={() => editRecord('team', member)}>Edit</button>
+                <button type="button" className="btn-delete" onClick={() => deleteRecord('team', member.id, setTeam)}>Delete</button>
+              </div>
+            )}
+            {adminMode && (
+              <span className="drag-hint" aria-hidden="true" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><GripVertical size={16} /> Drag to Reorder</span>
+            )}
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 export default function TeamPage({
   siteConfig, adminMode, categorizedTeam,
   draggedResource, draggedIndex, draggedCategory, dragOverIndex,
@@ -25,50 +111,26 @@ export default function TeamPage({
 
       <div className="team-categories-container">
         {Object.entries(categorizedTeam).map(([categoryName, members]) => {
-          if (members.length === 0 && !adminMode) return null
+          if (members.length === 0 && !adminMode) return null;
           return (
-            <div key={categoryName} className="team-category-section">
-              <h3 className="team-category-title">{categoryName}</h3>
-              <div className="card-grid team-grid">
-                {members.map((member, index) => (
-                  <article
-                    key={member.id}
-                    draggable={adminMode}
-                    className={`card team-card glass-card ${adminMode ? 'admin-draggable' : ''} ${draggedResource === 'team' && draggedCategory === categoryName && draggedIndex === index ? 'dragging' : ''} ${draggedResource === 'team' && draggedCategory === categoryName && dragOverIndex === index ? 'drag-over' : ''}`.trim()}
-                    onDragStart={(e) => handleDragStart(e, 'team', index, categoryName)}
-                    onDragOver={(e) => handleDragOver(e, 'team', index, categoryName)}
-                    onDragEnd={handleDragEnd}
-                    onDrop={(e) => handleDrop(e, 'team', index, categoryName)}
-                  >
-                    <div className="image-wrapper team-avatar">
-                      <img src={member.photoURL} alt={member.name} loading="lazy" />
-                    </div>
-                    <div className="card-content">
-                      <h3>{member.name}</h3>
-                      {member.role ? <p className="card-subtitle">{member.role}</p> : null}
-                      {member.contact ? <p className="contact-info-text">{member.contact}</p> : null}
-                      {member.linkedin && (
-                        <div className="social-links">
-                          <a href={member.linkedin} target="_blank" rel="noreferrer" className="social-icon" aria-label="LinkedIn">
-                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                          </a>
-                        </div>
-                      )}
-                    </div>
-                    {adminMode && (
-                      <div className="admin-card-controls">
-                        <button type="button" className="btn btn-admin-mini" onClick={() => editRecord('team', member)}>Edit</button>
-                        <button type="button" className="btn-delete" onClick={() => deleteRecord('team', member.id, setTeam)}>Delete</button>
-                      </div>
-                    )}
-                    {adminMode && (
-                      <span className="drag-hint" aria-hidden="true" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><GripVertical size={16} /> Drag to Reorder</span>
-                    )}
-                  </article>
-                ))}
-              </div>
-            </div>
-          )
+            <TeamCategoryRow
+              key={categoryName}
+              categoryName={categoryName}
+              members={members}
+              adminMode={adminMode}
+              draggedResource={draggedResource}
+              draggedIndex={draggedIndex}
+              draggedCategory={draggedCategory}
+              dragOverIndex={dragOverIndex}
+              handleDragStart={handleDragStart}
+              handleDragOver={handleDragOver}
+              handleDragEnd={handleDragEnd}
+              handleDrop={handleDrop}
+              editRecord={editRecord}
+              deleteRecord={deleteRecord}
+              setTeam={setTeam}
+            />
+          );
         })}
       </div>
     </section>
