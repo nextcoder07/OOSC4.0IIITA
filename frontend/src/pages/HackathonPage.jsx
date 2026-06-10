@@ -11,7 +11,7 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
         <div className="hackathon-hero-inner">
           <div className="hackathon-badge">
             <span className="badge-dot"></span>
-            {siteConfig.hackathonBadge || 'OOSC 4.0 · Hackathon 2025'}
+            {siteConfig.hackathonBadge || "OOSC'25 · Hackathon 2025"}
           </div>
           <h1>{siteConfig.hackathonTitle || 'Build the Future of Open Systems'}</h1>
           <p className="theme-label">Event Theme</p>
@@ -21,7 +21,7 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
             <div className="hstat"><span className="hstat-value">{siteConfig.hackathonDuration || '36 Hrs'}</span><span className="hstat-label">Duration</span></div>
             <div className="hstat"><span className="hstat-value">{siteConfig.hackathonTeamSize || '2–4'}</span><span className="hstat-label">Team Size</span></div>
             <div className="hstat"><span className="hstat-value">{siteConfig.hackathonDates || 'Aug 28–30'}</span><span className="hstat-label">Event Dates</span></div>
-            <div className="hstat"><span className="hstat-value">{siteConfig.hackathonVenue || 'IIITA'}</span><span className="hstat-label">Venue</span></div>
+            <div className="hstat"><span className="hstat-value">{siteConfig.hackathonVenue || 'IIT Kanpur'}</span><span className="hstat-label">Venue</span></div>
           </div>
         </div>
       </div>
@@ -30,7 +30,7 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
       <div className="hk-grid-2">
         <div className="hk-card">
           <div className="hk-card-title">
-            <div className="hk-icon"><Target size={32} /></div>
+            <div className="hk-icon"><Target size={32} color="#d93025" /></div>
             <h3>Problem Statement</h3>
           </div>
           {siteConfig.hackathonProblemStatement ? (
@@ -69,7 +69,7 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
 
         <div className="hk-card">
           <div className="hk-card-title">
-            <div className="hk-icon"><Users size={32} /></div>
+            <div className="hk-icon"><Users size={32} color="#60a5fa" /></div>
             <h3>Who Can Participate</h3>
           </div>
           <p className="panel-subheading">Eligibility</p>
@@ -77,13 +77,13 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
             {(siteConfig.hackathonEligibility ? siteConfig.hackathonEligibility.split('\n').filter(i => i.trim()) : [
               'Undergraduate & postgraduate students from any recognised university in India.',
               'Research scholars and PhD students are welcome.',
-              'Participants from IIIT Allahabad receive priority registration slots.',
+              'Participants from IIT Kanpur receive priority registration slots.',
               'International students enrolled in Indian universities are eligible.',
               'Alumni (graduated ≤ 2 years ago) may join as wild-card entries.',
               'Faculty members may mentor but cannot compete for prizes.',
             ]).map((item, i) => (
               <div key={i} className="eligibility-item">
-                <span className="elig-check"><Check size={16} /></span>
+                <span className="elig-check"><Check size={16} color="#4ade80" /></span>
                 <p>{item}</p>
               </div>
             ))}
@@ -91,9 +91,9 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
           <p className="panel-subheading">Team Composition</p>
           <div className="pill-row">
             {(siteConfig.hackathonTeamComposition ? siteConfig.hackathonTeamComposition.split('\n').filter(t => t.trim()).map(t => { const parts = t.split('||'); return { icon: parts[0] || <Users size={16} />, label: parts[1] || '' } }) : [
-              { icon: <User size={16} />, label: 'Min 2 members' },
-              { icon: <Users size={16} />, label: 'Max 4 members' },
-              { icon: <Globe size={16} />, label: 'Cross-institution teams OK' },
+              { icon: <User size={16} color="#fbbf24" />, label: 'Min 2 members' },
+              { icon: <Users size={16} color="#a78bfa" />, label: 'Max 4 members' },
+              { icon: <Globe size={16} color="#34d399" />, label: 'Cross-institution teams OK' },
             ]).map((t, i) => (
               <div key={i} className="special-prize-pill"><span>{t.icon}</span> {t.label}</div>
             ))}
@@ -104,13 +104,13 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
       {/* ── PRIZES ── */}
       <div className="hk-card">
         <div className="hk-card-title">
-          <div className="hk-icon"><Trophy size={32} /></div>
+          <div className="hk-icon"><Trophy size={32} color="#fbbf24" /></div>
           <h3>Prizes &amp; Rewards</h3>
         </div>
         <div className="prizes-grid">
           {(siteConfig.hackathonPrizes ? siteConfig.hackathonPrizes.split('\n').filter(p => p.trim()).map(p => { 
             const parts = p.split('||'); 
-            return { medal: parts[0] || <Trophy size={32} />, position: parts[1] || '', amount: parts[2] || '', desc: parts[3] || '', class: parts[4] || 'gold' }; 
+            return { medal: parts[0] || <Trophy size={32} color="#fbbf24" />, position: parts[1] || '', amount: parts[2] || '', desc: parts[3] || '', class: parts[4] || 'gold' }; 
           }) : [
             { medal: <Medal size={32} color="#fbbf24" />, position: '1st Place', amount: '₹50,000', desc: 'Cash + trophies + fast-track internship interviews with Title Sponsors + OOSC Featured Project badge', class: 'gold' },
             { medal: <Medal size={32} color="#94a3b8" />, position: '2nd Place', amount: '₹30,000', desc: 'Cash + trophies + mentorship sessions with senior open-source engineers from partner companies', class: 'silver' },
@@ -127,13 +127,13 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
         <p className="panel-subheading mt-section">Special Category Awards</p>
         <div className="special-prizes">
           {(siteConfig.hackathonSpecialPrizes ? siteConfig.hackathonSpecialPrizes.split('\n').filter(p => p.trim()).map(p => {
-            const parts = p.split('||'); return { icon: parts[0] || <Star size={16} />, label: parts[1] || '' };
+            const parts = p.split('||'); return { icon: parts[0] || <Star size={16} color="#fbbf24" />, label: parts[1] || '' };
           }) : [
-            { icon: <Lightbulb size={16} />, label: 'Best Innovation — ₹10,000' },
-            { icon: <Leaf size={16} />, label: 'Best Open-Source Impact — ₹10,000' },
-            { icon: <Palette size={16} />, label: 'Best UI/UX Design — ₹5,000' },
-            { icon: <Zap size={16} />, label: 'Best Rookie Team — ₹5,000' },
-            { icon: <Bot size={16} />, label: 'Best AI Integration — ₹5,000' },
+            { icon: <Lightbulb size={16} color="#fbbf24" />, label: 'Best Innovation — ₹10,000' },
+            { icon: <Leaf size={16} color="#4ade80" />, label: 'Best Open-Source Impact — ₹10,000' },
+            { icon: <Palette size={16} color="#f472b6" />, label: 'Best UI/UX Design — ₹5,000' },
+            { icon: <Zap size={16} color="#facc15" />, label: 'Best Rookie Team — ₹5,000' },
+            { icon: <Bot size={16} color="#60a5fa" />, label: 'Best AI Integration — ₹5,000' },
           ]).map((p, i) => (
             <div key={i} className="special-prize-pill"><span>{p.icon}</span> {p.label}</div>
           ))}
@@ -144,7 +144,7 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
       <div className="hk-grid-2">
         <div className="hk-card">
           <div className="hk-card-title">
-            <div className="hk-icon"><ClipboardList size={32} /></div>
+            <div className="hk-icon"><ClipboardList size={32} color="#9ca3af" /></div>
             <h3>Rules &amp; Guidelines</h3>
           </div>
           <div className="rules-list">
@@ -155,7 +155,7 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
               'Plagiarism or use of undisclosed AI-generated code is grounds for immediate disqualification.',
               'Each participant may only be a member of one team. Switching teams after registration closes is not permitted.',
               "Judges' decisions on all prize allocations are final. Disputes must be raised within 2 hours of results announcement.",
-              'Participants must adhere to the OOSC 4.0 Code of Conduct. Harassment will result in removal.',
+              'Participants must adhere to the OOSC\'25 Code of Conduct. Harassment will result in removal.',
               'Use of cloud APIs (OpenAI, Hugging Face, etc.) is permitted but must be disclosed in the project README.',
             ]).map((rule, i) => (
               <div key={i} className="rule-item">
@@ -168,7 +168,7 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
 
         <div className="hk-card">
           <div className="hk-card-title">
-            <div className="hk-icon"><Calendar size={32} /></div>
+            <div className="hk-icon"><Calendar size={32} color="#f87171" /></div>
             <h3>Important Dates</h3>
           </div>
           <div className="dates-timeline">
@@ -201,7 +201,7 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
       {/* ── HOW TO REGISTER / SUBMIT ── */}
       <div className="hk-card">
         <div className="hk-card-title">
-          <div className="hk-icon"><Rocket size={32} /></div>
+          <div className="hk-icon"><Rocket size={32} color="#c084fc" /></div>
           <h3>How to Register &amp; Submit</h3>
         </div>
         <div className="steps-list">
@@ -211,7 +211,7 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
             { title: 'Form Your Team',           desc: 'Assemble 2–4 members. Designate one Team Lead who will manage registration and submissions.' },
             { title: 'Register on the Portal',   desc: 'Click "Register Now" and complete the team form. All members must provide a valid institutional email.' },
             { title: 'Confirm on DevPost',       desc: "You'll receive a DevPost project invite after approval. Join using the same email — this is your submission platform." },
-            { title: 'Attend Kick-off (Aug 28)', desc: 'Report to CC-3, IIITA by 8:30 AM. Carry valid student ID. Remote participation is available for outstation teams.' },
+            { title: 'Attend Kick-off (Aug 28)', desc: 'Report to IIT Kanpur Campus by 8:30 AM. Carry valid student ID. Remote participation is available for outstation teams.' },
             { title: 'Build & Commit',           desc: 'Work in your public GitHub repository. Ensure it is public and licensed before the deadline.' },
             { title: 'Record Your Demo Video',   desc: 'Create a ≤ 3-minute screen-recorded demo. Upload to YouTube (unlisted) or Google Drive and save the link.' },
             { title: 'Submit on DevPost',        desc: 'Before Aug 30, 9:00 PM IST — submit your GitHub repo, demo video URL, and project description on DevPost.' },
