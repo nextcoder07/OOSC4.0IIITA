@@ -179,6 +179,7 @@
   transition: var(--transition-smooth);
   position: relative;
   overflow: hidden;
+  box-shadow: var(--shadow-brutal), var(--shadow-panel);
 }
 
 .stat-card-gradient::before {
@@ -187,15 +188,19 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.05);
-  ;
+  height: 4px;
+  background: var(--color-accent);
 }
 
 .stat-card-gradient:hover {
   border-color: var(--color-accent);
-  transform: translate(-2px, -2px);
-  box-shadow: 4px 4px 0 #000000;
+  transform: translate(-4px, -4px);
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.85), var(--shadow-float);
+}
+
+.stat-card-gradient:active {
+  transform: translate(0px, 0px);
+  box-shadow: 0px 0px 0 rgba(0, 0, 0, 0.85), var(--shadow-panel);
 }
 
 .stat-card-gradient h3 {
@@ -207,7 +212,7 @@
 }
 
 .stat-card-gradient p {
-  color: #f1e9d8;
+  color: var(--color-text-on-panel-sub);
   font-size: 0.88rem;
   font-weight: 600;
   font-family: 'JetBrains Mono', monospace;
@@ -217,12 +222,12 @@
 
 .stat-card-gradient.span-columns {
   grid-column: span 2;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--color-panel-muted);
   border-color: var(--color-accent);
 }
 
 .stat-card-gradient.span-columns h3 {
-  color: #f5efe5;
+  color: var(--color-text-on-panel);
 }
 
 .event-overview-grid {

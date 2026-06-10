@@ -49,9 +49,54 @@
 }
 
 /* ─── BODY / GLOBAL ─────────────────────────────────────────────────────────── */
+/* ─── GLOBAL UI ENHANCEMENTS ─────────────────────────────────────────────────── */
+::selection {
+  background: var(--color-accent);
+  color: var(--color-text-on-dark);
+}
+
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+  border-left: 2px solid var(--color-border);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border: 2px solid var(--color-border);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-hover);
+}
+
 body {
   background: var(--color-bg);
   color: var(--color-text-on-dark);
+}
+
+/* Cyberpunk CRT Scanline Effect */
+body::after {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.12; /* Very subtle to preserve readability */
 }
 
 /* ─── BASE LAYOUT ────────────────────────────────────────────────────────────── */
@@ -92,8 +137,13 @@ body {
 
 .glass-card:hover {
   border-color: var(--color-accent);
-  transform: translate(-1px, -1px);
-  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.65), var(--shadow-float);
+  transform: translate(-4px, -4px);
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.85), var(--shadow-float);
+}
+
+.glass-card:active {
+  transform: translate(0px, 0px);
+  box-shadow: 0px 0px 0 rgba(0, 0, 0, 0.85), var(--shadow-panel);
 }
 
 .glass-card::after {
@@ -310,8 +360,13 @@ body {
 .btn-nav-cta:hover {
   background: var(--color-accent-hover);
   border-color: var(--color-accent-hover);
-  transform: translate(-1px, -1px);
-  box-shadow: 3px 3px 0 #000000;
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 #000000;
+}
+
+.btn-nav-cta:active {
+  transform: translate(0, 0);
+  box-shadow: 0 0 0 #000000;
 }
 
 .btn-admin {
@@ -327,6 +382,10 @@ body {
   border-color: var(--color-panel);
 }
 
+.btn-admin:active {
+  transform: scale(0.98);
+}
+
 .btn-primary {
   background: var(--color-accent-hover);
   color: var(--color-text-on-dark);
@@ -338,8 +397,13 @@ body {
 .btn-primary:hover {
   background: var(--color-accent-hover);
   border-color: var(--color-accent-hover);
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 #000000;
+  transform: translate(-3px, -3px);
+  box-shadow: 7px 7px 0 #000000;
+}
+
+.btn-primary:active {
+  transform: translate(0, 0);
+  box-shadow: 0 0 0 #000000;
 }
 
 .btn-outline {
@@ -352,8 +416,13 @@ body {
 .btn-outline:hover {
   background: var(--color-accent-hover);
   color: var(--color-text-on-dark);
-  transform: translate(-2px, -2px);
-  box-shadow: 4px 4px 0 #000000;
+  transform: translate(-3px, -3px);
+  box-shadow: 5px 5px 0 #000000;
+}
+
+.btn-outline:active {
+  transform: translate(0, 0);
+  box-shadow: 0 0 0 #000000;
 }
 
 .btn-secondary {
