@@ -187,7 +187,6 @@ function App() {
     ],
     [],
   )
-
   const teamCategories = useMemo(
     () => [
       'Core Team',
@@ -196,6 +195,9 @@ function App() {
       'Technical Team',
       'Design Team',
       'Hospitality & Logistics Team',
+      'Sponsorship',
+      'Media',
+      'Filming',
     ],
     [],
   )
@@ -239,6 +241,10 @@ function App() {
       'Technical Team': [],
       'Design Team': [],
       'Hospitality & Logistics Team': [],
+      'Hospitality': [],
+      'Sponsorship': [],
+      'Media': [],
+      'Filming': [],
     }
 
     const sortedTeam = [...team].sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0))
