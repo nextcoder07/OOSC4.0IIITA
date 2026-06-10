@@ -70,11 +70,11 @@ export default function SponsorsPage({
                     onDragEnd={handleDragEnd}
                     onDrop={(e) => handleDrop(e, 'sponsors', index, category)}
                   >
-                    <a 
-                      href={sponsor.website ? (sponsor.website.trim().startsWith('http://') || sponsor.website.trim().startsWith('https://') ? sponsor.website.trim() : `https://${sponsor.website.trim()}`) : '#'} 
-                      target="_blank" 
-                      rel="noreferrer" 
-                      className="sponsor-card" 
+                    <a
+                      href={sponsor.website ? (sponsor.website.trim().startsWith('http://') || sponsor.website.trim().startsWith('https://') ? sponsor.website.trim() : `https://${sponsor.website.trim()}`) : '#'}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="sponsor-card"
                       draggable={false}
                     >
                       <div className="logo-container">
@@ -103,49 +103,49 @@ export default function SponsorsPage({
       <div className="sponsor-application-section" style={{ marginTop: '4rem', padding: '2rem', background: 'rgba(255, 255, 255, 0.05)', borderRadius: '12px', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
         <h3 style={{ marginBottom: '1rem', color: '#d93025' }}>Become a Sponsor</h3>
         <p style={{ marginBottom: '2rem', color: '#ffffff' }}>Interested in partnering with us? Fill out the form below and our team will get back to you with our sponsorship prospectus.</p>
-        
-        <form onSubmit={handleSponsorSubmit} className="contact-form">
+
+        <form onSubmit={handleSponsorSubmit} className="contact-form" style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
           <div className="form-group">
             <label htmlFor="sponsor-name">Full Name *</label>
-            <input 
-              id="sponsor-name" 
-              type="text" 
-              value={form.name} 
-              onChange={(e) => setForm({ ...form, name: e.target.value })} 
-              className="form-control" 
-              placeholder="Your Name" 
+            <input
+              id="sponsor-name"
+              type="text"
+              value={form.name}
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              className="form-control"
+              placeholder="Your Name"
             />
           </div>
           <div className="form-group">
             <label htmlFor="sponsor-email">Work Email *</label>
-            <input 
-              id="sponsor-email" 
-              type="email" 
-              value={form.email} 
-              onChange={(e) => setForm({ ...form, email: e.target.value })} 
-              className="form-control" 
-              placeholder="you@company.com" 
+            <input
+              id="sponsor-email"
+              type="email"
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
+              className="form-control"
+              placeholder="you@company.com"
             />
           </div>
           <div className="form-group">
             <label htmlFor="sponsor-org">Organization / Company *</label>
-            <input 
-              id="sponsor-org" 
-              type="text" 
-              value={form.organization} 
-              onChange={(e) => setForm({ ...form, organization: e.target.value })} 
-              className="form-control" 
-              placeholder="Company Name" 
+            <input
+              id="sponsor-org"
+              type="text"
+              value={form.organization}
+              onChange={(e) => setForm({ ...form, organization: e.target.value })}
+              className="form-control"
+              placeholder="Company Name"
             />
           </div>
           <div className="form-group">
             <label htmlFor="sponsor-message">Additional Details (Optional)</label>
-            <textarea 
-              id="sponsor-message" 
-              value={form.message} 
-              onChange={(e) => setForm({ ...form, message: e.target.value })} 
-              className="form-control" 
-              rows="4" 
+            <textarea
+              id="sponsor-message"
+              value={form.message}
+              onChange={(e) => setForm({ ...form, message: e.target.value })}
+              className="form-control"
+              rows="4"
               placeholder="Tell us what sponsorship tiers you are interested in..."
             />
           </div>
@@ -154,7 +154,7 @@ export default function SponsorsPage({
               {formStatus}
             </p>
           )}
-          <button type="submit" className="btn btn-primary">Submit Application</button>
+          <button type="submit" className="btn btn-primary" style={{ padding: '16px 56px', marginTop: '16px' }}>Submit Application</button>
         </form>
       </div>
     </section>
