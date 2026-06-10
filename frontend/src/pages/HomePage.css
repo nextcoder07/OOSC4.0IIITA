@@ -212,7 +212,7 @@
 }
 
 .stat-card-gradient p {
-  color: var(--color-text-on-panel-sub);
+  color: #a1a1aa;
   font-size: 0.88rem;
   font-weight: 600;
   font-family: 'JetBrains Mono', monospace;
@@ -228,6 +228,10 @@
 
 .stat-card-gradient.span-columns h3 {
   color: var(--color-text-on-panel);
+}
+
+.stat-card-gradient.span-columns p {
+  color: var(--color-text-on-panel-sub);
 }
 
 .event-overview-grid {
