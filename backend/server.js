@@ -212,7 +212,7 @@ const allowedFields = {
   speakers: ['name', 'title', 'bio', 'photoURL', 'linkedin', 'github', 'sortOrder', 'published'],
   sponsors: ['name', 'logoURL', 'category', 'website', 'sortOrder', 'published'],
   events: ['title', 'description', 'date', 'time', 'type', 'sortOrder', 'published'],
-  team: ['name', 'role', 'contact', 'photoURL', 'sortOrder', 'published'],
+  team: ['name', 'role', 'department', 'contact', 'photoURL', 'sortOrder', 'published'],
 }
 
 const sanitizeBody = (body, fields) => {

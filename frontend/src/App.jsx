@@ -188,6 +188,18 @@ function App() {
     [],
   )
 
+  const teamCategories = useMemo(
+    () => [
+      'Core Team',
+      'Faculty Coordinators',
+      'Student Coordinators',
+      'Technical Team',
+      'Design Team',
+      'Hospitality & Logistics Team',
+    ],
+    [],
+  )
+
   const sortedSponsors = useMemo(() => {
     const grouped = new Map()
     sponsors.forEach((item) => {
@@ -231,6 +243,12 @@ function App() {
 
     const sortedTeam = [...team].sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0))
     sortedTeam.forEach((member) => {
+      if (member.department && groups[member.department]) {
+        groups[member.department].push(member)
+        return
+      }
+
+      // Fallback for legacy members without explicit department
       const role = member.role ? member.role.toLowerCase() : ''
       const name = member.name ? member.name.toLowerCase() : ''
 
@@ -334,7 +352,8 @@ function App() {
     ],
     team: [
       { key: 'name', label: 'Name', type: 'text' },
-      { key: 'role', label: 'Role', type: 'text' },
+      { key: 'role', label: 'Role / Title', type: 'text' },
+      { key: 'department', label: 'Team Category', type: 'select', options: teamCategories },
       { key: 'contact', label: 'Contact Email / Phone', type: 'text' },
       { key: 'photoURL', label: 'Photo URL / Upload Link', type: 'text' },
       { key: 'sortOrder', label: 'Sort Order', type: 'number' },
@@ -352,8 +371,8 @@ function App() {
     const defaults = {
       speakers: { name: '', title: '', bio: '', photoURL: uploadUrl || '', linkedin: '', github: '', sortOrder: speakers.length + 1, published: true },
       sponsors: { name: '', category: '', website: '', logoURL: uploadUrl || '', sortOrder: sponsors.length + 1, published: true },
-      events: { title: '', description: '', date: 'Aug 28', time: '10:00 AM', type: 'Talk', sortOrder: schedule.length + 1, published: true },
-      team: { name: '', role: '', contact: '', photoURL: uploadUrl || '', sortOrder: team.length + 1, published: true },
+      events: { title: '', description: '', date: '', time: '', type: '', sortOrder: schedule.length + 1, published: true },
+      team: { name: '', role: '', department: 'Student Coordinators', contact: '', photoURL: uploadUrl || '', sortOrder: team.length + 1, published: true },
     }
     return defaults[resource] || {}
   }
