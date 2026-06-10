@@ -978,6 +978,25 @@ body::after {
   box-shadow: var(--shadow-brutal), 0 30px 80px rgba(0, 0, 0, 0.70);
 }
 
+.admin-modal-panel .form-control {
+  background: #ffffff;
+  color: var(--color-text-on-panel);
+  border: 2px solid rgba(17, 17, 17, 0.2);
+}
+
+.admin-modal-panel .form-control:focus {
+  border-color: var(--color-accent);
+  background: #ffffff;
+}
+
+.admin-modal-panel .form-control::placeholder {
+  color: var(--color-text-on-panel-muted);
+}
+
+.admin-modal-panel .form-group label {
+  color: var(--color-text-on-panel-sub);
+}
+
 .admin-modal-panel--narrow {
   max-width: 600px;
   max-height: 90vh;

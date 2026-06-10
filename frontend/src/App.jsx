@@ -176,15 +176,15 @@ function App() {
 
 
 
-  // Sponsor Tiers specified: Title, Platinum, Gold, Silver, Community Partner, Media Partner
+  // Sponsor Tiers specified in the brochure
   const sponsorCategories = useMemo(
     () => [
-      'Title Sponsor',
-      'Platinum Sponsor',
-      'Gold Sponsor',
-      'Silver Sponsor',
-      'Community Partner',
-      'Media Partner',
+      'Title',
+      'Co-Title',
+      'Platinum',
+      'Gold',
+      'Bronze',
+      'Supporter',
     ],
     [],
   )

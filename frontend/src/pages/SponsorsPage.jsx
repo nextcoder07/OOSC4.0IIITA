@@ -102,63 +102,134 @@ export default function SponsorsPage({
         })}
       </div>
 
-      {/* ── SPONSOR APPLICATION FORM ── */}
-      <div className="sponsor-application-section" style={{ margin: '4rem auto 0', maxWidth: '720px', padding: '2rem', background: 'rgba(255, 255, 255, 0.05)', borderRadius: '12px', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
-        <h3 style={{ marginBottom: '1rem', color: '#d93025' }}>Become a Sponsor</h3>
-        <p style={{ marginBottom: '2rem', color: '#ffffff' }}>Interested in partnering with us? Fill out the form below and our team will get back to you with our sponsorship prospectus.</p>
+      {/* ── SPONSORSHIP TIERS & BROCHURE ── */}
+      <div className="sponsorship-prospectus" style={{ margin: '4rem auto 0', maxWidth: '840px', padding: '2rem', background: 'rgba(255, 255, 255, 0.05)', borderRadius: '12px', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
+        <div style={{ textAlign: 'center' }}>
+          <h3 style={{ marginBottom: '1.5rem', color: '#d93025' }}>Sponsorship Opportunities</h3>
+          <p style={{ marginBottom: '2rem', color: '#ffffff', lineHeight: '1.6', maxWidth: '700px', margin: '0 auto 2rem auto' }}>
+            By sponsoring OOSC 4.0, your brand becomes an integral part of this massive milestone event. Your support directly funds the ecosystem—covering the travel and accommodation of global speakers, powering the hackathon infrastructure, and providing an unforgettable experience for attendees.
+          </p>
+        </div>
 
-        <form onSubmit={handleSponsorSubmit} className="contact-form" style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          <div className="form-group">
-            <label htmlFor="sponsor-name">Full Name *</label>
-            <input
-              id="sponsor-name"
-              type="text"
-              value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="form-control"
-              placeholder="Your Name"
-            />
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px', marginBottom: '2rem' }}>
+          <div style={{ padding: '16px', background: 'rgba(0,0,0,0.2)', borderRadius: '8px', borderLeft: '4px solid #ffd700' }}>
+            <h4 style={{ color: '#fff', margin: '0 0 8px 0' }}>Title</h4>
+            <p style={{ color: '#ccc', margin: 0, fontWeight: 'bold' }}>INR 3,50,000+</p>
           </div>
-          <div className="form-group">
-            <label htmlFor="sponsor-email">Work Email *</label>
-            <input
-              id="sponsor-email"
-              type="email"
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-              className="form-control"
-              placeholder="you@company.com"
-            />
+          <div style={{ padding: '16px', background: 'rgba(0,0,0,0.2)', borderRadius: '8px', borderLeft: '4px solid #c0c0c0' }}>
+            <h4 style={{ color: '#fff', margin: '0 0 8px 0' }}>Co-Title</h4>
+            <p style={{ color: '#ccc', margin: 0, fontWeight: 'bold' }}>INR 2,75,000+</p>
           </div>
-          <div className="form-group">
-            <label htmlFor="sponsor-org">Organization / Company *</label>
-            <input
-              id="sponsor-org"
-              type="text"
-              value={form.organization}
-              onChange={(e) => setForm({ ...form, organization: e.target.value })}
-              className="form-control"
-              placeholder="Company Name"
-            />
+          <div style={{ padding: '16px', background: 'rgba(0,0,0,0.2)', borderRadius: '8px', borderLeft: '4px solid #e5e4e2' }}>
+            <h4 style={{ color: '#fff', margin: '0 0 8px 0' }}>Platinum</h4>
+            <p style={{ color: '#ccc', margin: 0, fontWeight: 'bold' }}>INR 2,00,000+</p>
           </div>
-          <div className="form-group">
-            <label htmlFor="sponsor-message">Additional Details (Optional)</label>
-            <textarea
-              id="sponsor-message"
-              value={form.message}
-              onChange={(e) => setForm({ ...form, message: e.target.value })}
-              className="form-control"
-              rows="4"
-              placeholder="Tell us what sponsorship tiers you are interested in..."
-            />
+          <div style={{ padding: '16px', background: 'rgba(0,0,0,0.2)', borderRadius: '8px', borderLeft: '4px solid #ffb64d' }}>
+            <h4 style={{ color: '#fff', margin: '0 0 8px 0' }}>Gold</h4>
+            <p style={{ color: '#ccc', margin: 0, fontWeight: 'bold' }}>INR 1,25,000+</p>
           </div>
-          {formStatus && (
-            <p className={`form-status ${formStatus.includes('sent') ? 'success' : 'error'}`} style={{ color: formStatus.includes('sent') ? '#4ade80' : '#f87171', marginBottom: '1rem' }}>
-              {formStatus}
-            </p>
-          )}
-          <button type="submit" className="btn btn-primary" style={{ padding: '16px 56px', marginTop: '16px' }}>Submit Application</button>
-        </form>
+          <div style={{ padding: '16px', background: 'rgba(0,0,0,0.2)', borderRadius: '8px', borderLeft: '4px solid #cd7f32' }}>
+            <h4 style={{ color: '#fff', margin: '0 0 8px 0' }}>Bronze</h4>
+            <p style={{ color: '#ccc', margin: 0, fontWeight: 'bold' }}>INR 75,000+</p>
+          </div>
+          <div style={{ padding: '16px', background: 'rgba(0,0,0,0.2)', borderRadius: '8px', borderLeft: '4px solid #4ade80' }}>
+            <h4 style={{ color: '#fff', margin: '0 0 8px 0' }}>Supporter</h4>
+            <p style={{ color: '#ccc', margin: 0, fontWeight: 'bold' }}>Flexible Contribution</p>
+          </div>
+        </div>
+
+        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          <a href="/Sponsorship_Brochure.pdf" download className="btn btn-primary" style={{ padding: '16px 32px', display: 'inline-block' }}>
+            <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+              Download Sponsorship Brochure
+            </span>
+          </a>
+        </div>
+
+        <div style={{ marginTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '2rem' }}>
+          <h3 style={{ marginBottom: '1rem', color: '#d93025' }}>Get in Touch</h3>
+          <p style={{ color: '#ffffff', marginBottom: '1.5rem', lineHeight: '1.5' }}>
+            Booths and speaking slots are limited so contact us today to secure your tier. You can reach out directly to our coordinators or submit the form below.
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px', marginBottom: '3rem' }}>
+            <div style={{ background: 'rgba(0,0,0,0.15)', padding: '16px', borderRadius: '8px' }}>
+              <strong style={{ color: '#fff', fontSize: '1.1rem' }}>Sudhanshu</strong><br />
+              <span style={{ fontSize: '0.9rem', color: '#a0a0a0', display: 'block', marginBottom: '4px' }}>Overall Coordinator</span>
+              <span style={{ fontSize: '0.95rem', color: '#ddd', display: 'block' }}>+91 98919 07290</span>
+              <a href="mailto:iit2024081@iiita.ac.in" style={{ fontSize: '0.95rem', color: 'var(--color-accent)', textDecoration: 'none' }}>iit2024081@iiita.ac.in</a>
+            </div>
+            <div style={{ background: 'rgba(0,0,0,0.15)', padding: '16px', borderRadius: '8px' }}>
+              <strong style={{ color: '#fff', fontSize: '1.1rem' }}>Rishu Kumar</strong><br />
+              <span style={{ fontSize: '0.9rem', color: '#a0a0a0', display: 'block', marginBottom: '4px' }}>Overall Coordinator</span>
+              <span style={{ fontSize: '0.95rem', color: '#ddd', display: 'block' }}>+91 62395 91434</span>
+              <a href="mailto:iit2024183@iiita.ac.in" style={{ fontSize: '0.95rem', color: 'var(--color-accent)', textDecoration: 'none' }}>iit2024183@iiita.ac.in</a>
+            </div>
+            <div style={{ background: 'rgba(0,0,0,0.15)', padding: '16px', borderRadius: '8px' }}>
+              <strong style={{ color: '#fff', fontSize: '1.1rem' }}>Aditya Ajay</strong><br />
+              <span style={{ fontSize: '0.9rem', color: '#a0a0a0', display: 'block', marginBottom: '4px' }}>Overall Coordinator</span>
+              <span style={{ fontSize: '0.95rem', color: '#ddd', display: 'block' }}>+91 92365 18179</span>
+              <a href="mailto:iit2024174@iiita.ac.in" style={{ fontSize: '0.95rem', color: 'var(--color-accent)', textDecoration: 'none' }}>iit2024174@iiita.ac.in</a>
+            </div>
+          </div>
+        </div>
+
+        {/* ── SPONSOR APPLICATION FORM ── */}
+        <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '2rem' }}>
+          <h3 style={{ marginBottom: '1.5rem', color: '#fff' }}>Submit an Inquiry</h3>
+          <form onSubmit={handleSponsorSubmit} className="contact-form" style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div className="form-group">
+              <label htmlFor="sponsor-name">Full Name *</label>
+              <input
+                id="sponsor-name"
+                type="text"
+                value={form.name}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                className="form-control"
+                placeholder="Your Name"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="sponsor-email">Work Email *</label>
+              <input
+                id="sponsor-email"
+                type="email"
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                className="form-control"
+                placeholder="you@company.com"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="sponsor-org">Organization / Company *</label>
+              <input
+                id="sponsor-org"
+                type="text"
+                value={form.organization}
+                onChange={(e) => setForm({ ...form, organization: e.target.value })}
+                className="form-control"
+                placeholder="Company Name"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="sponsor-message">Additional Details (Optional)</label>
+              <textarea
+                id="sponsor-message"
+                value={form.message}
+                onChange={(e) => setForm({ ...form, message: e.target.value })}
+                className="form-control"
+                rows="4"
+                placeholder="Tell us what sponsorship tiers you are interested in..."
+              />
+            </div>
+            {formStatus && (
+              <p className={`form-status ${formStatus.includes('sent') ? 'success' : 'error'}`} style={{ color: formStatus.includes('sent') ? '#4ade80' : '#f87171', marginBottom: '1rem' }}>
+                {formStatus}
+              </p>
+            )}
+            <button type="submit" className="btn btn-primary" style={{ padding: '16px 56px', marginTop: '8px' }}>Send Message</button>
+          </form>
+        </div>
       </div>
     </section>
   )
