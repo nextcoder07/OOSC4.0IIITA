@@ -12,23 +12,6 @@
   object-fit: cover;
   display: block;
 }
-/* Add this to TeamPage.css */
-
-.card-grid.team-grid.scrollable {
-  display: flex;
-  flex-direction: row;
-  overflow-x: auto; 
-  overflow-y: hidden;
-  gap: 16px; 
-  padding-bottom: 12px; 
-  scroll-behavior: smooth;
-}
-
-
-.card-grid.team-grid.scrollable .team-card {
-  flex: 0 0 280px; /* Adjust 280px to fit your design */
-  max-width: 280px;
-}
 
 .team-card {
   text-align: center;
@@ -37,8 +20,8 @@
   align-items: stretch;
   overflow: hidden;
   border-radius: var(--radius-card);
-  width: 280px;
-  flex: 0 0 auto;
+  width: 100%;
+  max-width: 280px;
 }
 
 .team-card .card-content {
@@ -100,63 +83,29 @@
 }
 
 .team-grid {
-  display: flex;
+  display: grid;
+  justify-content: center;
+  justify-items: center;
   gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
-  overflow-x: auto;
-  padding-bottom: 24px;
-  scrollbar-width: thin;
-}
-
-.team-grid.scrollable {
-  flex-wrap: nowrap;
-  cursor: grab;
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-.team-grid.scrollable.active {
-  cursor: grabbing;
-}
-
-.team-grid.scrollable.active .team-card {
-  pointer-events: none;
-}
-
-.team-grid:not(.scrollable) {
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.team-grid::-webkit-scrollbar {
-  height: 8px;
-}
-
-.team-grid::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 4px;
-}
-
-.team-grid::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
-}
-
-.team-grid::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
 }
 
 @media (max-width: 1024px) {
-  .team-card {
-    width: 260px;
+  .team-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   }
 }
 
 @media (max-width: 868px) {
+  .team-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+
   .team-card {
-    width: 240px;
+    max-width: 240px;
   }
 
   .team-category-title {
@@ -166,21 +115,24 @@
 
 @media (max-width: 680px) {
   .team-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 18px;
   }
 
   .team-card {
-    width: 220px;
+    max-width: 220px;
   }
 }
 
 @media (max-width: 580px) {
   .team-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 14px;
   }
 
   .team-card {
-    width: 180px;
+    width: 100%;
+    max-width: 180px;
   }
 
   .team-avatar {
