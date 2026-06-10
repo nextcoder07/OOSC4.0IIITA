@@ -29,7 +29,7 @@ export default function TeamPage({
           return (
             <div key={categoryName} className="team-category-section">
               <h3 className="team-category-title">{categoryName}</h3>
-              <div className="card-grid team-grid">
+              <div className="team-grid">
                 {members.map((member, index) => (
                   <article
                     key={member.id}
