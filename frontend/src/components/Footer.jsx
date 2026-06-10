@@ -72,10 +72,10 @@ export default function Footer() {
         </div>
         <div className="footer-policies">
 
-         {/* <Link to="/privacy">Privacy Policy</Link>
+          <Link to="/privacy">Privacy Policy</Link>
           <span className="dot">•</span>
           <Link to="/terms">Terms of Use</Link>
-          <span className="dot">•</span> 8*/}
+          <span className="dot">•</span>
 
           <span className="made-with-love">
             Made with ❤️ at IIITA

@@ -664,6 +664,36 @@ function App() {
     }).sort((a, b) => a.sortOrder - b.sortOrder)
   }, [schedule, activeDay])
 
+  const getPlaceholderForConfig = (key) => {
+    const defaults = {
+      heroTitle: hero.title,
+      heroSubtitle: hero.subtitle,
+      aboutTitle: about.heading,
+      aboutSubtitle: about.description,
+      scheduleTitle: 'Event Schedule',
+      scheduleSubtitle: '...',
+      speakersTitle: 'Thought Leadership',
+      speakersSubtitle: 'Featured technology leaders, academics, and research engineers guiding our tracks.',
+      sponsorsTitle: 'Conference Supporters',
+      sponsorsSubtitle: 'Academic institutions and corporate engineering partners supporting open systems research.',
+      teamTitle: 'The Organizing Team',
+      teamSubtitle: 'Meet the faculty directors and student committees hosting OOSC 4.0 at IIIT Allahabad.',
+      hackathonBadge: 'OOSC 4.0 · Hackathon 2025',
+      hackathonTitle: 'Build the Future of Open Systems',
+      hackathonTheme: 'AI × Open Source: Powering Intelligent Infrastructure',
+      hackathonPrizePool: '₹1,00,000+',
+      hackathonDuration: '36 Hrs',
+      hackathonTeamSize: '2–4',
+      hackathonDates: 'Aug 28–30',
+      hackathonVenue: 'IIITA',
+      hackathonCtaReady: 'Ready to Build?',
+      hackathonCtaDesc: 'Registration is open until August 10, 2025. Spots are limited — secure your team today.',
+      contactTitle: 'Contact the Organizers',
+      contactSubtitle: 'Inquire about sponsorship opportunities, speaker submissions, or registration access keys.'
+    }
+    return defaults[key] || 'Default text'
+  }
+
   return (
     <div className="app-shell">
       <header
@@ -980,29 +1010,43 @@ function App() {
                   <div className="flex-gap-sm">
                     {field.type === 'textarea' ? (
                       <textarea
-                        defaultValue={siteConfig[field.key] || ''}
+                        value={siteConfig[field.key] || ''}
+                        onChange={(e) => setSiteConfig(prev => ({ ...prev, [field.key]: e.target.value }))}
+                        onFocus={(e) => {
+                          if (e.target.dataset.orig === undefined) {
+                            e.target.dataset.orig = e.target.value;
+                          }
+                        }}
                         onBlur={(e) => {
-                          const val = e.target.value.trim()
-                          if (val !== (siteConfig[field.key] || '')) {
-                            saveSiteConfig(field.key, val)
+                          const val = e.target.value.trim();
+                          if (val !== (e.target.dataset.orig || '').trim()) {
+                            saveSiteConfig(field.key, val);
+                            e.target.dataset.orig = val;
                           }
                         }}
                         className="form-control"
-                        placeholder="Default text"
+                        placeholder={getPlaceholderForConfig(field.key)}
                         rows="3"
                       />
                     ) : (
                       <input
                         type="text"
-                        defaultValue={siteConfig[field.key] || ''}
+                        value={siteConfig[field.key] || ''}
+                        onChange={(e) => setSiteConfig(prev => ({ ...prev, [field.key]: e.target.value }))}
+                        onFocus={(e) => {
+                          if (e.target.dataset.orig === undefined) {
+                            e.target.dataset.orig = e.target.value;
+                          }
+                        }}
                         onBlur={(e) => {
-                          const val = e.target.value.trim()
-                          if (val !== (siteConfig[field.key] || '')) {
-                            saveSiteConfig(field.key, val)
+                          const val = e.target.value.trim();
+                          if (val !== (e.target.dataset.orig || '').trim()) {
+                            saveSiteConfig(field.key, val);
+                            e.target.dataset.orig = val;
                           }
                         }}
                         className="form-control"
-                        placeholder="Default text"
+                        placeholder={getPlaceholderForConfig(field.key)}
                       />
                     )}
                   </div>
