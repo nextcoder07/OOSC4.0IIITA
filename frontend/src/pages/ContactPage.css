@@ -36,7 +36,7 @@
 .contact-detail-card h4 {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.72rem;
-  color: rgb(255, 255, 255);
+  color: var(--color-text-on-panel);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: 2px;
@@ -45,7 +45,7 @@
 .contact-detail-card p {
   font-size: 1rem;
   font-weight: 600;
-  color: rgb(206, 204, 204);
+  color: var(--color-text-on-panel-sub);
 }
 
 .map-wrapper {
@@ -69,11 +69,11 @@
 .contact-form-panel h3 {
   font-size: 1.5rem;
   margin-bottom: 8px;
-  color: rgb(255, 255, 255)
+  color: var(--color-text-on-panel);
 }
 
 .contact-form-panel p {
-  color: rgb(206, 204, 204);
+  color: var(--color-text-on-panel-sub);
   font-size: 0.95rem;
   margin-bottom: 24px;
 }
