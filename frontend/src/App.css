@@ -448,7 +448,7 @@ body::after {
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-brutal), var(--shadow-panel);
-  overflow: hidden;
+  
 }
 
 .content-section::before {
