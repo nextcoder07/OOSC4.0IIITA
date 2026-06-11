@@ -19,11 +19,11 @@
 .policy-container h2 {
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
-  color: white;
+  color: var(--color-heading-bright);
 }
 
 .policy-date {
-  color: white;
+  color: var(--color-heading-bright);
   font-size: 0.9rem;
   margin-bottom: 2rem;
   font-style: italic;
@@ -33,11 +33,11 @@
   font-size: 1.5rem;
   margin-top: 2rem;
   margin-bottom: 1rem;
-  color: white;
+  color: var(--color-heading-bright);
 }
 
 .policy-container p {
-  color: white;
+  color: var(--color-heading-bright);
   line-height: 1.7;
   margin-bottom: 1rem;
   font-size: 1.05rem;

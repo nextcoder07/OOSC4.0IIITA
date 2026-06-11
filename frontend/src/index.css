@@ -12,8 +12,8 @@
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   font-size: 16px;
   line-height: 1.6;
-  color: #e8e8e4;
-  background-color: #000000;
+  color: var(--color-text-on-dark);
+  background-color: var(--color-bg);
   scroll-behavior: smooth;
 }
 
@@ -26,8 +26,8 @@ body,
 
 body {
   font-family: 'Inter', sans-serif;
-  background: #111111;
-  color: #e8e8e4;
+  background: var(--color-bg);
+  color: var(--color-text-on-dark);
   overflow-x: hidden;
   position: relative;
 }
@@ -37,7 +37,7 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-color: #111111;
+  background-color: var(--color-bg);
   background-image: black;
   background-size: 8px 8px;
   pointer-events: none;
@@ -50,9 +50,9 @@ body::before {
 
 /* ─── SCROLLBAR ─────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar        { width: 6px; }
-::-webkit-scrollbar-track  { background: #111111; }
-::-webkit-scrollbar-thumb  { background: #d93025; }
-::-webkit-scrollbar-thumb:hover { background: #b8281f; }
+::-webkit-scrollbar-track  { background: var(--color-bg); }
+::-webkit-scrollbar-thumb  { background: var(--color-accent); }
+::-webkit-scrollbar-thumb:hover { background: var(--color-accent-hover); }
 
 /* ─── TYPOGRAPHY ─────────────────────────────────────────────────────────── */
 h1, h2, h3, h4, h5, h6 {
@@ -80,6 +80,6 @@ img { display: block; max-width: 100%; height: auto; }
 
 /* ─── SELECTION ──────────────────────────────────────────────────────────── */
 ::selection {
-  background-color: rgba(217, 48, 37, 0.35);
-  color: #e8e8e4;
+  background-color: var(--color-selection-bg);
+  color: var(--color-text-on-dark);
 }

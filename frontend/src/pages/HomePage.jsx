@@ -39,14 +39,14 @@ export default function HomePage({ hero, about, siteConfig, navigateTo }) {
       <section className="hero-transitional-details" id="home-details">
         <div className="transitional-grid">
           <div className="transitional-info-card glass-card">
-            <span className="meta-icon"><Calendar size={24} color="#fbbf24" /></span>
+            <span className="meta-icon"><Calendar size={24} color="var(--color-brand-yellow)" /></span>
             <div>
               <h4>Conference Dates</h4>
               <p>{hero.dates}</p>
             </div>
           </div>
           <div className="transitional-info-card glass-card">
-            <span className="meta-icon"><MapPin size={24} color="#60a5fa" /></span>
+            <span className="meta-icon"><MapPin size={24} color="var(--color-brand-blue)" /></span>
             <div>
               <h4>Venue Hub</h4>
               <p>{hero.venue}</p>
@@ -76,7 +76,7 @@ export default function HomePage({ hero, about, siteConfig, navigateTo }) {
             <div className="highlights-stack">
               {about.highlights.map((point, i) => (
                 <div key={i} className="highlight-pill glass-card">
-                  <span className="highlight-bullet"><Check size={16} color="#4ade80" /></span>
+                  <span className="highlight-bullet"><Check size={16} color="var(--color-success)" /></span>
                   <p>{point}</p>
                 </div>
               ))}
@@ -118,27 +118,27 @@ export default function HomePage({ hero, about, siteConfig, navigateTo }) {
         </div>
         <div className="event-overview-grid">
           <div className="overview-card glass-card">
-            <span className="overview-icon"><Mic size={32} color="#a78bfa" /></span>
+            <span className="overview-icon"><Mic size={32} color="var(--color-brand-purple)" /></span>
             <h3>Research Talks</h3>
             <p>In-depth technical sessions on server design, kernel optimizations, and state-of-the-art databases.</p>
           </div>
           <div className="overview-card glass-card">
-            <span className="overview-icon"><Settings size={32} color="#94a3b8" /></span>
+            <span className="overview-icon"><Settings size={32} color="var(--color-brand-slate)" /></span>
             <h3>Workshops</h3>
             <p>Interactive labs guiding developers through deployment orchestrations, API architectures, and systems diagnostics.</p>
           </div>
           <div className="overview-card glass-card">
-            <span className="overview-icon"><Zap size={32} color="#fbbf24" /></span>
+            <span className="overview-icon"><Zap size={32} color="var(--color-brand-yellow)" /></span>
             <h3>Hackathons</h3>
             <p>A multi-hour competitive sprint solving high-priority systems issues with direct coordinator support.</p>
           </div>
           <div className="overview-card glass-card">
-            <span className="overview-icon"><Handshake size={32} color="#4ade80" /></span>
+            <span className="overview-icon"><Handshake size={32} color="var(--color-success)" /></span>
             <h3>Networking Hub</h3>
             <p>Build links between leading research faculties, open source contributors, and corporate engineering advocates.</p>
           </div>
           <div className="overview-card glass-card">
-            <span className="overview-icon"><Globe size={32} color="#60a5fa" /></span>
+            <span className="overview-icon"><Globe size={32} color="var(--color-brand-blue)" /></span>
             <h3>Code Sprints</h3>
             <p>Directly push contributions to whitelisted repositories and explore open system governance protocols.</p>
           </div>

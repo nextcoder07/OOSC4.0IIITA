@@ -8,8 +8,8 @@
 .hackathon-hero {
   padding: 40px 36px;
   border-radius: var(--radius-card);
-  background: linear-gradient(180deg, rgba(248, 244, 236, 0.1), rgba(17, 17, 17, 0.24));
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--color-gradient-hero);
+  border: 1px solid var(--color-card-border);
   position: relative;
   overflow: hidden;
 }
@@ -20,7 +20,7 @@
   inset: 0;
   pointer-events: none;
   border-radius: inherit;
-  background: radial-gradient(circle at top left, rgba(217, 48, 37, 0.12), transparent 32%);
+  background: var(--color-gradient-hero-glow);
 }
 
 .hackathon-hero-inner {
@@ -43,8 +43,8 @@
   gap: 10px;
   padding: 10px 16px;
   border-radius: 999px;
-  background: rgba(255, 250, 242, 0.15);
-  color: #d73b2d;
+  background: var(--color-overlay-warm);
+  color: var(--color-label-red);
   font-weight: 700;
   letter-spacing: 0.04em;
   margin-bottom: 18px;
@@ -54,28 +54,28 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #d73b2d;
+  background: var(--color-label-red);
   display: inline-block;
 }
 
 .hackathon-hero h1 {
   margin: 0 0 10px;
   font-size: clamp(2.2rem, 2.5vw, 3.2rem);
-  color: #f5efe5;
+  color: var(--color-text-snow);
 }
 
 .theme-label {
   display: block;
   margin-bottom: 6px;
   font-size: 0.95rem;
-  color: #d9cfc3;
+  color: var(--color-text-alt-warm);
 }
 
 .theme-name {
   margin: 0 0 24px;
   font-size: 1.5rem;
   font-weight: 700;
-  color: #eab595;
+  color: var(--color-warning);
   line-height: 1.2;
 }
 
@@ -89,9 +89,9 @@
 .hstat {
   padding: 14px 16px;
   border-radius: var(--radius-btn);
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #f6eee3;
+  background: var(--color-panel-surface-soft);
+  border: 1px solid var(--color-card-border);
+  color: var(--color-text-cream);
 }
 
 .hstat-value {
@@ -101,7 +101,7 @@
 }
 
 .hstat-label {
-  color: #d8c9b8;
+  color: var(--color-text-warm-muted);
   font-size: 0.95rem;
 }
 
@@ -114,8 +114,8 @@
 .hk-card {
   padding: 28px;
   border-radius: var(--radius-card);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--color-panel-surface);
+  border: 1px solid var(--color-card-border);
 }
 
 .hk-card-title {
@@ -129,7 +129,7 @@
   width: 44px;
   height: 44px;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--color-panel-surface);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -139,13 +139,13 @@
 .problem-statement-text,
 .panel-subheading {
   margin: 0 0 12px;
-  color: #ffffff;
+  color: var(--color-heading-bright);
   line-height: 1.75;
 }
 
 .hackathon-body .panel-subheading,
 .hackathon-body .panel-subheading.mt-section {
-  color: #ffffff !important;
+  color: var(--color-heading-bright) !important;
 }
 
 .hk-card h3,
@@ -156,7 +156,7 @@
 .prize-position,
 .date-value,
 .hstat-value {
-  color: #ffffff;
+  color: var(--color-heading-bright);
 }
 
 .hk-card p,
@@ -167,7 +167,7 @@
 .step-content p,
 .date-info p,
 .problem-statement-text {
-  color: #d8c9b8;
+  color: var(--color-text-warm-muted);
 }
 
 .hk-card strong,
@@ -177,7 +177,7 @@
 .step-content p strong,
 .date-info p strong,
 .hackathon-cta-strip p strong {
-  color: #ffffff;
+  color: var(--color-heading-bright);
 }
 
 .rules-list,
@@ -199,12 +199,12 @@
 .hackathon-body .hackathon-cta-strip {
   padding: 16px;
   border-radius: var(--radius-btn);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--color-panel-surface);
+  border: 1px solid var(--color-card-border);
 }
 
 .hackathon-body .rule-item p {
-  color: #d8c9b8 !important;
+  color: var(--color-text-warm-muted) !important;
 }
 
 .hackathon-body .rule-item p strong,
@@ -213,14 +213,14 @@
 .hackathon-body .step-content p strong,
 .hackathon-body .date-info p strong,
 .hackathon-body .hackathon-cta-strip p strong {
-  color: #ffffff !important;
+  color: var(--color-heading-bright) !important;
 }
 
 .rule-num,
 .elig-check,
 .step-num {
   font-weight: 700;
-  color: #d73b2d;
+  color: var(--color-label-red);
   margin-right: 12px;
 }
 
@@ -233,14 +233,14 @@
 
 .hackathon-body .special-prize-pill {
   padding: 12px 14px;
-  background: rgba(255, 255, 255, 0.05);
-  color: #d8c9b8 !important;
+  background: var(--color-panel-surface);
+  color: var(--color-text-warm-muted) !important;
   border-radius: 999px;
   font-size: 0.95rem;
 }
 
 .hackathon-body .special-prize-pill span {
-  color: #d8c9b8 !important;
+  color: var(--color-text-warm-muted) !important;
 }
 
 .prizes-grid {
@@ -249,8 +249,8 @@
 
 .prize-card {
   min-height: 190px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--color-panel-surface);
+  border: 1px solid var(--color-card-border);
 }
 
 .prize-medal {
@@ -266,7 +266,7 @@
 
 .prize-amount {
   margin: 6px 0 10px;
-  color: #eab595;
+  color: var(--color-warning);
   font-size: 1.1rem;
 }
 
@@ -295,8 +295,8 @@
 }
 
 .date-dot.active {
-  background: #e9a37a;
-  box-shadow: 0 0 0 6px rgba(233, 163, 122, 0.14);
+  background: var(--color-accent-soft);
+  box-shadow: 0 0 0 6px var(--color-shadow-accent-soft);
 }
 
 .date-info p {
@@ -305,17 +305,17 @@
 
 .date-label {
   font-weight: 700;
-  color: #f5efe5;
+  color: var(--color-text-snow);
 }
 
 .date-value {
-  color: #d8c9b8;
+  color: var(--color-text-warm-muted);
   font-weight: 700;
   margin-top: 6px;
 }
 
 .date-desc {
-  color: #d8c9b8;
+  color: var(--color-text-warm-muted);
 }
 
 .step-item {
@@ -327,8 +327,8 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  color: #f5efe5;
+  background: var(--color-panel-surface-soft);
+  color: var(--color-text-snow);
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -337,12 +337,12 @@
 
 .step-content h4 {
   margin: 0 0 6px;
-  color: #f5efe5;
+  color: var(--color-text-snow);
 }
 
 .step-content p {
   margin: 0;
-  color: #e8dcc8;
+  color: var(--color-text-soft);
   line-height: 1.7;
 }
 
@@ -353,7 +353,7 @@
 .hackathon-cta-strip p,
 .step-content p,
 .date-info p {
-  color: #d8c9b8;
+  color: var(--color-text-warm-muted);
 }
 
 .hackathon-cta-strip {
@@ -362,8 +362,8 @@
   display: flex;
   justify-content: space-between;
   gap: 18px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--color-panel-surface);
+  border: 1px solid var(--color-card-border);
 }
 
 .actions-row {

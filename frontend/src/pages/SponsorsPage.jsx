@@ -53,6 +53,7 @@ export default function SponsorsPage({
 
       <div className="sponsors-wrapper">
         {sortedSponsors.map(({ category, sponsors: group }) => {
+          const tierClass = `sponsor-card--${category.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '')}`
           if (group.length === 0 && !adminMode) return null
           return (
             <div key={category} className="sponsor-tier-group">
@@ -75,7 +76,7 @@ export default function SponsorsPage({
                       href={sponsor.website ? (sponsor.website.trim().startsWith('http://') || sponsor.website.trim().startsWith('https://') ? sponsor.website.trim() : `https://${sponsor.website.trim()}`) : '#'}
                       target="_blank"
                       rel="noreferrer"
-                      className="sponsor-card"
+                      className={`sponsor-card ${tierClass}`}
                       draggable={false}
                     >
                       <div className="logo-container">
@@ -103,38 +104,38 @@ export default function SponsorsPage({
       </div>
 
       {/* ── SPONSORSHIP TIERS & BROCHURE ── */}
-      <div className="sponsorship-prospectus" style={{ margin: '4rem auto 0', maxWidth: '840px', padding: '2rem', background: 'rgba(255, 255, 255, 0.05)', borderRadius: '12px', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
+      <div className="sponsorship-prospectus" style={{ margin: '4rem auto 0', maxWidth: '840px', padding: '2rem', background: 'var(--color-panel-surface)', borderRadius: '12px', border: '1px solid var(--color-border-soft)' }}>
         <div style={{ textAlign: 'center' }}>
-          <h3 style={{ marginBottom: '1.5rem', color: '#d93025' }}>Sponsorship Opportunities</h3>
-          <p style={{ marginBottom: '2rem', color: '#ffffff', lineHeight: '1.6', maxWidth: '700px', margin: '0 auto 2rem auto' }}>
+          <h3 style={{ marginBottom: '1.5rem', color: 'var(--color-accent)' }}>Sponsorship Opportunities</h3>
+          <p style={{ marginBottom: '2rem', color: 'var(--color-text-snow)', lineHeight: '1.6', maxWidth: '700px', margin: '0 auto 2rem auto' }}>
             By sponsoring OOSC 4.0, your brand becomes an integral part of this massive milestone event. Your support directly funds the ecosystem—covering the travel and accommodation of global speakers, powering the hackathon infrastructure, and providing an unforgettable experience for attendees.
           </p>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px', marginBottom: '2rem' }}>
-          <div style={{ padding: '16px', background: 'rgba(0,0,0,0.2)', borderRadius: '8px', borderLeft: '4px solid #ffd700' }}>
-            <h4 style={{ color: '#fff', margin: '0 0 8px 0' }}>Title</h4>
-            <p style={{ color: '#ccc', margin: 0, fontWeight: 'bold' }}>INR 3,50,000+</p>
+          <div style={{ padding: '16px', background: 'var(--color-panel-overlay)', borderRadius: '8px', borderLeft: '4px solid var(--color-brand-gold)' }}>
+            <h4 style={{ color: 'var(--color-text-snow)', margin: '0 0 8px 0' }}>Title</h4>
+            <p style={{ color: 'var(--color-text-muted-strong)', margin: 0, fontWeight: 'bold' }}>INR 3,50,000+</p>
           </div>
-          <div style={{ padding: '16px', background: 'rgba(0,0,0,0.2)', borderRadius: '8px', borderLeft: '4px solid #c0c0c0' }}>
-            <h4 style={{ color: '#fff', margin: '0 0 8px 0' }}>Co-Title</h4>
-            <p style={{ color: '#ccc', margin: 0, fontWeight: 'bold' }}>INR 2,75,000+</p>
+          <div style={{ padding: '16px', background: 'var(--color-panel-overlay)', borderRadius: '8px', borderLeft: '4px solid var(--color-brand-silver)' }}>
+            <h4 style={{ color: 'var(--color-text-snow)', margin: '0 0 8px 0' }}>Co-Title</h4>
+            <p style={{ color: 'var(--color-text-muted-strong)', margin: 0, fontWeight: 'bold' }}>INR 2,75,000+</p>
           </div>
-          <div style={{ padding: '16px', background: 'rgba(0,0,0,0.2)', borderRadius: '8px', borderLeft: '4px solid #e5e4e2' }}>
-            <h4 style={{ color: '#fff', margin: '0 0 8px 0' }}>Platinum</h4>
-            <p style={{ color: '#ccc', margin: 0, fontWeight: 'bold' }}>INR 2,00,000+</p>
+          <div style={{ padding: '16px', background: 'var(--color-panel-overlay)', borderRadius: '8px', borderLeft: '4px solid var(--color-brand-platinum)' }}>
+            <h4 style={{ color: 'var(--color-text-snow)', margin: '0 0 8px 0' }}>Platinum</h4>
+            <p style={{ color: 'var(--color-text-muted-strong)', margin: 0, fontWeight: 'bold' }}>INR 2,00,000+</p>
           </div>
-          <div style={{ padding: '16px', background: 'rgba(0,0,0,0.2)', borderRadius: '8px', borderLeft: '4px solid #ffb64d' }}>
-            <h4 style={{ color: '#fff', margin: '0 0 8px 0' }}>Gold</h4>
-            <p style={{ color: '#ccc', margin: 0, fontWeight: 'bold' }}>INR 1,25,000+</p>
+          <div style={{ padding: '16px', background: 'var(--color-panel-overlay)', borderRadius: '8px', borderLeft: '4px solid var(--color-brand-gold)' }}>
+            <h4 style={{ color: 'var(--color-text-snow)', margin: '0 0 8px 0' }}>Gold</h4>
+            <p style={{ color: 'var(--color-text-muted-strong)', margin: 0, fontWeight: 'bold' }}>INR 1,25,000+</p>
           </div>
-          <div style={{ padding: '16px', background: 'rgba(0,0,0,0.2)', borderRadius: '8px', borderLeft: '4px solid #cd7f32' }}>
-            <h4 style={{ color: '#fff', margin: '0 0 8px 0' }}>Bronze</h4>
-            <p style={{ color: '#ccc', margin: 0, fontWeight: 'bold' }}>INR 75,000+</p>
+          <div style={{ padding: '16px', background: 'var(--color-panel-overlay)', borderRadius: '8px', borderLeft: '4px solid var(--color-brand-bronze)' }}>
+            <h4 style={{ color: 'var(--color-text-snow)', margin: '0 0 8px 0' }}>Bronze</h4>
+            <p style={{ color: 'var(--color-text-muted-strong)', margin: 0, fontWeight: 'bold' }}>INR 75,000+</p>
           </div>
-          <div style={{ padding: '16px', background: 'rgba(0,0,0,0.2)', borderRadius: '8px', borderLeft: '4px solid #4ade80' }}>
-            <h4 style={{ color: '#fff', margin: '0 0 8px 0' }}>Supporter</h4>
-            <p style={{ color: '#ccc', margin: 0, fontWeight: 'bold' }}>Flexible Contribution</p>
+          <div style={{ padding: '16px', background: 'var(--color-panel-overlay)', borderRadius: '8px', borderLeft: '4px solid var(--color-success)' }}>
+            <h4 style={{ color: 'var(--color-text-snow)', margin: '0 0 8px 0' }}>Supporter</h4>
+            <p style={{ color: 'var(--color-text-muted-strong)', margin: 0, fontWeight: 'bold' }}>Flexible Contribution</p>
           </div>
         </div>
 
@@ -147,36 +148,36 @@ export default function SponsorsPage({
           </a>
         </div>
 
-        <div style={{ marginTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '2rem' }}>
-          <h3 style={{ marginBottom: '1rem', color: '#d93025' }}>Get in Touch</h3>
-          <p style={{ color: '#ffffff', marginBottom: '1.5rem', lineHeight: '1.5' }}>
+        <div style={{ marginTop: '2rem', borderTop: '1px solid var(--color-border-soft)', paddingTop: '2rem' }}>
+          <h3 style={{ marginBottom: '1rem', color: 'var(--color-accent)' }}>Get in Touch</h3>
+          <p style={{ color: 'var(--color-text-snow)', marginBottom: '1.5rem', lineHeight: '1.5' }}>
             Booths and speaking slots are limited so contact us today to secure your tier. You can reach out directly to our coordinators or submit the form below.
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px', marginBottom: '3rem' }}>
-            <div style={{ background: 'rgba(0,0,0,0.15)', padding: '16px', borderRadius: '8px' }}>
-              <strong style={{ color: '#fff', fontSize: '1.1rem' }}>Sudhanshu</strong><br />
-              <span style={{ fontSize: '0.9rem', color: '#a0a0a0', display: 'block', marginBottom: '4px' }}>Overall Coordinator</span>
-              <span style={{ fontSize: '0.95rem', color: '#ddd', display: 'block' }}>+91 98919 07290</span>
+            <div style={{ background: 'var(--color-panel-overlay-soft)', padding: '16px', borderRadius: '8px' }}>
+              <strong style={{ color: 'var(--color-text-snow)', fontSize: '1.1rem' }}>Sudhanshu</strong><br />
+              <span style={{ fontSize: '0.9rem', color: 'var(--color-text-muted-strong)', display: 'block', marginBottom: '4px' }}>Overall Coordinator</span>
+              <span style={{ fontSize: '0.95rem', color: 'var(--color-text-light)', display: 'block' }}>+91 98919 07290</span>
               <a href="mailto:iit2024081@iiita.ac.in" style={{ fontSize: '0.95rem', color: 'var(--color-accent)', textDecoration: 'none' }}>iit2024081@iiita.ac.in</a>
             </div>
-            <div style={{ background: 'rgba(0,0,0,0.15)', padding: '16px', borderRadius: '8px' }}>
-              <strong style={{ color: '#fff', fontSize: '1.1rem' }}>Rishu Kumar</strong><br />
-              <span style={{ fontSize: '0.9rem', color: '#a0a0a0', display: 'block', marginBottom: '4px' }}>Overall Coordinator</span>
-              <span style={{ fontSize: '0.95rem', color: '#ddd', display: 'block' }}>+91 62395 91434</span>
+            <div style={{ background: 'var(--color-panel-overlay-soft)', padding: '16px', borderRadius: '8px' }}>
+              <strong style={{ color: 'var(--color-text-snow)', fontSize: '1.1rem' }}>Rishu Kumar</strong><br />
+              <span style={{ fontSize: '0.9rem', color: 'var(--color-text-muted-strong)', display: 'block', marginBottom: '4px' }}>Overall Coordinator</span>
+              <span style={{ fontSize: '0.95rem', color: 'var(--color-text-light)', display: 'block' }}>+91 62395 91434</span>
               <a href="mailto:iit2024183@iiita.ac.in" style={{ fontSize: '0.95rem', color: 'var(--color-accent)', textDecoration: 'none' }}>iit2024183@iiita.ac.in</a>
             </div>
-            <div style={{ background: 'rgba(0,0,0,0.15)', padding: '16px', borderRadius: '8px' }}>
-              <strong style={{ color: '#fff', fontSize: '1.1rem' }}>Aditya Ajay</strong><br />
-              <span style={{ fontSize: '0.9rem', color: '#a0a0a0', display: 'block', marginBottom: '4px' }}>Overall Coordinator</span>
-              <span style={{ fontSize: '0.95rem', color: '#ddd', display: 'block' }}>+91 92365 18179</span>
+            <div style={{ background: 'var(--color-panel-overlay-soft)', padding: '16px', borderRadius: '8px' }}>
+              <strong style={{ color: 'var(--color-text-snow)', fontSize: '1.1rem' }}>Aditya Ajay</strong><br />
+              <span style={{ fontSize: '0.9rem', color: 'var(--color-text-muted-strong)', display: 'block', marginBottom: '4px' }}>Overall Coordinator</span>
+              <span style={{ fontSize: '0.95rem', color: 'var(--color-text-light)', display: 'block' }}>+91 92365 18179</span>
               <a href="mailto:iit2024174@iiita.ac.in" style={{ fontSize: '0.95rem', color: 'var(--color-accent)', textDecoration: 'none' }}>iit2024174@iiita.ac.in</a>
             </div>
           </div>
         </div>
 
         {/* ── SPONSOR APPLICATION FORM ── */}
-        <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '2rem' }}>
-          <h3 style={{ marginBottom: '1.5rem', color: '#fff' }}>Submit an Inquiry</h3>
+        <div style={{ borderTop: '1px solid var(--color-border-soft)', paddingTop: '2rem' }}>
+          <h3 style={{ marginBottom: '1.5rem', color: 'var(--color-text-snow)' }}>Submit an Inquiry</h3>
           <form onSubmit={handleSponsorSubmit} className="contact-form" style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div className="form-group">
               <label htmlFor="sponsor-name">Full Name *</label>
@@ -223,7 +224,7 @@ export default function SponsorsPage({
               />
             </div>
             {formStatus && (
-              <p className={`form-status ${formStatus.includes('sent') ? 'success' : 'error'}`} style={{ color: formStatus.includes('sent') ? '#4ade80' : '#f87171', marginBottom: '1rem' }}>
+              <p className={`form-status ${formStatus.includes('sent') ? 'success' : 'error'}`} style={{ color: formStatus.includes('sent') ? 'var(--color-success)' : 'var(--color-error)', marginBottom: '1rem' }}>
                 {formStatus}
               </p>
             )}

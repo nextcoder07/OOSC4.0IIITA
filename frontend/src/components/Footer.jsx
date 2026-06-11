@@ -79,7 +79,7 @@ export default function Footer() {
           <span className="dot">•</span>
 
           <span className="made-with-love" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-            Made with <Heart size={14} color="#ef4444" fill="#ef4444" /> at IIITA
+            Made with <Heart size={14} color="var(--color-brand-red)" fill="var(--color-brand-red)" /> at IIITA
           </span>
         </div>
       </div>

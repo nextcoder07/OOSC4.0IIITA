@@ -211,14 +211,14 @@ const knowledgeBase = [
 ]
 
 const quickActions = [
-  { label: <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Calendar size={14} color="#f87171" /> When & Where?</span>, query: 'when and where is the conference?' },
-  { label: <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><PenLine size={14} color="#60a5fa" /> Register</span>, query: 'how to register?' },
-  { label: <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Zap size={14} color="#facc15" /> Hackathon</span>, query: 'tell me about the hackathon' },
-  { label: <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Mic size={14} color="#a78bfa" /> Speakers</span>, query: 'who are the speakers?' },
-  { label: <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><ClipboardList size={14} color="#9ca3af" /> Schedule</span>, query: 'what is the schedule?' },
-  { label: <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Trophy size={14} color="#fbbf24" /> Prizes</span>, query: 'what are the prizes?' },
-  { label: <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Mail size={14} color="#4ade80" /> Contact</span>, query: 'how to contact organizers?' },
-  { label: <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Map size={14} color="#38bdf8" /> All Pages</span>, query: 'show me all pages' },
+  { label: <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Calendar size={14} color="var(--color-brand-orange)" /> When & Where?</span>, query: 'when and where is the conference?' },
+  { label: <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><PenLine size={14} color="var(--color-brand-blue)" /> Register</span>, query: 'how to register?' },
+  { label: <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Zap size={14} color="var(--color-brand-yellow)" /> Hackathon</span>, query: 'tell me about the hackathon' },
+  { label: <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Mic size={14} color="var(--color-brand-purple)" /> Speakers</span>, query: 'who are the speakers?' },
+  { label: <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><ClipboardList size={14} color="var(--color-brand-slate)" /> Schedule</span>, query: 'what is the schedule?' },
+  { label: <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Trophy size={14} color="var(--color-brand-yellow)" /> Prizes</span>, query: 'what are the prizes?' },
+  { label: <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Mail size={14} color="var(--color-success)" /> Contact</span>, query: 'how to contact organizers?' },
+  { label: <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Map size={14} color="var(--color-brand-blue)" /> All Pages</span>, query: 'show me all pages' },
 ]
 
 // ─── INTENT-BASED MATCHER ──────────────────────────────────────────────────────
@@ -387,7 +387,7 @@ export default function ChatBot({ navigateTo }) {
       <div className={`cb-window ${isOpen ? 'cb-window-open' : ''}`}>
         <div className="cb-header">
           <div className="cb-header-info">
-            <div className="cb-avatar"><Bot size={24} color="#60a5fa" /></div>
+            <div className="cb-avatar"><Bot size={24} color="var(--color-brand-blue)" /></div>
             <div>
               <h4 className="cb-header-title">OOSC'26 Assistant</h4>
               <span className="cb-status-dot" /><span className="cb-status-text">Online</span>
@@ -403,7 +403,7 @@ export default function ChatBot({ navigateTo }) {
         <div className="cb-messages">
           {messages.map((msg, i) => (
             <div key={i} className={`cb-msg ${msg.sender === 'bot' ? 'cb-msg-bot' : 'cb-msg-user'}`}>
-              {msg.sender === 'bot' && <div className="cb-msg-avatar"><Bot size={16} color="#60a5fa" /></div>}
+              {msg.sender === 'bot' && <div className="cb-msg-avatar"><Bot size={16} color="var(--color-brand-blue)" /></div>}
               <div className={`cb-msg-bubble ${msg.sender === 'bot' ? 'cb-bubble-bot' : 'cb-bubble-user'}`}>
                 <div className="cb-msg-content">{renderMessageText(msg.text)}</div>
                 {msg.nav && (
@@ -416,7 +416,7 @@ export default function ChatBot({ navigateTo }) {
           ))}
           {isTyping && (
             <div className="cb-msg cb-msg-bot">
-              <div className="cb-msg-avatar"><Bot size={16} color="#60a5fa" /></div>
+              <div className="cb-msg-avatar"><Bot size={16} color="var(--color-brand-blue)" /></div>
               <div className="cb-msg-bubble cb-bubble-bot cb-typing-bubble">
                 <div className="cb-typing-dots"><span /><span /><span /></div>
               </div>

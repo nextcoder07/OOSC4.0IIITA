@@ -874,12 +874,12 @@ function App() {
       {/* Page Content Body */}
       <main className={`page-body ${currentPage === 'home' ? 'page-body--home' : 'page-body--inner'}`}>
         {apiError && (
-          <div className="api-error-banner" style={{ margin: '0 1rem 1rem', padding: '1rem', background: '#f8d7da', color: '#842029', borderRadius: '10px', border: '1px solid #f5c2c7' }}>
+          <div className="api-error-banner" style={{ margin: '0 1rem 1rem', padding: '1rem', background: 'var(--color-alert-error-bg)', color: 'var(--color-error)', borderRadius: '10px', border: '1px solid var(--color-error)' }}>
             <strong>Data load issue:</strong> {apiError}
           </div>
         )}
         <ErrorBoundary>
-          <Suspense fallback={<div style={{ padding: '2rem', textAlign: 'center', color: '#94a3b8' }}>Loading view...</div>}>
+          <Suspense fallback={<div style={{ padding: '2rem', textAlign: 'center', color: 'var(--color-text-muted-strong)' }}>Loading view...</div>}>
             <Routes>
           <Route path="/" element={
             <HomePage hero={hero} about={about} siteConfig={siteConfig} navigateTo={navigateTo} />

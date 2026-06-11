@@ -17,14 +17,14 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div style={{ padding: '2rem', textAlign: 'center', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#09090b', color: '#f8fafc' }}>
-          <h2 style={{ fontSize: '2rem', marginBottom: '1rem', color: '#f87171' }}>Something went wrong.</h2>
-          <p style={{ maxWidth: '600px', color: '#94a3b8', marginBottom: '2rem' }}>
+        <div style={{ padding: '2rem', textAlign: 'center', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'var(--color-bg)', color: 'var(--color-text-on-dark)' }}>
+          <h2 style={{ fontSize: '2rem', marginBottom: '1rem', color: 'var(--color-error)' }}>Something went wrong.</h2>
+          <p style={{ maxWidth: '600px', color: 'var(--color-text-muted-strong)', marginBottom: '2rem' }}>
             The application encountered an unexpected error. Please try refreshing the page.
           </p>
           <button 
             onClick={() => window.location.reload()} 
-            style={{ padding: '0.75rem 1.5rem', background: '#3b82f6', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }}
+            style={{ padding: '0.75rem 1.5rem', background: 'var(--color-brand-blue-strong)', color: 'var(--color-text-snow)', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }}
           >
             Refresh Page
           </button>
