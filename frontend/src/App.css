@@ -94,7 +94,7 @@ body::after {
   background-size: 100% 4px;
   z-index: 9999;
   pointer-events: none;
-  opacity: 0.12;
+  opacity: 0.02;
   /* Very subtle to preserve readability */
 }
 
@@ -1530,8 +1530,9 @@ body::after {
 
 @media (max-width: 868px) {
   .site-header {
-    padding: 6px 22px;
-    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .brand-mark {
@@ -1540,9 +1541,19 @@ body::after {
 
   .hamburger-toggle {
     display: flex;
+    margin-left: 12px;
   }
 
   .header-actions {
+    display: flex !important;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+  }
+  .header-actions .btn-admin {
+    display: none;
+  }
+  .btn-nav-cta {
     display: none;
   }
 
@@ -1591,7 +1602,7 @@ body::after {
     color: var(--color-text-on-dark);
     margin-top: 10px;
   }
-
+  
   .logout-btn {
     background: var(--color-accent);
     color: var(--color-text-on-dark);
@@ -1910,3 +1921,15 @@ html[data-theme="light"] body {
   color: var(--color-accent);
   border-color: var(--color-accent);
 }
+
+
+@media (max-width: 868px) {
+  .theme-toggle-btn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+}
+
+

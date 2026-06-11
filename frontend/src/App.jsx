@@ -758,17 +758,7 @@ function App() {
           <img src="/OOSC_logo.png" alt="OOSC logo" className="brand-logo" />
         </button>
 
-        {/* Mobile Hamburger menu toggle button */}
-        <button
-          type="button"
-          className={`hamburger-toggle ${mobileMenuOpen ? 'open' : ''}`}
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle navigation menu"
-        >
-          <span className="toggle-bar"></span>
-          <span className="toggle-bar"></span>
-          <span className="toggle-bar"></span>
-        </button>
+        
 
         {/* Main Nav */}
         <nav className={`main-nav ${mobileMenuOpen ? 'mobile-open' : ''}`} aria-label="Primary navigation">
@@ -801,6 +791,20 @@ function App() {
           >
             {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
           </button>
+
+          {/* Mobile Hamburger menu toggle button */}
+        <button
+          type="button"
+          className={`hamburger-toggle ${mobileMenuOpen ? 'open' : ''}`}
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle navigation menu"
+        >
+          <span className="toggle-bar"></span>
+          <span className="toggle-bar"></span>
+          <span className="toggle-bar"></span>
+        </button>
+
+
           <button
             type="button"
             className="btn btn-nav-cta"

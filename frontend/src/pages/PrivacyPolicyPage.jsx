@@ -6,7 +6,7 @@ export default function PrivacyPolicyPage() {
     <section className="content-section policy-section">
       <div className="policy-container glass-card">
         <h2>Privacy Policy</h2>
-        <p className="policy-date">Effective Date: August 28, 2025</p>
+        <p className="policy-date">Effective Date: August 28, 2026</p>
         
         <h3>1. Information We Collect</h3>
         <p>We collect information you provide directly to us, such as when you register for the event, fill out a form, or communicate with us. This may include your name, email address, phone number, institution details, and any other information you choose to provide.</p>

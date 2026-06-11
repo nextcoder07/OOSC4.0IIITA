@@ -10,7 +10,7 @@ const knowledgeBase = [
     intents: ['what is oosc', 'what is this conference', 'what is this event', 'tell me about oosc', 'about this event'],
     phrases: ['about oosc', 'about the conference', 'about event', 'oosc 4.0', 'open source conference'],
     words: [],
-    answer: `**OOSC'25** is the annual *Open Source Systems Conference* at **IIT Kanpur**. It brings together researchers, developers, students, and industry leaders to explore distributed systems, cloud-native platforms, open source tooling, and collaborative innovation.`,
+    answer: `**OOSC'26** is the annual *Open Source Systems Conference* at **IIIT ALLAHABAD**. It brings together researchers, developers, students, and industry leaders to explore distributed systems, cloud-native platforms, open source tooling, and collaborative innovation.`,
     nav: { label: 'Visit Home Page', route: 'home' },
   },
   {
@@ -18,7 +18,7 @@ const knowledgeBase = [
     intents: ['when is the conference', 'when does it start', 'when is oosc', 'what are the dates', 'which month'],
     phrases: ['conference date', 'event date', 'start date', 'event dates'],
     words: ['dates'],
-    answer: `📅 **OOSC'25** runs from **August 28–30, 2025** — that's 3 full days of talks, workshops, hackathons, and networking!`,
+    answer: `📅 **OOSC'26** runs from **August 28–30, 2026** — that's 3 full days of talks, workshops, hackathons, and networking!`,
     nav: { label: 'See Full Schedule', route: 'schedule' },
   },
   {
@@ -26,7 +26,7 @@ const knowledgeBase = [
     intents: ['where is the conference', 'where is it held', 'where is oosc', 'how to reach', 'what is the venue'],
     phrases: ['venue location', 'iiit allahabad', 'conference venue', 'event location'],
     words: ['venue', 'location', 'address', 'campus', 'prayagraj', 'allahabad', 'directions'],
-    answer: `📍 The conference is held at **IIT Kanpur** — Kalyanpur, Kanpur, Uttar Pradesh 208016.`,
+    answer: `📍 The conference is held at **IIIT ALLAHABAD** — Kalyanpur, Kanpur, Uttar Pradesh 208016.`,
     nav: { label: 'View Location & Map', route: 'contact' },
   },
   {
@@ -50,7 +50,7 @@ const knowledgeBase = [
     intents: ['who are the sponsors', 'who sponsors oosc', 'how to become a sponsor', 'tell me about sponsors'],
     phrases: ['sponsor tiers', 'become a sponsor', 'sponsorship opportunities'],
     words: ['sponsors', 'sponsorship', 'sponsoring'],
-    answer: `🤝 OOSC'25 is supported by **10+ enterprise sponsors** across tiers: Title, Platinum, Gold, Silver, Community, and Media Partners. Interested in sponsoring? Reach out via the Contact page!`,
+    answer: `🤝 OOSC'26 is supported by **10+ enterprise sponsors** across tiers: Title, Platinum, Gold, Silver, Community, and Media Partners. Interested in sponsoring? Reach out via the Contact page!`,
     nav: { label: 'View Sponsors', route: 'sponsors' },
   },
   {
@@ -66,7 +66,7 @@ const knowledgeBase = [
     intents: ['who organized this', 'who made this', 'who built this', 'who is behind this', 'who runs this', 'who created this', 'who developed this', 'who are the organizers', 'tell me about the team', 'who made this website'],
     phrases: ['organizing committee', 'core team', 'organizing team', 'event organizers', 'made this website', 'built this website', 'created this website', 'developed this website'],
     words: ['organizers', 'organizer', 'committee', 'volunteers'],
-    answer: `👥 OOSC'25 is organized by the student and faculty community of **IIT Kanpur**. Our team includes Faculty Coordinators, Student Coordinators, Technical Team, Design Team, and Hospitality & Logistics.`,
+    answer: `👥 OOSC'26 is organized by the student and faculty community of **IIT Kanpur**. Our team includes Faculty Coordinators, Student Coordinators, Technical Team, Design Team, and Hospitality & Logistics.`,
     nav: { label: 'Meet the Team', route: 'team' },
   },
   {
@@ -74,7 +74,7 @@ const knowledgeBase = [
     intents: ['tell me about the hackathon', 'what is the hackathon', 'hackathon details', 'how does the hackathon work'],
     phrases: ['hackathon tracks', 'coding challenge', 'hackathon competition'],
     words: ['hackathon', 'hacking'],
-    answer: `⚡ The **OOSC'25 Hackathon** is a 36-hour competition with a prize pool of **₹1,00,000+**! Teams of 2–4 members work on AI × Open Source challenges across 3 tracks:\n\n• **Track A** — Intelligent DevOps\n• **Track B** — Smart Data Systems\n• **Track C** — Open AI Infra`,
+    answer: `⚡ The **OOSC'26 Hackathon** is a 36-hour competition with a prize pool of **₹1,00,000+**! Teams of 2–4 members work on AI × Open Source challenges across 3 tracks:\n\n• **Track A** — Intelligent DevOps\n• **Track B** — Smart Data Systems\n• **Track C** — Open AI Infra`,
     nav: { label: 'Hackathon Details', route: 'hackathon' },
   },
   {
@@ -122,7 +122,7 @@ const knowledgeBase = [
     intents: ['how can i network', 'are there networking events', 'can i meet mentors'],
     phrases: ['networking hub', 'mentor hours', 'meet mentors'],
     words: ['networking', 'mentorship', 'mentors'],
-    answer: `🤝 OOSC'25 offers incredible networking:\n• **Networking Hub** for connecting with faculty, contributors, and engineers\n• **Mentor Hours** — 1-on-1 sessions with senior open source contributors\n• **Sponsor Showcase** — meet company reps and explore opportunities`,
+    answer: `🤝 OOSC'26 offers incredible networking:\n• **Networking Hub** for connecting with faculty, contributors, and engineers\n• **Mentor Hours** — 1-on-1 sessions with senior open source contributors\n• **Sponsor Showcase** — meet company reps and explore opportunities`,
     nav: { label: 'View Schedule', route: 'schedule' },
   },
   {
@@ -138,7 +138,7 @@ const knowledgeBase = [
     intents: ['what are code sprints', 'how to contribute', 'can i contribute to open source'],
     phrases: ['code sprint', 'open source contribution'],
     words: ['sprint', 'contribute', 'contribution'],
-    answer: `🌐 **Code Sprints** are a core part of OOSC'25! You can directly push contributions to whitelisted repositories and explore open system governance protocols during the event.`,
+    answer: `🌐 **Code Sprints** are a core part of OOSC'26! You can directly push contributions to whitelisted repositories and explore open system governance protocols during the event.`,
     nav: { label: 'Learn More', route: 'home' },
   },
   {
@@ -146,7 +146,7 @@ const knowledgeBase = [
     intents: ['are there research talks', 'is it academic', 'can phd students present'],
     phrases: ['research talks', 'academic papers', 'research panels'],
     words: ['research', 'academic', 'papers', 'publication'],
-    answer: `🔬 OOSC'25 bridges academia and open source with:\n• **Research talks** on server design, kernel optimizations, and databases\n• **Panel discussions** on open source governance\n• Access to developer workshops and server labs`,
+    answer: `🔬 OOSC'26 bridges academia and open source with:\n• **Research talks** on server design, kernel optimizations, and databases\n• **Panel discussions** on open source governance\n• Access to developer workshops and server labs`,
     nav: { label: 'View Speakers', route: 'speakers' },
   },
   {
@@ -185,14 +185,14 @@ const knowledgeBase = [
     intents: [],
     phrases: ['good morning', 'good evening', 'good afternoon'],
     words: ['hi', 'hello', 'hey', 'hola', 'namaste', 'howdy', 'sup', 'yo'],
-    answer: `👋 Hey there! Welcome to OOSC'25! I'm here to help you navigate the website and answer your questions. What would you like to know?`,
+    answer: `👋 Hey there! Welcome to OOSC'26! I'm here to help you navigate the website and answer your questions. What would you like to know?`,
   },
   {
     id: 'thanks',
     intents: [],
     phrases: ['thank you', 'thanks a lot'],
     words: ['thanks', 'thx', 'appreciate', 'ty'],
-    answer: `😊 You're welcome! Feel free to ask if you have any more questions. See you at OOSC'25! 🚀`,
+    answer: `😊 You're welcome! Feel free to ask if you have any more questions. See you at OOSC'26! 🚀`,
   },
   {
     id: 'navigate',
@@ -206,7 +206,7 @@ const knowledgeBase = [
     intents: [],
     phrases: ['see you', 'good bye'],
     words: ['bye', 'goodbye', 'later'],
-    answer: `👋 Goodbye! Hope to see you at OOSC'25 — Aug 28–30 at IIT Kanpur. Take care! 🎉`,
+    answer: `👋 Goodbye! Hope to see you at OOSC'26 — Aug 28–30 at IIT Kanpur. Take care! 🎉`,
   },
 ]
 
@@ -293,7 +293,7 @@ export default function ChatBot({ navigateTo }) {
   const [messages, setMessages] = useState([
     {
       sender: 'bot',
-      text: `👋 Hi! I'm the **OOSC'25 Assistant**. I can help you navigate the website, find event info, and answer your questions.\n\nTry the quick actions below or type your question!`,
+      text: `👋 Hi! I'm the **OOSC'26 Assistant**. I can help you navigate the website, find event info, and answer your questions.\n\nTry the quick actions below or type your question!`,
       timestamp: new Date(),
     },
   ])
@@ -389,7 +389,7 @@ export default function ChatBot({ navigateTo }) {
           <div className="cb-header-info">
             <div className="cb-avatar"><Bot size={24} color="#60a5fa" /></div>
             <div>
-              <h4 className="cb-header-title">OOSC'25 Assistant</h4>
+              <h4 className="cb-header-title">OOSC'26 Assistant</h4>
               <span className="cb-status-dot" /><span className="cb-status-text">Online</span>
             </div>
           </div>
@@ -436,7 +436,7 @@ export default function ChatBot({ navigateTo }) {
         <div className="cb-input-area">
           <input ref={inputRef} type="text" className="cb-input" value={input}
             onChange={(e) => setInput(e.target.value)} onKeyDown={handleKeyDown}
-            placeholder="Ask about OOSC'25..." disabled={isTyping}
+            placeholder="Ask about OOSC'26..." disabled={isTyping}
           />
           <button type="button" className="cb-send-btn" onClick={() => handleSend()}
             disabled={!input.trim() || isTyping} aria-label="Send message">

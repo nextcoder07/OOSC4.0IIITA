@@ -6,7 +6,7 @@ export default function TermsOfUsePage() {
     <section className="content-section policy-section">
       <div className="policy-container glass-card">
         <h2>Terms of Use</h2>
-        <p className="policy-date">Effective Date: August 28, 2025</p>
+        <p className="policy-date">Effective Date: August 28, 2026</p>
         
         <h3>1. Acceptance of Terms</h3>
         <p>By accessing or using the OOSC 4.0 website and registering for our events, you agree to comply with and be bound by these Terms of Use. If you do not agree with these terms, please do not use our website or services.</p>
