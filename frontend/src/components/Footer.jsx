@@ -4,13 +4,17 @@ import { Heart } from 'lucide-react'
 export default function Footer() {
   const year = new Date().getFullYear()
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
     <footer className="site-footer glass-card">
       <div className="footer-grid-outer">
         
         {/* Brand Block */}
         <div className="footer-brand-column">
-          <Link to="/" className="footer-logo" aria-label="Go to home page">
+          <Link to="/" className="footer-logo" aria-label="Go to home page" onClick={scrollToTop}>
             <img src="/OOSC_logo.png" alt="OOSC logo" className="footer-logo-img" />
           </Link>
           <p className="footer-tagline">
@@ -36,11 +40,11 @@ export default function Footer() {
         <div className="footer-links-column">
           <h4>Conference</h4>
           <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/schedule">Schedule</Link></li>
-            <li><Link to="/speakers">Speakers</Link></li>
-            <li><Link to="/sponsors">Sponsors</Link></li>
-            <li><Link to="/team">Our Team</Link></li>
+            <li><Link to="/" onClick={scrollToTop}>Home</Link></li>
+            <li><Link to="/schedule" onClick={scrollToTop}>Schedule</Link></li>
+            <li><Link to="/speakers" onClick={scrollToTop}>Speakers</Link></li>
+            <li><Link to="/sponsors" onClick={scrollToTop}>Sponsors</Link></li>
+            <li><Link to="/team" onClick={scrollToTop}>Our Team</Link></li>
           </ul>
         </div>
 
@@ -51,8 +55,8 @@ export default function Footer() {
             <li><a href="https://www.iiita.ac.in" target="_blank" rel="noreferrer">IIIT Allahabad</a></li>
             <li><a href="https://it.iiita.ac.in" target="_blank" rel="noreferrer">Department of IT</a></li>
             <li><a href="https://www.iiita.ac.in/research" target="_blank" rel="noreferrer">Research Labs</a></li>
-            <li><Link to="/register">Register Interest</Link></li>
-            <li><Link to="/contact">Inquiries</Link></li>
+            <li><Link to="/register" onClick={scrollToTop}>Register Interest</Link></li>
+            <li><Link to="/contact" onClick={scrollToTop}>Inquiries</Link></li>
           </ul>
         </div>
 
@@ -73,9 +77,9 @@ export default function Footer() {
         </div>
         <div className="footer-policies">
 
-          <Link to="/privacy">Privacy Policy</Link>
+          <Link to="/privacy" onClick={scrollToTop}>Privacy Policy</Link>
           <span className="dot">•</span>
-          <Link to="/terms">Terms of Use</Link>
+          <Link to="/terms" onClick={scrollToTop}>Terms of Use</Link>
           <span className="dot">•</span>
 
           <span className="made-with-love" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
