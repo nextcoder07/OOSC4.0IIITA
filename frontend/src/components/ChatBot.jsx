@@ -26,7 +26,7 @@ const knowledgeBase = [
     intents: ['where is the conference', 'where is it held', 'where is oosc', 'how to reach', 'what is the venue'],
     phrases: ['venue location', 'iiit allahabad', 'conference venue', 'event location'],
     words: ['venue', 'location', 'address', 'campus', 'prayagraj', 'allahabad', 'directions'],
-    answer: `📍 The conference is held at **IIIT ALLAHABAD** — Kalyanpur, Kanpur, Uttar Pradesh 208016.`,
+    answer: `📍 The conference is held at **IIIT ALLAHABAD** — Devghat, Jhalwa, Prayagraj, Uttar Pradesh 211015.`,
     nav: { label: 'View Location & Map', route: 'contact' },
   },
   {
@@ -50,7 +50,7 @@ const knowledgeBase = [
     intents: ['who are the sponsors', 'who sponsors oosc', 'how to become a sponsor', 'tell me about sponsors'],
     phrases: ['sponsor tiers', 'become a sponsor', 'sponsorship opportunities'],
     words: ['sponsors', 'sponsorship', 'sponsoring'],
-    answer: `🤝 OOSC'26 is supported by **10+ enterprise sponsors** across tiers: Title, Platinum, Gold, Silver, Community, and Media Partners. Interested in sponsoring? Reach out via the Contact page!`,
+    answer: `🤝 OOSC'26 is supported by **10+ enterprise sponsors** across tiers: Title, Co-Title, Platinum, Gold, Bronze, and Supporter. Interested in sponsoring? Reach out via the Contact page!`,
     nav: { label: 'View Sponsors', route: 'sponsors' },
   },
   {
@@ -66,7 +66,7 @@ const knowledgeBase = [
     intents: ['who organized this', 'who made this', 'who built this', 'who is behind this', 'who runs this', 'who created this', 'who developed this', 'who are the organizers', 'tell me about the team', 'who made this website'],
     phrases: ['organizing committee', 'core team', 'organizing team', 'event organizers', 'made this website', 'built this website', 'created this website', 'developed this website'],
     words: ['organizers', 'organizer', 'committee', 'volunteers'],
-    answer: `👥 OOSC'26 is organized by the student and faculty community of **IIT Kanpur**. Our team includes Faculty Coordinators, Student Coordinators, Technical Team, Design Team, and Hospitality & Logistics.`,
+    answer: `👥 OOSC'26 is organized by the student and faculty community of **IIIT Allahabad**. Our team includes Faculty Coordinators, Student Coordinators, Technical Team, Design Team, and Hospitality & Logistics.`,
     nav: { label: 'Meet the Team', route: 'team' },
   },
   {
@@ -98,7 +98,7 @@ const knowledgeBase = [
     intents: ['who can participate', 'who can join', 'am i eligible', 'what is the team size', 'can alumni join', 'can international students join'],
     phrases: ['team size', 'students only', 'eligibility criteria'],
     words: ['eligible', 'eligibility'],
-    answer: `👤 **Eligibility:**\n• UG & PG students from any Indian university\n• Research scholars & PhD students welcome\n• IIT Kanpur students get priority registration\n• International students in Indian universities eligible\n• Alumni (≤2 years) as wild-card entries\n• **Team size:** 2–4 members, cross-institution allowed`,
+    answer: `👤 **Eligibility:**\n• UG & PG students from any Indian university\n• Research scholars & PhD students welcome\n• IIIT Allahabad students get priority registration\n• International students in Indian universities eligible\n• Alumni (≤2 years) as wild-card entries\n• **Team size:** 2–4 members, cross-institution allowed`,
     nav: { label: 'Check Eligibility', route: 'hackathon' },
   },
   {
@@ -106,7 +106,7 @@ const knowledgeBase = [
     intents: ['how to contact', 'how to reach you', 'what is the email', 'what is the phone number', 'how to get in touch'],
     phrases: ['contact organizers', 'contact info', 'email address', 'phone number', 'get in touch'],
     words: ['contact', 'email', 'phone', 'whatsapp'],
-    answer: `📬 You can reach the organizers:\n• ✉️ **Email:** outreach@oosc.org.in\n• 📞 **Call/WhatsApp:** +91 70372 38859\n\nOr use the contact form on our website!`,
+    answer: `📬 You can reach the organizers:\n• ✉️ **Email:** oosc@iiita.ac.in\n• 📞 **Call/WhatsApp:** +91 98919 07290 \n\nOr use the contact form on our website!`,
     nav: { label: 'Go to Contact Page', route: 'contact' },
   },
   {
@@ -130,7 +130,7 @@ const knowledgeBase = [
     intents: ['is it free', 'how much does it cost', 'what is the entry fee', 'do i need to pay', 'is there a fee'],
     phrases: ['entry fee', 'ticket price', 'registration fee'],
     words: ['free', 'cost', 'fee', 'ticket', 'price', 'charges'],
-    answer: `💰 Registration details including any fees are available on our registration page. IIT Kanpur students may receive priority/subsidized access. Check the registration form for current pricing!`,
+    answer: `💰 Registration details including any fees are available on our registration page. IIIT Allahabad students may receive priority/subsidized access. Check the registration form for current pricing!`,
     nav: { label: 'Check Registration', route: 'register' },
   },
   {
@@ -154,7 +154,7 @@ const knowledgeBase = [
     intents: ['where can i stay', 'is there accommodation', 'are there hotels nearby', 'do you provide hostel'],
     phrases: ['where to stay', 'hotel nearby', 'hostel accommodation'],
     words: ['accommodation', 'hotel', 'hostel', 'lodge', 'lodging'],
-    answer: `🏨 For accommodation queries, please contact the organizing team directly. They can assist with on-campus or nearby hotel arrangements.\n\n📞 +91 70372 38859\n✉️ outreach@oosc.org.in`,
+    answer: `🏨 For accommodation queries, please contact the organizing team directly. They can assist with on-campus or nearby hotel arrangements.\n\n📞 +91 98919 07290\n✉️ oosc.iiita.ac.in`,
     nav: { label: 'Contact Organizers', route: 'contact' },
   },
   {
@@ -206,7 +206,7 @@ const knowledgeBase = [
     intents: [],
     phrases: ['see you', 'good bye'],
     words: ['bye', 'goodbye', 'later'],
-    answer: `👋 Goodbye! Hope to see you at OOSC'26 — Aug 28–30 at IIT Kanpur. Take care! 🎉`,
+    answer: `👋 Goodbye! Hope to see you at OOSC'26 — Aug 28–30 at IIIT Allahabad. Take care! 🎉`,
   },
 ]
 
