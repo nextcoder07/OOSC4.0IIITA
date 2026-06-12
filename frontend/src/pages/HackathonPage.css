@@ -461,3 +461,7 @@
     padding: 12px;
   }
 }
+
+:root[data-theme="bright"] .hackathon-hero {
+  border: none;
+}

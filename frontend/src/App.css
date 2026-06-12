@@ -34,7 +34,7 @@
   --color-accent-soft: #e9a37a;
   --color-card-bg-soft: rgba(255, 255, 255, 0.07);
   --color-card-border-strong: rgba(255, 255, 255, 0.20);
-  --color-heading-bright: #ffffff;
+  --color-heading-bright: #d93025;
   --color-text-muted-strong: #a1a1aa;
   --color-text-alt-warm: #d9cfc3;
   --color-label-red: #d73b2d;
@@ -116,10 +116,60 @@
   --color-silver: var(--color-text-on-panel-sub);
   --color-bronze: var(--color-text-on-panel-muted);
 
+  /* ─── HEADER ───────────────────────────────────────────────────────────────── */
+  --color-header-bg: #1B1416;
+  --color-header-border: rgba(255, 255, 255, 0.1);
+  --color-header-glow-strong: rgba(255, 129, 76, 0.38);
+  --color-header-glow-mid: rgba(255, 129, 76, 0.08);
+  --color-header-glow-soft: rgba(255, 129, 76, 0.02);
+
+  /* ─── FOOTER ───────────────────────────────────────────────────────────────── */
+  --color-footer-bg: #0b0b0b;
+  --color-footer-border: rgba(255, 255, 255, 0.1);
+  --color-footer-heading: #f5efe5;
+  --color-footer-link: #e8dcc8;
+  --color-footer-contact: #e8dcc8;
+  --color-footer-contact-strong: #f5efe5;
+  --color-footer-copy: #d9c8b2;
+  --color-footer-dot: rgba(255, 255, 255, 0.18);
+
+  /* ─── GLASS CARDS ──────────────────────────────────────────────────────────── */
+  --color-glass-bg: rgba(255, 255, 255, 0.05);
+  --color-glass-hover-shadow: rgba(0, 0, 0, 0.85);
+  --color-glass-dark-shadow: rgba(217, 48, 37, 0.15);
+  --color-glass-dark-bg: rgba(255, 255, 255, 0.05);
+
+  /* ─── FORM ─────────────────────────────────────────────────────────────────── */
+  --color-form-label: rgb(206, 204, 204);
+  --color-form-bg: rgba(0, 0, 0, 0.4);
+  --color-form-focus-bg: rgba(0, 0, 0, 0.8);
+
+  /* ─── ADMIN MODAL ──────────────────────────────────────────────────────────── */
+  --color-admin-modal-bg: #ffffff;
+  --color-admin-modal-border: rgba(17, 17, 17, 0.2);
+  --color-admin-modal-shadow: rgba(0, 0, 0, 0.70);
+  --color-admin-backdrop: rgba(0, 0, 0, 0.80);
+
+  /* ─── DRAG AND DROP ────────────────────────────────────────────────────────── */
+  --color-drag-over-bg: rgba(200, 200, 224, 0.08);
+  --color-drag-over-highlight: rgba(200, 200, 224, 0.12);
+  --color-drag-over-border: rgba(200, 200, 224, 0.24);
+  --color-drag-hint-bg: rgba(255, 255, 255, 0.03);
+  --color-drag-hint-border: rgba(255, 255, 255, 0.05);
+
+  /* ─── GRADIENTS (used by page CSS) ─────────────────────────────────────────── */
+  --color-gradient-hero: linear-gradient(135deg, rgba(17, 17, 17, 0.95), rgba(27, 20, 22, 0.9));
+  /*--color-gradient-hero-glow: radial-gradient(circle at top left, rgba(217, 48, 37, 0.12), transparent 32%);*/
+  --color-shadow-hairline: rgba(0, 0, 0, 0.15);
+
+  /* ─── CARD HEADING ─────────────────────────────────────────────────────────── */
+  --color-card-heading: #ffffff;
+  --color-card-copy: #d8c9b8;
+
   --radius-card: 16px;
   --radius-btn: 8px;
-  --shadow-brutal: 4px 4px 0 #000000;
-  --shadow-panel: 0 10px 24px rgba(0, 0, 0, 0.35);
+  --shadow-brutal: 4px 4px 0 var(--color-shadow-black);
+  --shadow-panel: 0 10px 24px var(--color-shadow-black-soft);
   --shadow-float: 0 14px 36px rgba(0, 0, 0, 0.45);
   --transition-smooth: all 0.2s ease;
   scroll-padding-top: 100px;
@@ -152,18 +202,18 @@
   --color-text-on-dark-soft: #665f56;
   --color-text-soft: #817a6f;
   --color-text-cream: #a79d8f;
-  --color-text-snow: #f5efe5;
-  --color-text-snow-soft: rgb(253, 250, 250);
+  --color-text-snow: #120f0a;
+  --color-text-snow-soft: rgb(0, 0, 0);
   --color-text-warm: #5e5246;
   --color-text-warm-muted: #744f17;
   --color-text-warm-muted-strong: #d8c9b8;
-  --color-text-alt-warm: #d9cfc3;
+  --color-text-alt-warm: #676767;
   --color-accent-soft: #e4a17a;
   --color-card-bg-soft: rgba(18, 18, 18, 0.08);
   --color-card-border-strong: rgba(0, 0, 0, 0.20);
-  --color-heading-bright: #ffffff;
+  --color-heading-bright: #d93025;
   --color-text-muted-strong: #a1a1aa;
-  --color-text-alt-warm: #d9cfc3;
+  --color-text-alt-warm: #676767;
   --color-label-red: #d73b2d;
   --color-card-dim: rgba(18, 18, 18, 0.16);
   --color-card-dim-soft: rgba(18, 18, 18, 0.12);
@@ -229,6 +279,69 @@
   --color-brand-silver: #c0c0c0;
   --color-brand-platinum: #e5e4e2;
   --color-brand-bronze: #cd7f32;
+
+  /* legacy aliases mapped to bright theme palette */
+  --color-midnight: var(--color-bg);
+  --color-deep-bg: var(--color-bg);
+  --color-text-main: var(--color-text-on-panel);
+  --color-text-sub: var(--color-text-on-panel-sub);
+  --color-text-muted: var(--color-text-on-panel-muted);
+  --color-cyan: var(--color-accent);
+  --color-cyan-glow: var(--color-accent-dim);
+  --color-electric: var(--color-text-on-panel-sub);
+  --color-gold: var(--color-text-on-panel);
+  --color-silver: var(--color-text-on-panel-sub);
+  --color-bronze: var(--color-text-on-panel-muted);
+
+  /* ─── HEADER (bright mode) ─────────────────────────────────────────────────── */
+  --color-header-bg: #ffffff;
+  --color-header-border: rgba(18, 18, 18, 0.08);
+  --color-header-glow-strong: rgba(217, 48, 37, 0.22);
+  --color-header-glow-mid: rgba(217, 48, 37, 0.06);
+  --color-header-glow-soft: rgba(217, 48, 37, 0.02);
+
+  /* ─── FOOTER (bright mode) ─────────────────────────────────────────────────── */
+  --color-footer-bg: #f0ebe2;
+  --color-footer-border: rgba(18, 18, 18, 0.10);
+  --color-footer-heading: #1f1b16;
+  --color-footer-link: #4d4a43;
+  --color-footer-contact: #4d4a43;
+  --color-footer-contact-strong: #1f1b16;
+  --color-footer-copy: #7c766e;
+  --color-footer-dot: rgba(18, 18, 18, 0.18);
+
+  /* ─── GLASS CARDS (bright mode) ────────────────────────────────────────────── */
+  --color-glass-bg: rgba(255, 255, 255, 0.80);
+  --color-glass-hover-shadow: rgba(0, 0, 0, 0.15);
+  --color-glass-dark-shadow: rgba(217, 48, 37, 0.10);
+  --color-glass-dark-bg: rgba(255, 255, 255, 0.05);
+
+  /* ─── FORM (bright mode) ───────────────────────────────────────────────────── */
+  --color-form-label: #5f5a51;
+  --color-form-bg: rgba(255, 255, 255, 0.80);
+  --color-form-focus-bg: #ffffff;
+
+  /* ─── ADMIN MODAL (bright mode) ────────────────────────────────────────────── */
+  --color-admin-modal-bg: #ffffff;
+  --color-admin-modal-border: rgba(18, 18, 18, 0.12);
+  --color-admin-modal-shadow: rgba(0, 0, 0, 0.25);
+  --color-admin-backdrop: rgba(0, 0, 0, 0.50);
+
+  /* ─── DRAG AND DROP (bright mode) ──────────────────────────────────────────── */
+  --color-drag-over-bg: rgba(18, 18, 18, 0.04);
+  --color-drag-over-highlight: rgba(18, 18, 18, 0.08);
+  --color-drag-over-border: rgba(18, 18, 18, 0.14);
+  --color-drag-hint-bg: rgba(18, 18, 18, 0.03);
+  --color-drag-hint-border: rgba(18, 18, 18, 0.06);
+
+  /* ─── GRADIENTS (bright mode) ──────────────────────────────────────────────── */
+  --color-gradient-hero: linear-gradient(135deg, rgba(246, 241, 232, 0.95), rgba(240, 235, 226, 0.9));
+  /*--color-gradient-hero-glow: radial-gradient(circle at top left, rgba(217, 48, 37, 0.08), transparent 32%);*/
+  --color-shadow-hairline: rgba(0, 0, 0, 0.06);
+
+  /* ─── CARD HEADING (bright mode) ───────────────────────────────────────────── */
+  --color-card-heading: #1f1b16;
+  --color-card-copy: #5f5a51;
 }
 
 /* ─── BODY / GLOBAL ─────────────────────────────────────────────────────────── */
@@ -309,23 +422,23 @@ body::after {
 /* ─── PANEL CARDS (formerly glass) ─────────────────────────────────────────── */
 .glass-card {
   position: relative;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--color-glass-bg);
   color: var(--color-text-on-panel);
   border: 2px solid var(--color-border);
   border-radius: var(--radius-card);
-  box-shadow: var(--shadow-brutal), var(--shadow-panel);
+  box-shadow: var(--color-glass-hover-shadow), var(--shadow-float);
   transition: var(--transition-smooth);
 }
 
 .glass-card:hover {
   border-color: var(--color-accent);
   transform: translate(-4px, -4px);
-  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.85), var(--shadow-float);
+  box-shadow: 8px 8px 0 var(--color-glass-hover-shadow), var(--shadow-float);
 }
 
 .glass-card:active {
   transform: translate(0px, 0px);
-  box-shadow: 0px 0px 0 rgba(0, 0, 0, 0.85), var(--shadow-panel);
+  box-shadow: 0px 0px 0 var(--color-glass-hover-shadow), var(--shadow-panel);
 }
 
 .glass-card::after {
@@ -339,11 +452,10 @@ body::after {
 
 /* dark-context panel variant */
 .glass-card--dark {
-  background: rgba(255, 255, 255, 0.05);
-  ;
+  background: var(--color-glass-dark-bg);
   color: var(--color-text-on-dark);
   border-color: var(--color-border-on-dark);
-  box-shadow: 3px 3px 0 rgba(217, 48, 37, 0.15), var(--shadow-panel);
+  box-shadow: 3px 3px 0 var(--color-glass-dark-shadow), var(--shadow-panel);
 }
 
 /* ─── NAVIGATION HEADER ──────────────────────────────────────────────────────── */
@@ -357,8 +469,8 @@ body::after {
   padding: 6px 22px;
   margin: 0 0 8px;
   border-radius: 0;
-  background: #1B1416;
-  border: 0.5px solid rgba(255, 255, 255, 0.1);
+  background: var(--color-header-bg);
+  border: 0.5px solid var(--color-header-border);
   box-shadow: none;
   overflow: visible;
   --mouse-x: 50%;
@@ -374,9 +486,9 @@ body::after {
   pointer-events: none;
   border-radius: inherit;
   background: radial-gradient(circle at var(--mouse-x) var(--mouse-y),
-      rgba(255, 129, 76, 0.38) 0%,
-      rgba(255, 129, 76, 0.08) 10%,
-      rgba(255, 129, 76, 0.02) 14%,
+      var(--color-header-glow-strong) 0%,
+      var(--color-header-glow-mid) 10%,
+      var(--color-header-glow-soft) 14%,
       transparent 18%);
   opacity: var(--glow-opacity);
   transition: opacity 0.25s ease;
@@ -534,21 +646,21 @@ body::after {
   background: var(--color-accent);
   color: var(--color-text-on-dark);
   border-color: var(--color-accent);
-  box-shadow: 2px 2px 0 #000000;
+  box-shadow: 2px 2px 0 var(--color-glass-hover-shadow), var(--shadow-float);
   padding: 6px 14px;
   font-size: 0.78rem;
 }
 
 .btn-nav-cta:hover {
-  background: var(--color-accent-hover);
-  border-color: var(--color-accent-hover);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
   transform: translate(-2px, -2px);
-  box-shadow: 4px 4px 0 #000000;
+  box-shadow: 4px 4px 0 var(--color-glass-hover-shadow), var(--shadow-float);
 }
 
 .btn-nav-cta:active {
   transform: translate(0, 0);
-  box-shadow: 0 0 0 #000000;
+  box-shadow: 0 0 0 var(--color-glass-hover-shadow), var(--shadow-float);
 }
 
 .btn-admin {
@@ -572,7 +684,7 @@ body::after {
   background: var(--color-accent-hover);
   color: var(--color-text-on-dark);
   border-color: var(--color-accent-hover);
-  box-shadow: 4px 4px 0 #000000;
+  box-shadow: 2px 2px 0 var(--color-glass-hover-shadow), var(--shadow-float);
   padding: 14px 28px;
 }
 
@@ -580,12 +692,12 @@ body::after {
   background: var(--color-accent-hover);
   border-color: var(--color-accent-hover);
   transform: translate(-3px, -3px);
-  box-shadow: 7px 7px 0 #000000;
+  box-shadow: 5px 5px 0 var(--color-glass-hover-shadow), var(--shadow-float);
 }
 
 .btn-primary:active {
   transform: translate(0, 0);
-  box-shadow: 0 0 0 #000000;
+  box-shadow: 0 0 0 var(--color-glass-hover-shadow), var(--shadow-float);
 }
 
 .btn-outline {
@@ -593,18 +705,19 @@ body::after {
   border: 2px solid var(--color-accent-hover);
   color: var(--color-text-on-dark);
   padding: 14px 28px;
+  box-shadow: 2px 2px 0 var(--color-glass-hover-shadow), var(--shadow-float);
 }
 
 .btn-outline:hover {
   background: var(--color-accent-hover);
   color: var(--color-text-on-dark);
   transform: translate(-3px, -3px);
-  box-shadow: 5px 5px 0 #000000;
+  box-shadow: 5px 5px 0 var(--color-glass-hover-shadow), var(--shadow-float);
 }
 
 .btn-outline:active {
   transform: translate(0, 0);
-  box-shadow: 0 0 0 #000000;
+  box-shadow: 0 0 0 var(--color-glass-hover-shadow), var(--shadow-float);
 }
 
 .btn-secondary {
@@ -626,12 +739,11 @@ body::after {
 .content-section {
   position: relative;
   padding: 32px;
- /* background: linear-gradient(180deg, rgba(248, 244, 236, 0.1), rgba(17, 17, 17, 0.24));*/
+  /* background: linear-gradient(180deg, rgba(248, 244, 236, 0.1), rgba(17, 17, 17, 0.24));*/
   color: var(--color-text-on-panel);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--color-border-soft);
   border-radius: var(--radius-card);
-  box-shadow: var(--shadow-brutal), var(--shadow-panel);
-  
+  box-shadow: 2px 2px 0 var(--color-glass-hover-shadow), var(--shadow-float);
 }
 
 .content-section::before {
@@ -726,7 +838,7 @@ body::after {
 .card h3 {
   font-size: 1.15rem;
   margin-bottom: 6px;
-  color: #ffffff;
+  color: var(--color-card-heading);
 }
 
 
@@ -747,11 +859,11 @@ body::after {
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: rgb(206, 204, 204);
+  color: var(--color-form-label);
 }
 
 .form-control {
-  background: rgba(0, 0, 0, 0.4);
+  background: var(--color-form-bg);
   border: 2px solid var(--color-border-on-dark);
   border-radius: var(--radius-btn);
   padding: 14px 16px;
@@ -763,9 +875,9 @@ body::after {
 
 .form-control:focus {
   border-color: var(--color-accent);
-  background: rgba(0, 0, 0, 0.8);
+  background: var(--color-form-focus-bg);
   outline: none;
-  box-shadow: 4px 4px 0 #000000;
+  box-shadow: 4px 4px 0 var(--color-shadow-black);
 }
 
 .form-control::placeholder {
@@ -779,6 +891,12 @@ body::after {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  box-shadow: none;
+}
+
+.rregistration-form-panel:hover {
+  transform: none;
+  box-shadow: none;
 }
 
 .registration-form-header {
@@ -865,7 +983,7 @@ body::after {
 }
 
 .admin-status-message.error {
-  color: #b8281f;
+  color: var(--color-error);
   background: var(--color-accent-dim);
   border: 2px solid var(--color-accent);
 }
@@ -1142,7 +1260,7 @@ body::after {
   position: fixed;
   inset: 0;
   z-index: 1200;
-  background: rgba(0, 0, 0, 0.80);
+  background: var(--color-admin-backdrop);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1158,18 +1276,18 @@ body::after {
   border: 2px solid var(--color-border);
   border-radius: var(--radius-card);
   padding: 24px;
-  box-shadow: var(--shadow-brutal), 0 30px 80px rgba(0, 0, 0, 0.70);
+  box-shadow: var(--shadow-brutal), 0 30px 80px var(--color-admin-modal-shadow);
 }
 
 .admin-modal-panel .form-control {
-  background: #ffffff;
+  background: var(--color-admin-modal-bg);
   color: var(--color-text-on-panel);
-  border: 2px solid rgba(17, 17, 17, 0.2);
+  border: 2px solid var(--color-admin-modal-border);
 }
 
 .admin-modal-panel .form-control:focus {
   border-color: var(--color-accent);
-  background: #ffffff;
+  background: var(--color-admin-modal-bg);
 }
 
 .admin-modal-panel .form-control::placeholder {
@@ -1381,16 +1499,17 @@ body::after {
 .site-footer {
   margin-top: 48px;
   padding: 48px;
-  background: #0b0b0b;
-  color: #f5efe5;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--color-footer-bg);
+  color: var(--color-footer-heading);
+  border: 1px solid var(--color-footer-border);
   border-radius: var(--radius-card);
-  box-shadow: var(--shadow-brutal), var(--shadow-panel);
+  box-shadow: none;
   text-shadow: none;
 }
 
 .site-footer:hover {
   transform: none;
+  box-shadow: none;
 }
 
 .footer-grid-outer {
@@ -1458,12 +1577,12 @@ body::after {
 .hk-card-title h3 {
   font-size: 1.1rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--color-card-heading);
 }
 
 .hk-card p {
   font-size: 0.95rem;
-  color: #d8c9b8;
+  color: var(--color-card-copy);
   line-height: 1.7;
 }
 
@@ -1487,7 +1606,7 @@ body::after {
   text-align: center;
   border: 2px solid var(--color-border);
   background: var(--color-panel-inset);
-  box-shadow: 4px 4px 0 #000000;
+  box-shadow: 4px 4px 0 var(--color-shadow-black);
   transition: var(--transition-smooth);
   position: relative;
   overflow: hidden;
@@ -1518,7 +1637,7 @@ body::after {
 .prize-card:hover {
   transform: translate(-2px, -2px);
   border-color: var(--color-accent);
-  box-shadow: 6px 6px 0 #000000;
+  box-shadow: 6px 6px 0 var(--color-shadow-black);
 }
 
 .prize-medal {
@@ -1629,7 +1748,7 @@ body::after {
 .footer-links-column h4 {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.78rem;
-  color: #f5efe5;
+  color: var(--color-footer-heading);
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -1644,7 +1763,7 @@ body::after {
 
 .footer-links-column a {
   font-size: 0.92rem;
-  color: #e8dcc8;
+  color: var(--color-footer-link);
   transition: var(--transition-smooth);
 }
 
@@ -1655,12 +1774,12 @@ body::after {
 
 .footer-links-column p.contact-item {
   font-size: 0.92rem;
-  color: #e8dcc8;
+  color: var(--color-footer-contact);
   line-height: 1.5;
 }
 
 .footer-links-column p.contact-item strong {
-  color: #f5efe5;
+  color: var(--color-footer-contact-strong);
 }
 
 .footer-bottom-bar {
@@ -1674,7 +1793,7 @@ body::after {
 
 .footer-copyright {
   font-size: 0.85rem;
-  color: #d9c8b2;
+  color: var(--color-footer-copy);
   font-family: 'JetBrains Mono', monospace;
 }
 
@@ -1683,11 +1802,11 @@ body::after {
   align-items: center;
   gap: 10px;
   font-size: 0.85rem;
-  color: #d9c8b2;
+  color: var(--color-footer-copy);
 }
 
 .footer-policies a {
-  color: #d9c8b2;
+  color: var(--color-footer-copy);
   transition: var(--transition-smooth);
 }
 
@@ -1696,7 +1815,7 @@ body::after {
 }
 
 .footer-policies .dot {
-  color: rgba(255, 255, 255, 0.18);
+  color: var(--color-footer-dot);
 }
 
 .open-source-credits {
@@ -1733,9 +1852,11 @@ body::after {
     gap: 12px;
     margin-left: auto;
   }
+
   .header-actions .btn-admin {
     display: none;
   }
+
   .btn-nav-cta {
     display: none;
   }
@@ -1746,7 +1867,7 @@ body::after {
     left: 0;
     right: 0;
     flex-direction: column;
-    background: #1B1416;
+    background: var(--color-header-bg);
     border: 2px solid var(--color-text-on-dark);
     border-radius: var(--radius-card);
     padding: 12px;
@@ -1785,7 +1906,7 @@ body::after {
     color: var(--color-text-on-dark);
     margin-top: 10px;
   }
-  
+
   .logout-btn {
     background: var(--color-accent);
     color: var(--color-text-on-dark);
@@ -1871,11 +1992,11 @@ body::after {
   .btn-nav-cta {
     padding: 5px 12px;
     font-size: 0.7rem;
-    box-shadow: 1px 1px 0 #000000;
+    box-shadow: 1px 1px 0 var(--color-shadow-black);
   }
 
   .btn-nav-cta:hover {
-    box-shadow: 2px 2px 0 #000000;
+    box-shadow: 2px 2px 0 var(--color-shadow-black);
   }
 
   .nav-link {
@@ -2042,7 +2163,7 @@ body::after {
 .admin-draggable.drag-over {
   border: 2px dashed var(--color-cyan) !important;
   transform: scale(1.02);
-  background: rgba(200, 200, 224, 0.08) !important;
+  background: var(--color-drag-over-bg) !important;
   box-shadow: 0 0 15px var(--color-cyan-glow) !important;
 }
 
@@ -2057,34 +2178,22 @@ body::after {
   text-transform: uppercase;
   color: var(--color-text-muted);
   letter-spacing: 0.08em;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--color-drag-hint-bg);
   padding: 5px 12px;
   border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-drag-hint-border);
   align-self: center;
   transition: var(--transition-smooth);
 }
 
 .admin-draggable:hover .drag-hint {
-  color: #ffffff;
-  background: rgba(200, 200, 224, 0.12);
-  border-color: rgba(200, 200, 224, 0.24);
+  color: var(--color-card-heading);
+  background: var(--color-drag-over-highlight);
+  border-color: var(--color-drag-over-border);
 }
+
 /* ─── THEME TOGGLE ──────────────────────────────────────────────────────────── */
-html[data-theme="light"] {
-  filter: invert(1) hue-rotate(180deg);
-}
 
-/* Re-invert images and videos so they look normal */
-html[data-theme="light"] img,
-html[data-theme="light"] video {
-  filter: invert(1) hue-rotate(180deg);
-}
-
-/* Ensure the root background handles the inversion cleanly */
-html[data-theme="light"] body {
-  background-color: var(--color-bg);
-}
 
 .theme-toggle-btn {
   background: transparent;
@@ -2113,5 +2222,3 @@ html[data-theme="light"] body {
     flex-shrink: 0;
   }
 }
-
-

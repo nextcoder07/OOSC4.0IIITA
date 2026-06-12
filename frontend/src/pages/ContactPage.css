@@ -68,6 +68,12 @@
 
 .contact-form-panel {
   padding: 40px;
+  box-shadow: none;
+}
+
+.contact-form-panel:hover {
+  box-shadow: none;
+  transform: none;
 }
 
 .contact-form-panel h3 {

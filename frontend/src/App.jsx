@@ -37,7 +37,10 @@ import './pages/PolicyPage.css'
 function App() {
   const [adminMode, setAdminMode] = useState(false)
   const [adminEmail, setAdminEmail] = useState('')
-  const [theme, setTheme] = useState(localStorage.getItem('oosc-theme') || 'dark')
+  const [theme, setTheme] = useState(() => {
+    const stored = localStorage.getItem('oosc-theme')
+    return stored === 'light' ? 'bright' : (stored || 'dark')
+  })
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme)
@@ -785,7 +788,7 @@ function App() {
           <button
             type="button"
             className="theme-toggle-btn"
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            onClick={() => setTheme(theme === 'dark' ? 'bright' : 'dark')}
             title="Toggle Theme"
             aria-label="Toggle Theme"
           >

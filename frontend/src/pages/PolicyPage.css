@@ -10,8 +10,8 @@
 .policy-container {
   padding: 3rem;
   border-radius: 20px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
+  background: var(--color-panel-surface);
+  border: 1px solid var(--color-card-border);
   text-align: left;
   width: 100%;
 }

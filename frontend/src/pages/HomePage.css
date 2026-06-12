@@ -179,7 +179,7 @@
   transition: var(--transition-smooth);
   position: relative;
   overflow: hidden;
-  box-shadow: var(--shadow-brutal), var(--shadow-panel);
+  box-shadow: var(--color-glass-hover-shadow), var(--shadow-float);
 }
 
 .stat-card-gradient::before {
@@ -195,12 +195,12 @@
 .stat-card-gradient:hover {
   border-color: var(--color-accent);
   transform: translate(-4px, -4px);
-  box-shadow: 8px 8px 0 var(--color-shadow-deep), var(--shadow-float);
+  box-shadow: 8px 8px 0 var(--color-glass-hover-shadow), var(--shadow-float);
 }
 
 .stat-card-gradient:active {
   transform: translate(0px, 0px);
-  box-shadow: 0px 0px 0 var(--color-shadow-deep), var(--shadow-panel);
+  box-shadow: 0px 0px 0 var(--color-glass-hover-shadow), var(--shadow-panel);
 }
 
 .stat-card-gradient h3 {
@@ -412,4 +412,8 @@
     padding: 7px 12px;
     font-size: 0.7rem;
   }
+}
+
+:root[data-theme="bright"] .hero-section {
+  border: none;
 }
