@@ -5,14 +5,26 @@
   padding-top: 0;
 }
 
+
 .hackathon-hero {
-  padding: 40px 36px;
-  border-radius: var(--radius-card);
-  background: var(--color-gradient-hero);
-  border: 1px solid var(--color-card-border);
+  /* Subtract your navbar height (for example, 60px) from full screen height */
+  height: calc(100dvh - 60px);
+
+  /* Keeps your content centered nicely inside the full screen */
+  display: flex;
+  align-items: center;
+
+  /* Your existing code
+   border-radius: var(--radius-card); */
+  padding: 54px 24px 36px;
+
+  background: var(--color-bg);
   position: relative;
   overflow: hidden;
+
+
 }
+
 
 .hackathon-hero::before {
   content: '';
@@ -20,7 +32,10 @@
   inset: 0;
   pointer-events: none;
   border-radius: inherit;
-  background: var(--color-gradient-hero-glow);
+  background: var(--color-bg);
+  /*var(--color-gradient-hero-glow);*/
+  z-index: -1;
+
 }
 
 .hackathon-hero-inner {
@@ -114,7 +129,7 @@
 .hk-card {
   padding: 28px;
   border-radius: var(--radius-card);
-  background: var(--color-panel-surface);
+  background: var(--color-panel-muted);
   border: 1px solid var(--color-card-border);
 }
 
@@ -362,7 +377,7 @@
   display: flex;
   justify-content: space-between;
   gap: 18px;
-  background: var(--color-panel-surface);
+  background: var(--color-panel-muted);
   border: 1px solid var(--color-card-border);
 }
 

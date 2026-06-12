@@ -1,19 +1,28 @@
 .hero-section {
+  /* 1. Stretch the section to fill the remaining screen height */
+  /* Adjust 80px to match your actual navbar height if needed */
+  height: calc(100dvh - 80px);
+
+  /* 2. Center your text content vertically inside the full screen box */
+  display: flex;
+  align-items: center;
+
+  /* Your existing code */
   padding: 54px 24px 36px;
   position: relative;
   overflow: hidden;
-  border-radius: 24px;
-  background: var(--color-gradient-hero);
-  border: 1px solid var(--color-card-border);
+  background: var(--color-bg);
+
 }
 
 .hero-section::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: var(--color-gradient-hero-glow);
+  background: var(--color-bg);
   pointer-events: none;
   border-radius: inherit;
+  z-index: -1;
 }
 
 
@@ -195,7 +204,7 @@
 .stat-card-gradient:hover {
   border-color: var(--color-accent);
   transform: translate(-4px, -4px);
-  box-shadow: 8px 8px 0 var(--color-glass-hover-shadow), var(--shadow-float);
+  box-shadow: 5px 5px 0 var(--color-glass-hover-shadow), var(--shadow-float);
 }
 
 .stat-card-gradient:active {

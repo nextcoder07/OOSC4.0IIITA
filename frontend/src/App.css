@@ -2,7 +2,7 @@
 :root {
   --color-bg: #111111;
   --color-panel: #e8e8e4;
-  --color-panel-muted: #d4d4d0;
+  --color-panel-muted: rgba(255, 255, 255, 0.05);
   --color-panel-inset: #dcdcd8;
 
   --color-border: #111111;
@@ -14,8 +14,8 @@
   --color-text-on-dark-sub: #9a9a94;
   --color-text-on-dark-muted: #5e5e58;
 
-  --color-text-on-panel: #111111;
-  --color-text-on-panel-sub: #3a3a36;
+  --color-text-on-panel: #dbdbdb;
+  --color-text-on-panel-sub: #a1a1aa;
   --color-text-on-panel-muted: #6a6a64;
 
   --color-accent: #d93025;
@@ -55,7 +55,7 @@
   --color-panel-heading: var(--color-text-on-dark);
   --color-panel-copy: var(--color-text-on-panel);
   --color-panel-copy-muted: var(--color-text-on-panel-sub);
-  --color-panel-surface: rgba(255, 255, 255, 0.05);
+  --color-panel-surface: rgba(0, 0, 0, 0.05);
   --color-panel-surface-soft: rgba(255, 255, 255, 0.07);
   --color-panel-surface-muted: rgba(255, 255, 255, 0.08);
   --color-panel-surface-strong: rgba(255, 255, 255, 0.12);
@@ -215,9 +215,9 @@
   --color-text-muted-strong: #a1a1aa;
   --color-text-alt-warm: #676767;
   --color-label-red: #d73b2d;
-  --color-card-dim: rgba(18, 18, 18, 0.16);
-  --color-card-dim-soft: rgba(18, 18, 18, 0.12);
-  --color-text-light: rgb(240, 233, 233);
+  --color-card-dim: rgb(255 255 255 / 10%);
+  --color-card-dim-soft: rgb(255 245 245 / 12%);
+  --color-text-light: rgb(20, 18, 18);
 
   --color-electric-glow: rgba(18, 18, 18, 0.08);
   --color-card-bg: rgba(255, 255, 255, 0.90);
@@ -435,7 +435,7 @@ body::after {
 .glass-card:hover {
   border-color: var(--color-accent);
   transform: translate(-4px, -4px);
-  box-shadow: 8px 8px 0 var(--color-glass-hover-shadow), var(--shadow-float);
+  box-shadow: 5px 5px 0 var(--color-glass-hover-shadow), var(--shadow-float);
 }
 
 .glass-card:active {
@@ -469,7 +469,7 @@ body::after {
   align-items: center;
   justify-content: space-between;
   padding: 6px 22px;
-  margin: 0 0 8px;
+  margin: 0 0 4px;
   border-radius: 0;
   background: var(--color-header-bg);
   border: 0.5px solid var(--color-header-border);
@@ -686,7 +686,8 @@ body::after {
   background: var(--color-accent);
   color: var(--color-text-on-dark);
   border-color: var(--color-accent);
-  box-shadow: 2px 2px 0 var(--color-glass-hover-shadow) padding: 14px 28px;
+  box-shadow: 2px 2px 0 var(--color-glass-hover-shadow);
+  padding: 14px 28px;
 }
 
 .btn-primary:hover {
@@ -744,7 +745,7 @@ body::after {
   color: var(--color-text-on-panel);
   border: 1px solid var(--color-border-soft);
   border-radius: var(--radius-card);
-  box-shadow: 2px 2px 0 var(--color-glass-hover-shadow), var(--shadow-float);
+  box-shadow: none;
 }
 
 .content-section::before {

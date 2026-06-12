@@ -2,8 +2,9 @@
   padding: 28px;
   border-radius: var(--radius-card);
   background: var(--color-gradient-hero);
-  border: 1px solid var(--color-card-border);
-  box-shadow: 0 14px 32px var(--color-shadow-heavy);
+  border: 1px solid var(--color-border-soft);
+  box-shadow: none;
+  /*0 14px 32px var(--color-shadow-heavy);*/
   position: relative;
   overflow: hidden;
 }
