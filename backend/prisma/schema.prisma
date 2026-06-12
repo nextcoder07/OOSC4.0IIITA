@@ -11,7 +11,7 @@ model Speaker {
   id           Int      @id @default(autoincrement())
   name         String
   title        String
-  bio          String
+  bio          String   @db.Text
   photoURL     String?
   sortOrder    Int      @default(0)
   published    Boolean  @default(true)
@@ -38,7 +38,7 @@ model Sponsor {
   published   Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  description String?
+  description String?  @db.Text
 
   @@index([published])
   @@index([sortOrder])
@@ -47,7 +47,7 @@ model Sponsor {
 model Event {
   id          Int      @id @default(autoincrement())
   title       String
-  description String
+  description String   @db.Text
   date        String
   time        String
   type        String
@@ -92,7 +92,7 @@ model Lead {
   name        String
   email       String
   affiliation String?
-  message     String?
+  message     String?  @db.Text
   createdAt   DateTime @default(now())
 }
 
@@ -108,7 +108,7 @@ model AuditLog {
 model SiteConfig {
   id        Int      @id @default(autoincrement())
   key       String   @unique
-  value     String
+  value     String   @db.Text
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -117,7 +117,7 @@ model ContactMessage {
   id        Int      @id @default(autoincrement())
   name      String
   email     String
-  message   String
+  message   String   @db.Text
   read      Boolean  @default(false)
   createdAt DateTime @default(now())
 }
