@@ -3,7 +3,7 @@
   --color-bg: #111111;
   --color-panel: #e8e8e4;
   --color-panel-muted: rgba(255, 255, 255, 0.05);
-  --color-panel-inset: #dcdcd8;
+  --color-panel-inset: rgba(255, 255, 255, 0.05);
 
   --color-border: #111111;
   --color-border-light: rgba(17, 17, 17, 0.14);
