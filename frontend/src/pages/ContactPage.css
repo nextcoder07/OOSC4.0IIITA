@@ -25,11 +25,15 @@
   background: var(--color-accent);
   color: var(--color-text-on-dark);
   width: 44px;
+  min-width: 44px;
   height: 44px;
+  min-height: 44px;
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   border: 2px solid var(--color-border);
 }
 

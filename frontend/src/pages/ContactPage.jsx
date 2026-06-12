@@ -15,7 +15,7 @@ export default function ContactPage({ siteConfig, form, setForm, formStatus, han
 
           <div className="contact-details-cards">
             <div className="contact-detail-card glass-card">
-              <span className="icon"><Mail size={24} color="var(--color-accent)" /></span>
+              <span className="icon"><Mail size={24} color="var(--color-text-on-dark)" /></span>
               <div>
                 <h4>Official Email</h4>
                 <p>contact@oosc4.0.iiita.ac.in</p>

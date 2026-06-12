@@ -1,15 +1,13 @@
 .sponsors-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 40px;
 }
-
-
 
 .sponsor-tier-group {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
 }
 
 .sponsor-tier-header {
@@ -26,7 +24,8 @@
 }
 
 .sponsor-tier-header h3 {
-  font-size: 1.25rem;
+  font-size: 1.45rem;
+  font-weight: 900 !important;
   color: var(--color-accent);
   white-space: nowrap;
   flex-shrink: 0;
@@ -57,103 +56,203 @@
 }
 
 .sponsor-card {
-  padding: 14px 16px;
+  padding: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  min-height: 220px;
+
   width: 100%;
   text-align: center;
-  gap: 10px;
+  gap: 4px;
+
   border-radius: 22px;
   border: 1px solid var(--color-card-border-strong);
   background: var(--color-card-dim);
 }
 
-.sponsor-card--title .logo-container {
-  height: 210px;
+/* ---------------------- */
+/* Sponsor Hierarchy      */
+/* ---------------------- */
+
+.sponsor-card--title {
+  --logo-size: 220px;
 }
 
-.sponsor-card--co-title .logo-container {
-  height: 168px;
+.sponsor-card--co-title {
+  --logo-size: 190px;
 }
 
-.sponsor-card--platinum .logo-container {
-  height: 148px;
+.sponsor-card--platinum {
+  --logo-size: 165px;
 }
 
-.sponsor-card--gold .logo-container {
-  height: 130px;
+.sponsor-card--gold {
+  --logo-size: 145px;
 }
 
-.sponsor-card--bronze .logo-container,
-.sponsor-card--supporter .logo-container {
-  height: 110px;
+.sponsor-card--bronze,
+.sponsor-card--supporter {
+  --logo-size: 125px;
 }
+
+/* ---------------------- */
+/* Logo Box               */
+/* ---------------------- */
 
 .logo-container {
-  height: 158px;
-  width: auto;
-  max-width: 100%;
+  width: 100%;
+  height: calc(var(--logo-size) + 8px);
+
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: none;
+
   border-radius: 16px;
   background: var(--color-card-dim-soft);
-  padding: 10px;
+
+  padding: 4px;
 }
 
 .logo-container img {
-  max-height: 100%;
+  width: var(--logo-size);
+  height: var(--logo-size);
+
   max-width: 100%;
+  max-height: 100%;
+
   object-fit: contain;
+  display: block;
 }
 
+/* ---------------------- */
+/* Name                   */
+/* ---------------------- */
+
 .sponsor-name {
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+
   font-size: 0.75rem;
   font-weight: 600;
+  line-height: 1.1;
+
   color: var(--color-text-on-dark);
-  margin-top: 0;
-  margin-bottom: 2px;
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 100%;
 }
 
+/* ---------------------- */
+/* Tablet                 */
+/* ---------------------- */
+
+@media (max-width: 768px) {
+
+  .sponsor-card--title {
+    --logo-size: 170px;
+  }
+
+  .sponsor-card--co-title {
+    --logo-size: 145px;
+  }
+
+  .sponsor-card--platinum {
+    --logo-size: 120px;
+  }
+
+  .sponsor-card--gold {
+    --logo-size: 100px;
+  }
+
+  .sponsor-card--bronze,
+  .sponsor-card--supporter {
+    --logo-size: 85px;
+  }
+}
+
+/* ---------------------- */
+/* Mobile                 */
+/* ---------------------- */
+
 @media (max-width: 580px) {
-  .sponsor-logo-grid {
-    grid-template-columns: repeat(auto-fit, minmax(min(38vw, 238px), 1fr));
+
+  .sponsors-wrapper {
+    gap: 28px;
+  }
+
+  .sponsor-tier-group {
     gap: 14px;
   }
 
+  .sponsor-logo-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(38vw, 238px), 1fr));
+    gap: 12px;
+  }
+
   .sponsor-card-outer {
-    max-width: 38vw;
     width: 100%;
+    max-width: 38vw;
   }
 
   .sponsor-card {
-    padding: 10px 12px 6px;
+    padding: 6px;
+    gap: 2px;
   }
 
-  .logo-container {
-    height: 106px;
-    padding: 8px;
-  }
-}
-
-@media (max-width: 480px) {
-  .sponsor-card {
-    padding: 8px 10px 5px;
+  .sponsor-card--title {
+    --logo-size: 130px;
   }
 
-  .logo-container {
-    height: 92px;
+  .sponsor-card--co-title {
+    --logo-size: 110px;
+  }
+
+  .sponsor-card--platinum {
+    --logo-size: 95px;
+  }
+
+  .sponsor-card--gold {
+    --logo-size: 80px;
+  }
+
+  .sponsor-card--bronze,
+  .sponsor-card--supporter {
+    --logo-size: 65px;
   }
 
   .sponsor-name {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
+  }
+}
+
+/* ---------------------- */
+/* Small Phones           */
+/* ---------------------- */
+
+@media (max-width: 480px) {
+
+  .sponsor-card--title {
+    --logo-size: 120px;
+  }
+
+  .sponsor-card--co-title {
+    --logo-size: 100px;
+  }
+
+  .sponsor-card--platinum {
+    --logo-size: 85px;
+  }
+
+  .sponsor-card--gold {
+    --logo-size: 72px;
+  }
+
+  .sponsor-card--bronze,
+  .sponsor-card--supporter {
+    --logo-size: 60px;
   }
 }

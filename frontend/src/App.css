@@ -271,9 +271,9 @@ body::after {
   left: 0;
   bottom: 0;
   right: 0;
-  background: linear-gradient(to bottom,
+  /*background: linear-gradient(to bottom,
       rgba(18, 16, 16, 0) 50%,
-      rgba(0, 0, 0, 0.25) 50%);
+      rgba(0, 0, 0, 0.25) 50%);*/
   background-size: 100% 4px;
   z-index: 9999;
   pointer-events: none;
@@ -626,7 +626,7 @@ body::after {
 .content-section {
   position: relative;
   padding: 32px;
-  background: linear-gradient(180deg, rgba(248, 244, 236, 0.1), rgba(17, 17, 17, 0.24));
+ /* background: linear-gradient(180deg, rgba(248, 244, 236, 0.1), rgba(17, 17, 17, 0.24));*/
   color: var(--color-text-on-panel);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-card);
