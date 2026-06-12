@@ -49,10 +49,14 @@ body::before {
 }
 
 /* ─── SCROLLBAR ─────────────────────────────────────────────────────────── */
-::-webkit-scrollbar        { width: 6px; }
+::-webkit-scrollbar        { width: 4px; }
 ::-webkit-scrollbar-track  { background: var(--color-bg); }
-::-webkit-scrollbar-thumb  { background: var(--color-accent); }
+::-webkit-scrollbar-thumb  { background: var(--color-accent); border-radius: 999px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-accent-hover); }
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-accent) var(--color-bg);
+}
 
 /* ─── TYPOGRAPHY ─────────────────────────────────────────────────────────── */
 h1, h2, h3, h4, h5, h6 {
