@@ -481,6 +481,7 @@ body::after {
   border: none;
   cursor: pointer;
   padding: 0;
+  flex-shrink: 0;
 }
 
 
@@ -551,6 +552,7 @@ body::after {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-shrink: 0;
 }
 
 .hamburger-toggle {
