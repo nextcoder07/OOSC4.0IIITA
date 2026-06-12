@@ -60,6 +60,7 @@ model Event {
   startTime   String?
   track       String?
   venue       String?
+  link        String?
 
   @@index([published])
   @@index([sortOrder])
