@@ -402,6 +402,7 @@ body::after {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: var(--color-bg);
 }
 
 .page-body {
@@ -409,6 +410,7 @@ body::after {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  background-color: var(--color-bg);
 }
 
 .page-body--inner {
@@ -646,21 +648,21 @@ body::after {
   background: var(--color-accent);
   color: var(--color-text-on-dark);
   border-color: var(--color-accent);
-  box-shadow: 2px 2px 0 var(--color-glass-hover-shadow), var(--shadow-float);
+  box-shadow: 2px 2px 0 var(--color-glass-hover-shadow);
   padding: 6px 14px;
   font-size: 0.78rem;
 }
 
 .btn-nav-cta:hover {
-  background: var(--color-accent);
-  border-color: var(--color-accent);
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
   transform: translate(-2px, -2px);
-  box-shadow: 4px 4px 0 var(--color-glass-hover-shadow), var(--shadow-float);
+  box-shadow: 4px 4px 0 var(--color-glass-hover-shadow);
 }
 
 .btn-nav-cta:active {
   transform: translate(0, 0);
-  box-shadow: 0 0 0 var(--color-glass-hover-shadow), var(--shadow-float);
+  box-shadow: 0 0 0 var(--color-glass-hover-shadow);
 }
 
 .btn-admin {
@@ -681,43 +683,42 @@ body::after {
 }
 
 .btn-primary {
-  background: var(--color-accent-hover);
+  background: var(--color-accent);
   color: var(--color-text-on-dark);
-  border-color: var(--color-accent-hover);
-  box-shadow: 2px 2px 0 var(--color-glass-hover-shadow), var(--shadow-float);
-  padding: 14px 28px;
+  border-color: var(--color-accent);
+  box-shadow: 2px 2px 0 var(--color-glass-hover-shadow) padding: 14px 28px;
 }
 
 .btn-primary:hover {
   background: var(--color-accent-hover);
-  border-color: var(--color-accent-hover);
+  border-color: var(--color-accent);
   transform: translate(-3px, -3px);
-  box-shadow: 5px 5px 0 var(--color-glass-hover-shadow), var(--shadow-float);
+  box-shadow: 5px 5px 0 var(--color-glass-hover-shadow);
 }
 
 .btn-primary:active {
   transform: translate(0, 0);
-  box-shadow: 0 0 0 var(--color-glass-hover-shadow), var(--shadow-float);
+  box-shadow: 0 0 0 var(--color-glass-hover-shadow);
 }
 
 .btn-outline {
-  background: var(--color-accent-hover);
-  border: 2px solid var(--color-accent-hover);
+  background: var(--color-accent);
+  border: 2px solid var(--color-accent);
   color: var(--color-text-on-dark);
   padding: 14px 28px;
-  box-shadow: 2px 2px 0 var(--color-glass-hover-shadow), var(--shadow-float);
+  box-shadow: 2px 2px 0 var(--color-glass-hover-shadow);
 }
 
 .btn-outline:hover {
   background: var(--color-accent-hover);
   color: var(--color-text-on-dark);
   transform: translate(-3px, -3px);
-  box-shadow: 5px 5px 0 var(--color-glass-hover-shadow), var(--shadow-float);
+  box-shadow: 5px 5px 0 var(--color-glass-hover-shadow);
 }
 
 .btn-outline:active {
   transform: translate(0, 0);
-  box-shadow: 0 0 0 var(--color-glass-hover-shadow), var(--shadow-float);
+  box-shadow: 0 0 0 var(--color-glass-hover-shadow);
 }
 
 .btn-secondary {
