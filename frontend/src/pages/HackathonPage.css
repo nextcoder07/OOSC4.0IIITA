@@ -7,22 +7,18 @@
 
 
 .hackathon-hero {
-  /* Subtract your navbar height (for example, 60px) from full screen height */
-  height: calc(100dvh - 60px);
+  /* Fill the remaining viewport below the sticky navbar */
+  min-height: calc(100dvh - 90px);
 
-  /* Keeps your content centered nicely inside the full screen */
+  /* Center content vertically */
   display: flex;
   align-items: center;
 
-  /* Your existing code
-   border-radius: var(--radius-card); */
   padding: 54px 24px 36px;
 
   background: var(--color-bg);
   position: relative;
   overflow: hidden;
-
-
 }
 
 
@@ -397,6 +393,7 @@
 
   .hackathon-hero {
     padding: 36px 24px;
+    min-height: calc(100dvh - 80px);
   }
 
   .hackathon-cta-strip {
@@ -419,7 +416,8 @@
 
 @media (max-width: 580px) {
   .hackathon-hero {
-    padding: 24px 16px;
+    padding: 32px 16px;
+    min-height: calc(100dvh - 76px);
   }
 
   .hackathon-hero h2 {
@@ -461,7 +459,8 @@
 
 @media (max-width: 480px) {
   .hackathon-hero {
-    padding: 18px 12px;
+    padding: 32px 12px;
+    min-height: calc(100dvh - 72px);
   }
 
   .hackathon-hero h2 {

@@ -1,18 +1,15 @@
 .hero-section {
-  /* 1. Stretch the section to fill the remaining screen height */
-  /* Adjust 80px to match your actual navbar height if needed */
-  height: calc(100dvh - 80px);
+  /* Fill the remaining viewport below the sticky navbar */
+  min-height: calc(100dvh - 90px);
 
-  /* 2. Center your text content vertically inside the full screen box */
+  /* Center text content vertically */
   display: flex;
   align-items: center;
 
-  /* Your existing code */
   padding: 54px 24px 36px;
   position: relative;
   overflow: hidden;
   background: var(--color-bg);
-
 }
 
 .hero-section::before {
@@ -288,6 +285,7 @@
 
   .hero-section {
     padding: 40px 20px 28px;
+    min-height: calc(100dvh - 80px);
   }
 }
 
@@ -307,6 +305,7 @@
 @media (max-width: 868px) {
   .hero-section {
     padding: 32px 18px;
+    min-height: calc(100dvh - 76px);
   }
 
   .hero-copy h1 {
@@ -345,7 +344,8 @@
 
 @media (max-width: 580px) {
   .hero-section {
-    padding: 24px 14px 18px;
+    padding: 32px 14px 18px;
+    min-height: calc(100dvh - 72px);
   }
 
   .hero-copy {
@@ -407,7 +407,8 @@
 
 @media (max-width: 480px) {
   .hero-section {
-    padding: 18px 12px 14px;
+    padding: 32px 12px 14px;
+    min-height: calc(100dvh - 72px);
   }
 
   .eyebrow-accent {
