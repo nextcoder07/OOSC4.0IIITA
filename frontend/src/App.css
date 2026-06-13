@@ -98,11 +98,11 @@
   --color-brand-violet: #c084fc;
 
   /* Sponsorship tier colours */
-  --color-brand-title: #A855F7;
-  --color-brand-gold: #F5A623;
-  --color-brand-silver: #A8B8C8;
-  --color-brand-platinum: #B0D8E8;
-  --color-brand-bronze: #CD7F3A;
+  --color-brand-title: #1B3DB5;
+  --color-brand-gold: #2D6B27;
+  --color-brand-silver: #1A90D5;
+  --color-brand-platinum: #0F8272;
+  --color-brand-bronze: #A8D8A0;
 
   /* legacy aliases */
   --color-midnight: var(--color-bg);
@@ -156,6 +156,41 @@
   --shadow-float: 0 12px 30px rgba(0, 0, 0, 0.25);
   --transition-smooth: all 0.2s ease;
   scroll-padding-top: 100px;
+
+  /* ── Sponsor form card ── */
+  --color-sponsor-form-bg: linear-gradient(135deg, #1B3DB5 0%, #1A90D5 30%, #0F8272 65%, #49a13f 100%);
+  --color-sponsor-form-shadow: rgba(0, 0, 0, 0.45);
+  --color-sponsor-form-shine: rgba(255, 255, 255, 0.10);
+  --color-sponsor-form-icon: rgba(255, 255, 255, 0.90);
+  --color-sponsor-form-heading: #ffffff;
+  --color-sponsor-form-label: rgba(255, 255, 255, 0.85);
+  --color-sponsor-form-label-required: #f87171;
+  --color-sponsor-form-input-bg: rgba(255, 255, 255, 0.12);
+  --color-sponsor-form-input-border: rgba(255, 255, 255, 0.25);
+  --color-sponsor-form-input-border-focus: rgba(255, 255, 255, 0.70);
+  --color-sponsor-form-input-text: #ffffff;
+  --color-sponsor-form-btn-bg: linear-gradient(90deg, #1A90D5 0%, #0F8272 50%, #2D6B27 100%);
+  --color-sponsor-form-btn-shadow: rgba(0, 0, 0, 0.30);
+  --color-sponsor-form-status-success: #86efac;
+  --color-sponsor-form-status-error: #fca5a5;
+  --color-sponsor-form-placeholder: rgba(255, 255, 255, 0.45);
+  --color-sponsor-form-heading-shadow: rgba(0, 0, 0, 0.30);
+  --color-sponsor-form-btn-text: #ffffff;
+
+  /* ── Partnership CTA ── */
+  --color-partnership-cta-bg: linear-gradient(135deg, #1B3DB5 0%, #1A90D5 30%, #0F8272 65%, #49a13f 100%);
+  --color-partnership-cta-shadow: rgba(0, 0, 0, 0.45);
+  --color-partnership-cta-title: #ffffff;
+  --color-partnership-cta-desc: rgba(255, 255, 255, 0.9);
+  --color-partnership-cta-btn-bg: linear-gradient(90deg, #1A90D5 0%, #0F8272 50%, #2D6B27 100%);
+  --color-partnership-cta-btn-text: #ffffff;
+  --color-partnership-cta-btn-border: rgba(255, 255, 255, 0.45);
+  --color-partnership-cta-btn-hover-bg: linear-gradient(90deg, #1F9CFE 0%, #109D8B 50%, #357C2F 100%);
+  --color-partnership-cta-btn-hover-border: #ffffff;
+
+  /* ── Tier card text colours ── */
+  --color-tier-card-text-light: #ffffff;
+  --color-tier-card-text-dark: #1a3a1a;
 }
 
 :root[data-theme="bright"] {
@@ -261,11 +296,11 @@
   --color-brand-violet: #7E22CE;
 
   /* Sponsorship tier colours */
-  --color-brand-title: #7E22CE;
-  --color-brand-gold: #D4900A;
-  --color-brand-silver: #475569;
-  --color-brand-platinum: #0284C7;
-  --color-brand-bronze: #9A3412;
+  --color-brand-title: #1B3DB5;
+  --color-brand-gold: #2D6B27;
+  --color-brand-silver: #1A90D5;
+  --color-brand-platinum: #0F8272;
+  --color-brand-bronze: #A8D8A0;
 
   /* legacy aliases */
   --color-midnight: var(--color-bg);
@@ -315,6 +350,41 @@
   --shadow-brutal: 0 4px 12px rgba(8, 47, 73, 0.08);
   --shadow-panel: 0 8px 20px rgba(8, 47, 73, 0.1);
   --shadow-float: 0 12px 30px rgba(8, 47, 73, 0.12);
+
+  /* ── Sponsor form card (bright mode — same gradient, slightly deeper shadow) ── */
+  --color-sponsor-form-bg: linear-gradient(135deg, #1B3DB5 0%, #1A90D5 30%, #0F8272 65%, #49a13f 100%);
+  --color-sponsor-form-shadow: rgba(8, 47, 73, 0.35);
+  --color-sponsor-form-shine: rgba(255, 255, 255, 0.14);
+  --color-sponsor-form-icon: rgba(255, 255, 255, 0.92);
+  --color-sponsor-form-heading: #ffffff;
+  --color-sponsor-form-label: rgba(255, 255, 255, 0.90);
+  --color-sponsor-form-label-required: #fca5a5;
+  --color-sponsor-form-input-bg: rgba(255, 255, 255, 0.15);
+  --color-sponsor-form-input-border: rgba(255, 255, 255, 0.30);
+  --color-sponsor-form-input-border-focus: rgba(255, 255, 255, 0.75);
+  --color-sponsor-form-input-text: #ffffff;
+  --color-sponsor-form-btn-bg: linear-gradient(90deg, #1A90D5 0%, #0F8272 50%, #2D6B27 100%);
+  --color-sponsor-form-btn-shadow: rgba(8, 47, 73, 0.25);
+  --color-sponsor-form-status-success: #166534;
+  --color-sponsor-form-status-error: #991b1b;
+  --color-sponsor-form-placeholder: rgba(255, 255, 255, 0.50);
+  --color-sponsor-form-heading-shadow: rgba(0, 0, 0, 0.20);
+  --color-sponsor-form-btn-text: #ffffff;
+
+  /* ── Partnership CTA (bright mode) ── */
+  --color-partnership-cta-bg: linear-gradient(135deg, #1B3DB5 0%, #1A90D5 30%, #0F8272 65%, #49a13f 100%);
+  --color-partnership-cta-shadow: rgba(8, 47, 73, 0.35);
+  --color-partnership-cta-title: #ffffff;
+  --color-partnership-cta-desc: rgba(255, 255, 255, 0.9);
+  --color-partnership-cta-btn-bg: linear-gradient(90deg, #1A90D5 0%, #0F8272 50%, #2D6B27 100%);
+  --color-partnership-cta-btn-text: #ffffff;
+  --color-partnership-cta-btn-border: rgba(255, 255, 255, 0.45);
+  --color-partnership-cta-btn-hover-bg: linear-gradient(90deg, #1F9CFE 0%, #109D8B 50%, #357C2F 100%);
+  --color-partnership-cta-btn-hover-border: #ffffff;
+
+  /* ── Tier card text colours ── */
+  --color-tier-card-text-light: #ffffff;
+  --color-tier-card-text-dark: #1a3a1a;
 }
 
 
