@@ -2,6 +2,66 @@ import React from 'react'
 import { Calendar, MapPin, Check, Mic, Settings, Zap, Handshake, Globe } from 'lucide-react'
 import './HomePage.css'
 
+import { useState, useEffect } from 'react'
+
+function CountdownTimer() {
+  const targetDate = "2026-08-28T09:00:00+05:30"; // August 28, 2026 at 9:00 AM IST
+
+  const calculateTimeLeft = () => {
+    const difference = +new Date(targetDate) - +new Date();
+    let timeLeft = {};
+
+    if (difference > 0) {
+      timeLeft = {
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / 1000 / 60) % 60),
+        seconds: Math.floor((difference / 1000) % 60),
+      };
+    } else {
+      timeLeft = { isOver: true };
+    }
+    return timeLeft;
+  };
+
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  if (timeLeft.isOver) {
+    return <div className="countdown-finished">🎉 The Conference has Started!</div>;
+  }
+
+  const units = [
+    { value: timeLeft.days, label: 'Days' },
+    { value: timeLeft.hours, label: 'Hours' },
+    { value: timeLeft.minutes, label: 'Mins' },
+    { value: timeLeft.seconds, label: 'Secs' },
+  ];
+
+  return (
+    <div className="hero-countdown">
+      <div className="countdown-header">Conference Starts In</div>
+      <div className="countdown-grid">
+        {units.map((unit, i) => (
+          <React.Fragment key={unit.label}>
+            {i > 0 && <div className="countdown-divider">:</div>}
+            <div className={`countdown-item${unit.label === 'Secs' ? ' countdown-item--pulse' : ''}`}>
+              <span className="countdown-value">{String(unit.value).padStart(2, '0')}</span>
+              <span className="countdown-label">{unit.label}</span>
+            </div>
+          </React.Fragment>
+        ))}
+      </div>
+    </div>
+  );
+}
 export default function HomePage({ hero, about, siteConfig, navigateTo }) {
   return (
     <>
@@ -14,7 +74,7 @@ export default function HomePage({ hero, about, siteConfig, navigateTo }) {
             <h1>{siteConfig.heroTitle || hero.title}</h1>
             <p className="hero-subtitle">{siteConfig.heroSubtitle || hero.subtitle}</p>
             <p className="hero-description">{hero.bannerText}</p>
-            
+            <CountdownTimer />
             <div className="hero-actions">
               <button
                 type="button"
@@ -72,7 +132,7 @@ export default function HomePage({ hero, about, siteConfig, navigateTo }) {
               <h2>{siteConfig.aboutTitle || about.heading}</h2>
               <p className="about-desc">{siteConfig.aboutSubtitle || about.description}</p>
             </div>
-            
+
             <div className="highlights-stack">
               {about.highlights.map((point, i) => (
                 <div key={i} className="highlight-pill glass-card">
