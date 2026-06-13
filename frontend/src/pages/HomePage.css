@@ -154,11 +154,11 @@
   width: 0.8em;
   height: 1.2em;
   line-height: 1.2em;
-  perspective: 400px;
+  perspective: 150px; /* Reduced perspective for a more pronounced 3D effect */
   border-radius: 6px;
-  background: #0a0c10;
+  background: #06070a; /* Darker background to increase contrast with cards */
   box-shadow: 
-    0 4px 16px rgba(0, 0, 0, 0.6),
+    0 4px 16px rgba(0, 0, 0, 0.7),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
   overflow: visible; /* Allow 3D card rotation to be visible */
 }
@@ -171,27 +171,61 @@
   width: 100%;
   height: 50%;
   overflow: hidden;
-  background: rgba(6, 7, 10, 0.97);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
 
-/* Top half styles */
+/* Top half styles: subtle gradient from a bit lighter down to dark */
 .top-static,
 .top-flip {
   top: 0;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.45);
+  background: linear-gradient(to bottom, #1b202e 0%, #0d0f17 100%);
 }
 
-/* Bottom half styles */
+/* Bottom half styles: subtle gradient from dark down to a bit lighter */
 .bottom-static,
 .bottom-flip {
   bottom: 0;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
-  border-top: 1px solid rgba(0, 0, 0, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.08); /* light highlights on bottom edge border */
+  background: linear-gradient(to bottom, #090a10 0%, #121520 100%);
+}
+
+/* Shadows on flipping cards */
+.flip-card-static::after,
+.flip-card-animated::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  opacity: 0;
+}
+
+/* Top flip shadow: gets darker as it flips down */
+.top-flip::after {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.85) 100%);
+}
+
+/* Bottom flip shadow: starts dark, gets lighter as it finishes swinging */
+.bottom-flip::after {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+/* Static bottom card shadow: gets a shadow cast on it by falling card, then covers it */
+.bottom-static::after {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+/* Static top card shadow: starts in shadow when revealed, then lightens */
+.top-static::after {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.95) 100%);
 }
 
 /* Inner span that holds the text */
@@ -240,31 +274,68 @@
   z-index: 1;
 }
 
-/* Animations */
+/* Animations: sequential flow matching gravity */
 .animate-top {
-  animation: flip-top-anim 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: flip-top-anim 0.28s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards; /* ease-in-cubic for snap drop */
 }
 
 .animate-bottom {
-  animation: flip-bottom-anim 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: flip-bottom-anim 0.28s cubic-bezier(0.215, 0.61, 0.355, 1) 0.28s forwards; /* ease-out-cubic with delay */
+}
+
+.animate-top::after {
+  animation: shadow-top-anim 0.28s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards;
+}
+
+.animate-bottom::after {
+  animation: shadow-bottom-anim 0.28s cubic-bezier(0.215, 0.61, 0.355, 1) 0.28s forwards;
+}
+
+.flipping .bottom-static::after {
+  animation: shadow-static-bottom 0.56s ease-out forwards;
+}
+
+.flipping .top-static::after {
+  animation: shadow-static-top 0.56s ease-out forwards;
 }
 
 @keyframes flip-top-anim {
   0% {
     transform: rotateX(0deg);
   }
-  50%, 100% {
+  100% {
     transform: rotateX(-90deg);
   }
 }
 
 @keyframes flip-bottom-anim {
-  0%, 50% {
+  0% {
     transform: rotateX(90deg);
   }
   100% {
     transform: rotateX(0deg);
   }
+}
+
+@keyframes shadow-top-anim {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes shadow-bottom-anim {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes shadow-static-bottom {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes shadow-static-top {
+  0% { opacity: 1; }
+  50%, 100% { opacity: 0; }
 }
 
 /* Middle divider line */
@@ -274,8 +345,8 @@
   left: 0;
   width: 100%;
   height: 1.5px;
-  background: rgba(0, 0, 0, 0.65);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.85);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
   z-index: 10;
   transform: translateY(-50%);
 }
@@ -359,20 +430,25 @@
 }
 
 :root[data-theme="bright"] .flip-digit-container {
-  background: #1E293B;
+  background: #0f172a; /* Darker border/container background */
   box-shadow:
     0 2px 8px rgba(15, 23, 42, 0.25),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
-:root[data-theme="bright"] .flip-card-static,
-:root[data-theme="bright"] .flip-card-animated {
-  background: rgba(30, 41, 59, 0.97);
+:root[data-theme="bright"] .top-static,
+:root[data-theme="bright"] .top-flip {
+  background: linear-gradient(to bottom, #334155 0%, #1e293b 100%);
+}
+
+:root[data-theme="bright"] .bottom-static,
+:root[data-theme="bright"] .bottom-flip {
+  background: linear-gradient(to bottom, #0f172a 0%, #243042 100%);
 }
 
 :root[data-theme="bright"] .flip-divider {
-  background: rgba(0, 0, 0, 0.4);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 :root[data-theme="bright"] .countdown-divider {

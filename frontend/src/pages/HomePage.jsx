@@ -23,7 +23,7 @@ function FlipDigit({ digit }) {
   };
 
   return (
-    <div className="flip-digit-container">
+    <div className={`flip-digit-container ${isFlipping ? 'flipping' : ''}`}>
       {/* Static Top */}
       <div className="flip-card-static top-static">
         <span className="flip-digit-inner">{current}</span>
