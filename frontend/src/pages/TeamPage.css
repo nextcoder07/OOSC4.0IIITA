@@ -147,7 +147,7 @@
   .team-grid {
     grid-template-columns: repeat(
       auto-fit,
-      minmax(140px, 140px)
+      minmax(168px, 168px)
     );
 
     gap: 12px;
@@ -155,9 +155,9 @@
 
   .team-card,
   .team-grid > article {
-    width: 140px;
-    min-width: 140px;
-    max-width: 140px;
+    width: 168px;
+    min-width: 168px;
+    max-width: 168px;
   }
 }
 
