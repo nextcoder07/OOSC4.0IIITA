@@ -15,21 +15,21 @@ export default function ContactPage({ siteConfig, form, setForm, formStatus, han
 
           <div className="contact-details-cards">
             <div className="contact-detail-card glass-card">
-              <span className="icon"><Mail size={24} color="var(--color-text-on-dark)" /></span>
+              <span className="icon"><Mail size={24} /></span>
               <div>
                 <h4>Official Email</h4>
                 <p>contact@oosc4.0.iiita.ac.in</p>
               </div>
             </div>
             <div className="contact-detail-card glass-card">
-              <span className="icon"><Phone size={24} color="var(--color-text-on-dark)" /></span>
+              <span className="icon"><Phone size={24} /></span>
               <div>
                 <h4>Call / WhatsApp</h4>
                 <p>+91 7318 295 789</p>
               </div>
             </div>
             <div className="contact-detail-card glass-card">
-              <span className="icon"><MapPin size={24} color="var(--color-text-on-dark)" /></span>
+              <span className="icon"><MapPin size={24} /></span>
               <div>
                 <h4>Venue Location</h4>
                 <p>CC-3, IIIT Allahabad, Devghat, Jhalwa, Prayagraj, UP 211015</p>
