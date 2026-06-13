@@ -113,7 +113,7 @@ export default function SponsorsPage({
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px', marginBottom: '2rem' }}>
-          <div style={{ padding: '16px', background: 'var(--color-panel-overlay)', borderRadius: '8px', borderLeft: '4px solid var(--color-brand-gold)' }}>
+          <div style={{ padding: '16px', background: 'var(--color-panel-overlay)', borderRadius: '8px', borderLeft: '4px solid var(--color-brand-title)' }}>
             <h4 style={{ color: 'var(--color-text-snow)', margin: '0 0 8px 0' }}>Title</h4>
             <p style={{ color: 'var(--color-text-muted-strong)', margin: 0, fontWeight: 'bold' }}>INR 3,50,000+</p>
           </div>

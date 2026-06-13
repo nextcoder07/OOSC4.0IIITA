@@ -97,6 +97,13 @@
   --color-brand-lime: #14B8A6;
   --color-brand-violet: #c084fc;
 
+  /* Sponsorship tier colours */
+  --color-brand-title: #A855F7;
+  --color-brand-gold: #F5A623;
+  --color-brand-silver: #A8B8C8;
+  --color-brand-platinum: #B0D8E8;
+  --color-brand-bronze: #CD7F3A;
+
   /* legacy aliases */
   --color-midnight: var(--color-bg);
   --color-deep-bg: var(--color-bg);
@@ -252,6 +259,13 @@
   --color-brand-green: #22C55E;
   --color-brand-lime: #14B8A6;
   --color-brand-violet: #c084fc;
+
+  /* Sponsorship tier colours */
+  --color-brand-title: #7E22CE;
+  --color-brand-gold: #D4900A;
+  --color-brand-silver: #6B8096;
+  --color-brand-platinum: #3A8FA8;
+  --color-brand-bronze: #A05C1E;
 
   /* legacy aliases */
   --color-midnight: var(--color-bg);
