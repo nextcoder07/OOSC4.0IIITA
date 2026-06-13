@@ -4,6 +4,54 @@ import './HomePage.css'
 
 import { useState, useEffect } from 'react'
 
+function FlipDigit({ digit }) {
+  const [current, setCurrent] = useState(digit);
+  const [previous, setPrevious] = useState(digit);
+  const [isFlipping, setIsFlipping] = useState(false);
+
+  useEffect(() => {
+    if (digit !== current) {
+      setPrevious(current);
+      setCurrent(digit);
+      setIsFlipping(true);
+    }
+  }, [digit, current]);
+
+  const handleAnimationEnd = () => {
+    setIsFlipping(false);
+    setPrevious(current);
+  };
+
+  return (
+    <div className="flip-digit-container">
+      {/* Static Top */}
+      <div className="flip-card-static top-static">
+        <span className="flip-digit-inner">{current}</span>
+      </div>
+      {/* Static Bottom */}
+      <div className="flip-card-static bottom-static">
+        <span className="flip-digit-inner">{previous}</span>
+      </div>
+
+      {/* Flipping Card Top */}
+      <div className={`flip-card-animated top-flip ${isFlipping ? 'animate-top' : ''}`}>
+        <span className="flip-digit-inner">{previous}</span>
+      </div>
+
+      {/* Flipping Card Bottom */}
+      <div 
+        className={`flip-card-animated bottom-flip ${isFlipping ? 'animate-bottom' : ''}`}
+        onAnimationEnd={handleAnimationEnd}
+      >
+        <span className="flip-digit-inner">{current}</span>
+      </div>
+      
+      {/* Divider line in the middle */}
+      <div className="flip-divider"></div>
+    </div>
+  );
+}
+
 function CountdownTimer() {
   const targetDate = "2026-08-28T09:00:00+05:30"; // August 28, 2026 at 9:00 AM IST
 
@@ -52,8 +100,12 @@ function CountdownTimer() {
         {units.map((unit, i) => (
           <React.Fragment key={unit.label}>
             {i > 0 && <div className="countdown-divider">:</div>}
-            <div className={`countdown-item${unit.label === 'Secs' ? ' countdown-item--pulse' : ''}`}>
-              <span className="countdown-value">{String(unit.value).padStart(2, '0')}</span>
+            <div className="countdown-item">
+              <span className="countdown-value">
+                {String(unit.value).padStart(2, '0').split('').map((digit, idx) => (
+                  <FlipDigit key={idx} digit={digit} />
+                ))}
+              </span>
               <span className="countdown-label">{unit.label}</span>
             </div>
           </React.Fragment>
