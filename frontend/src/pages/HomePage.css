@@ -143,7 +143,7 @@
   font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(2.4rem, 5vw, 3.2rem);
   font-weight: 700;
-  color: var(--color-text-snow);
+  color: #F8FAFC; /* Always white — sits on dark flip tiles in both themes */
   line-height: 1.2em;
 }
 
@@ -333,6 +333,55 @@
   .countdown-header {
     font-size: 0.68rem;
   }
+}
+
+/* ─── LIGHT-MODE COUNTDOWN OVERRIDES ────────────────────────────────────────── */
+:root[data-theme="bright"] .hero-countdown {
+  background: #ffffff;
+  border: 1.5px solid rgba(14, 165, 233, 0.35);
+  box-shadow:
+    0 2px 12px rgba(14, 165, 233, 0.08),
+    0 0 0 1px rgba(14, 165, 233, 0.06);
+  animation: countdown-glow-light 3s ease-in-out infinite alternate;
+}
+
+@keyframes countdown-glow-light {
+  0% {
+    box-shadow:
+      0 2px 12px rgba(14, 165, 233, 0.08),
+      0 0 0 1px rgba(14, 165, 233, 0.06);
+  }
+  100% {
+    box-shadow:
+      0 4px 20px rgba(14, 165, 233, 0.12),
+      0 0 0 1px rgba(14, 165, 233, 0.1);
+  }
+}
+
+:root[data-theme="bright"] .flip-digit-container {
+  background: #1E293B;
+  box-shadow:
+    0 2px 8px rgba(15, 23, 42, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+:root[data-theme="bright"] .flip-card-static,
+:root[data-theme="bright"] .flip-card-animated {
+  background: rgba(30, 41, 59, 0.97);
+}
+
+:root[data-theme="bright"] .flip-divider {
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+:root[data-theme="bright"] .countdown-divider {
+  color: #0284C7;
+  opacity: 0.85;
+}
+
+:root[data-theme="bright"] .countdown-label {
+  color: #475569;
 }
 
 .hero-transitional-details {
