@@ -802,6 +802,14 @@ function App() {
             </button>
           ))}
           <div className="mobile-actions-divider"></div>
+          <a
+            href={siteConfig.speakersCtaLink || 'https://events.canonical.com/event/154/abstracts/'}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-action-btn cfp-mobile-btn"
+          >
+            Call for Proposal
+          </a>
           {adminMode && (
             <button type="button" className="nav-action-btn logout-btn" onClick={logout}>
               Logout
@@ -834,6 +842,15 @@ function App() {
           </button>
 
 
+
+          <a
+            href={siteConfig.speakersCtaLink || 'https://events.canonical.com/event/154/abstracts/'}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-nav-cta btn-nav-cfp"
+          >
+            Call for Proposal
+          </a>
           <button
             type="button"
             className="btn btn-nav-cta"
