@@ -106,13 +106,7 @@
 
 .eyebrow-accent {
   display: inline;
-  background: var(--gradient-brand);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
+  color: var(--color-accent);
 }
 
 .hero-copy h1 {
@@ -527,7 +521,7 @@
 }
 
 :root[data-theme="bright"] .countdown-divider {
-  color: #0D9488;
+  color: var(--color-accent);
   opacity: 0.8;
 }
 
@@ -651,7 +645,7 @@
   left: 0;
   width: 100%;
   height: 4px;
-  background: var(--gradient-brand);
+  background: var(--color-accent);
 }
 
 .stat-card-gradient:hover {
@@ -669,11 +663,7 @@
   font-family: 'Space Grotesk', sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
-  background: var(--gradient-brand);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
+  color: var(--color-accent);
   margin-bottom: 6px;
   display: inline-block;
 }

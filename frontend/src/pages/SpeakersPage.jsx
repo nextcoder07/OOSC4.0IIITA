@@ -1,4 +1,5 @@
 import React from 'react'
+import { Mic, Star, ArrowRight } from 'lucide-react'
 import './SpeakersPage.css'
 
 export default function SpeakersPage({
@@ -20,6 +21,23 @@ export default function SpeakersPage({
             + Add Speaker
           </button>
         )}
+      </div>
+
+      <div className="speaker-highlights">
+        <div className="highlight-box glass-card">
+          <Mic size={24} className="highlight-icon" />
+          <div>
+            <h4>50+ Sessions</h4>
+            <p>Covering AI, Cloud, and Systems</p>
+          </div>
+        </div>
+        <div className="highlight-box glass-card">
+          <Star size={24} className="highlight-icon" />
+          <div>
+            <h4>Industry Leaders</h4>
+            <p>Top tech companies and academia</p>
+          </div>
+        </div>
       </div>
 
       <div className="card-grid speaker-grid">
@@ -66,6 +84,16 @@ export default function SpeakersPage({
             )}
           </article>
         ))}
+      </div>
+
+      <div className="speaker-cta-banner glass-card">
+        <div className="cta-content">
+          <h3>Want to share your expertise?</h3>
+          <p>We're always looking for passionate speakers to lead sessions, workshops, and panels.</p>
+        </div>
+        <a href="https://events.canonical.com/event/154/abstracts/" target="_blank" rel="noopener noreferrer" className="btn btn-primary cta-btn">
+          Submit Proposal <ArrowRight size={18} />
+        </a>
       </div>
     </section>
   )
