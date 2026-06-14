@@ -761,8 +761,9 @@
 
 @media (max-width: 868px) {
   .hero-section {
-    padding: 32px 18px;
+    padding: 70px 18px 32px;
     min-height: calc(100dvh - 76px);
+    align-items: flex-start; /* Prevents top cropping when content overflows */
   }
 
   .hero-copy h1 {
@@ -801,8 +802,9 @@
 
 @media (max-width: 580px) {
   .hero-section {
-    padding: 32px 14px 18px;
+    padding: 70px 14px 18px;
     min-height: calc(100dvh - 72px);
+    align-items: flex-start; /* Prevents top cropping when content overflows */
   }
 
   .hero-copy {
