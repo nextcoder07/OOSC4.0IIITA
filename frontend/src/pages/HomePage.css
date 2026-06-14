@@ -171,6 +171,7 @@
       0 0 15px var(--color-accent-glow),
       inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
+
   100% {
     box-shadow:
       0 6px 30px rgba(13, 148, 136, 0.08),
@@ -205,11 +206,13 @@
 
 .countdown-value {
   display: flex;
-  gap: 6px; /* spacing between the two digits */
+  gap: 6px;
+  /* spacing between the two digits */
   font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(2.4rem, 5vw, 3.2rem);
   font-weight: 700;
-  color: #F8FAFC; /* Always white — sits on dark flip tiles in both themes */
+  color: #F8FAFC;
+  /* Always white — sits on dark flip tiles in both themes */
   line-height: 1.2em;
 }
 
@@ -220,13 +223,16 @@
   width: 0.8em;
   height: 1.2em;
   line-height: 1.2em;
-  perspective: 150px; /* Reduced perspective for a more pronounced 3D effect */
+  perspective: 150px;
+  /* Reduced perspective for a more pronounced 3D effect */
   border-radius: 6px;
-  background: #06070a; /* Darker background to increase contrast with cards */
-  box-shadow: 
+  background: #06070a;
+  /* Darker background to increase contrast with cards */
+  box-shadow:
     0 4px 16px rgba(0, 0, 0, 0.7),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  overflow: visible; /* Allow 3D card rotation to be visible */
+  overflow: visible;
+  /* Allow 3D card rotation to be visible */
 }
 
 /* Base styles for the card halves */
@@ -257,7 +263,8 @@
   bottom: 0;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08); /* light highlights on bottom edge border */
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  /* light highlights on bottom edge border */
   background: linear-gradient(to bottom, #090a10 0%, #121520 100%);
 }
 
@@ -299,7 +306,8 @@
   position: absolute;
   left: 0;
   width: 100%;
-  height: 200%; /* Height is double the parent (which is 50% of the digit height) */
+  height: 200%;
+  /* Height is double the parent (which is 50% of the digit height) */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -342,11 +350,13 @@
 
 /* Animations: sequential flow matching gravity */
 .animate-top {
-  animation: flip-top-anim 0.28s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards; /* ease-in-cubic for snap drop */
+  animation: flip-top-anim 0.28s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards;
+  /* ease-in-cubic for snap drop */
 }
 
 .animate-bottom {
-  animation: flip-bottom-anim 0.28s cubic-bezier(0.215, 0.61, 0.355, 1) 0.28s forwards; /* ease-out-cubic with delay */
+  animation: flip-bottom-anim 0.28s cubic-bezier(0.215, 0.61, 0.355, 1) 0.28s forwards;
+  /* ease-out-cubic with delay */
 }
 
 .animate-top::after {
@@ -369,6 +379,7 @@
   0% {
     transform: rotateX(0deg);
   }
+
   100% {
     transform: rotateX(-90deg);
   }
@@ -378,30 +389,55 @@
   0% {
     transform: rotateX(90deg);
   }
+
   100% {
     transform: rotateX(0deg);
   }
 }
 
 @keyframes shadow-top-anim {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes shadow-bottom-anim {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 
 @keyframes shadow-static-bottom {
-  0% { opacity: 0; }
-  50% { opacity: 1; }
-  100% { opacity: 0; }
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 
 @keyframes shadow-static-top {
-  0% { opacity: 1; }
-  50%, 100% { opacity: 0; }
+  0% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
 }
 
 /* Middle divider line */
@@ -488,6 +524,7 @@
       0 2px 12px rgba(14, 165, 233, 0.08),
       0 0 0 1px rgba(14, 165, 233, 0.06);
   }
+
   100% {
     box-shadow:
       0 4px 20px rgba(14, 165, 233, 0.12),
@@ -496,7 +533,8 @@
 }
 
 :root[data-theme="bright"] .flip-digit-container {
-  background: #0f172a; /* Darker border/container background */
+  background: #0f172a;
+  /* Darker border/container background */
   box-shadow:
     0 2px 8px rgba(15, 23, 42, 0.25),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);

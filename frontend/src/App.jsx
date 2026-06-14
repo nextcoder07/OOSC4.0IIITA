@@ -15,6 +15,7 @@ const ContactPage = lazy(() => import('./pages/ContactPage.jsx'))
 const AdminLoginPage = lazy(() => import('./pages/AdminLoginPage.jsx'))
 const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage.jsx'))
 const TermsOfUsePage = lazy(() => import('./pages/TermsOfUsePage.jsx'))
+const AboutPage = lazy(() => import('./pages/aboutpage.jsx'))
 
 import ChatBot from './components/ChatBot.jsx'
 import {
@@ -33,6 +34,7 @@ import './pages/HackathonPage.css'
 import './pages/ContactPage.css'
 import './pages/AdminLoginPage.css'
 import './pages/PolicyPage.css'
+import './pages/aboutpage.css'
 
 function App() {
   const [adminMode, setAdminMode] = useState(false)
@@ -140,6 +142,7 @@ function App() {
 
   const pageRoutes = useMemo(() => [
     { key: 'home', label: 'Home' },
+    { key: 'about', label: 'About' },
     { key: 'hackathon', label: 'Hackathon' },
     { key: 'schedule', label: 'Schedule' },
     { key: 'speakers', label: 'Speakers' },
@@ -886,6 +889,9 @@ function App() {
             <Routes>
           <Route path="/" element={
             <HomePage hero={hero} about={about} siteConfig={siteConfig} navigateTo={navigateTo} />
+          } />
+          <Route path="/about" element={
+            <AboutPage siteConfig={siteConfig} about={about} />
           } />
           <Route path="/schedule" element={
             <SchedulePage
