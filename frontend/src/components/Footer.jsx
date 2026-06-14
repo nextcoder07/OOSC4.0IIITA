@@ -41,6 +41,7 @@ export default function Footer() {
           <h4>Conference</h4>
           <ul>
             <li><Link to="/" onClick={scrollToTop}>Home</Link></li>
+            <li><Link to="/about" onClick={scrollToTop}>About</Link></li>
             <li><Link to="/schedule" onClick={scrollToTop}>Schedule</Link></li>
             <li><Link to="/speakers" onClick={scrollToTop}>Speakers</Link></li>
             <li><Link to="/sponsors" onClick={scrollToTop}>Sponsors</Link></li>
