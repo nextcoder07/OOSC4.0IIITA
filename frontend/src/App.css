@@ -425,6 +425,7 @@ body::after {
   flex-direction: column;
   min-height: 100vh;
   background-color: var(--color-bg);
+  overflow-x: hidden;
 }
 
 .page-body {
@@ -490,6 +491,7 @@ body::after {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 16px;
   padding: 6px 22px;
   margin: 0 0 4px;
   border-radius: 0;
@@ -499,6 +501,8 @@ body::after {
   border: 0.5px solid var(--color-header-border);
   box-shadow: none;
   overflow: visible;
+  max-width: 100%;
+  box-sizing: border-box;
   --mouse-x: 50%;
   --mouse-y: 50%;
   --glow-opacity: 0;
@@ -544,6 +548,7 @@ body::after {
   cursor: pointer;
   padding: 0;
   flex-shrink: 0;
+  margin-right: 8px;
 }
 
 
@@ -581,6 +586,9 @@ body::after {
   display: flex;
   align-items: center;
   gap: 4px;
+  flex: 1 1 auto;
+  min-width: 0;
+  padding-left: 8px;
 }
 
 .nav-link {
@@ -615,7 +623,15 @@ body::after {
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Both CTA buttons grouped — show/hide as one unit */
+.header-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   flex-shrink: 0;
 }
 
@@ -677,9 +693,10 @@ body::after {
   color: #F1F5F9 !important;
   border: none;
   box-shadow: 0 4px 10px rgba(13, 148, 136, 0.15);
-  padding: 8px 18px;
-  font-size: 0.82rem;
+  padding: 7px 14px;
+  font-size: 0.78rem;
   border-radius: 999px;
+  white-space: nowrap;
   transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.25s ease, background 0.25s ease;
 }
 
@@ -1918,7 +1935,7 @@ body::after {
   }
 }
 
-@media (max-width: 868px) {
+@media (max-width: 1050px) {
   .site-header {
     display: flex;
     align-items: center;
@@ -1945,8 +1962,9 @@ body::after {
     display: none;
   }
 
-  .btn-nav-cta {
-    display: none;
+  /* Hide the entire CTA group atomically on mobile */
+  .header-cta-group {
+    display: none !important;
   }
 
   .main-nav {

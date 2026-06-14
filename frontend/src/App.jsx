@@ -841,23 +841,24 @@ function App() {
             <span className="toggle-bar"></span>
           </button>
 
-
-
-          <a
-            href={siteConfig.speakersCtaLink || 'https://events.canonical.com/event/154/abstracts/'}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-nav-cta btn-nav-cfp"
-          >
-            Call for Proposal
-          </a>
-          <button
-            type="button"
-            className="btn btn-nav-cta"
-            onClick={() => navigateTo('register')}
-          >
-            Register Now
-          </button>
+          {/* Grouped CTA buttons — kept together so they show/hide as one unit */}
+          <div className="header-cta-group">
+            <a
+              href={siteConfig.speakersCtaLink || 'https://events.canonical.com/event/154/abstracts/'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-nav-cta btn-nav-cfp"
+            >
+              Call for Proposal
+            </a>
+            <button
+              type="button"
+              className="btn btn-nav-cta"
+              onClick={() => navigateTo('register')}
+            >
+              Register Now
+            </button>
+          </div>
           {adminMode && (
             <button type="button" className="btn btn-admin active" onClick={logout}>
               Logout
