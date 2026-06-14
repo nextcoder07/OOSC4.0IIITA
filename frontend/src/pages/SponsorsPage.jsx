@@ -56,7 +56,7 @@ export default function SponsorsPage({
           const tierClass = `sponsor-card--${category.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '')}`
           if (group.length === 0 && !adminMode) return null
           return (
-            <div key={category} className="sponsor-tier-group">
+            <div key={category} className={`sponsor-tier-group sponsor-tier-group--${category.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '')}`}>
               <div className="sponsor-tier-header">
                 <h3>{category}</h3>
                 <span className="divider-line"></span>
@@ -303,6 +303,81 @@ export default function SponsorsPage({
 
               <button type="submit" className="sponsor-form-btn">Submit</button>
             </form>
+          </div>
+        </div>
+      </div>
+
+      {/* ── WHY SPONSOR US SECTION ── */}
+      <div className="why-sponsor-section">
+        <div className="why-sponsor-header">
+          <span className="why-sponsor-eyebrow">YOUR GATEWAY TO THE OPEN-SOURCE COMMUNITY</span>
+          <h2 className="why-sponsor-title">Why Sponsor Us?</h2>
+          <p className="why-sponsor-desc">
+            Sponsoring the Opportunity Open Source Conference provides a chance to connect with a diverse and
+            multi-faceted audience of open source practitioners, all in one location. Numerous organizations are
+            involved in various technology sectors featured at OOSC. This conference uniquely offers the opportunity to
+            engage with multiple communities in a single event.
+          </p>
+        </div>
+
+        <div className="why-sponsor-benefits-grid">
+          <ul className="why-sponsor-benefits-list">
+            <li>
+              <span className="benefit-bullet">•</span>
+              <p>Generate qualified sales leads and acquire new customers.</p>
+            </li>
+            <li>
+              <span className="benefit-bullet">•</span>
+              <p>Utilize precise and targeted marketing opportunities.</p>
+            </li>
+            <li>
+              <span className="benefit-bullet">•</span>
+              <p>Establish new partnerships and alliances.</p>
+            </li>
+            <li>
+              <span className="benefit-bullet">•</span>
+              <p>Gain valuable insights and ideas from developers, technologists, business leaders, and open source contributors.</p>
+            </li>
+          </ul>
+          <ul className="why-sponsor-benefits-list">
+            <li>
+              <span className="benefit-bullet">•</span>
+              <p>Enhance brand awareness and recognition globally.</p>
+            </li>
+            <li>
+              <span className="benefit-bullet">•</span>
+              <p>Showcase products, services, and technologies to a large audience.</p>
+            </li>
+            <li>
+              <span className="benefit-bullet">•</span>
+              <p>Leverage media exposure, PR announcements, and social media outreach.</p>
+            </li>
+            <li>
+              <span className="benefit-bullet">•</span>
+              <p>Demonstrate support for the essential contributions of the open source community.</p>
+            </li>
+          </ul>
+        </div>
+
+        <div className="audience-reach-card">
+          <h3 className="audience-reach-title">Audience Reach</h3>
+          <div className="audience-reach-stats">
+            <div className="reach-stat-item">
+              <span className="reach-stat-value">500+</span>
+              <span className="reach-stat-label">Direct Attendees</span>
+            </div>
+            <div className="reach-stat-item">
+              <span className="reach-stat-value">150+</span>
+              <span className="reach-stat-label">Colleges Reached</span>
+            </div>
+            <div className="reach-stat-item">
+              <span className="reach-stat-value">1,000+</span>
+              <span className="reach-stat-label">Online Communities</span>
+            </div>
+            <div className="reach-stat-item">
+              <span className="reach-stat-value">Pan-India</span>
+              <span className="reach-stat-label">Media Coverage</span>
+            </div>
           </div>
         </div>
       </div>
