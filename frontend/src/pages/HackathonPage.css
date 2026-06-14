@@ -18,6 +18,12 @@
 
   background: var(--color-bg);
   position: relative;
+  
+  /* Make it full width */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  
   overflow: hidden;
 }
 
@@ -28,15 +34,17 @@
   inset: 0;
   pointer-events: none;
   border-radius: inherit;
-  background: var(--color-bg);
-  /*var(--color-gradient-hero-glow);*/
-  z-index: -1;
-
+  background: url('/hackathon-bg.png') center/cover no-repeat;
+  opacity: 0.15;
+  z-index: 0;
 }
 
 .hackathon-hero-inner {
   position: relative;
   z-index: 1;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 .hackathon-body h1,
