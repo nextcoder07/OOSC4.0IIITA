@@ -419,7 +419,7 @@ export default function AboutPage({ siteConfig = {}, about = {} }) {
           ))}
         </div>
 
-        {/* Why They Sponsored Card */}
+        {/* Why They Sponsored Card 
         <div className="about-sponsor-why-card">
           <h3>Why They Sponsored OOSC</h3>
           <ul>
@@ -445,7 +445,7 @@ export default function AboutPage({ siteConfig = {}, about = {} }) {
             </li>
           </ul>
         </div>
-
+          */}
         {/* Sponsor Logos Grid */}
         <div className="about-sponsor-logos-grid">
           <a href="https://www.trumio.ai" target="_blank" rel="noopener noreferrer" className="about-sponsor-logo-wrapper">
