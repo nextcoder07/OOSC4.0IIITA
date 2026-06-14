@@ -8,7 +8,7 @@
 
 .hackathon-hero {
   /* Fill the remaining viewport below the sticky navbar */
-  min-height: calc(100dvh - 90px);
+  min-height: 100vh;
 
   /* Center content vertically */
   display: flex;
@@ -17,12 +17,14 @@
   padding: 54px 24px 36px;
 
   background: var(--color-bg);
-  position: relative;
   
   /* Make it full width */
   width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
   
   overflow: hidden;
 }

@@ -1,6 +1,6 @@
 .hero-section {
   /* Fill the remaining viewport below the sticky navbar */
-  min-height: calc(100dvh - 90px);
+  min-height: 100vh;
 
   /* Center text content vertically */
   display: flex;
@@ -10,6 +10,13 @@
   position: relative;
   overflow: hidden;
   background: var(--color-bg);
+
+  /* Make it full width */
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }
 
 .hero-section::before {
@@ -70,6 +77,8 @@
 
 .hero-content-outer {
   width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
   position: relative;
   z-index: 1;
 }
