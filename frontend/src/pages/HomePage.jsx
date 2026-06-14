@@ -122,7 +122,17 @@ export default function HomePage({ hero, about, siteConfig, navigateTo }) {
         <div className="hero-glow-blob"></div>
         <div className="hero-content-outer">
           <div className="hero-copy">
-            <span className="eyebrow-accent">{siteConfig.heroEyebrow || 'Opportunity Open Source Conference'}</span>
+            <div className="eyebrow-wrapper">
+              {siteConfig.heroEyebrow ? (
+                <span className="eyebrow-accent">{siteConfig.heroEyebrow}</span>
+              ) : (
+                <>
+                  <span className="eyebrow-text">OPPORTUNITY </span>
+                  <span className="eyebrow-accent">OPEN SOURCE</span>
+                  <span className="eyebrow-text"> CONFERENCE</span>
+                </>
+              )}
+            </div>
             <h1>{siteConfig.heroTitle || hero.title}</h1>
             <p className="hero-subtitle">{siteConfig.heroSubtitle || hero.subtitle}</p>
             <p className="hero-description">{hero.bannerText}</p>

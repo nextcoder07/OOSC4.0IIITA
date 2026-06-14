@@ -56,7 +56,7 @@
 }
 
 .sponsor-card {
-  padding: 8px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -64,18 +64,18 @@
 
   width: 100%;
   text-align: center;
-  gap: 4px;
+  gap: 12px;
 
-  border-radius: 22px;
-  border: 1px solid var(--color-card-border-strong);
-  background: var(--color-card-dim);
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 24px;
+  border: 1px solid var(--color-border);
+  background: var(--color-panel);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .sponsor-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   border-color: var(--color-accent);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
 }
 
 /* ---------------------- */
@@ -116,9 +116,9 @@
   justify-content: center;
 
   border-radius: 16px;
-  background: var(--color-card-dim-soft);
+  background: transparent;
 
-  padding: 4px;
+  padding: 0;
 }
 
 .logo-container img {
@@ -142,11 +142,11 @@
   margin: 0;
   padding: 0;
 
-  font-size: 0.75rem;
-  font-weight: 600;
-  line-height: 1.1;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.2;
 
-  color: var(--color-text-on-dark);
+  color: var(--color-text-on-panel);
 
   white-space: nowrap;
   overflow: hidden;

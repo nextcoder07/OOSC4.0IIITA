@@ -162,15 +162,16 @@
 }
 
 .team-card.glass-card {
-  background: var(--color-surface-deep);
-  border: none;
-  box-shadow: none;
+  background: var(--color-panel);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .team-card.glass-card:hover {
-  transform: none;
-  border-color: transparent;
-  box-shadow: none;
+  transform: translateY(-4px);
+  border-color: var(--color-accent);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
 }
 
 
