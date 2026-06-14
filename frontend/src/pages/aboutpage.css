@@ -579,6 +579,121 @@
   transform: scale(1.08);
 }
 
+/* ─── SECTION 7: ORGANIZATIONS THAT TRUSTED OOSC ─────────────────────────── */
+.about-sponsors-section {
+  width: 100%;
+}
+
+/* Sponsor Name Tags */
+.about-sponsor-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.about-sponsor-tag {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent);
+  border: 1.5px solid var(--color-accent);
+  border-radius: 100px;
+  background: transparent;
+  transition: all 0.3s ease;
+  cursor: default;
+  white-space: nowrap;
+}
+
+.about-sponsor-tag:hover {
+  background: var(--color-accent);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px var(--color-accent-glow);
+}
+
+/* Why They Sponsored Card */
+.about-sponsor-why-card {
+  background: var(--color-accent-dim, rgba(14, 165, 233, 0.08));
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 2.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.about-sponsor-why-card h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-text-on-dark);
+  margin-bottom: 1.5rem;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+}
+
+.about-sponsor-why-card ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.about-sponsor-why-card li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.about-sponsor-why-card .sponsor-bullet {
+  color: var(--color-accent);
+  font-size: 1.4rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.about-sponsor-why-card p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--color-text-on-dark-sub);
+  margin: 0;
+}
+
+/* Sponsor Logos Grid */
+.about-sponsor-logos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  align-items: center;
+  justify-items: center;
+}
+
+.about-sponsor-logo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.about-sponsor-logo-wrapper:hover {
+  transform: scale(1.08);
+}
+
+.about-sponsor-logo-wrapper img {
+  max-width: 100%;
+  max-height: 100px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.about-sponsor-logo-wrapper:hover img {
+  transform: scale(1.05);
+}
+
 /* ─── DATA-THEME BRIGHT (LIGHT MODE) OVERRIDES ────────────────────────────── */
 :root[data-theme="bright"] .about-hero-banner-card,
 :root[data-theme="bright"] .about-track-banner-card {
@@ -621,6 +736,11 @@
   background-color: var(--color-border-light);
 }
 
+:root[data-theme="bright"] .about-sponsor-why-card {
+  background: var(--color-accent-dim);
+  border-color: var(--color-border-light);
+}
+
 /* ─── RESPONSIVE DESIGN (MEDIA QUERIES) ───────────────────────────────────── */
 @media (max-width: 1024px) {
   .about-hero-title {
@@ -652,6 +772,10 @@
   }
 
   .about-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-sponsor-logos-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -714,5 +838,19 @@
 
   .about-speaker-card {
     padding: 1.5rem;
+  }
+
+  .about-sponsor-logos-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .about-sponsor-why-card {
+    padding: 1.5rem;
+  }
+
+  .about-sponsor-tag {
+    padding: 0.4rem 1rem;
+    font-size: 0.7rem;
   }
 }

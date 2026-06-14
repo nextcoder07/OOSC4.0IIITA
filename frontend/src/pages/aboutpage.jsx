@@ -401,6 +401,74 @@ export default function AboutPage({ siteConfig = {}, about = {} }) {
         </div>
       </section>
 
+      {/* ─── SECTION 7: ORGANIZATIONS THAT TRUSTED OOSC ───────────────────────────── */}
+      <section className="about-sponsors-section" id="past-sponsors">
+        <div className="about-eyebrow" style={{ marginTop: '1.5rem' }}>Past Year Sponsors</div>
+        <h2 className="about-section-title">Organizations That Trusted OOSC</h2>
+
+        <p className="about-section-desc">
+          OOSC has a strong history of partnerships with leading global and Indian technology organizations. The
+          following are the some of the sponsors that have supported previous editions of the conference, helping us
+          create unforgettable experiences for thousands of attendees.
+        </p>
+
+        {/* Sponsor Name Tags */}
+        <div className="about-sponsor-tags">
+          {['Trumio', 'Open Printing', 'Overlayy', 'Qualcomm', 'Google Colaboratory', 'The Linux Foundation', 'Zephyr', 'Canonical', 'Snapcraft'].map((name) => (
+            <span key={name} className="about-sponsor-tag">{name}</span>
+          ))}
+        </div>
+
+        {/* Why They Sponsored Card */}
+        <div className="about-sponsor-why-card">
+          <h3>Why They Sponsored OOSC</h3>
+          <ul>
+            <li>
+              <span className="sponsor-bullet">•</span>
+              <p>Direct access to India's largest open-source developer community.</p>
+            </li>
+            <li>
+              <span className="sponsor-bullet">•</span>
+              <p>High-quality brand exposure across a technically sophisticated audience.</p>
+            </li>
+            <li>
+              <span className="sponsor-bullet">•</span>
+              <p>Opportunity to recruit top talent from premier engineering institutes.</p>
+            </li>
+            <li>
+              <span className="sponsor-bullet">•</span>
+              <p>Association with a globally recognized open-source event brand.</p>
+            </li>
+            <li>
+              <span className="sponsor-bullet">•</span>
+              <p>Media visibility across traditional and digital channels.</p>
+            </li>
+          </ul>
+        </div>
+
+        {/* Sponsor Logos Grid */}
+        <div className="about-sponsor-logos-grid">
+          <a href="https://www.trumio.ai" target="_blank" rel="noopener noreferrer" className="about-sponsor-logo-wrapper">
+            <img src="/Trumio-Logo.png" alt="Trumio" loading="lazy" />
+          </a>
+          <a href="https://openprinting.github.io" target="_blank" rel="noopener noreferrer" className="about-sponsor-logo-wrapper">
+            <img src="/Open-printing-Logo.png" alt="Open Printing" loading="lazy" />
+          </a>
+          <a href="https://www.qualcomm.com" target="_blank" rel="noopener noreferrer" className="about-sponsor-logo-wrapper">
+            <img src="/Qualcomm-Logo.png" alt="Qualcomm" loading="lazy" />
+          </a>
+          <a href="https://snapcraft.io" target="_blank" rel="noopener noreferrer" className="about-sponsor-logo-wrapper">
+            <img src="/Snapcraft-Logo.png" alt="Snapcraft" loading="lazy" />
+          </a>
+          <a href="https://canonical.com" target="_blank" rel="noopener noreferrer" className="about-sponsor-logo-wrapper">
+            <img src="/Canonical_logo.png" alt="Canonical" loading="lazy" />
+          </a>
+          <a href="https://www.linuxfoundation.org" target="_blank" rel="noopener noreferrer" className="about-sponsor-logo-wrapper">
+            <img src="/Linux_Foundation_logo.png" alt="The Linux Foundation" loading="lazy" />
+          </a>
+        </div>
+      </section>
+
     </div>
   )
 }
