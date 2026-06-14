@@ -1003,7 +1003,7 @@ function App() {
       </main>
 
       {modalOpen && (
-        <div className="admin-modal-backdrop" role="dialog" aria-modal="true">
+        <div className="admin-modal-backdrop" role="dialog" aria-modal="true" onClick={(e) => { if (e.target === e.currentTarget) closeModal() }}>
           <div className="admin-modal-panel glass-card">
             <div className="admin-modal-header">
               <h3>{modalMode === 'create' ? `Add New ${resourceLabels[modalResource]}` : `Edit ${resourceLabels[modalResource]}`}</h3>
@@ -1071,7 +1071,7 @@ function App() {
       )}
 
       {configModalOpen && (
-        <div className="admin-modal-backdrop" role="dialog" aria-modal="true">
+        <div className="admin-modal-backdrop" role="dialog" aria-modal="true" onClick={(e) => { if (e.target === e.currentTarget) setConfigModalOpen(false) }}>
           <div className="admin-modal-panel glass-card admin-modal-panel--narrow">
             <div className="admin-modal-header">
               <h3>Edit Site Text Configurations</h3>
