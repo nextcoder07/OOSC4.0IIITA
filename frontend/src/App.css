@@ -1393,6 +1393,31 @@ body::after {
   gap: 8px;
 }
 
+.config-section-group {
+  background: var(--color-panel-inset);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.config-section-title {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 12px;
+}
+
+.config-section-fields {
+  display: grid;
+  gap: 16px;
+}
+
 .modal-upload-row {
   display: grid;
   gap: 16px;

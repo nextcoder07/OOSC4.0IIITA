@@ -1,6 +1,17 @@
 import React from 'react'
+import * as LucideIcons from 'lucide-react'
 import { Target, Users, Check, User, Globe, Trophy, Medal, Star, Lightbulb, Leaf, Palette, Zap, Bot, ClipboardList, Calendar, Rocket } from 'lucide-react'
 import './HackathonPage.css'
+
+const renderLucideIcon = (iconStr, fallbackIcon, size = 16) => {
+  if (!iconStr) return fallbackIcon;
+  const name = iconStr.trim();
+  const Icon = LucideIcons[name];
+  if (Icon) {
+    return <Icon size={size} />;
+  }
+  return <span style={{ fontSize: `${size}px` }}>{iconStr}</span>;
+}
 
 export default function HackathonPage({ siteConfig, navigateTo }) {
   return (
@@ -90,7 +101,7 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
           </div>
           <p className="panel-subheading">Team Composition</p>
           <div className="pill-row">
-            {(siteConfig.hackathonTeamComposition ? siteConfig.hackathonTeamComposition.split('\n').filter(t => t.trim()).map(t => { const parts = t.split('||'); return { icon: parts[0] || <Users size={16} />, label: parts[1] || '' } }) : [
+            {(siteConfig.hackathonTeamComposition ? siteConfig.hackathonTeamComposition.split('\n').filter(t => t.trim()).map(t => { const parts = t.split('||'); return { icon: renderLucideIcon(parts[0], <Users size={16} />, 16), label: parts[1] || '' } }) : [
               { icon: <User size={16} color="var(--color-brand-yellow)" />, label: 'Min 2 members' },
               { icon: <Users size={16} color="var(--color-brand-purple)" />, label: 'Max 4 members' },
               { icon: <Globe size={16} color="var(--color-brand-lime)" />, label: 'Cross-institution teams OK' },
@@ -110,7 +121,7 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
         <div className="prizes-grid">
           {(siteConfig.hackathonPrizes ? siteConfig.hackathonPrizes.split('\n').filter(p => p.trim()).map(p => { 
             const parts = p.split('||'); 
-            return { medal: parts[0] || <Trophy size={32} color="var(--color-brand-yellow)" />, position: parts[1] || '', amount: parts[2] || '', desc: parts[3] || '', class: parts[4] || 'gold' }; 
+            return { medal: renderLucideIcon(parts[0], <Trophy size={32} />, 32), position: parts[1] || '', amount: parts[2] || '', desc: parts[3] || '', class: parts[4] || 'gold' }; 
           }) : [
             { medal: <Medal size={32} color="var(--color-brand-yellow)" />, position: '1st Place', amount: '₹50,000', desc: 'Cash + trophies + fast-track internship interviews with Title Sponsors + OOSC Featured Project badge', class: 'gold' },
             { medal: <Medal size={32} color="var(--color-brand-slate)" />, position: '2nd Place', amount: '₹30,000', desc: 'Cash + trophies + mentorship sessions with senior open-source engineers from partner companies', class: 'silver' },
@@ -127,7 +138,7 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
         <p className="panel-subheading mt-section">Special Category Awards</p>
         <div className="special-prizes">
           {(siteConfig.hackathonSpecialPrizes ? siteConfig.hackathonSpecialPrizes.split('\n').filter(p => p.trim()).map(p => {
-            const parts = p.split('||'); return { icon: parts[0] || <Star size={16} color="var(--color-brand-yellow)" />, label: parts[1] || '' };
+            const parts = p.split('||'); return { icon: renderLucideIcon(parts[0], <Star size={16} />, 16), label: parts[1] || '' };
           }) : [
             { icon: <Lightbulb size={16} color="var(--color-brand-yellow)" />, label: 'Best Innovation — ₹10,000' },
             { icon: <Leaf size={16} color="var(--color-success)" />, label: 'Best Open-Source Impact — ₹10,000' },

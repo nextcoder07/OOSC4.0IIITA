@@ -27,15 +27,15 @@ export default function SpeakersPage({
         <div className="highlight-box glass-card">
           <Mic size={24} className="highlight-icon" />
           <div>
-            <h4>50+ Sessions</h4>
-            <p>Covering AI, Cloud, and Systems</p>
+            <h4>{siteConfig.speakersHighlight1Title || '50+ Sessions'}</h4>
+            <p>{siteConfig.speakersHighlight1Desc || 'Covering AI, Cloud, and Systems'}</p>
           </div>
         </div>
         <div className="highlight-box glass-card">
           <Star size={24} className="highlight-icon" />
           <div>
-            <h4>Industry Leaders</h4>
-            <p>Top tech companies and academia</p>
+            <h4>{siteConfig.speakersHighlight2Title || 'Industry Leaders'}</h4>
+            <p>{siteConfig.speakersHighlight2Desc || 'Top tech companies and academia'}</p>
           </div>
         </div>
       </div>
@@ -88,10 +88,10 @@ export default function SpeakersPage({
 
       <div className="speaker-cta-banner glass-card">
         <div className="cta-content">
-          <h3>Want to share your expertise?</h3>
-          <p>We're always looking for passionate speakers to lead sessions, workshops, and panels.</p>
+          <h3>{siteConfig.speakersCtaTitle || 'Want to share your expertise?'}</h3>
+          <p>{siteConfig.speakersCtaDesc || "We're always looking for passionate speakers to lead sessions, workshops, and panels."}</p>
         </div>
-        <a href="https://events.canonical.com/event/154/abstracts/" target="_blank" rel="noopener noreferrer" className="btn btn-primary cta-btn">
+        <a href={siteConfig.speakersCtaLink || "https://events.canonical.com/event/154/abstracts/"} target="_blank" rel="noopener noreferrer" className="btn btn-primary cta-btn">
           Submit Proposal <ArrowRight size={18} />
         </a>
       </div>

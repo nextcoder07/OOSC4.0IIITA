@@ -725,6 +725,13 @@ function App() {
       scheduleSubtitle: '...',
       speakersTitle: 'Thought Leadership',
       speakersSubtitle: 'Featured technology leaders, academics, and research engineers guiding our tracks.',
+      speakersHighlight1Title: '50+ Sessions',
+      speakersHighlight1Desc: 'Covering AI, Cloud, and Systems',
+      speakersHighlight2Title: 'Industry Leaders',
+      speakersHighlight2Desc: 'Top tech companies and academia',
+      speakersCtaTitle: 'Want to share your expertise?',
+      speakersCtaDesc: "We're always looking for passionate speakers to lead sessions, workshops, and panels.",
+      speakersCtaLink: 'https://events.canonical.com/event/154/abstracts/',
       sponsorsTitle: 'Conference Supporters',
       sponsorsSubtitle: 'Academic institutions and corporate engineering partners supporting open systems research.',
       teamTitle: 'The Organizing Team',
@@ -739,8 +746,24 @@ function App() {
       hackathonVenue: 'IIITA',
       hackathonCtaReady: 'Ready to Build?',
       hackathonCtaDesc: 'Registration is open until August 10, 2025. Spots are limited — secure your team today.',
-      contactTitle: 'Contact the Organizers',
-      contactSubtitle: 'Inquire about sponsorship opportunities, speaker submissions, or registration access keys.'
+      contactTitle: 'Get in Touch',
+      contactSubtitle: 'Have questions about OOSC 4.0? Reach out to our dedicated teams below.'
+    }
+    
+    const formatHints = {
+      hackathonProblemStatement: "Paragraph 1\\nParagraph 2...",
+      hackathonTracks: "Track Title || Description\\nTrack Title 2 || Description 2...",
+      hackathonEligibility: "Item 1\\nItem 2\\nItem 3...",
+      hackathonTeamComposition: "Icon (Lucide Name) || Label\\nUser || Min 2 members...",
+      hackathonPrizes: "Icon (Lucide Name) || Position || Amount || Description || Class (gold/silver/bronze)\\nTrophy || 1st Place || ₹50,000 || Cash + Trophies || gold...",
+      hackathonSpecialPrizes: "Icon (Lucide Name) || Label\\nLightbulb || Best Innovation — ₹10,000...",
+      hackathonRules: "Rule 1\\nRule 2\\nRule 3...",
+      hackathonTimeline: "Label || Date/Value || Description || Status (past/active)\\nRegistration Opens || July 15 || Portal goes live || past...",
+      hackathonSteps: "Step Title || Step Description\\nForm Your Team || Assemble 2-4 members...",
+    }
+
+    if (formatHints[key]) {
+      return `Format: \n${formatHints[key]}`
     }
     return defaults[key] || 'Default text'
   }
@@ -764,7 +787,7 @@ function App() {
           <img src="/OOSC_logo.png" alt="OOSC logo" className="brand-logo" />
         </button>
 
-        
+
 
         {/* Main Nav */}
         <nav className={`main-nav ${mobileMenuOpen ? 'mobile-open' : ''}`} aria-label="Primary navigation">
@@ -799,16 +822,16 @@ function App() {
           </button>
 
           {/* Mobile Hamburger menu toggle button */}
-        <button
-          type="button"
-          className={`hamburger-toggle ${mobileMenuOpen ? 'open' : ''}`}
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle navigation menu"
-        >
-          <span className="toggle-bar"></span>
-          <span className="toggle-bar"></span>
-          <span className="toggle-bar"></span>
-        </button>
+          <button
+            type="button"
+            className={`hamburger-toggle ${mobileMenuOpen ? 'open' : ''}`}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle navigation menu"
+          >
+            <span className="toggle-bar"></span>
+            <span className="toggle-bar"></span>
+            <span className="toggle-bar"></span>
+          </button>
 
 
           <button
@@ -887,78 +910,78 @@ function App() {
         <ErrorBoundary>
           <Suspense fallback={<div style={{ padding: '2rem', textAlign: 'center', color: 'var(--color-text-muted-strong)' }}>Loading view...</div>}>
             <Routes>
-          <Route path="/" element={
-            <HomePage hero={hero} about={about} siteConfig={siteConfig} navigateTo={navigateTo} />
-          } />
-          <Route path="/about" element={
-            <AboutPage siteConfig={siteConfig} about={about} />
-          } />
-          <Route path="/schedule" element={
-            <SchedulePage
-              siteConfig={siteConfig} adminMode={adminMode} filteredSchedule={filteredSchedule}
-              activeDay={activeDay} setActiveDay={setActiveDay}
-              draggedResource={draggedResource} draggedIndex={draggedIndex} dragOverIndex={dragOverIndex}
-              handleDragStart={handleDragStart} handleDragOver={handleDragOver}
-              handleDragEnd={handleDragEnd} handleDrop={handleDrop}
-              openModal={openModal} editRecord={editRecord} deleteRecord={deleteRecord}
-              setSchedule={setSchedule} getEventTime={getEventTime} getEventDesc={getEventDesc}
-            />
-          } />
-          <Route path="/speakers" element={
-            <SpeakersPage
-              siteConfig={siteConfig} adminMode={adminMode} speakers={speakers}
-              draggedResource={draggedResource} draggedIndex={draggedIndex} dragOverIndex={dragOverIndex}
-              handleDragStart={handleDragStart} handleDragOver={handleDragOver}
-              handleDragEnd={handleDragEnd} handleDrop={handleDrop}
-              openModal={openModal} editRecord={editRecord} deleteRecord={deleteRecord}
-              setSpeakers={setSpeakers}
-            />
-          } />
-          <Route path="/sponsors" element={
-            <SponsorsPage
-              siteConfig={siteConfig} adminMode={adminMode} sortedSponsors={sortedSponsors}
-              draggedResource={draggedResource} draggedIndex={draggedIndex}
-              draggedCategory={draggedCategory} dragOverIndex={dragOverIndex}
-              handleDragStart={handleDragStart} handleDragOver={handleDragOver}
-              handleDragEnd={handleDragEnd} handleDrop={handleDrop}
-              openModal={openModal} editRecord={editRecord} deleteRecord={deleteRecord}
-              setSponsors={setSponsors}
-            />
-          } />
-          <Route path="/team" element={
-            <TeamPage
-              siteConfig={siteConfig} adminMode={adminMode} categorizedTeam={categorizedTeam}
-              draggedResource={draggedResource} draggedIndex={draggedIndex}
-              draggedCategory={draggedCategory} dragOverIndex={dragOverIndex}
-              handleDragStart={handleDragStart} handleDragOver={handleDragOver}
-              handleDragEnd={handleDragEnd} handleDrop={handleDrop}
-              openModal={openModal} editRecord={editRecord} deleteRecord={deleteRecord}
-              setTeam={setTeam}
-            />
-          } />
-          <Route path="/hackathon" element={
-            <HackathonPage siteConfig={siteConfig} navigateTo={navigateTo} />
-          } />
-          <Route path="/register" element={
-            <Registration onSubmit={() => setAdminMessage('Registration interest captured successfully!')} />
-          } />
-          <Route path="/contact" element={
-            <ContactPage
-              siteConfig={siteConfig} form={form} setForm={setForm}
-              formStatus={formStatus} handleFormSubmit={handleFormSubmit}
-            />
-          } />
-          <Route path="/admin" element={
-            <AdminLoginPage
-              siteConfig={siteConfig} loginEmail={loginEmail} setLoginEmail={setLoginEmail}
-              loginPassword={loginPassword} setLoginPassword={setLoginPassword}
-              handleLogin={handleLogin} adminMessage={adminMessage}
-            />
-          } />
-          <Route path="/privacy" element={<PrivacyPolicyPage />} />
-          <Route path="/terms" element={<TermsOfUsePage />} />
-        </Routes>
-        </Suspense>
+              <Route path="/" element={
+                <HomePage hero={hero} about={about} siteConfig={siteConfig} navigateTo={navigateTo} />
+              } />
+              <Route path="/about" element={
+                <AboutPage siteConfig={siteConfig} about={about} />
+              } />
+              <Route path="/schedule" element={
+                <SchedulePage
+                  siteConfig={siteConfig} adminMode={adminMode} filteredSchedule={filteredSchedule}
+                  activeDay={activeDay} setActiveDay={setActiveDay}
+                  draggedResource={draggedResource} draggedIndex={draggedIndex} dragOverIndex={dragOverIndex}
+                  handleDragStart={handleDragStart} handleDragOver={handleDragOver}
+                  handleDragEnd={handleDragEnd} handleDrop={handleDrop}
+                  openModal={openModal} editRecord={editRecord} deleteRecord={deleteRecord}
+                  setSchedule={setSchedule} getEventTime={getEventTime} getEventDesc={getEventDesc}
+                />
+              } />
+              <Route path="/speakers" element={
+                <SpeakersPage
+                  siteConfig={siteConfig} adminMode={adminMode} speakers={speakers}
+                  draggedResource={draggedResource} draggedIndex={draggedIndex} dragOverIndex={dragOverIndex}
+                  handleDragStart={handleDragStart} handleDragOver={handleDragOver}
+                  handleDragEnd={handleDragEnd} handleDrop={handleDrop}
+                  openModal={openModal} editRecord={editRecord} deleteRecord={deleteRecord}
+                  setSpeakers={setSpeakers}
+                />
+              } />
+              <Route path="/sponsors" element={
+                <SponsorsPage
+                  siteConfig={siteConfig} adminMode={adminMode} sortedSponsors={sortedSponsors}
+                  draggedResource={draggedResource} draggedIndex={draggedIndex}
+                  draggedCategory={draggedCategory} dragOverIndex={dragOverIndex}
+                  handleDragStart={handleDragStart} handleDragOver={handleDragOver}
+                  handleDragEnd={handleDragEnd} handleDrop={handleDrop}
+                  openModal={openModal} editRecord={editRecord} deleteRecord={deleteRecord}
+                  setSponsors={setSponsors}
+                />
+              } />
+              <Route path="/team" element={
+                <TeamPage
+                  siteConfig={siteConfig} adminMode={adminMode} categorizedTeam={categorizedTeam}
+                  draggedResource={draggedResource} draggedIndex={draggedIndex}
+                  draggedCategory={draggedCategory} dragOverIndex={dragOverIndex}
+                  handleDragStart={handleDragStart} handleDragOver={handleDragOver}
+                  handleDragEnd={handleDragEnd} handleDrop={handleDrop}
+                  openModal={openModal} editRecord={editRecord} deleteRecord={deleteRecord}
+                  setTeam={setTeam}
+                />
+              } />
+              <Route path="/hackathon" element={
+                <HackathonPage siteConfig={siteConfig} navigateTo={navigateTo} />
+              } />
+              <Route path="/register" element={
+                <Registration onSubmit={() => setAdminMessage('Registration interest captured successfully!')} />
+              } />
+              <Route path="/contact" element={
+                <ContactPage
+                  siteConfig={siteConfig} form={form} setForm={setForm}
+                  formStatus={formStatus} handleFormSubmit={handleFormSubmit}
+                />
+              } />
+              <Route path="/admin" element={
+                <AdminLoginPage
+                  siteConfig={siteConfig} loginEmail={loginEmail} setLoginEmail={setLoginEmail}
+                  loginPassword={loginPassword} setLoginPassword={setLoginPassword}
+                  handleLogin={handleLogin} adminMessage={adminMessage}
+                />
+              } />
+              <Route path="/privacy" element={<PrivacyPolicyPage />} />
+              <Route path="/terms" element={<TermsOfUsePage />} />
+            </Routes>
+          </Suspense>
         </ErrorBoundary>
       </main>
 
@@ -1042,84 +1065,128 @@ function App() {
                 Leave empty to use default values. Changes save immediately.
               </p>
               {[
-                { key: 'heroTitle', label: 'Hero Title' },
-                { key: 'heroSubtitle', label: 'Hero Subtitle' },
-                { key: 'aboutTitle', label: 'About Heading' },
-                { key: 'aboutSubtitle', label: 'About Description' },
-                { key: 'scheduleTitle', label: 'Schedule Title' },
-                { key: 'scheduleSubtitle', label: 'Schedule Subtitle' },
-                { key: 'speakersTitle', label: 'Speakers Title' },
-                { key: 'speakersSubtitle', label: 'Speakers Subtitle' },
-                { key: 'sponsorsTitle', label: 'Sponsors Title' },
-                { key: 'sponsorsSubtitle', label: 'Sponsors Subtitle' },
-                { key: 'teamTitle', label: 'Team Title' },
-                { key: 'teamSubtitle', label: 'Team Subtitle' },
-                { key: 'hackathonBadge', label: 'Hackathon Badge' },
-                { key: 'hackathonTitle', label: 'Hackathon Title' },
-                { key: 'hackathonTheme', label: 'Hackathon Theme' },
-                { key: 'hackathonPrizePool', label: 'Hackathon Prize Pool' },
-                { key: 'hackathonDuration', label: 'Hackathon Duration' },
-                { key: 'hackathonTeamSize', label: 'Hackathon Team Size' },
-                { key: 'hackathonDates', label: 'Hackathon Dates' },
-                { key: 'hackathonVenue', label: 'Hackathon Venue' },
-                { key: 'hackathonProblemStatement', label: 'Problem Statement', type: 'textarea' },
-                { key: 'hackathonTracks', label: 'Tracks (JSON or List)', type: 'textarea' },
-                { key: 'hackathonEligibility', label: 'Eligibility List', type: 'textarea' },
-                { key: 'hackathonTeamComposition', label: 'Team Composition List', type: 'textarea' },
-                { key: 'hackathonPrizes', label: 'Prizes List', type: 'textarea' },
-                { key: 'hackathonSpecialPrizes', label: 'Special Prizes List', type: 'textarea' },
-                { key: 'hackathonRules', label: 'Rules List', type: 'textarea' },
-                { key: 'hackathonTimeline', label: 'Timeline Dates', type: 'textarea' },
-                { key: 'hackathonSteps', label: 'Registration Steps', type: 'textarea' },
-                { key: 'hackathonCtaReady', label: 'CTA Heading' },
-                { key: 'hackathonCtaDesc', label: 'CTA Description' },
-                { key: 'contactTitle', label: 'Contact Title' },
-                { key: 'contactSubtitle', label: 'Contact Subtitle' },
-              ].map(field => (
-                <div key={field.key} className="form-group modal-form-group">
-                  <label>{field.label}</label>
-                  <div className="flex-gap-sm">
-                    {field.type === 'textarea' ? (
-                      <textarea
-                        value={siteConfig[field.key] || ''}
-                        onChange={(e) => setSiteConfig(prev => ({ ...prev, [field.key]: e.target.value }))}
-                        onFocus={(e) => {
-                          if (e.target.dataset.orig === undefined) {
-                            e.target.dataset.orig = e.target.value;
-                          }
-                        }}
-                        onBlur={(e) => {
-                          const val = e.target.value.trim();
-                          if (val !== (e.target.dataset.orig || '').trim()) {
-                            saveSiteConfig(field.key, val);
-                            e.target.dataset.orig = val;
-                          }
-                        }}
-                        className="form-control"
-                        placeholder={getPlaceholderForConfig(field.key)}
-                        rows="3"
-                      />
-                    ) : (
-                      <input
-                        type="text"
-                        value={siteConfig[field.key] || ''}
-                        onChange={(e) => setSiteConfig(prev => ({ ...prev, [field.key]: e.target.value }))}
-                        onFocus={(e) => {
-                          if (e.target.dataset.orig === undefined) {
-                            e.target.dataset.orig = e.target.value;
-                          }
-                        }}
-                        onBlur={(e) => {
-                          const val = e.target.value.trim();
-                          if (val !== (e.target.dataset.orig || '').trim()) {
-                            saveSiteConfig(field.key, val);
-                            e.target.dataset.orig = val;
-                          }
-                        }}
-                        className="form-control"
-                        placeholder={getPlaceholderForConfig(field.key)}
-                      />
-                    )}
+                {
+                  groupName: 'Hero & About',
+                  fields: [
+                    { key: 'heroTitle', label: 'Hero Title' },
+                    { key: 'heroSubtitle', label: 'Hero Subtitle' },
+                    { key: 'aboutTitle', label: 'About Heading' },
+                    { key: 'aboutSubtitle', label: 'About Description' },
+                  ]
+                },
+                {
+                  groupName: 'Schedule & Team',
+                  fields: [
+                    { key: 'scheduleTitle', label: 'Schedule Title' },
+                    { key: 'scheduleSubtitle', label: 'Schedule Subtitle' },
+                    { key: 'teamTitle', label: 'Team Title' },
+                    { key: 'teamSubtitle', label: 'Team Subtitle' },
+                  ]
+                },
+                {
+                  groupName: 'Speakers & Sponsors',
+                  fields: [
+                    { key: 'speakersTitle', label: 'Speakers Title' },
+                    { key: 'speakersSubtitle', label: 'Speakers Subtitle' },
+                    { key: 'speakersHighlight1Title', label: 'Speakers Highlight 1 Title' },
+                    { key: 'speakersHighlight1Desc', label: 'Speakers Highlight 1 Desc' },
+                    { key: 'speakersHighlight2Title', label: 'Speakers Highlight 2 Title' },
+                    { key: 'speakersHighlight2Desc', label: 'Speakers Highlight 2 Desc' },
+                    { key: 'speakersCtaTitle', label: 'Speakers CTA Title' },
+                    { key: 'speakersCtaDesc', label: 'Speakers CTA Desc' },
+                    { key: 'speakersCtaLink', label: 'Speakers CTA Link' },
+                    { key: 'sponsorsTitle', label: 'Sponsors Title' },
+                    { key: 'sponsorsSubtitle', label: 'Sponsors Subtitle' },
+                  ]
+                },
+                {
+                  groupName: 'Hackathon Quick Details',
+                  fields: [
+                    { key: 'hackathonBadge', label: 'Hackathon Badge' },
+                    { key: 'hackathonTitle', label: 'Hackathon Title' },
+                    { key: 'hackathonTheme', label: 'Hackathon Theme' },
+                    { key: 'hackathonPrizePool', label: 'Hackathon Prize Pool' },
+                    { key: 'hackathonDuration', label: 'Hackathon Duration' },
+                    { key: 'hackathonTeamSize', label: 'Hackathon Team Size' },
+                    { key: 'hackathonDates', label: 'Hackathon Dates' },
+                    { key: 'hackathonVenue', label: 'Hackathon Venue' },
+                  ]
+                },
+                {
+                  groupName: 'Hackathon Content (Advanced)',
+                  fields: [
+                    { key: 'hackathonProblemStatement', label: 'Problem Statement', type: 'textarea' },
+                    { key: 'hackathonTracks', label: 'Tracks (JSON or List)', type: 'textarea' },
+                    { key: 'hackathonEligibility', label: 'Eligibility List', type: 'textarea' },
+                    { key: 'hackathonTeamComposition', label: 'Team Composition List', type: 'textarea' },
+                    { key: 'hackathonPrizes', label: 'Prizes List', type: 'textarea' },
+                    { key: 'hackathonSpecialPrizes', label: 'Special Prizes List', type: 'textarea' },
+                    { key: 'hackathonRules', label: 'Rules List', type: 'textarea' },
+                    { key: 'hackathonTimeline', label: 'Timeline Dates', type: 'textarea' },
+                    { key: 'hackathonSteps', label: 'Registration Steps', type: 'textarea' },
+                    { key: 'hackathonCtaReady', label: 'CTA Heading' },
+                    { key: 'hackathonCtaDesc', label: 'CTA Description' },
+                  ]
+                },
+                {
+                  groupName: 'Contact Information',
+                  fields: [
+                    { key: 'contactTitle', label: 'Contact Title' },
+                    { key: 'contactSubtitle', label: 'Contact Subtitle' },
+                  ]
+                }
+              ].map(group => (
+                <div key={group.groupName} className="config-section-group">
+                  <h4 className="config-section-title">{group.groupName}</h4>
+                  <div className="config-section-fields">
+                    {group.fields.map(field => (
+                      <div key={field.key} className="form-group modal-form-group">
+                        <label>{field.label}</label>
+                        <div className="flex-gap-sm">
+                          {field.type === 'textarea' ? (
+                            <textarea
+                              value={siteConfig[field.key] || ''}
+                              onChange={(e) => setSiteConfig(prev => ({ ...prev, [field.key]: e.target.value }))}
+                              onFocus={(e) => {
+                                if (e.target.dataset.orig === undefined) {
+                                  e.target.dataset.orig = e.target.value;
+                                }
+                              }}
+                              onBlur={(e) => {
+                                const val = e.target.value.trim();
+                                if (val !== (e.target.dataset.orig || '').trim()) {
+                                  saveSiteConfig(field.key, val);
+                                  e.target.dataset.orig = val;
+                                }
+                              }}
+                              className="form-control"
+                              placeholder={getPlaceholderForConfig(field.key)}
+                              rows="6"
+                            />
+                          ) : (
+                            <input
+                              type="text"
+                              value={siteConfig[field.key] || ''}
+                              onChange={(e) => setSiteConfig(prev => ({ ...prev, [field.key]: e.target.value }))}
+                              onFocus={(e) => {
+                                if (e.target.dataset.orig === undefined) {
+                                  e.target.dataset.orig = e.target.value;
+                                }
+                              }}
+                              onBlur={(e) => {
+                                const val = e.target.value.trim();
+                                if (val !== (e.target.dataset.orig || '').trim()) {
+                                  saveSiteConfig(field.key, val);
+                                  e.target.dataset.orig = val;
+                                }
+                              }}
+                              className="form-control"
+                              placeholder={getPlaceholderForConfig(field.key)}
+                            />
+                          )}
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               ))}
