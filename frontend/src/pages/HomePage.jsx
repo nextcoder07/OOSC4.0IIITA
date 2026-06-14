@@ -202,8 +202,8 @@ export default function HomePage({ hero, about, siteConfig, navigateTo }) {
               <p>Developers &amp; Researchers</p>
             </div>
             <div className="stat-card-gradient">
-              <h3>20+</h3>
-              <p>  Speakers &amp; Maintainers</p>
+              <h3>50+</h3>
+              <p>  Speakers &amp; Panelists</p>
             </div>
             <div className="stat-card-gradient">
               <h3>10+</h3>
