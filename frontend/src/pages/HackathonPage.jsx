@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet-async'
 import * as LucideIcons from 'lucide-react'
 import { Target, Users, Check, User, Globe, Trophy, Medal, Star, Lightbulb, Leaf, Palette, Zap, Bot, ClipboardList, Calendar, Rocket } from 'lucide-react'
 import './HackathonPage.css'
@@ -16,6 +17,17 @@ const renderLucideIcon = (iconStr, fallbackIcon, size = 16) => {
 export default function HackathonPage({ siteConfig, navigateTo }) {
   return (
     <div className="hackathon-body" id="hackathon">
+      <Helmet>
+        <title>Hackathon — OOSC 4.0 | IIIT Allahabad</title>
+        <meta name="description" content="Participate in the OOSC 4.0 Hackathon at IIIT Allahabad, Aug 28–30, 2026. Build the future of open-source systems, compete for ₹1,00,000+ in prizes, and showcase your projects." />
+        <link rel="canonical" href="https://oosc.iiita.ac.in/hackathon" />
+        <meta property="og:title" content="Hackathon — OOSC 4.0 | IIIT Allahabad" />
+        <meta property="og:description" content="Participate in the OOSC 4.0 Hackathon. Build the future of open-source systems, compete for ₹1,00,000+ in prizes, and showcase your projects." />
+        <meta property="og:url" content="https://oosc.iiita.ac.in/hackathon" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:title" content="Hackathon — OOSC 4.0 | IIIT Allahabad" />
+        <meta name="twitter:description" content="Join the OOSC 4.0 Hackathon. Compete for ₹1,00,000+ in prizes at IIIT Allahabad." />
+      </Helmet>
 
       {/* ── HERO BANNER ── */}
       <div className="hackathon-hero">

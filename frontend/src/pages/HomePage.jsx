@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Calendar, MapPin, Check, Mic, Settings, Zap, Handshake, Globe } from 'lucide-react'
 import './HomePage.css'
 
@@ -117,6 +118,17 @@ function CountdownTimer() {
 export default function HomePage({ hero, about, siteConfig, navigateTo }) {
   return (
     <>
+      <Helmet>
+        <title>OOSC 4.0 — Open Source Systems Conference | IIIT Allahabad</title>
+        <meta name="description" content="OOSC 4.0 is a premier Open Source Systems Conference at IIIT Allahabad, Aug 28–30, 2026. Join workshops, expert talks, hackathons, and networking with the open-source community." />
+        <link rel="canonical" href="https://oosc.iiita.ac.in/" />
+        <meta property="og:title" content="OOSC 4.0 — Open Source Systems Conference | IIIT Allahabad" />
+        <meta property="og:description" content="OOSC 4.0 is a premier Open Source Systems Conference at IIIT Allahabad, Aug 28–30, 2026. Join workshops, expert talks, hackathons, and networking with the open-source community." />
+        <meta property="og:url" content="https://oosc.iiita.ac.in/" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:title" content="OOSC 4.0 — Open Source Systems Conference | IIIT Allahabad" />
+        <meta name="twitter:description" content="OOSC 4.0 is a premier Open Source Systems Conference at IIIT Allahabad, Aug 28–30, 2026. Join workshops, expert talks, hackathons, and networking." />
+      </Helmet>
       {/* Hero Section */}
       <section className="hero-section" id="home">
         <div className="hero-glow-blob"></div>

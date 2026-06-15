@@ -1,10 +1,22 @@
 import React from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Mail, Phone, MapPin, MessageSquare, Handshake, Info } from 'lucide-react'
 import './ContactPage.css'
 
 export default function ContactPage({ siteConfig, form, setForm, formStatus, handleFormSubmit }) {
   return (
     <div className="contact-page">
+      <Helmet>
+        <title>Contact — OOSC 4.0 | IIIT Allahabad</title>
+        <meta name="description" content="Get in touch with the OOSC 4.0 organizing team at IIIT Allahabad for inquiries, sponsorships, hackathon registration, and venue information." />
+        <link rel="canonical" href="https://oosc.iiita.ac.in/contact" />
+        <meta property="og:title" content="Contact — OOSC 4.0 | IIIT Allahabad" />
+        <meta property="og:description" content="Get in touch with the OOSC 4.0 organizing team for inquiries, sponsorships, and hackathon registration." />
+        <meta property="og:url" content="https://oosc.iiita.ac.in/contact" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:title" content="Contact — OOSC 4.0 | IIIT Allahabad" />
+        <meta name="twitter:description" content="Reach out to the OOSC 4.0 organizing team at IIIT Allahabad." />
+      </Helmet>
       {/* Top Section: Quick Channels */}
       <section className="content-section">
         <div className="section-heading text-center">

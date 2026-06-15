@@ -782,9 +782,10 @@ function App() {
           type="button"
           className="brand"
           onClick={() => navigateTo('home')}
-          title="Back to home"
+          title="OOSC 4.0 — Back to home"
+          aria-label="OOSC 4.0 home"
         >
-          <img src="/OOSC_logo.png" alt="OOSC logo" className="brand-logo" />
+          <img src="/OOSC_logo.png" alt="OOSC 4.0 Open Source Systems Conference logo" className="brand-logo" />
         </button>
 
 

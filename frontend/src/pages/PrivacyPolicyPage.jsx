@@ -1,9 +1,16 @@
 import React from 'react'
+import { Helmet } from 'react-helmet-async'
 import './PolicyPage.css'
 
 export default function PrivacyPolicyPage() {
   return (
     <section className="content-section policy-section">
+      <Helmet>
+        <title>Privacy Policy — OOSC 4.0 | IIIT Allahabad</title>
+        <meta name="description" content="Read the privacy policy for the OOSC 4.0 Open Source Systems Conference at IIIT Allahabad. Learn how we collect, use, and protect your personal data." />
+        <link rel="canonical" href="https://oosc.iiita.ac.in/privacy" />
+        <meta name="robots" content="noindex, follow" />
+      </Helmet>
       <div className="policy-container glass-card">
         <h2>Privacy Policy</h2>
         <p className="policy-date">Effective Date: August 28, 2026</p>

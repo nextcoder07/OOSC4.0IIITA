@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { GripVertical, Handshake, Phone, Mail } from 'lucide-react'
 import './SponsorsPage.css'
 
@@ -38,6 +39,17 @@ export default function SponsorsPage({
 
   return (
     <section className="content-section" id="sponsors">
+      <Helmet>
+        <title>Sponsors — OOSC 4.0 | IIIT Allahabad</title>
+        <meta name="description" content="View the organizations and companies sponsoring OOSC 4.0 at IIIT Allahabad. Explore sponsorship tiers and become a partner of India's leading open-source conference." />
+        <link rel="canonical" href="https://oosc.iiita.ac.in/sponsors" />
+        <meta property="og:title" content="Sponsors — OOSC 4.0 | IIIT Allahabad" />
+        <meta property="og:description" content="View the organizations sponsoring OOSC 4.0. Explore sponsorship tiers and become a partner of India's leading open-source conference." />
+        <meta property="og:url" content="https://oosc.iiita.ac.in/sponsors" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:title" content="Sponsors — OOSC 4.0 | IIIT Allahabad" />
+        <meta name="twitter:description" content="View the organizations sponsoring OOSC 4.0 and explore sponsorship tiers." />
+      </Helmet>
       <div className="section-heading split">
         <div>
           <span>{siteConfig.sponsorsEyebrow || 'Partners'}</span>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet-async'
 import { GripVertical } from 'lucide-react'
 import './TeamPage.css'
 
@@ -10,6 +11,17 @@ export default function TeamPage({
 }) {
   return (
     <section className="content-section" id="team">
+      <Helmet>
+        <title>Team — OOSC 4.0 | IIIT Allahabad</title>
+        <meta name="description" content="Meet the organizing team behind OOSC 4.0 at IIIT Allahabad — faculty coordinators, student committees, and volunteers making the conference happen." />
+        <link rel="canonical" href="https://oosc.iiita.ac.in/team" />
+        <meta property="og:title" content="Team — OOSC 4.0 | IIIT Allahabad" />
+        <meta property="og:description" content="Meet the organizing team behind OOSC 4.0 at IIIT Allahabad — faculty coordinators, student committees, and volunteers." />
+        <meta property="og:url" content="https://oosc.iiita.ac.in/team" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:title" content="Team — OOSC 4.0 | IIIT Allahabad" />
+        <meta name="twitter:description" content="Meet the organizing team behind OOSC 4.0 at IIIT Allahabad." />
+      </Helmet>
       <div className="section-heading split">
         <div>
           <span>{siteConfig.teamEyebrow || 'Steering Committee'}</span>

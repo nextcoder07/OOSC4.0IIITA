@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Mic, Star, ArrowRight } from 'lucide-react'
 import './SpeakersPage.css'
 
@@ -10,6 +11,17 @@ export default function SpeakersPage({
 }) {
   return (
     <section className="content-section speakers-section" id="speakers">
+      <Helmet>
+        <title>Speakers — OOSC 4.0 | IIIT Allahabad</title>
+        <meta name="description" content="Meet the industry experts, leading open-source maintainers, and researchers speaking at OOSC 4.0 at IIIT Allahabad, Aug 28–30, 2026." />
+        <link rel="canonical" href="https://oosc.iiita.ac.in/speakers" />
+        <meta property="og:title" content="Speakers — OOSC 4.0 | IIIT Allahabad" />
+        <meta property="og:description" content="Meet the industry experts, leading open-source maintainers, and researchers speaking at OOSC 4.0 at IIIT Allahabad." />
+        <meta property="og:url" content="https://oosc.iiita.ac.in/speakers" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:title" content="Speakers — OOSC 4.0 | IIIT Allahabad" />
+        <meta name="twitter:description" content="Meet the industry experts and researchers speaking at OOSC 4.0 at IIIT Allahabad." />
+      </Helmet>
       <div className="section-heading split">
         <div>
           <span>{siteConfig.speakersEyebrow || 'Experts'}</span>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet-async'
 import './SchedulePage.css'
 
 export default function SchedulePage({
@@ -10,6 +11,17 @@ export default function SchedulePage({
 }) {
   return (
     <section className="content-section" id="schedule">
+      <Helmet>
+        <title>Schedule — OOSC 4.0 | IIIT Allahabad</title>
+        <meta name="description" content="View the full 3-day schedule for OOSC 4.0 at IIIT Allahabad, Aug 28–30, 2026. Keynote talks, workshops, panel discussions, and hackathon events." />
+        <link rel="canonical" href="https://oosc.iiita.ac.in/schedule" />
+        <meta property="og:title" content="Schedule — OOSC 4.0 | IIIT Allahabad" />
+        <meta property="og:description" content="View the full 3-day schedule for OOSC 4.0. Keynote talks, workshops, panel discussions, and hackathon events." />
+        <meta property="og:url" content="https://oosc.iiita.ac.in/schedule" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:title" content="Schedule — OOSC 4.0 | IIIT Allahabad" />
+        <meta name="twitter:description" content="View the full 3-day schedule for OOSC 4.0 at IIIT Allahabad." />
+      </Helmet>
       <div className="section-heading split">
         <div>
           <span>{siteConfig.scheduleEyebrow || 'Timeline'}</span>

@@ -1,9 +1,16 @@
 import React from 'react'
+import { Helmet } from 'react-helmet-async'
 import './PolicyPage.css'
 
 export default function TermsOfUsePage() {
   return (
     <section className="content-section policy-section">
+      <Helmet>
+        <title>Terms of Use — OOSC 4.0 | IIIT Allahabad</title>
+        <meta name="description" content="Read the terms of use for the OOSC 4.0 Open Source Systems Conference website at IIIT Allahabad." />
+        <link rel="canonical" href="https://oosc.iiita.ac.in/terms" />
+        <meta name="robots" content="noindex, follow" />
+      </Helmet>
       <div className="policy-container glass-card">
         <h2>Terms of Use</h2>
         <p className="policy-date">Effective Date: August 28, 2026</p>

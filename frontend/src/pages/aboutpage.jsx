@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Check, Globe, Mail, MapPin, Calendar, Cpu, Users, Code, Award, BookOpen, Compass, ArrowRight } from 'lucide-react'
 import './aboutpage.css'
 
@@ -8,6 +9,17 @@ export default function AboutPage({ siteConfig = {}, about = {} }) {
 
   return (
     <div className="about-page-container">
+      <Helmet>
+        <title>About — OOSC 4.0 | IIIT Allahabad</title>
+        <meta name="description" content="Learn about OOSC 4.0 — the Open Source Systems Conference at IIIT Allahabad, Aug 28–30, 2026. Discover our history, host city Prayagraj, past keynote speakers, and what to expect." />
+        <link rel="canonical" href="https://oosc.iiita.ac.in/about" />
+        <meta property="og:title" content="About — OOSC 4.0 | IIIT Allahabad" />
+        <meta property="og:description" content="Learn about OOSC 4.0 — the Open Source Systems Conference at IIIT Allahabad. Discover our history, host city, past speakers, and what to expect." />
+        <meta property="og:url" content="https://oosc.iiita.ac.in/about" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:title" content="About — OOSC 4.0 | IIIT Allahabad" />
+        <meta name="twitter:description" content="Learn about OOSC 4.0 — the Open Source Systems Conference at IIIT Allahabad. Discover our history, host city, and past speakers." />
+      </Helmet>
       {/* Logos and contact row */}
       <div className="about-hero-header-row">
         <div className="about-hero-logos">
@@ -144,7 +156,7 @@ export default function AboutPage({ siteConfig = {}, about = {} }) {
         <div className="about-hero-content">
           {/* Eyebrow and Title */}
           <div className="about-eyebrow">Host City & Venue</div>
-          <h1 className="about-hero-title">IIIT Allahabad, India</h1>
+          <h2 className="about-hero-title">IIIT Allahabad, India</h2>
 
           {/* Description Grid */}
           <div className="about-hero-description-grid">
