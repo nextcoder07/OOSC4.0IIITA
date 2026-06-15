@@ -52,7 +52,15 @@
 ```bash
 git clone https://github.com/0xshellghost/OOSC4.0IIITA.git
 cd OOSC4.0IIITA
+
+# Install backend dependencies
+cd backend
 npm install
+
+# Install frontend dependencies
+cd ../frontend
+npm install
+cd ..
 ```
 
 ### 2. Configure Environment
@@ -97,12 +105,13 @@ cd ..
 **Terminal 1 — Backend:**
 ```bash
 cd backend
-node server.js
+npm start
 ```
-→ API server starts on **http://localhost:5000**
+→ API server starts on **http://localhost:4000**
 
 **Terminal 2 — Frontend:**
 ```bash
+cd frontend
 npm run dev
 ```
 → Dev server starts on **http://localhost:5173**
@@ -112,6 +121,7 @@ Open **http://localhost:5173** in your browser.
 ### 5. Production Build
 
 ```bash
+cd frontend
 npm run build
 ```
 Creates optimized output in `frontend/dist/`.
@@ -142,13 +152,14 @@ OOSC4.0IIITA/
 │           ├── ImageUploader.jsx
 │           ├── Registration.jsx
 │           └── ...
+│       ├── package.json           # Frontend dependencies & scripts
+│       └── vite.config.js         # Vite configuration
 ├── backend/
 │   ├── server.js                  # Express API server
 │   ├── .env                       # Environment variables (SECRET)
+│   ├── package.json               # Backend dependencies & scripts
 │   └── prisma/
 │       └── schema.prisma          # Database schema
-├── package.json                   # Root package with all dependencies
-├── vite.config.js                 # Vite configuration
 └── README.md
 ```
 
