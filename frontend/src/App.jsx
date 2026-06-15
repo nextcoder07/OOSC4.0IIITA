@@ -433,46 +433,46 @@ function App() {
       { key: 'sortOrder', label: 'Sort Order', type: 'number' },
     ],
     'hackathon-tracks': [
-      { key: 'title', label: 'Track Title', type: 'text' },
-      { key: 'description', label: 'Track Description', type: 'textarea' },
-      { key: 'sortOrder', label: 'Sort Order', type: 'number' },
+      { key: 'title', label: 'Track Title', type: 'text', placeholder: 'e.g. Core Systems & Kernel' },
+      { key: 'description', label: 'Track Description', type: 'textarea', placeholder: 'e.g. Focus on optimizing Linux kernel modules...' },
+      { key: 'sortOrder', label: 'Sort Order', type: 'number', placeholder: 'e.g. 1' },
     ],
     'hackathon-eligibility': [
-      { key: 'content', label: 'Eligibility Content', type: 'text' },
-      { key: 'sortOrder', label: 'Sort Order', type: 'number' },
+      { key: 'content', label: 'Eligibility Content', type: 'text', placeholder: 'e.g. Open to all undergraduate students' },
+      { key: 'sortOrder', label: 'Sort Order', type: 'number', placeholder: 'e.g. 1' },
     ],
     'hackathon-team-comp': [
-      { key: 'icon', label: 'Lucide Icon Name', type: 'text' },
-      { key: 'label', label: 'Label', type: 'text' },
-      { key: 'sortOrder', label: 'Sort Order', type: 'number' },
+      { key: 'icon', label: 'Lucide Icon Name', type: 'select', options: ['Target', 'Users', 'Check', 'User', 'Globe', 'Trophy', 'Medal', 'Star', 'Lightbulb', 'Leaf', 'Palette', 'Zap', 'Bot', 'ClipboardList', 'Calendar', 'Rocket'] },
+      { key: 'label', label: 'Label', type: 'text', placeholder: 'e.g. 2-4 Members per team' },
+      { key: 'sortOrder', label: 'Sort Order', type: 'number', placeholder: 'e.g. 1' },
     ],
     'hackathon-prizes': [
-      { key: 'position', label: 'Position / Place', type: 'text' },
-      { key: 'amount', label: 'Amount', type: 'text' },
-      { key: 'description', label: 'Description', type: 'textarea' },
+      { key: 'position', label: 'Position / Place', type: 'text', placeholder: 'e.g. 1st Place / Winner' },
+      { key: 'amount', label: 'Amount', type: 'text', placeholder: 'e.g. ₹50,000' },
+      { key: 'description', label: 'Description', type: 'textarea', placeholder: 'e.g. Plus exclusive mentorship and hardware kits' },
       { key: 'colorClass', label: 'Color Class (gold, silver, bronze)', type: 'select', options: ['gold', 'silver', 'bronze'] },
-      { key: 'sortOrder', label: 'Sort Order', type: 'number' },
+      { key: 'sortOrder', label: 'Sort Order', type: 'number', placeholder: 'e.g. 1' },
     ],
     'hackathon-special-prizes': [
-      { key: 'icon', label: 'Lucide Icon Name', type: 'text' },
-      { key: 'label', label: 'Label', type: 'text' },
-      { key: 'sortOrder', label: 'Sort Order', type: 'number' },
+      { key: 'icon', label: 'Lucide Icon Name', type: 'select', options: ['Target', 'Users', 'Check', 'User', 'Globe', 'Trophy', 'Medal', 'Star', 'Lightbulb', 'Leaf', 'Palette', 'Zap', 'Bot', 'ClipboardList', 'Calendar', 'Rocket'] },
+      { key: 'label', label: 'Label', type: 'text', placeholder: 'e.g. Best Beginner Hack: ₹10,000' },
+      { key: 'sortOrder', label: 'Sort Order', type: 'number', placeholder: 'e.g. 1' },
     ],
     'hackathon-rules': [
-      { key: 'content', label: 'Rule Detail', type: 'textarea' },
-      { key: 'sortOrder', label: 'Sort Order', type: 'number' },
+      { key: 'content', label: 'Rule Detail', type: 'textarea', placeholder: 'e.g. All code must be written during the hackathon...' },
+      { key: 'sortOrder', label: 'Sort Order', type: 'number', placeholder: 'e.g. 1' },
     ],
     'hackathon-timeline': [
-      { key: 'label', label: 'Date Label (e.g. Kick-off)', type: 'text' },
-      { key: 'value', label: 'Date Value', type: 'text' },
-      { key: 'description', label: 'Description', type: 'textarea' },
+      { key: 'label', label: 'Date Label (e.g. Kick-off)', type: 'text', placeholder: 'e.g. Registration Opens' },
+      { key: 'value', label: 'Date Value', type: 'text', placeholder: 'e.g. Aug 1, 2026' },
+      { key: 'description', label: 'Description', type: 'textarea', placeholder: 'e.g. Form your teams and submit your ideas.' },
       { key: 'status', label: 'Status (past, active, empty)', type: 'select', options: ['', 'active', 'past'] },
-      { key: 'sortOrder', label: 'Sort Order', type: 'number' },
+      { key: 'sortOrder', label: 'Sort Order', type: 'number', placeholder: 'e.g. 1' },
     ],
     'hackathon-steps': [
-      { key: 'title', label: 'Step Title', type: 'text' },
-      { key: 'description', label: 'Step Description', type: 'textarea' },
-      { key: 'sortOrder', label: 'Sort Order', type: 'number' },
+      { key: 'title', label: 'Step Title', type: 'text', placeholder: 'e.g. Ideation Phase' },
+      { key: 'description', label: 'Step Description', type: 'textarea', placeholder: 'e.g. Submit your initial proposal and architecture diagram.' },
+      { key: 'sortOrder', label: 'Sort Order', type: 'number', placeholder: 'e.g. 1' },
     ],
   }
 
@@ -1187,6 +1187,7 @@ function App() {
                       id={`modal-${field.key}`}
                       value={modalData[field.key] ?? ''}
                       onChange={(event) => setModalField(field.key, event.target.value)}
+                      placeholder={field.placeholder || ''}
                       className="form-control"
                       rows="4"
                     />
@@ -1208,6 +1209,7 @@ function App() {
                       type={field.type}
                       value={modalData[field.key] ?? ''}
                       onChange={(event) => setModalField(field.key, event.target.value)}
+                      placeholder={field.placeholder || ''}
                       className="form-control"
                     />
                   )}
