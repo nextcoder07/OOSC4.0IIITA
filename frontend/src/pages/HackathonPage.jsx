@@ -68,8 +68,25 @@ export default function HackathonPage({
         </div>
       </div>
 
-      {/* ── PROBLEM STATEMENT + ELIGIBILITY ── */}
-      <div className="hk-grid-2">
+      {siteConfig.hackathonHidden === 'true' && adminMode && (
+        <div className="admin-status-message error" style={{margin: '0 auto 2rem', maxWidth: '1000px', backgroundColor: 'rgba(239, 68, 68, 0.1)', border: '1px solid var(--color-error)'}}>
+          🚨 <strong>Admin Notice:</strong> The Hackathon page content is currently HIDDEN from the public. Only admins can see the sections below.
+        </div>
+      )}
+
+      {siteConfig.hackathonHidden === 'true' && !adminMode ? (
+        <div style={{ textAlign: 'center', padding: '4rem 2rem', minHeight: '40vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+          <div className="hk-icon" style={{ marginBottom: '1rem' }}><Rocket size={48} color="var(--color-brand-blue)" /></div>
+          <h2 style={{ fontSize: '2rem', color: 'var(--color-text)' }}>Hackathon Details Coming Soon</h2>
+          <p style={{ marginTop: '1rem', color: 'var(--color-text-muted)', maxWidth: '600px' }}>
+            We are currently finalizing the details, problem statements, and rules for the upcoming OOSC 4.0 Hackathon. 
+            Stay tuned!
+          </p>
+        </div>
+      ) : (
+        <>
+          {/* ── PROBLEM STATEMENT + ELIGIBILITY ── */}
+          <div className="hk-grid-2">
         <div className="hk-card">
           <div className="hk-card-title">
             <div className="hk-icon"><Target size={32} color="var(--color-accent)" /></div>
@@ -281,6 +298,8 @@ export default function HackathonPage({
             </button>
           </div>
         </div>
+      )}
+      </>
       )}
 
     </div>

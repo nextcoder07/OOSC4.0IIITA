@@ -1266,6 +1266,7 @@ function App() {
                 {
                   groupName: 'Hackathon Quick Details',
                   fields: [
+                    { key: 'hackathonHidden', label: 'Hide Hackathon Content', type: 'checkbox' },
                     { key: 'hackathonBadge', label: 'Hackathon Badge' },
                     { key: 'hackathonTitle', label: 'Hackathon Title' },
                     { key: 'hackathonTheme', label: 'Hackathon Theme' },
@@ -1325,6 +1326,20 @@ function App() {
                               placeholder={getPlaceholderForConfig(field.key)}
                               rows="6"
                             />
+                          ) : field.type === 'checkbox' ? (
+                            <div className="checkbox-wrapper" style={{display:'flex', alignItems:'center', gap:'10px'}}>
+                              <input
+                                type="checkbox"
+                                checked={siteConfig[field.key] === 'true'}
+                                onChange={(e) => {
+                                  const val = e.target.checked ? 'true' : 'false';
+                                  setSiteConfig(prev => ({ ...prev, [field.key]: val }));
+                                  saveSiteConfig(field.key, val);
+                                }}
+                                style={{width:'20px', height:'20px', cursor:'pointer'}}
+                              />
+                              <span className="field-tip">Check to hide the content from the public.</span>
+                            </div>
                           ) : (
                             <input
                               type="text"
