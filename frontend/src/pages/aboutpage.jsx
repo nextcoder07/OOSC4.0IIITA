@@ -8,89 +8,24 @@ export default function AboutPage({ siteConfig = {}, about = {} }) {
 
   return (
     <div className="about-page-container">
-
-      {/* ─── SECTION 1: HERO (HOST CITY & VENUE) ─────────────────────────────────── */}
-      <section className="about-hero" id="host-city-venue">
-        <div className="about-hero-content">
-          {/* Logos and contact row */}
-          <div className="about-hero-header-row">
-            <div className="about-hero-logos">
-              <img src="/OOSC_logo.png" alt="OOSC Logo" className="about-logo-oosc" />
-              <span className="logo-divider">|</span>
-              <img src="/IIIT_logo_transparent.gif" alt="IIITA Logo" className="about-logo-iiita" />
-            </div>
-            <div className="about-hero-contacts">
-              <div className="about-contact-item">
-                <Globe size={16} />
-                <a href="https://oosc.iiita.ac.in" target="_blank" rel="noopener noreferrer">oosc.iiita.ac.in</a>
-              </div>
-              <div className="about-contact-item">
-                <Mail size={16} />
-                <a href="mailto:oosc@iiita.ac.in">oosc@iiita.ac.in</a>
-              </div>
-            </div>
-          </div>
-
-          {/* Eyebrow and Title */}
-          <div className="about-eyebrow">Host City & Venue</div>
-          <h1 className="about-hero-title">IIIT Allahabad, India</h1>
-
-          {/* Description Grid */}
-          <div className="about-hero-description-grid">
-            <article className="about-description-col">
-              <h3>India</h3>
-              <p>
-                A diverse and vibrant nation, blending rich cultural heritage with rapid technological growth.
-                As a leading democracy and innovation hub, it bridges tradition and modernity across all aspects of life.
-              </p>
-            </article>
-            <article className="about-description-col">
-              <h3>Allahabad (Prayagraj)</h3>
-              <p>
-                Located in Uttar Pradesh, Allahabad is a key industrial and educational hub of North India,
-                known for its historic significance and a unique blend of tradition and modernity.
-              </p>
-            </article>
-            <article className="about-description-col">
-              <h3>IIIT Allahabad</h3>
-              <p>
-                One of India's premier institutes for engineering, science, and innovation.
-                Known for its academic excellence, cutting-edge research, and vibrant campus life,
-                IIIT Allahabad fosters creativity, critical thinking, and leadership.
-              </p>
-            </article>
-          </div>
-
-          {/* Three side-by-side vertical images */}
-          <div className="about-hero-image-grid">
-            <div className="about-hero-img-wrapper">
-              <img src="/about-country.png" alt="India" className="about-hero-img" loading="eager" />
-            </div>
-            <div className="about-hero-img-wrapper">
-              <img src="/about-city.png" alt="Allahabad" className="about-hero-img" loading="eager" />
-            </div>
-            <div className="about-hero-img-wrapper">
-              <img src="/about-college.png" alt="IIIT Allahabad" className="about-hero-img" loading="eager" />
-            </div>
-          </div>
-
-          {/* Bottom dates & venue banner */}
-          <div className="about-hero-banner-card">
-            <div className="about-hero-banner-item">
-              <span className="banner-item-label">Conference Dates</span>
-              <span className="banner-item-value">August 28 - 30, 2026</span>
-            </div>
-            <div className="about-hero-banner-item">
-              <span className="banner-item-label">Venue</span>
-              <span className="banner-item-value">IIIT Allahabad, Prayagraj, UP, India</span>
-            </div>
-          </div>
-
-
-
+      {/* Logos and contact row */}
+      <div className="about-hero-header-row">
+        <div className="about-hero-logos">
+          <img src="/OOSC_logo.png" alt="OOSC Logo" className="about-logo-oosc" />
+          <span className="logo-divider">|</span>
+          <img src="/IIIT_logo_transparent.gif" alt="IIITA Logo" className="about-logo-iiita" />
         </div>
-      </section>
-
+        <div className="about-hero-contacts">
+          <div className="about-contact-item">
+            <Globe size={16} />
+            <a href="https://oosc.iiita.ac.in" target="_blank" rel="noopener noreferrer">oosc.iiita.ac.in</a>
+          </div>
+          <div className="about-contact-item">
+            <Mail size={16} />
+            <a href="mailto:oosc@iiita.ac.in">oosc@iiita.ac.in</a>
+          </div>
+        </div>
+      </div>
       {/* ─── SECTION 2: WHAT TO EXPECT AT OOSC 4.0 ──────────────────────────────── */}
       <section className="about-expect-section" id="expectations">
         <div className="about-eyebrow">About the Event</div>
@@ -204,63 +139,81 @@ export default function AboutPage({ siteConfig = {}, about = {} }) {
         </div>
       </section>
 
-      {/* ─── SECTION 4: A LEGACY OF TECHNICAL EXCELLENCE ─────────────────────────── */}
-      <section className="about-legacy-section" id="iiita-ecosystem">
-        <div className="about-eyebrow">Why IIIT Allahabad?</div>
-        <h2 className="about-section-title">A Legacy of Technical Excellence</h2>
+      {/* ─── SECTION 1: HERO (HOST CITY & VENUE) ─────────────────────────────────── */}
+      <section className="about-hero" id="host-city-venue">
+        <div className="about-hero-content">
+          {/* Eyebrow and Title */}
+          <div className="about-eyebrow">Host City & Venue</div>
+          <h1 className="about-hero-title">IIIT Allahabad, India</h1>
 
-        <p className="about-section-desc">
-          IIIT Allahabad is home to one of India's most active technical communities, with a proven legacy of
-          organizing large-scale events across open source, cybersecurity, software development, design, and innovation.
-        </p>
+          {/* Description Grid */}
+          <div className="about-hero-description-grid">
+            <article className="about-description-col">
+              <h3>India</h3>
+              <p>
+                A diverse and vibrant nation, blending rich cultural heritage with rapid technological growth.
+                As a leading democracy and innovation hub, it bridges tradition and modernity across all aspects of life.
+              </p>
+            </article>
+            <article className="about-description-col">
+              <h3>Allahabad (Prayagraj)</h3>
+              <p>
+                Located in Uttar Pradesh, Allahabad is a key industrial and educational hub of North India,
+                known for its historic significance and a unique blend of tradition and modernity.
+              </p>
+            </article>
+            <article className="about-description-col">
+              <h3>IIIT Allahabad</h3>
+              <p>
+                One of India's premier institutes for engineering, science, and innovation.
+                Known for its academic excellence, cutting-edge research, and vibrant campus life,
+                IIIT Allahabad fosters creativity, critical thinking, and leadership.
+              </p>
+            </article>
+          </div>
 
-        <h3 className="about-sub-title" style={{ marginTop: '2.5rem' }}>IIITA Technical Ecosystem</h3>
+          {/* Three side-by-side vertical images */}
+          <div className="about-hero-image-grid">
+            <div className="about-hero-img-wrapper">
+              <img src="/about-country.png" alt="India" className="about-hero-img" loading="eager" />
+            </div>
+            <div className="about-hero-img-wrapper">
+              <img src="/about-city.png" alt="Allahabad" className="about-hero-img" loading="eager" />
+            </div>
+            <div className="about-hero-img-wrapper">
+              <img src="/about-college.png" alt="IIIT Allahabad" className="about-hero-img" loading="eager" />
+            </div>
+          </div>
 
-        {/* Left Border Highlight list (8 Items in grid) */}
-        <div className="about-ecosystem-grid">
-          <article className="about-ecosystem-item">
-            <h4>Aproksha</h4>
-            <p>IIIT Allahabad's flagship technical festival and one of North India's largest student-led tech festivals, attracting participants from 130+ colleges and recording 10,000+ registrations.</p>
-          </article>
-          <article className="about-ecosystem-item">
-            <h4>Hack In The North (HITN)</h4>
-            <p>One of India's largest student-run hackathons, attracting participants from 80+ institutions across North India.</p>
-          </article>
-          <article className="about-ecosystem-item">
-            <h4>OpenCode</h4>
-            <p>A multi-edition open-source program with 2,000+ participants contributing to real-world projects under mentor guidance.</p>
-          </article>
-          <article className="about-ecosystem-item">
-            <h4>Code Red</h4>
-            <p>A team-based coding competition where participants collaborate under timed rotations to solve challenging programming problems.</p>
-          </article>
-          <article className="about-ecosystem-item">
-            <h4>CICADA</h4>
-            <p>An overnight treasure-hunt style event combining problem-solving, teamwork, and exploration, engaging 400+ participants.</p>
-          </article>
-          <article className="about-ecosystem-item">
-            <h4>CTF (Capture The Flag)</h4>
-            <p>A premier cybersecurity competition with 1,800+ participants solving challenges across Web Security, Cryptography, Reverse Engineering, and more.</p>
-          </article>
-          <article className="about-ecosystem-item">
-            <h4>III (Innovate-Iterate-Interrupt) 5.0</h4>
-            <p>A flagship 48-hour offline hackathon combining software development, AI/ML, mentorship workshops, and innovation-driven problem solving.</p>
-          </article>
-          <article className="about-ecosystem-item">
-            <h4>OOC (Out of Context)</h4>
-            <p>A design and development hackathon with 1,500+ registrations, bringing together creative problem-solvers, designers, and developers.</p>
-          </article>
+          {/* Bottom dates & venue banner */}
+          <div className="about-hero-banner-card">
+            <div className="about-hero-banner-item">
+              <span className="banner-item-label">Conference Dates</span>
+              <span className="banner-item-value">August 28 - 30, 2026</span>
+            </div>
+            <div className="about-hero-banner-item">
+              <span className="banner-item-label">Venue</span>
+              <span className="banner-item-value">IIIT Allahabad, Prayagraj, UP, India</span>
+            </div>
+          </div>
+
+
+
         </div>
       </section>
 
-      {/* ─── SECTION 5: PROVEN TRACK RECORD ──────────────────────────────────────── */}
+
+
+
+      {/*
+       ─── SECTION 5: PROVEN TRACK RECORD ──────────────────────────────────────── }
       <section className="about-track-record-section" id="track-record">
-        {/* Page Line Decoration */}
+        {/* Page Line Decoration }
         {/*<div className="about-page-header-line">
           <span className="page-number">07</span>
           <span className="header-line-divider"></span>
           <span className="header-line-label">Our Legacy</span>
-        </div>*/}
+        </div>}
 
         <div className="about-eyebrow" style={{ marginTop: '1.5rem' }}>Our Legacy</div>
         <h2 className="about-section-title">Proven Track Record</h2>
@@ -271,7 +224,7 @@ export default function AboutPage({ siteConfig = {}, about = {} }) {
           IIITA is committed to an edition that sets new benchmarks.
         </p>
 
-        {/* Two-column bullet lists */}
+        {/* Two-column bullet lists }
         <div className="about-track-columns">
           <div className="about-track-col">
             <ul className="about-track-list">
@@ -315,7 +268,7 @@ export default function AboutPage({ siteConfig = {}, about = {} }) {
           </div>
         </div>
 
-        {/* 4 side-by-side stats highlight cards */}
+        {/* 4 side-by-side stats highlight cards }
         <div className="about-stats-grid">
           <article className="about-stat-card">
             <div className="stat-value">10,000+</div>
@@ -335,7 +288,7 @@ export default function AboutPage({ siteConfig = {}, about = {} }) {
           </article>
         </div>
 
-        {/* Wide bottom banner card */}
+        {/* Wide bottom banner card }
         <div className="about-track-banner-card">
           <p>
             Entrusted with hosting OOSC 4.0 for the first time, IIIT Allahabad is committed to delivering an
@@ -346,7 +299,7 @@ export default function AboutPage({ siteConfig = {}, about = {} }) {
           </p>
         </div>
       </section>
-
+    */}
       {/* ─── SECTION 6: KEYNOTE SPEAKERS & LEADERS ────────────────────────────────── */}
       <section className="about-speakers-section" id="keynote-speakers">
         <div className="about-eyebrow" style={{ marginTop: '1.5rem' }}>Past Highlights</div>
@@ -401,73 +354,7 @@ export default function AboutPage({ siteConfig = {}, about = {} }) {
         </div>
       </section>
 
-      {/* ─── SECTION 7: ORGANIZATIONS THAT TRUSTED OOSC ───────────────────────────── */}
-      <section className="about-sponsors-section" id="past-sponsors">
-        <div className="about-eyebrow" style={{ marginTop: '1.5rem' }}>Past Year Sponsors</div>
-        <h2 className="about-section-title">Organizations That Trusted OOSC</h2>
 
-        <p className="about-section-desc">
-          OOSC has a strong history of partnerships with leading global and Indian technology organizations. The
-          following are the some of the sponsors that have supported previous editions of the conference, helping us
-          create unforgettable experiences for thousands of attendees.
-        </p>
-
-        {/* Sponsor Name Tags */}
-        <div className="about-sponsor-tags">
-          {['Trumio', 'Open Printing', 'Overlayy', 'Qualcomm', 'Google Colaboratory', 'The Linux Foundation', 'Zephyr', 'Canonical', 'Snapcraft'].map((name) => (
-            <span key={name} className="about-sponsor-tag">{name}</span>
-          ))}
-        </div>
-
-        {/* Why They Sponsored Card 
-        <div className="about-sponsor-why-card">
-          <h3>Why They Sponsored OOSC</h3>
-          <ul>
-            <li>
-              <span className="sponsor-bullet">•</span>
-              <p>Direct access to India's largest open-source developer community.</p>
-            </li>
-            <li>
-              <span className="sponsor-bullet">•</span>
-              <p>High-quality brand exposure across a technically sophisticated audience.</p>
-            </li>
-            <li>
-              <span className="sponsor-bullet">•</span>
-              <p>Opportunity to recruit top talent from premier engineering institutes.</p>
-            </li>
-            <li>
-              <span className="sponsor-bullet">•</span>
-              <p>Association with a globally recognized open-source event brand.</p>
-            </li>
-            <li>
-              <span className="sponsor-bullet">•</span>
-              <p>Media visibility across traditional and digital channels.</p>
-            </li>
-          </ul>
-        </div>
-          */}
-        {/* Sponsor Logos Grid */}
-        <div className="about-sponsor-logos-grid">
-          <a href="https://www.trumio.ai" target="_blank" rel="noopener noreferrer" className="about-sponsor-logo-wrapper">
-            <img src="/Trumio-Logo.png" alt="Trumio" loading="lazy" />
-          </a>
-          <a href="https://openprinting.github.io" target="_blank" rel="noopener noreferrer" className="about-sponsor-logo-wrapper">
-            <img src="/Open-printing-Logo.png" alt="Open Printing" loading="lazy" />
-          </a>
-          <a href="https://www.qualcomm.com" target="_blank" rel="noopener noreferrer" className="about-sponsor-logo-wrapper">
-            <img src="/Qualcomm-Logo.png" alt="Qualcomm" loading="lazy" />
-          </a>
-          <a href="https://snapcraft.io" target="_blank" rel="noopener noreferrer" className="about-sponsor-logo-wrapper">
-            <img src="/Snapcraft-Logo.png" alt="Snapcraft" loading="lazy" />
-          </a>
-          <a href="https://canonical.com" target="_blank" rel="noopener noreferrer" className="about-sponsor-logo-wrapper">
-            <img src="/Canonical_logo.png" alt="Canonical" loading="lazy" />
-          </a>
-          <a href="https://www.linuxfoundation.org" target="_blank" rel="noopener noreferrer" className="about-sponsor-logo-wrapper">
-            <img src="/Linux_Foundation_logo.png" alt="The Linux Foundation" loading="lazy" />
-          </a>
-        </div>
-      </section>
 
     </div>
   )

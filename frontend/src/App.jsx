@@ -749,7 +749,7 @@ function App() {
       contactTitle: 'Get in Touch',
       contactSubtitle: 'Have questions about OOSC 4.0? Reach out to our dedicated teams below.'
     }
-    
+
     const formatHints = {
       hackathonProblemStatement: "Paragraph 1\\nParagraph 2...",
       hackathonTracks: "Track Title || Description\\nTrack Title 2 || Description 2...",
@@ -829,6 +829,15 @@ function App() {
             {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
           </button>
 
+          <a
+            href={siteConfig.speakersCtaLink || 'https://events.canonical.com/event/154/abstracts/'}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-nav-cta-outline cfp-desktop-btn"
+          >
+            Call for Proposal
+          </a>
+
           {/* Mobile Hamburger menu toggle button */}
           <button
             type="button"
@@ -841,24 +850,14 @@ function App() {
             <span className="toggle-bar"></span>
           </button>
 
-          {/* Grouped CTA buttons — kept together so they show/hide as one unit */}
-          <div className="header-cta-group">
-            <a
-              href={siteConfig.speakersCtaLink || 'https://events.canonical.com/event/154/abstracts/'}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-nav-cta btn-nav-cfp"
-            >
-              Call for Proposal
-            </a>
-            <button
-              type="button"
-              className="btn btn-nav-cta"
-              onClick={() => navigateTo('register')}
-            >
-              Register Now
-            </button>
-          </div>
+
+          <button
+            type="button"
+            className="btn btn-nav-cta"
+            onClick={() => navigateTo('register')}
+          >
+            Register Now
+          </button>
           {adminMode && (
             <button type="button" className="btn btn-admin active" onClick={logout}>
               Logout
@@ -919,7 +918,7 @@ function App() {
       )}
 
       {/* Page Content Body */}
-      <main className={`page-body ${currentPage === 'home' ? 'page-body--home' : 'page-body--inner'}`}>
+      <main className={`page-body ${currentPage === 'home' ? 'page-body--home' : currentPage === 'hackathon' ? 'page-body--hackathon' : 'page-body--inner'}`}>
         {apiError && (
           <div className="api-error-banner" style={{ margin: '0 1rem 1rem', padding: '1rem', background: 'rgba(248, 113, 113, 0.1)', color: '#FCA5A5', borderRadius: '10px', border: '1px solid #FCA5A5' }}>
             <strong>Data load issue:</strong> {apiError}

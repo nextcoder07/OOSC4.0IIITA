@@ -576,6 +576,7 @@
 
 .sponsor-form-card {
   background: var(--color-sponsor-form-bg);
+  border: 1px solid var(--color-border);
   border-radius: 20px;
   padding: 48px 40px;
   max-width: 620px;
@@ -839,6 +840,7 @@
   padding: 40px;
   border-radius: 16px;
   background: var(--color-partnership-cta-bg);
+  border: 1px solid var(--color-border);
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -1303,7 +1305,7 @@
 
 .sponsor-logos-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
   align-items: center;
   justify-items: center;
