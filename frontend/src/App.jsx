@@ -70,6 +70,16 @@ function App() {
   const [team, setTeam] = useState([])
   const [registrationCards, setRegistrationCards] = useState([])
   const [infoCards, setInfoCards] = useState([])
+  
+  const [hkTracks, setHkTracks] = useState([])
+  const [hkEligibility, setHkEligibility] = useState([])
+  const [hkTeamComp, setHkTeamComp] = useState([])
+  const [hkPrizes, setHkPrizes] = useState([])
+  const [hkSpecialPrizes, setHkSpecialPrizes] = useState([])
+  const [hkRules, setHkRules] = useState([])
+  const [hkTimeline, setHkTimeline] = useState([])
+  const [hkSteps, setHkSteps] = useState([])
+
   const [apiError, setApiError] = useState('')
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [formStatus, setFormStatus] = useState('')
@@ -344,6 +354,14 @@ function App() {
       team: setTeam,
       'registration-cards': setRegistrationCards,
       'info-cards': setInfoCards,
+      'hackathon-tracks': setHkTracks,
+      'hackathon-eligibility': setHkEligibility,
+      'hackathon-team-comp': setHkTeamComp,
+      'hackathon-prizes': setHkPrizes,
+      'hackathon-special-prizes': setHkSpecialPrizes,
+      'hackathon-rules': setHkRules,
+      'hackathon-timeline': setHkTimeline,
+      'hackathon-steps': setHkSteps,
     }[resource]
     if (setter) setter((prev) => updater(prev))
   }
@@ -395,6 +413,48 @@ function App() {
       { key: 'content', label: 'HTML Content', type: 'textarea' },
       { key: 'sortOrder', label: 'Sort Order', type: 'number' },
     ],
+    'hackathon-tracks': [
+      { key: 'title', label: 'Track Title', type: 'text' },
+      { key: 'description', label: 'Track Description', type: 'textarea' },
+      { key: 'sortOrder', label: 'Sort Order', type: 'number' },
+    ],
+    'hackathon-eligibility': [
+      { key: 'content', label: 'Eligibility Content', type: 'text' },
+      { key: 'sortOrder', label: 'Sort Order', type: 'number' },
+    ],
+    'hackathon-team-comp': [
+      { key: 'icon', label: 'Lucide Icon Name', type: 'text' },
+      { key: 'label', label: 'Label', type: 'text' },
+      { key: 'sortOrder', label: 'Sort Order', type: 'number' },
+    ],
+    'hackathon-prizes': [
+      { key: 'position', label: 'Position / Place', type: 'text' },
+      { key: 'amount', label: 'Amount', type: 'text' },
+      { key: 'description', label: 'Description', type: 'textarea' },
+      { key: 'colorClass', label: 'Color Class (gold, silver, bronze)', type: 'select', options: ['gold', 'silver', 'bronze'] },
+      { key: 'sortOrder', label: 'Sort Order', type: 'number' },
+    ],
+    'hackathon-special-prizes': [
+      { key: 'icon', label: 'Lucide Icon Name', type: 'text' },
+      { key: 'label', label: 'Label', type: 'text' },
+      { key: 'sortOrder', label: 'Sort Order', type: 'number' },
+    ],
+    'hackathon-rules': [
+      { key: 'content', label: 'Rule Detail', type: 'textarea' },
+      { key: 'sortOrder', label: 'Sort Order', type: 'number' },
+    ],
+    'hackathon-timeline': [
+      { key: 'label', label: 'Date Label (e.g. Kick-off)', type: 'text' },
+      { key: 'value', label: 'Date Value', type: 'text' },
+      { key: 'description', label: 'Description', type: 'textarea' },
+      { key: 'status', label: 'Status (past, active, empty)', type: 'select', options: ['', 'active', 'past'] },
+      { key: 'sortOrder', label: 'Sort Order', type: 'number' },
+    ],
+    'hackathon-steps': [
+      { key: 'title', label: 'Step Title', type: 'text' },
+      { key: 'description', label: 'Step Description', type: 'textarea' },
+      { key: 'sortOrder', label: 'Sort Order', type: 'number' },
+    ],
   }
 
   const resourceLabels = {
@@ -404,6 +464,14 @@ function App() {
     team: 'Team Member',
     'registration-cards': 'Registration Card',
     'info-cards': 'Info Card',
+    'hackathon-tracks': 'Hackathon Track',
+    'hackathon-eligibility': 'Eligibility Rule',
+    'hackathon-team-comp': 'Team Composition Info',
+    'hackathon-prizes': 'Hackathon Prize',
+    'hackathon-special-prizes': 'Special Prize',
+    'hackathon-rules': 'Hackathon Rule',
+    'hackathon-timeline': 'Timeline Event',
+    'hackathon-steps': 'Registration Step',
   }
 
   const getDefaultModalData = (resource) => {
@@ -414,6 +482,14 @@ function App() {
       team: { name: '', role: '', department: 'Student Coordinators', contact: '', photoURL: uploadUrl || '', sortOrder: team.length + 1, published: true },
       'registration-cards': { title: '', price: '', description: '', features: '', icon: 'Ticket', type: 'normal', sortOrder: registrationCards.length + 1, published: true },
       'info-cards': { title: '', content: '', sortOrder: infoCards.length + 1, published: true },
+      'hackathon-tracks': { title: '', description: '', sortOrder: hkTracks.length + 1, published: true },
+      'hackathon-eligibility': { content: '', sortOrder: hkEligibility.length + 1, published: true },
+      'hackathon-team-comp': { icon: '', label: '', sortOrder: hkTeamComp.length + 1, published: true },
+      'hackathon-prizes': { position: '', amount: '', description: '', colorClass: 'gold', sortOrder: hkPrizes.length + 1, published: true },
+      'hackathon-special-prizes': { icon: '', label: '', sortOrder: hkSpecialPrizes.length + 1, published: true },
+      'hackathon-rules': { content: '', sortOrder: hkRules.length + 1, published: true },
+      'hackathon-timeline': { label: '', value: '', description: '', status: '', sortOrder: hkTimeline.length + 1, published: true },
+      'hackathon-steps': { title: '', description: '', sortOrder: hkSteps.length + 1, published: true },
     }
     return defaults[resource] || {}
   }
@@ -504,6 +580,14 @@ function App() {
         { path: '/api/team', setter: setTeam, name: 'team' },
         { path: '/api/registration-cards', setter: setRegistrationCards, name: 'registration-cards' },
         { path: '/api/info-cards', setter: setInfoCards, name: 'info-cards' },
+        { path: '/api/hackathon-tracks', setter: setHkTracks, name: 'hackathon-tracks' },
+        { path: '/api/hackathon-eligibility', setter: setHkEligibility, name: 'hackathon-eligibility' },
+        { path: '/api/hackathon-team-comp', setter: setHkTeamComp, name: 'hackathon-team-comp' },
+        { path: '/api/hackathon-prizes', setter: setHkPrizes, name: 'hackathon-prizes' },
+        { path: '/api/hackathon-special-prizes', setter: setHkSpecialPrizes, name: 'hackathon-special-prizes' },
+        { path: '/api/hackathon-rules', setter: setHkRules, name: 'hackathon-rules' },
+        { path: '/api/hackathon-timeline', setter: setHkTimeline, name: 'hackathon-timeline' },
+        { path: '/api/hackathon-steps', setter: setHkSteps, name: 'hackathon-steps' },
       ]
 
       await Promise.all(
@@ -552,6 +636,14 @@ function App() {
         team,
         'registration-cards': registrationCards,
         'info-cards': infoCards,
+        'hackathon-tracks': hkTracks,
+        'hackathon-eligibility': hkEligibility,
+        'hackathon-team-comp': hkTeamComp,
+        'hackathon-prizes': hkPrizes,
+        'hackathon-special-prizes': hkSpecialPrizes,
+        'hackathon-rules': hkRules,
+        'hackathon-timeline': hkTimeline,
+        'hackathon-steps': hkSteps,
       }[resource]
 
       const updates = reorderedItems.filter((item) => {
@@ -1006,7 +1098,20 @@ function App() {
                 />
               } />
               <Route path="/hackathon" element={
-                <HackathonPage siteConfig={siteConfig} navigateTo={navigateTo} />
+                <HackathonPage 
+                  siteConfig={siteConfig} 
+                  navigateTo={navigateTo} 
+                  adminMode={adminMode}
+                  hkTracks={hkTracks} setHkTracks={setHkTracks}
+                  hkEligibility={hkEligibility} setHkEligibility={setHkEligibility}
+                  hkTeamComp={hkTeamComp} setHkTeamComp={setHkTeamComp}
+                  hkPrizes={hkPrizes} setHkPrizes={setHkPrizes}
+                  hkSpecialPrizes={hkSpecialPrizes} setHkSpecialPrizes={setHkSpecialPrizes}
+                  hkRules={hkRules} setHkRules={setHkRules}
+                  hkTimeline={hkTimeline} setHkTimeline={setHkTimeline}
+                  hkSteps={hkSteps} setHkSteps={setHkSteps}
+                  openModal={openModal} editRecord={editRecord} deleteRecord={deleteRecord}
+                />
               } />
               <Route path="/register" element={
                 <Registration
@@ -1084,7 +1189,7 @@ function App() {
                   )}
                 </div>
               ))}
-              {modalResource !== 'events' && modalResource !== 'registration-cards' && modalResource !== 'info-cards' && (
+              {modalResource !== 'events' && modalResource !== 'registration-cards' && modalResource !== 'info-cards' && !modalResource.startsWith('hackathon-') && (
                 <div className="modal-upload-row">
                   <div>
                     <p className="field-tip">Use upload or paste image/URL fields for live preview.</p>
@@ -1175,14 +1280,6 @@ function App() {
                   groupName: 'Hackathon Content (Advanced)',
                   fields: [
                     { key: 'hackathonProblemStatement', label: 'Problem Statement', type: 'textarea' },
-                    { key: 'hackathonTracks', label: 'Tracks (JSON or List)', type: 'textarea' },
-                    { key: 'hackathonEligibility', label: 'Eligibility List', type: 'textarea' },
-                    { key: 'hackathonTeamComposition', label: 'Team Composition List', type: 'textarea' },
-                    { key: 'hackathonPrizes', label: 'Prizes List', type: 'textarea' },
-                    { key: 'hackathonSpecialPrizes', label: 'Special Prizes List', type: 'textarea' },
-                    { key: 'hackathonRules', label: 'Rules List', type: 'textarea' },
-                    { key: 'hackathonTimeline', label: 'Timeline Dates', type: 'textarea' },
-                    { key: 'hackathonSteps', label: 'Registration Steps', type: 'textarea' },
                     { key: 'hackathonCtaReady', label: 'CTA Heading' },
                     { key: 'hackathonCtaDesc', label: 'CTA Description' },
                   ]

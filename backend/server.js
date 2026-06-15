@@ -215,6 +215,14 @@ const allowedFields = {
   team: ['name', 'role', 'department', 'contact', 'photoURL', 'sortOrder', 'published'],
   'registration-cards': ['title', 'price', 'description', 'features', 'icon', 'sortOrder', 'published', 'type'],
   'info-cards': ['title', 'content', 'sortOrder', 'published'],
+  'hackathon-tracks': ['title', 'description', 'sortOrder', 'published'],
+  'hackathon-eligibility': ['content', 'sortOrder', 'published'],
+  'hackathon-team-comp': ['icon', 'label', 'sortOrder', 'published'],
+  'hackathon-prizes': ['position', 'amount', 'description', 'colorClass', 'sortOrder', 'published'],
+  'hackathon-special-prizes': ['icon', 'label', 'sortOrder', 'published'],
+  'hackathon-rules': ['content', 'sortOrder', 'published'],
+  'hackathon-timeline': ['label', 'value', 'description', 'status', 'sortOrder', 'published'],
+  'hackathon-steps': ['title', 'description', 'sortOrder', 'published'],
 }
 
 const sanitizeBody = (body, fields) => {
@@ -422,6 +430,14 @@ createCrudRoutes('events', prisma.event)
 createCrudRoutes('team', prisma.teamMember)
 createCrudRoutes('registration-cards', prisma.registrationCard)
 createCrudRoutes('info-cards', prisma.infoCard)
+createCrudRoutes('hackathon-tracks', prisma.hackathonTrack)
+createCrudRoutes('hackathon-eligibility', prisma.hackathonEligibility)
+createCrudRoutes('hackathon-team-comp', prisma.hackathonTeamComp)
+createCrudRoutes('hackathon-prizes', prisma.hackathonPrize)
+createCrudRoutes('hackathon-special-prizes', prisma.hackathonSpecialPrize)
+createCrudRoutes('hackathon-rules', prisma.hackathonRule)
+createCrudRoutes('hackathon-timeline', prisma.hackathonTimeline)
+createCrudRoutes('hackathon-steps', prisma.hackathonStep)
 
 // ── Site Config ────────────────────────────────────────────────────────────────
 

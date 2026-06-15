@@ -170,3 +170,69 @@ model InfoCard {
   @@index([published])
   @@index([sortOrder])
 }
+
+model HackathonTrack {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String   @db.Text
+  sortOrder   Int      @default(0)
+  published   Boolean  @default(true)
+}
+
+model HackathonEligibility {
+  id          Int      @id @default(autoincrement())
+  content     String   @db.Text
+  sortOrder   Int      @default(0)
+  published   Boolean  @default(true)
+}
+
+model HackathonTeamComp {
+  id          Int      @id @default(autoincrement())
+  icon        String
+  label       String
+  sortOrder   Int      @default(0)
+  published   Boolean  @default(true)
+}
+
+model HackathonPrize {
+  id          Int      @id @default(autoincrement())
+  position    String
+  amount      String
+  description String   @db.Text
+  colorClass  String   @default("gold")
+  sortOrder   Int      @default(0)
+  published   Boolean  @default(true)
+}
+
+model HackathonSpecialPrize {
+  id          Int      @id @default(autoincrement())
+  icon        String
+  label       String
+  sortOrder   Int      @default(0)
+  published   Boolean  @default(true)
+}
+
+model HackathonRule {
+  id          Int      @id @default(autoincrement())
+  content     String   @db.Text
+  sortOrder   Int      @default(0)
+  published   Boolean  @default(true)
+}
+
+model HackathonTimeline {
+  id          Int      @id @default(autoincrement())
+  label       String
+  value       String
+  description String   @db.Text
+  status      String   @default("")
+  sortOrder   Int      @default(0)
+  published   Boolean  @default(true)
+}
+
+model HackathonStep {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String   @db.Text
+  sortOrder   Int      @default(0)
+  published   Boolean  @default(true)
+}

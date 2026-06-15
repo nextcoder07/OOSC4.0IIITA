@@ -14,7 +14,26 @@ const renderLucideIcon = (iconStr, fallbackIcon, size = 16) => {
   return <span style={{ fontSize: `${size}px` }}>{iconStr}</span>;
 }
 
-export default function HackathonPage({ siteConfig, navigateTo }) {
+export default function HackathonPage({ 
+  siteConfig, navigateTo, adminMode, 
+  hkTracks, setHkTracks, 
+  hkEligibility, setHkEligibility, 
+  hkTeamComp, setHkTeamComp, 
+  hkPrizes, setHkPrizes, 
+  hkSpecialPrizes, setHkSpecialPrizes, 
+  hkRules, setHkRules, 
+  hkTimeline, setHkTimeline, 
+  hkSteps, setHkSteps, 
+  openModal, editRecord, deleteRecord 
+}) {
+  const sortedTracks = [...(hkTracks || [])].sort((a, b) => a.sortOrder - b.sortOrder)
+  const sortedEligibility = [...(hkEligibility || [])].sort((a, b) => a.sortOrder - b.sortOrder)
+  const sortedTeamComp = [...(hkTeamComp || [])].sort((a, b) => a.sortOrder - b.sortOrder)
+  const sortedPrizes = [...(hkPrizes || [])].sort((a, b) => a.sortOrder - b.sortOrder)
+  const sortedSpecialPrizes = [...(hkSpecialPrizes || [])].sort((a, b) => a.sortOrder - b.sortOrder)
+  const sortedRules = [...(hkRules || [])].sort((a, b) => a.sortOrder - b.sortOrder)
+  const sortedTimeline = [...(hkTimeline || [])].sort((a, b) => a.sortOrder - b.sortOrder)
+  const sortedSteps = [...(hkSteps || [])].sort((a, b) => a.sortOrder - b.sortOrder)
   return (
     <div className="hackathon-body" id="hackathon">
       <Helmet>
@@ -74,16 +93,19 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
             </>
           )}
           <div className="rules-list mt-sm">
-            {(siteConfig.hackathonTracks ? siteConfig.hackathonTracks.split('\n').filter(t => t.trim()).map(t => { const parts = t.split('||'); return { track: parts[0] || '', desc: parts[1] || '' } }) : [
-              { track: 'Track A — Intelligent DevOps', desc: 'Build an AI-powered CI/CD pipeline optimizer or automated incident-response bot.' },
-              { track: 'Track B — Smart Data Systems', desc: 'Create a self-tuning database engine or an ML-driven query planner for open-source databases.' },
-              { track: 'Track C — Open AI Infra', desc: 'Develop an open-source inference runtime, model-serving framework, or federated-learning orchestrator.' },
-            ]).map((t, i) => (
-              <div key={i} className="rule-item">
+            {adminMode && <button type="button" className="btn btn-admin-mini" onClick={() => openModal('hackathon-tracks', 'create')}>+ Add Track</button>}
+            {sortedTracks.length > 0 ? sortedTracks.map((t, i) => (
+              <div key={t.id} className="rule-item" style={{ position: 'relative' }}>
                 <span className="rule-num">{String.fromCharCode(65 + i)}</span>
-                <p><strong>{t.track}:</strong> {t.desc}</p>
+                <p><strong>{t.title}:</strong> {t.description}</p>
+                {adminMode && (
+                  <div style={{ position: 'absolute', top: '0', right: '0', display: 'flex', gap: '8px' }}>
+                    <button type="button" className="btn-icon" onClick={() => editRecord('hackathon-tracks', t)}>Edit</button>
+                    <button type="button" className="btn-icon btn-delete" onClick={() => deleteRecord('hackathon-tracks', t.id, setHkTracks)}>Del</button>
+                  </div>
+                )}
               </div>
-            ))}
+            )) : <p>No tracks added yet.</p>}
           </div>
           <p className="problem-statement-text mt-md">
             All solutions must be open-source, reproducible, and include a live demo or working prototype.
@@ -95,31 +117,34 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
             <div className="hk-icon"><Users size={32} color="var(--color-brand-blue)" /></div>
             <h3>Who Can Participate</h3>
           </div>
-          <p className="panel-subheading">Eligibility</p>
+          <p className="panel-subheading">Eligibility 
+            {adminMode && <button style={{marginLeft:'10px'}} type="button" className="btn btn-admin-mini" onClick={() => openModal('hackathon-eligibility', 'create')}>+ Add</button>}
+          </p>
           <div className="eligibility-list mb-md">
-            {(siteConfig.hackathonEligibility ? siteConfig.hackathonEligibility.split('\n').filter(i => i.trim()) : [
-              'Undergraduate & postgraduate students from any recognised university in India.',
-              'Research scholars and PhD students are welcome.',
-              'Participants from IIIT Allahabad receive priority registration slots.',
-              'International students enrolled in Indian universities are eligible.',
-              'Alumni (graduated ≤ 2 years ago) may join as wild-card entries.',
-              'Faculty members may mentor but cannot compete for prizes.',
-            ]).map((item, i) => (
-              <div key={i} className="eligibility-item">
+            {sortedEligibility.length > 0 ? sortedEligibility.map((item) => (
+              <div key={item.id} className="eligibility-item" style={{ position: 'relative', paddingRight: '60px' }}>
                 <span className="elig-check"><Check size={16} color="var(--color-success)" /></span>
-                <p>{item}</p>
+                <p>{item.content}</p>
+                {adminMode && (
+                  <div style={{ position: 'absolute', top: '0', right: '0', display: 'flex', gap: '8px' }}>
+                    <button type="button" className="btn-icon" onClick={() => editRecord('hackathon-eligibility', item)}>Edit</button>
+                    <button type="button" className="btn-icon btn-delete" onClick={() => deleteRecord('hackathon-eligibility', item.id, setHkEligibility)}>Del</button>
+                  </div>
+                )}
               </div>
-            ))}
+            )) : <p>No eligibility criteria added.</p>}
           </div>
-          <p className="panel-subheading">Team Composition</p>
+          <p className="panel-subheading">Team Composition
+            {adminMode && <button style={{marginLeft:'10px'}} type="button" className="btn btn-admin-mini" onClick={() => openModal('hackathon-team-comp', 'create')}>+ Add</button>}
+          </p>
           <div className="pill-row">
-            {(siteConfig.hackathonTeamComposition ? siteConfig.hackathonTeamComposition.split('\n').filter(t => t.trim()).map(t => { const parts = t.split('||'); return { icon: renderLucideIcon(parts[0], <Users size={16} />, 16), label: parts[1] || '' } }) : [
-              { icon: <User size={16} color="var(--color-brand-yellow)" />, label: 'Min 2 members' },
-              { icon: <Users size={16} color="var(--color-brand-purple)" />, label: 'Max 4 members' },
-              { icon: <Globe size={16} color="var(--color-brand-lime)" />, label: 'Cross-institution teams OK' },
-            ]).map((t, i) => (
-              <div key={i} className="special-prize-pill"><span>{t.icon}</span> {t.label}</div>
-            ))}
+            {sortedTeamComp.length > 0 ? sortedTeamComp.map((t) => (
+              <div key={t.id} className="special-prize-pill" style={{position:'relative'}}>
+                <span>{renderLucideIcon(t.icon, <Users size={16} />, 16)}</span> {t.label}
+                {adminMode && <span style={{marginLeft:'8px', cursor:'pointer', color:'var(--color-accent)'}} onClick={()=>editRecord('hackathon-team-comp', t)}>✎</span>}
+                {adminMode && <span style={{marginLeft:'8px', cursor:'pointer', color:'red'}} onClick={()=>deleteRecord('hackathon-team-comp', t.id, setHkTeamComp)}>×</span>}
+              </div>
+            )) : <p>No team rules added.</p>}
           </div>
         </div>
       </div>
@@ -129,37 +154,35 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
         <div className="hk-card-title">
           <div className="hk-icon"><Trophy size={32} color="var(--color-brand-yellow)" /></div>
           <h3>Prizes &amp; Rewards</h3>
+          {adminMode && <button style={{marginLeft:'auto'}} type="button" className="btn btn-admin-mini" onClick={() => openModal('hackathon-prizes', 'create')}>+ Add Prize</button>}
         </div>
         <div className="prizes-grid">
-          {(siteConfig.hackathonPrizes ? siteConfig.hackathonPrizes.split('\n').filter(p => p.trim()).map(p => { 
-            const parts = p.split('||'); 
-            return { medal: renderLucideIcon(parts[0], <Trophy size={32} />, 32), position: parts[1] || '', amount: parts[2] || '', desc: parts[3] || '', class: parts[4] || 'gold' }; 
-          }) : [
-            { medal: <Medal size={32} color="var(--color-brand-yellow)" />, position: '1st Place', amount: '₹50,000', desc: 'Cash + trophies + fast-track internship interviews with Title Sponsors + OOSC Featured Project badge', class: 'gold' },
-            { medal: <Medal size={32} color="var(--color-brand-slate)" />, position: '2nd Place', amount: '₹30,000', desc: 'Cash + trophies + mentorship sessions with senior open-source engineers from partner companies', class: 'silver' },
-            { medal: <Medal size={32} color="var(--color-brand-bronze)" />, position: '3rd Place', amount: '₹20,000', desc: 'Cash + trophies + exclusive swag kits and 6-month access to premium dev tooling subscriptions', class: 'bronze' },
-          ]).map((prize, i) => (
-            <div key={i} className={`prize-card ${prize.class}`}>
-              <div className="prize-medal">{prize.medal}</div>
+          {sortedPrizes.length > 0 ? sortedPrizes.map((prize) => (
+            <div key={prize.id} className={`prize-card ${prize.colorClass || 'gold'}`} style={{position:'relative'}}>
+              {adminMode && (
+                <div style={{ position: 'absolute', top: '10px', right: '10px', display: 'flex', gap: '8px' }}>
+                  <button type="button" className="btn-icon" onClick={() => editRecord('hackathon-prizes', prize)}>Edit</button>
+                  <button type="button" className="btn-icon btn-delete" onClick={() => deleteRecord('hackathon-prizes', prize.id, setHkPrizes)}>Del</button>
+                </div>
+              )}
+              <div className="prize-medal"><Medal size={32} /></div>
               <p className="prize-position">{prize.position}</p>
               <p className="prize-amount">{prize.amount}</p>
-              <p className="prize-desc">{prize.desc}</p>
+              <p className="prize-desc">{prize.description}</p>
             </div>
-          ))}
+          )) : <p>No prizes added yet.</p>}
         </div>
-        <p className="panel-subheading mt-section">Special Category Awards</p>
+        <p className="panel-subheading mt-section">Special Category Awards
+          {adminMode && <button style={{marginLeft:'10px'}} type="button" className="btn btn-admin-mini" onClick={() => openModal('hackathon-special-prizes', 'create')}>+ Add</button>}
+        </p>
         <div className="special-prizes">
-          {(siteConfig.hackathonSpecialPrizes ? siteConfig.hackathonSpecialPrizes.split('\n').filter(p => p.trim()).map(p => {
-            const parts = p.split('||'); return { icon: renderLucideIcon(parts[0], <Star size={16} />, 16), label: parts[1] || '' };
-          }) : [
-            { icon: <Lightbulb size={16} color="var(--color-brand-yellow)" />, label: 'Best Innovation — ₹10,000' },
-            { icon: <Leaf size={16} color="var(--color-success)" />, label: 'Best Open-Source Impact — ₹10,000' },
-            { icon: <Palette size={16} color="var(--color-brand-pink)" />, label: 'Best UI/UX Design — ₹5,000' },
-            { icon: <Zap size={16} color="var(--color-brand-yellow)" />, label: 'Best Rookie Team — ₹5,000' },
-            { icon: <Bot size={16} color="var(--color-brand-blue)" />, label: 'Best AI Integration — ₹5,000' },
-          ]).map((p, i) => (
-            <div key={i} className="special-prize-pill"><span>{p.icon}</span> {p.label}</div>
-          ))}
+          {sortedSpecialPrizes.length > 0 ? sortedSpecialPrizes.map((p) => (
+            <div key={p.id} className="special-prize-pill" style={{position:'relative'}}>
+              <span>{renderLucideIcon(p.icon, <Star size={16} />, 16)}</span> {p.label}
+              {adminMode && <span style={{marginLeft:'8px', cursor:'pointer', color:'var(--color-accent)'}} onClick={()=>editRecord('hackathon-special-prizes', p)}>✎</span>}
+              {adminMode && <span style={{marginLeft:'8px', cursor:'pointer', color:'red'}} onClick={()=>deleteRecord('hackathon-special-prizes', p.id, setHkSpecialPrizes)}>×</span>}
+            </div>
+          )) : <p>No special prizes added.</p>}
         </div>
       </div>
 
@@ -169,23 +192,21 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
           <div className="hk-card-title">
             <div className="hk-icon"><ClipboardList size={32} color="var(--color-brand-slate)" /></div>
             <h3>Rules &amp; Guidelines</h3>
+            {adminMode && <button style={{marginLeft:'auto'}} type="button" className="btn btn-admin-mini" onClick={() => openModal('hackathon-rules', 'create')}>+ Add Rule</button>}
           </div>
           <div className="rules-list">
-            {(siteConfig.hackathonRules ? siteConfig.hackathonRules.split('\n').filter(r => r.trim()) : [
-              'All code must be written during the hackathon window (Aug 28, 9 AM — Aug 30, 9 PM). Public scaffolding templates are permitted.',
-              'Projects must be open-sourced under an OSI-approved license (MIT, Apache-2.0, GPL-3.0, etc.) on a public GitHub repository.',
-              'Teams must submit a working prototype, a 3-minute demo video, and a project README before the submission deadline.',
-              'Plagiarism or use of undisclosed AI-generated code is grounds for immediate disqualification.',
-              'Each participant may only be a member of one team. Switching teams after registration closes is not permitted.',
-              "Judges' decisions on all prize allocations are final. Disputes must be raised within 2 hours of results announcement.",
-              'Participants must adhere to the OOSC 4.0 Code of Conduct. Harassment will result in removal.',
-              'Use of cloud APIs (OpenAI, Hugging Face, etc.) is permitted but must be disclosed in the project README.',
-            ]).map((rule, i) => (
-              <div key={i} className="rule-item">
+            {sortedRules.length > 0 ? sortedRules.map((rule, i) => (
+              <div key={rule.id} className="rule-item" style={{position:'relative', paddingRight: '60px'}}>
                 <span className="rule-num">{i + 1}</span>
-                <p>{rule}</p>
+                <p>{rule.content}</p>
+                {adminMode && (
+                  <div style={{ position: 'absolute', top: '0', right: '0', display: 'flex', gap: '8px' }}>
+                    <button type="button" className="btn-icon" onClick={() => editRecord('hackathon-rules', rule)}>Edit</button>
+                    <button type="button" className="btn-icon btn-delete" onClick={() => deleteRecord('hackathon-rules', rule.id, setHkRules)}>Del</button>
+                  </div>
+                )}
               </div>
-            ))}
+            )) : <p>No rules added yet.</p>}
           </div>
         </div>
 
@@ -193,30 +214,27 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
           <div className="hk-card-title">
             <div className="hk-icon"><Calendar size={32} color="var(--color-brand-orange)" /></div>
             <h3>Important Dates</h3>
+            {adminMode && <button style={{marginLeft:'auto'}} type="button" className="btn btn-admin-mini" onClick={() => openModal('hackathon-timeline', 'create')}>+ Add Date</button>}
           </div>
           <div className="dates-timeline">
-            {(siteConfig.hackathonTimeline ? siteConfig.hackathonTimeline.split('\n').filter(d => d.trim()).map(d => {
-              const parts = d.split('||'); return { label: parts[0] || '', value: parts[1] || '', desc: parts[2] || '', status: parts[3] || '' };
-            }) : [
-              { label: 'Registration Opens',        value: 'July 15, 2025',              desc: 'Team registration portal goes live at 12:00 PM IST.', status: 'past' },
-              { label: 'Registration Deadline',     value: 'August 10, 2025',            desc: 'Last date to register. No late entries accepted.',     status: 'active' },
-              { label: 'Problem Statement Release', value: 'August 20, 2025',            desc: 'All tracks and detailed briefs shared with registered teams.', status: '' },
-              { label: 'Hackathon Kick-off',        value: 'August 28 — 9:00 AM',        desc: 'Opening ceremony, check-in, and hacking begins.',      status: '' },
-              { label: 'Submission Deadline',       value: 'August 30 — 9:00 PM',        desc: 'GitHub link + demo video submitted via DevPost.',       status: '' },
-              { label: 'Judging & Presentations',   value: 'August 30 — 10:00 PM',       desc: 'Top 10 teams present live to the jury (5 min each).',   status: '' },
-              { label: 'Results & Prize Ceremony',  value: 'August 30 — 11:30 PM',       desc: 'Winners announced at the closing gala.',                status: '' },
-            ]).map((d, i) => (
-              <div key={i} className="date-item">
+            {sortedTimeline.length > 0 ? sortedTimeline.map((d) => (
+              <div key={d.id} className="date-item" style={{position:'relative'}}>
+                {adminMode && (
+                  <div style={{ position: 'absolute', top: '0', right: '0', display: 'flex', gap: '8px' }}>
+                    <button type="button" className="btn-icon" onClick={() => editRecord('hackathon-timeline', d)}>Edit</button>
+                    <button type="button" className="btn-icon btn-delete" onClick={() => deleteRecord('hackathon-timeline', d.id, setHkTimeline)}>Del</button>
+                  </div>
+                )}
                 <div className="date-dot-col">
                   <div className={`date-dot ${d.status}`}></div>
                 </div>
                 <div className="date-info">
                   <p className="date-label">{d.label}</p>
                   <p className="date-value">{d.value}</p>
-                  <p className="date-desc">{d.desc}</p>
+                  <p className="date-desc">{d.description}</p>
                 </div>
               </div>
-            ))}
+            )) : <p>No timeline dates added yet.</p>}
           </div>
         </div>
       </div>
@@ -226,46 +244,44 @@ export default function HackathonPage({ siteConfig, navigateTo }) {
         <div className="hk-card-title">
           <div className="hk-icon"><Rocket size={32} color="var(--color-brand-violet)" /></div>
           <h3>How to Register &amp; Submit</h3>
+          {adminMode && <button style={{marginLeft:'auto'}} type="button" className="btn btn-admin-mini" onClick={() => openModal('hackathon-steps', 'create')}>+ Add Step</button>}
         </div>
         <div className="steps-list">
-          {(siteConfig.hackathonSteps ? siteConfig.hackathonSteps.split('\n').filter(s => s.trim()).map(s => {
-            const parts = s.split('||'); return { title: parts[0] || '', desc: parts[1] || '' };
-          }) : [
-            { title: 'Form Your Team',           desc: 'Assemble 2–4 members. Designate one Team Lead who will manage registration and submissions.' },
-            { title: 'Register on the Portal',   desc: 'Click "Register Now" and complete the team form. All members must provide a valid institutional email.' },
-            { title: 'Confirm on DevPost',       desc: "You'll receive a DevPost project invite after approval. Join using the same email — this is your submission platform." },
-            { title: 'Attend Kick-off (Aug 28)', desc: 'Report to CC-3, IIITA by 8:30 AM. Carry valid student ID. Remote participation is available for outstation teams.' },
-            { title: 'Build & Commit',           desc: 'Work in your public GitHub repository. Ensure it is public and licensed before the deadline.' },
-            { title: 'Record Your Demo Video',   desc: 'Create a ≤ 3-minute screen-recorded demo. Upload to YouTube (unlisted) or Google Drive and save the link.' },
-            { title: 'Submit on DevPost',        desc: 'Before Aug 30, 9:00 PM IST — submit your GitHub repo, demo video URL, and project description on DevPost.' },
-            { title: 'Present to the Jury',      desc: 'If shortlisted in the top 10, your Team Lead will be contacted for a 5-minute live presentation slot.' },
-          ]).map((step, i) => (
-            <div key={i} className="step-item">
+          {sortedSteps.length > 0 ? sortedSteps.map((step, i) => (
+            <div key={step.id} className="step-item" style={{position:'relative', paddingRight: '60px'}}>
               <div className="step-num">{i + 1}</div>
               <div className="step-content">
                 <h4>{step.title}</h4>
-                <p>{step.desc}</p>
+                <p>{step.description}</p>
               </div>
+              {adminMode && (
+                <div style={{ position: 'absolute', top: '0', right: '0', display: 'flex', gap: '8px' }}>
+                  <button type="button" className="btn-icon" onClick={() => editRecord('hackathon-steps', step)}>Edit</button>
+                  <button type="button" className="btn-icon btn-delete" onClick={() => deleteRecord('hackathon-steps', step.id, setHkSteps)}>Del</button>
+                </div>
+              )}
             </div>
-          ))}
+          )) : <p>No registration steps added yet.</p>}
         </div>
       </div>
 
       {/* ── CTA STRIP ── */}
-      <div className="hackathon-cta-strip">
-        <div>
-          <h3>{siteConfig.hackathonCtaReady || 'Ready to Build?'}</h3>
-          <p>{siteConfig.hackathonCtaDesc || 'Registration is open until August 10, 2025. Spots are limited — secure your team today.'}</p>
+      {siteConfig.registrationFormUrl && (
+        <div className="hackathon-cta-strip">
+          <div>
+            <h3>{siteConfig.hackathonCtaReady || 'Ready to Build?'}</h3>
+            <p>{siteConfig.hackathonCtaDesc || 'Registration is open until August 10, 2025. Spots are limited — secure your team today.'}</p>
+          </div>
+          <div className="actions-row">
+            <button type="button" className="btn btn-primary" onClick={() => window.open(siteConfig.registrationFormUrl, '_blank')}>
+              Register Your Team
+            </button>
+            <button type="button" className="btn btn-outline" onClick={() => navigateTo('contact')}>
+              Ask a Question
+            </button>
+          </div>
         </div>
-        <div className="actions-row">
-          <button type="button" className="btn btn-primary" onClick={() => navigateTo('register')}>
-            Register Your Team
-          </button>
-          <button type="button" className="btn btn-outline" onClick={() => navigateTo('contact')}>
-            Ask a Question
-          </button>
-        </div>
-      </div>
+      )}
 
     </div>
   )
