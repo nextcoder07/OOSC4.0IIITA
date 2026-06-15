@@ -289,7 +289,7 @@ export default function HackathonPage({
         <div className="hackathon-cta-strip">
           <div>
             <h3>{siteConfig.hackathonCtaReady || 'Ready to Build?'}</h3>
-            <p>{siteConfig.hackathonCtaDesc || 'Registration is open until August 10, 2025. Spots are limited — secure your team today.'}</p>
+            <p>{siteConfig.hackathonCtaDesc || 'Registration is open until August 10, 2026. Spots are limited — secure your team today.'}</p>
           </div>
           <div className="actions-row">
             <button type="button" className="btn btn-primary" onClick={() => window.open(siteConfig.registrationFormUrl, '_blank')}>

@@ -853,7 +853,7 @@ function App() {
       sponsorsSubtitle: 'Academic institutions and corporate engineering partners supporting open systems research.',
       teamTitle: 'The Organizing Team',
       teamSubtitle: 'Meet the faculty directors and student committees hosting OOSC 4.0 at IIIT Allahabad.',
-      hackathonBadge: 'OOSC 4.0 · Hackathon 2025',
+      hackathonBadge: 'OOSC 4.0 · Hackathon 2026',
       hackathonTitle: 'Build the Future of Open Systems',
       hackathonTheme: 'AI × Open Source: Powering Intelligent Infrastructure',
       hackathonPrizePool: '₹1,00,000+',
@@ -862,7 +862,7 @@ function App() {
       hackathonDates: 'Aug 28–30',
       hackathonVenue: 'IIITA',
       hackathonCtaReady: 'Ready to Build?',
-      hackathonCtaDesc: 'Registration is open until August 10, 2025. Spots are limited — secure your team today.',
+      hackathonCtaDesc: 'Registration is open until August 10, 2026. Spots are limited — secure your team today.',
       contactTitle: 'Get in Touch',
       contactSubtitle: 'Have questions about OOSC 4.0? Reach out to our dedicated teams below.'
     }
