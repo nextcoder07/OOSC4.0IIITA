@@ -590,17 +590,17 @@ function App() {
         { path: '/api/hackathon-steps', setter: setHkSteps, name: 'hackathon-steps' },
       ]
 
-      // Fetch sequentially to prevent "Too many connections" error on the backend DB pool
-      for (const resource of resources) {
-        try {
-          const data = await apiFetch(resource.path)
-          resource.setter(Array.isArray(data) ? data : [])
-        } catch (error) {
-          const message = error?.message || `${resource.name} load failed.`
-          console.warn(`Failed to load ${resource.name}:`, message)
-          setApiError((current) => current || `Data load issue: Failed to load ${resource.name}: ${message}`)
-          resource.setter([])
+      try {
+        const data = await apiFetch('/api/init-data')
+        if (data) {
+          resources.forEach(resource => {
+            const resourceData = data[resource.name]
+            resource.setter(Array.isArray(resourceData) ? resourceData : [])
+          })
         }
+      } catch (error) {
+        console.error('Bulk data load failed:', error)
+        setApiError('Data load issue: Failed to fetch all resources. Please try refreshing.')
       }
     }
     loadData()

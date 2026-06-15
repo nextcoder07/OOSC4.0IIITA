@@ -439,6 +439,34 @@ createCrudRoutes('hackathon-rules', prisma.hackathonRule)
 createCrudRoutes('hackathon-timeline', prisma.hackathonTimeline)
 createCrudRoutes('hackathon-steps', prisma.hackathonStep)
 
+// ── Bulk Load ────────────────────────────────────────────────────────────────
+
+app.get('/api/init-data', async (req, res) => {
+  try {
+    // Fetch sequentially to strictly use only 1 database connection from the pool, preventing "Too many connections"
+    const data = {}
+    data['speakers'] = await prisma.speaker.findMany({ orderBy: { sortOrder: 'asc' } })
+    data['sponsors'] = await prisma.sponsor.findMany({ orderBy: { sortOrder: 'asc' } })
+    data['events'] = await prisma.event.findMany({ orderBy: { sortOrder: 'asc' } })
+    data['team'] = await prisma.teamMember.findMany({ orderBy: { sortOrder: 'asc' } })
+    data['registration-cards'] = await prisma.registrationCard.findMany({ orderBy: { sortOrder: 'asc' } })
+    data['info-cards'] = await prisma.infoCard.findMany({ orderBy: { sortOrder: 'asc' } })
+    data['hackathon-tracks'] = await prisma.hackathonTrack.findMany({ orderBy: { sortOrder: 'asc' } })
+    data['hackathon-eligibility'] = await prisma.hackathonEligibility.findMany({ orderBy: { sortOrder: 'asc' } })
+    data['hackathon-team-comp'] = await prisma.hackathonTeamComp.findMany({ orderBy: { sortOrder: 'asc' } })
+    data['hackathon-prizes'] = await prisma.hackathonPrize.findMany({ orderBy: { sortOrder: 'asc' } })
+    data['hackathon-special-prizes'] = await prisma.hackathonSpecialPrize.findMany({ orderBy: { sortOrder: 'asc' } })
+    data['hackathon-rules'] = await prisma.hackathonRule.findMany({ orderBy: { sortOrder: 'asc' } })
+    data['hackathon-timeline'] = await prisma.hackathonTimeline.findMany({ orderBy: { sortOrder: 'asc' } })
+    data['hackathon-steps'] = await prisma.hackathonStep.findMany({ orderBy: { sortOrder: 'asc' } })
+    
+    res.json(data)
+  } catch (error) {
+    console.error('Init data load failed:', error)
+    res.status(500).json({ error: 'Bulk data load failed' })
+  }
+})
+
 // ── Site Config ────────────────────────────────────────────────────────────────
 
 app.get('/api/site-config', async (req, res) => {
