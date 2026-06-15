@@ -10,6 +10,15 @@ export default function Registration({ siteConfig = {}, registrationCards = [], 
     const IconComponent = LucideIcons[iconName] || Ticket;
     return <IconComponent size={32} />;
   }
+  const formatPrice = (price) => {
+    if (!price) return '';
+    const trimmed = price.trim();
+    if (trimmed.toLowerCase() === 'free') return trimmed;
+    if (/[₹$€£]/.test(trimmed)) return trimmed;
+    if (!/\d/.test(trimmed)) return trimmed;
+    return `₹${trimmed}`;
+  };
+
   return (
     <div className="registration-page">
       {/* Passes Overview Section */}
@@ -32,7 +41,7 @@ export default function Registration({ siteConfig = {}, registrationCards = [], 
                 )}
                 <div className="pass-icon">{getIcon(card.icon)}</div>
                 <h3>{card.title}</h3>
-                <div className="pass-price">{card.price}</div>
+                <div className="pass-price">{formatPrice(card.price)}</div>
                 <p className="pass-desc">{card.description}</p>
                 <ul className="pass-features">
                   {(card.features || '').split('\n').map((feature, i) => {
