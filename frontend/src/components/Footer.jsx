@@ -64,7 +64,6 @@ export default function Footer() {
           <h4>Contact Hub</h4>
           <p className="contact-item"><strong>Email:</strong> <a href="mailto:contact.oosc4.0@gmail.com">contact.oosc4.0@gmail.com</a></p>
           <p className="contact-item"><strong>Phone:</strong> <a href="tel:+91XXXXXXXX">+91 XXXX XXX XXX</a></p>
-          <p className="contact-item"><strong>Office:</strong> <a href="https://www.google.com/maps/search/IIIT+Allahabad" target="_blank" rel="noreferrer">CC-3 Ground Floor, IIIT-A</a></p>
         </div>
 
       </div>
