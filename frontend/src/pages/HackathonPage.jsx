@@ -49,7 +49,8 @@ export default function HackathonPage({
       </Helmet>
 
       {/* ── HERO BANNER ── */}
-      <div className="hackathon-hero">
+      {(siteConfig.hackathonHidden !== 'true' || adminMode) && (
+        <div className="hackathon-hero">
         <div className="hackathon-hero-inner">
           <div className="hackathon-badge">
             <span className="badge-dot"></span>
@@ -69,6 +70,7 @@ export default function HackathonPage({
           )}
         </div>
       </div>
+      )}
 
       {siteConfig.hackathonHidden === 'true' && adminMode && (
         <div className="admin-status-message error" style={{margin: '0 auto 2rem', maxWidth: '1000px', backgroundColor: 'rgba(239, 68, 68, 0.1)', border: '1px solid var(--color-error)'}}>

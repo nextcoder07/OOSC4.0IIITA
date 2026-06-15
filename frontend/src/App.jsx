@@ -36,6 +36,15 @@ import './pages/AdminLoginPage.css'
 import './pages/PolicyPage.css'
 import './pages/aboutpage.css'
 
+const loadFromStorage = (key, fallback) => {
+  try {
+    const item = localStorage.getItem(key)
+    return item ? JSON.parse(item) : fallback
+  } catch {
+    return fallback
+  }
+}
+
 function App() {
   const [adminMode, setAdminMode] = useState(false)
   const [adminEmail, setAdminEmail] = useState('')
@@ -64,21 +73,21 @@ function App() {
 
   const [hero] = useState(heroData)
   const [about] = useState(aboutData)
-  const [speakers, setSpeakers] = useState([])
-  const [sponsors, setSponsors] = useState([])
-  const [schedule, setSchedule] = useState([])
-  const [team, setTeam] = useState([])
-  const [registrationCards, setRegistrationCards] = useState([])
-  const [infoCards, setInfoCards] = useState([])
+  const [speakers, setSpeakers] = useState(() => loadFromStorage('oosc-speakers', []))
+  const [sponsors, setSponsors] = useState(() => loadFromStorage('oosc-sponsors', []))
+  const [schedule, setSchedule] = useState(() => loadFromStorage('oosc-events', []))
+  const [team, setTeam] = useState(() => loadFromStorage('oosc-team', []))
+  const [registrationCards, setRegistrationCards] = useState(() => loadFromStorage('oosc-registration-cards', []))
+  const [infoCards, setInfoCards] = useState(() => loadFromStorage('oosc-info-cards', []))
   
-  const [hkTracks, setHkTracks] = useState([])
-  const [hkEligibility, setHkEligibility] = useState([])
-  const [hkTeamComp, setHkTeamComp] = useState([])
-  const [hkPrizes, setHkPrizes] = useState([])
-  const [hkSpecialPrizes, setHkSpecialPrizes] = useState([])
-  const [hkRules, setHkRules] = useState([])
-  const [hkTimeline, setHkTimeline] = useState([])
-  const [hkSteps, setHkSteps] = useState([])
+  const [hkTracks, setHkTracks] = useState(() => loadFromStorage('oosc-hackathon-tracks', []))
+  const [hkEligibility, setHkEligibility] = useState(() => loadFromStorage('oosc-hackathon-eligibility', []))
+  const [hkTeamComp, setHkTeamComp] = useState(() => loadFromStorage('oosc-hackathon-team-comp', []))
+  const [hkPrizes, setHkPrizes] = useState(() => loadFromStorage('oosc-hackathon-prizes', []))
+  const [hkSpecialPrizes, setHkSpecialPrizes] = useState(() => loadFromStorage('oosc-hackathon-special-prizes', []))
+  const [hkRules, setHkRules] = useState(() => loadFromStorage('oosc-hackathon-rules', []))
+  const [hkTimeline, setHkTimeline] = useState(() => loadFromStorage('oosc-hackathon-timeline', []))
+  const [hkSteps, setHkSteps] = useState(() => loadFromStorage('oosc-hackathon-steps', []))
 
   const [apiError, setApiError] = useState('')
   const [form, setForm] = useState({ name: '', email: '', message: '' })
@@ -136,7 +145,7 @@ function App() {
     return () => window.removeEventListener('pointerup', onPointerUp)
   }, [])
 
-  const [siteConfig, setSiteConfig] = useState({})
+  const [siteConfig, setSiteConfig] = useState(() => loadFromStorage('oosc-site-config', { hackathonHidden: 'true' }))
 
   // Schedule page active day tab
   const [activeDay, setActiveDay] = useState('Aug 28')
@@ -190,7 +199,11 @@ function App() {
     const fetchConfig = async () => {
       try {
         const data = await apiFetch('/api/site-config')
-        setSiteConfig(data)
+        setSiteConfig((prev) => {
+          const newConfig = { ...prev, ...data }
+          localStorage.setItem('oosc-site-config', JSON.stringify(newConfig))
+          return newConfig
+        })
       } catch (err) {
         console.warn('Failed to fetch site config', err)
       }
@@ -344,8 +357,14 @@ function App() {
   }, [])
 
   const updateResourceState = (resource, updater) => {
+    const applyUpdate = (prev) => {
+      const next = updater(prev)
+      localStorage.setItem(`oosc-${resource}`, JSON.stringify(next))
+      return next
+    }
+
     if (resource === 'events') {
-      setSchedule((prev) => updater(prev))
+      setSchedule(applyUpdate)
       return
     }
     const setter = {
@@ -363,7 +382,7 @@ function App() {
       'hackathon-timeline': setHkTimeline,
       'hackathon-steps': setHkSteps,
     }[resource]
-    if (setter) setter((prev) => updater(prev))
+    if (setter) setter(applyUpdate)
   }
 
   const modalFieldMap = {
@@ -595,7 +614,9 @@ function App() {
         if (data) {
           resources.forEach(resource => {
             const resourceData = data[resource.name]
-            resource.setter(Array.isArray(resourceData) ? resourceData : [])
+            const arr = Array.isArray(resourceData) ? resourceData : []
+            resource.setter(arr)
+            localStorage.setItem(`oosc-${resource.name}`, JSON.stringify(arr))
           })
         }
       } catch (error) {
@@ -615,7 +636,11 @@ function App() {
 
     try {
       await apiFetch(`/api/${resource}/${id}`, { method: 'DELETE' })
-      setter((current) => current.filter((item) => item.id !== id))
+      setter((current) => {
+        const next = current.filter((item) => item.id !== id)
+        localStorage.setItem(`oosc-${resource}`, JSON.stringify(next))
+        return next
+      })
     } catch (error) {
       setAdminMessage(error.message)
     }
