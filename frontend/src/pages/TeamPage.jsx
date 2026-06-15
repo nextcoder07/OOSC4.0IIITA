@@ -21,6 +21,25 @@ export default function TeamPage({
         <meta property="og:type" content="website" />
         <meta name="twitter:title" content="Team — OOSC 4.0 | IIIT Allahabad" />
         <meta name="twitter:description" content="Meet the organizing team behind OOSC 4.0 at IIIT Allahabad." />
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "ItemList",
+              "itemListElement": ${JSON.stringify(Object.values(categorizedTeam).flat().map((member, index) => ({
+                "@type": "ListItem",
+                "position": index + 1,
+                "item": {
+                  "@type": "Person",
+                  "name": member.name,
+                  "jobTitle": member.role || undefined,
+                  "image": member.photoURL || undefined,
+                  "sameAs": member.linkedin ? [member.linkedin] : undefined
+                }
+              })))}
+            }
+          `}
+        </script>
       </Helmet>
       <div className="section-heading split">
         <div>

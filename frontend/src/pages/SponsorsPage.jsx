@@ -49,6 +49,24 @@ export default function SponsorsPage({
         <meta property="og:type" content="website" />
         <meta name="twitter:title" content="Sponsors — OOSC 4.0 | IIIT Allahabad" />
         <meta name="twitter:description" content="View the organizations sponsoring OOSC 4.0 and explore sponsorship tiers." />
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "ItemList",
+              "itemListElement": ${JSON.stringify(sortedSponsors.flatMap((group) => group.sponsors).map((sponsor, index) => ({
+                "@type": "ListItem",
+                "position": index + 1,
+                "item": {
+                  "@type": "Organization",
+                  "name": sponsor.name,
+                  "url": sponsor.website ? (sponsor.website.startsWith('http') ? sponsor.website : 'https://' + sponsor.website) : undefined,
+                  "logo": sponsor.logoURL || undefined
+                }
+              })))}
+            }
+          `}
+        </script>
       </Helmet>
       <div className="section-heading split">
         <div>

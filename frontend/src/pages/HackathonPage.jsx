@@ -46,6 +46,38 @@ export default function HackathonPage({
         <meta property="og:type" content="website" />
         <meta name="twitter:title" content="Hackathon — OOSC 4.0 | IIIT Allahabad" />
         <meta name="twitter:description" content="Join the OOSC 4.0 Hackathon. Compete for ₹1,00,000+ in prizes at IIIT Allahabad." />
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "Event",
+              "name": "OOSC 4.0 Hackathon",
+              "description": "Participate in the OOSC 4.0 Hackathon at IIIT Allahabad. Build the future of open-source systems and compete for prizes.",
+              "url": "https://oosc.iiita.ac.in/hackathon",
+              "startDate": "2026-08-28T09:00:00+05:30",
+              "endDate": "2026-08-30T21:00:00+05:30",
+              "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+              "eventStatus": "https://schema.org/EventScheduled",
+              "location": {
+                "@type": "Place",
+                "name": "IIIT Allahabad",
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": "Prayagraj",
+                  "addressRegion": "UP",
+                  "addressCountry": "IN"
+                }
+              },
+              "offers": {
+                "@type": "Offer",
+                "url": "https://oosc.iiita.ac.in/register",
+                "price": "0",
+                "priceCurrency": "INR",
+                "availability": "https://schema.org/InStock"
+              }
+            }
+          `}
+        </script>
       </Helmet>
 
       {/* ── HERO BANNER ── */}

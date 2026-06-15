@@ -21,6 +21,26 @@ export default function SpeakersPage({
         <meta property="og:type" content="website" />
         <meta name="twitter:title" content="Speakers — OOSC 4.0 | IIIT Allahabad" />
         <meta name="twitter:description" content="Meet the industry experts and researchers speaking at OOSC 4.0 at IIIT Allahabad." />
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "ItemList",
+              "itemListElement": ${JSON.stringify(speakers.map((speaker, index) => ({
+                "@type": "ListItem",
+                "position": index + 1,
+                "item": {
+                  "@type": "Person",
+                  "name": speaker.name,
+                  "jobTitle": speaker.title || undefined,
+                  "description": speaker.bio || undefined,
+                  "image": speaker.photoURL || undefined,
+                  "sameAs": [speaker.linkedin, speaker.github].filter(Boolean)
+                }
+              })))}
+            }
+          `}
+        </script>
       </Helmet>
       <div className="section-heading split">
         <div>
