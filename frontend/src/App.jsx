@@ -1190,8 +1190,7 @@ function App() {
                 {
                   groupName: 'Registration & Schedule Links',
                   fields: [
-                    { key: 'registrationFormUrl', label: 'Google Form Registration Link' },
-                    { key: 'scheduleEmptyMessage', label: 'Empty Schedule Message' },
+                    { key: 'registrationFormUrl', label: 'Registration Google Form URL' },
                   ]
                 },
                 {
