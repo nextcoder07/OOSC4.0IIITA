@@ -53,18 +53,20 @@ export default function HackathonPage({
         <div className="hackathon-hero-inner">
           <div className="hackathon-badge">
             <span className="badge-dot"></span>
-            {siteConfig.hackathonBadge || 'OOSC 4.0 · Hackathon 2025'}
+            {siteConfig.hackathonBadge || 'OOSC 4.0 · Hackathon 2026'}
           </div>
           <h1>{siteConfig.hackathonTitle || 'Build the Future of Open Systems'}</h1>
           <p className="theme-label">Event Theme</p>
           <p className="theme-name">"{siteConfig.hackathonTheme || 'AI × Open Source: Powering Intelligent Infrastructure'}"</p>
-          <div className="hackathon-stat-strip">
-            <div className="hstat"><span className="hstat-value">{siteConfig.hackathonPrizePool || '₹1,00,000+'}</span><span className="hstat-label">Prize Pool</span></div>
-            <div className="hstat"><span className="hstat-value">{siteConfig.hackathonDuration || '36 Hrs'}</span><span className="hstat-label">Duration</span></div>
-            <div className="hstat"><span className="hstat-value">{siteConfig.hackathonTeamSize || '2–4'}</span><span className="hstat-label">Team Size</span></div>
-            <div className="hstat"><span className="hstat-value">{siteConfig.hackathonDates || 'Aug 28–30'}</span><span className="hstat-label">Event Dates</span></div>
-            <div className="hstat"><span className="hstat-value">{siteConfig.hackathonVenue || 'IIITA'}</span><span className="hstat-label">Venue</span></div>
-          </div>
+          {siteConfig.hackathonHidden !== 'true' && (
+            <div className="hackathon-stat-strip">
+              <div className="hstat"><span className="hstat-value">{siteConfig.hackathonPrizePool || '₹1,00,000+'}</span><span className="hstat-label">Prize Pool</span></div>
+              <div className="hstat"><span className="hstat-value">{siteConfig.hackathonDuration || '36 Hrs'}</span><span className="hstat-label">Duration</span></div>
+              <div className="hstat"><span className="hstat-value">{siteConfig.hackathonTeamSize || '2–4'}</span><span className="hstat-label">Team Size</span></div>
+              <div className="hstat"><span className="hstat-value">{siteConfig.hackathonDates || 'Aug 28–30'}</span><span className="hstat-label">Event Dates</span></div>
+              <div className="hstat"><span className="hstat-value">{siteConfig.hackathonVenue || 'IIITA'}</span><span className="hstat-label">Venue</span></div>
+            </div>
+          )}
         </div>
       </div>
 

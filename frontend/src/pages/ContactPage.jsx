@@ -30,21 +30,21 @@ export default function ContactPage({ siteConfig, form, setForm, formStatus, han
             <div className="channel-icon"><Mail size={32} /></div>
             <h3>Official Email</h3>
             <p className="channel-desc">For general inquiries, sponsorships, and speaker submissions.</p>
-            <div className="channel-value">contact@oosc4.0.iiita.ac.in</div>
+            <div className="channel-value">oosc@iita.ac.in</div>
           </div>
           
           <div className="channel-card glass-card featured">
             <div className="channel-icon"><Phone size={32} /></div>
             <h3>Call / WhatsApp</h3>
             <p className="channel-desc">Urgent queries regarding hackathon registration or venue directions.</p>
-            <div className="channel-value">+91 7318 295 789</div>
+            <div className="channel-value">+91 9236 518 179</div>
           </div>
 
           <div className="channel-card glass-card">
             <div className="channel-icon"><MapPin size={32} /></div>
             <h3>Venue Location</h3>
             <p className="channel-desc">IIIT Allahabad Campus. Open for visitors during conference days.</p>
-            <div className="channel-value">Prayagraj, UP 211015</div>
+            <div className="channel-value">Jhalwa, Prayagraj, Uttar Pradesh, India - 211015</div>
           </div>
         </div>
       </section>

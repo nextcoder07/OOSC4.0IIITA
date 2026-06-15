@@ -63,7 +63,7 @@ export default function Footer() {
         <div className="footer-links-column">
           <h4>Contact Hub</h4>
           <p className="contact-item"><strong>Email:</strong> <a href="mailto:contact.oosc4.0@gmail.com">contact.oosc4.0@gmail.com</a></p>
-          <p className="contact-item"><strong>Phone:</strong> <a href="tel:+91XXXXXXXX">+91 XXXX XXX XXX</a></p>
+          <p className="contact-item"><strong>Phone:</strong> <a href="tel:+919236518179">+91 9236 518 179</a></p>
         </div>
 
       </div>
