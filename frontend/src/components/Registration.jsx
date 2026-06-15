@@ -1,7 +1,7 @@
 import { Check, ExternalLink, Ticket, Zap, Shield } from 'lucide-react'
 import './Registration.css'
 
-export default function Registration() {
+export default function Registration({ siteConfig = {} }) {
   return (
     <div className="registration-page">
       {/* Passes Overview Section */}
@@ -81,27 +81,36 @@ export default function Registration() {
           </div>
 
           {/* Google Form Right Side */}
-          <div className="contact-form-panel glass-card registration-form-panel">
-            <div className="registration-form-header">
-              <span className="registration-form-label">Official Registration</span>
-              <a 
-                href="https://docs.google.com/forms/d/e/1FAIpQLSeZdxKgPh47KOgQvQzy_ChtiXLzmsbzDyRASR-MUbNuzXZ6oQ/viewform?usp=sharing&ouid=110152741337293500969" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="btn btn-admin-mini"
-              >
-                <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>Open in New Tab <ExternalLink size={16} color="var(--color-brand-blue)" /></span>
-              </a>
-            </div>
-            <iframe
-              src="https://docs.google.com/forms/d/e/1FAIpQLSeZdxKgPh47KOgQvQzy_ChtiXLzmsbzDyRASR-MUbNuzXZ6oQ/viewform?usp=sharing&ouid=110152741337293500969"
-              width="100%"
-              height="800"
-              className="registration-form-iframe"
-              title="OOSC 4.0 Registration Form"
-            >
-              Loading Google Form...
-            </iframe>
+          <div className="contact-form-panel glass-card registration-form-panel" style={{ display: 'flex', flexDirection: 'column' }}>
+            {siteConfig.registrationFormUrl ? (
+              <>
+                <div className="registration-form-header">
+                  <span className="registration-form-label">Official Registration</span>
+                  <a 
+                    href={siteConfig.registrationFormUrl}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="btn btn-admin-mini"
+                  >
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>Open in New Tab <ExternalLink size={16} color="var(--color-brand-blue)" /></span>
+                  </a>
+                </div>
+                <iframe
+                  src={siteConfig.registrationFormUrl}
+                  width="100%"
+                  height="800"
+                  className="registration-form-iframe"
+                  title="OOSC 4.0 Registration Form"
+                >
+                  Loading Google Form...
+                </iframe>
+              </>
+            ) : (
+              <div className="registration-soon" style={{ padding: '60px 40px', textAlign: 'center', margin: 'auto' }}>
+                <h3 style={{ color: 'var(--color-accent)', marginBottom: '16px' }}>Registration Opening Soon</h3>
+                <p style={{ color: 'var(--color-text-warm)' }}>We are currently finalizing the details. The registration form will be available here shortly.</p>
+              </div>
+            )}
           </div>
         </div>
       </section>

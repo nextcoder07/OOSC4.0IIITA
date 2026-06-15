@@ -981,7 +981,7 @@ function App() {
                 <HackathonPage siteConfig={siteConfig} navigateTo={navigateTo} />
               } />
               <Route path="/register" element={
-                <Registration onSubmit={() => setAdminMessage('Registration interest captured successfully!')} />
+                <Registration siteConfig={siteConfig} onSubmit={() => setAdminMessage('Registration interest captured successfully!')} />
               } />
               <Route path="/contact" element={
                 <ContactPage
@@ -1144,6 +1144,13 @@ function App() {
                     { key: 'hackathonSteps', label: 'Registration Steps', type: 'textarea' },
                     { key: 'hackathonCtaReady', label: 'CTA Heading' },
                     { key: 'hackathonCtaDesc', label: 'CTA Description' },
+                  ]
+                },
+                {
+                  groupName: 'Registration & Schedule Links',
+                  fields: [
+                    { key: 'registrationFormUrl', label: 'Google Form Registration Link' },
+                    { key: 'scheduleEmptyMessage', label: 'Empty Schedule Message' },
                   ]
                 },
                 {

@@ -55,8 +55,9 @@ export default function SchedulePage({
 
       <div className="timeline-container">
         {filteredSchedule.length === 0 ? (
-          <div className="no-events glass-card">
-            <p>No slots scheduled for this day yet.</p>
+          <div className="no-events glass-card" style={{ padding: '40px', textAlign: 'center', margin: '40px 0' }}>
+            <h3>{siteConfig.scheduleEmptyMessage || 'Schedule to be uploaded soon.'}</h3>
+            <p>Please check back later for updates on the conference timeline.</p>
           </div>
         ) : (
           <div className="timeline-list">
