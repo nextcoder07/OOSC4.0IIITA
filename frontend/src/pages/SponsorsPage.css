@@ -453,7 +453,7 @@
 }
 
 .contact-card {
-  background: var(--color-panel-overlay-soft);
+  background: var(--color-panel-inset);
   border-radius: 12px;
   padding: 28px 24px;
   color: var(--color-text-snow);
