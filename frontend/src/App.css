@@ -179,7 +179,7 @@
   --color-sponsor-form-btn-text: #ffffff;
 
   /* ── Partnership CTA ── */
-  --color-partnership-cta-bg: linear-gradient(135deg, var(--color-panel-inset) 0%, var(--color-panel-muted) 100%);
+  --color-partnership-cta-bg: linear-gradient(135deg, var(--color-panel-inset) 0%, var(--color-panel-inset) 100%);
   --color-partnership-cta-shadow: rgba(0, 0, 0, 0.35);
   --color-partnership-cta-title: var(--color-text-on-dark);
   --color-partnership-cta-desc: var(--color-text-on-dark-sub);
