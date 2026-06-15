@@ -28,7 +28,7 @@ export default function PrivacyPolicyPage() {
         <p>We may share your information with our sponsors or partners only if you explicitly opt-in during registration or at the event. Otherwise, your data is kept strictly confidential within the organizing committee.</p>
 
         <h3>5. Contact Us</h3>
-        <p>If you have any questions about this Privacy Policy or how we handle your data, please contact us at contact@oosc4.0.iiita.ac.in.</p>
+        <p>If you have any questions about this Privacy Policy or how we handle your data, please contact us at oosc@iiita.ac.in.</p>
       </div>
     </section>
   )
