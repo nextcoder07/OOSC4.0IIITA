@@ -10,8 +10,28 @@ class ErrorBoundary extends React.Component {
     return { hasError: true, error };
   }
 
+  componentDidMount() {
+    // Clear the retry flag on successful load
+    sessionStorage.removeItem('chunk_failed_reload');
+  }
+
   componentDidCatch(error, errorInfo) {
     console.error('ErrorBoundary caught an error', error, errorInfo);
+    
+    // Automatically reload once for chunk load errors (happens when a new version is deployed)
+    const isChunkLoadError = error.name === 'ChunkLoadError' || 
+                             (error.message && (
+                               error.message.includes('dynamically imported module') || 
+                               error.message.includes('Failed to fetch') ||
+                               error.message.includes('Loading chunk')
+                             ));
+                             
+    if (isChunkLoadError) {
+      if (!sessionStorage.getItem('chunk_failed_reload')) {
+        sessionStorage.setItem('chunk_failed_reload', 'true');
+        window.location.reload();
+      }
+    }
   }
 
   render() {
