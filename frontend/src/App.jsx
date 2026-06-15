@@ -1172,7 +1172,7 @@ function App() {
       </main>
 
       {modalOpen && (
-        <div className="admin-modal-backdrop" role="dialog" aria-modal="true" onClick={(e) => { if (e.target === e.currentTarget) closeModal() }}>
+        <div className="admin-modal-backdrop" role="dialog" aria-modal="true" onClick={(e) => { if (e.target === e.currentTarget) saveModalRecord() }}>
           <div className="admin-modal-panel glass-card">
             <div className="admin-modal-header">
               <h3>{modalMode === 'create' ? `Add New ${resourceLabels[modalResource]}` : `Edit ${resourceLabels[modalResource]}`}</h3>
