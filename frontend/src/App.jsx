@@ -68,6 +68,7 @@ function App() {
   const [sponsors, setSponsors] = useState([])
   const [schedule, setSchedule] = useState([])
   const [team, setTeam] = useState([])
+  const [registrationCards, setRegistrationCards] = useState([])
   const [apiError, setApiError] = useState('')
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [formStatus, setFormStatus] = useState('')
@@ -340,6 +341,7 @@ function App() {
       speakers: setSpeakers,
       sponsors: setSponsors,
       team: setTeam,
+      'registration-cards': setRegistrationCards,
     }[resource]
     if (setter) setter((prev) => updater(prev))
   }
@@ -377,6 +379,14 @@ function App() {
       { key: 'photoURL', label: 'Photo URL / Upload Link', type: 'text' },
       { key: 'sortOrder', label: 'Sort Order', type: 'number' },
     ],
+    'registration-cards': [
+      { key: 'title', label: 'Card Title (e.g. General Admission)', type: 'text' },
+      { key: 'price', label: 'Price (e.g. Free)', type: 'text' },
+      { key: 'description', label: 'Description', type: 'textarea' },
+      { key: 'features', label: 'Features (one per line)', type: 'textarea' },
+      { key: 'icon', label: 'Lucide Icon Name (e.g. Ticket, Zap)', type: 'text' },
+      { key: 'sortOrder', label: 'Sort Order', type: 'number' },
+    ],
   }
 
   const resourceLabels = {
@@ -384,6 +394,7 @@ function App() {
     sponsors: 'Sponsor',
     events: 'Schedule Slot',
     team: 'Team Member',
+    'registration-cards': 'Registration Card',
   }
 
   const getDefaultModalData = (resource) => {
@@ -392,6 +403,7 @@ function App() {
       sponsors: { name: '', category: '', website: '', logoURL: uploadUrl || '', sortOrder: sponsors.length + 1, published: true },
       events: { title: '', description: '', date: '', time: '', type: '', sortOrder: schedule.length + 1, published: true },
       team: { name: '', role: '', department: 'Student Coordinators', contact: '', photoURL: uploadUrl || '', sortOrder: team.length + 1, published: true },
+      'registration-cards': { title: '', price: '', description: '', features: '', icon: 'Ticket', sortOrder: registrationCards.length + 1, published: true },
     }
     return defaults[resource] || {}
   }
@@ -480,6 +492,7 @@ function App() {
         { path: '/api/sponsors', setter: setSponsors, name: 'sponsors' },
         { path: '/api/events', setter: setSchedule, name: 'events' },
         { path: '/api/team', setter: setTeam, name: 'team' },
+        { path: '/api/registration-cards', setter: setRegistrationCards, name: 'registration-cards' },
       ]
 
       await Promise.all(
@@ -526,6 +539,7 @@ function App() {
         sponsors,
         events: schedule,
         team,
+        'registration-cards': registrationCards,
       }[resource]
 
       const updates = reorderedItems.filter((item) => {
@@ -912,6 +926,7 @@ function App() {
                 <button type="button" className="btn btn-admin-quick" onClick={() => openModal('sponsors', 'create')}>+ Add Sponsor</button>
                 <button type="button" className="btn btn-admin-quick" onClick={() => openModal('events', 'create')}>+ Add Schedule Slot</button>
                 <button type="button" className="btn btn-admin-quick" onClick={() => openModal('team', 'create')}>+ Add Team Member</button>
+                <button type="button" className="btn btn-admin-quick" onClick={() => openModal('registration-cards', 'create')}>+ Add Registration Card</button>
               </div>
             </div>
           </div>
@@ -981,7 +996,16 @@ function App() {
                 <HackathonPage siteConfig={siteConfig} navigateTo={navigateTo} />
               } />
               <Route path="/register" element={
-                <Registration siteConfig={siteConfig} onSubmit={() => setAdminMessage('Registration interest captured successfully!')} />
+                <Registration
+                  siteConfig={siteConfig}
+                  adminMode={adminMode}
+                  registrationCards={registrationCards}
+                  setRegistrationCards={setRegistrationCards}
+                  openModal={openModal}
+                  editRecord={editRecord}
+                  deleteRecord={deleteRecord}
+                  onSubmit={() => setAdminMessage('Registration interest captured successfully!')}
+                />
               } />
               <Route path="/contact" element={
                 <ContactPage

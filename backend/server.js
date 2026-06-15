@@ -213,6 +213,7 @@ const allowedFields = {
   sponsors: ['name', 'logoURL', 'category', 'website', 'sortOrder', 'published'],
   events: ['title', 'description', 'date', 'time', 'type', 'sortOrder', 'published'],
   team: ['name', 'role', 'department', 'contact', 'photoURL', 'sortOrder', 'published'],
+  'registration-cards': ['title', 'price', 'description', 'features', 'icon', 'sortOrder', 'published'],
 }
 
 const sanitizeBody = (body, fields) => {
@@ -418,6 +419,7 @@ createCrudRoutes('speakers', prisma.speaker)
 createCrudRoutes('sponsors', prisma.sponsor)
 createCrudRoutes('events', prisma.event)
 createCrudRoutes('team', prisma.teamMember)
+createCrudRoutes('registration-cards', prisma.registrationCard)
 
 // ── Site Config ────────────────────────────────────────────────────────────────
 

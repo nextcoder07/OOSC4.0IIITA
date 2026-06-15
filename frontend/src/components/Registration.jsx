@@ -1,7 +1,14 @@
-import { Check, ExternalLink, Ticket, Zap, Shield } from 'lucide-react'
+import * as LucideIcons from 'lucide-react'
+import { Check, ExternalLink, Ticket, Zap, Shield, Pencil, Trash2 } from 'lucide-react'
 import './Registration.css'
 
-export default function Registration({ siteConfig = {} }) {
+export default function Registration({ siteConfig = {}, registrationCards = [], setRegistrationCards, adminMode, editRecord, deleteRecord }) {
+  const sortedCards = [...registrationCards].sort((a, b) => a.sortOrder - b.sortOrder)
+
+  const getIcon = (iconName) => {
+    const IconComponent = LucideIcons[iconName] || Ticket;
+    return <IconComponent size={32} />;
+  }
   return (
     <div className="registration-page">
       {/* Passes Overview Section */}
@@ -13,42 +20,33 @@ export default function Registration({ siteConfig = {} }) {
         </div>
 
         <div className="passes-grid">
-          <div className="pass-card glass-card">
-            <div className="pass-icon"><Ticket size={32} /></div>
-            <h3>General Admission</h3>
-            <div className="pass-price">Free</div>
-            <p className="pass-desc">For students and professionals looking to attend keynotes and panels.</p>
-            <ul className="pass-features">
-              <li><Check size={16} /> Access to all keynotes</li>
-              <li><Check size={16} /> Entry to exhibition area</li>
-              <li><Check size={16} /> Networking events</li>
-            </ul>
-          </div>
-          
-          <div className="pass-card glass-card featured">
-            <div className="pass-icon"><Zap size={32} /></div>
-            <h3>Hacker Pass</h3>
-            <div className="pass-price">Application</div>
-            <p className="pass-desc">For developers participating in the 36-hour infrastructure hackathon.</p>
-            <ul className="pass-features">
-              <li><Check size={16} /> All General features</li>
-              <li><Check size={16} /> Dedicated hackathon workspace</li>
-              <li><Check size={16} /> Technical mentorship access</li>
-              <li><Check size={16} /> Free meals & swag kit</li>
-            </ul>
-          </div>
-
-          <div className="pass-card glass-card">
-            <div className="pass-icon"><Shield size={32} /></div>
-            <h3>Speaker / VIP</h3>
-            <div className="pass-price">Invite Only</div>
-            <p className="pass-desc">Exclusive access for speakers, sponsors, and key community leaders.</p>
-            <ul className="pass-features">
-              <li><Check size={16} /> All Hacker features</li>
-              <li><Check size={16} /> Speaker lounge access</li>
-              <li><Check size={16} /> Exclusive VIP dinner invite</li>
-            </ul>
-          </div>
+          {sortedCards.length > 0 ? (
+            sortedCards.map((card) => (
+              <div key={card.id} className="pass-card glass-card" style={{ position: 'relative' }}>
+                {adminMode && (
+                  <div className="admin-actions-overlay" style={{ position: 'absolute', top: '10px', right: '10px', display: 'flex', gap: '8px' }}>
+                    <button type="button" className="btn-icon btn-edit" onClick={() => editRecord('registration-cards', card)} title="Edit Card"><Pencil size={14} /></button>
+                    <button type="button" className="btn-icon btn-delete" onClick={() => deleteRecord('registration-cards', card.id, setRegistrationCards)} title="Delete Card"><Trash2 size={14} /></button>
+                  </div>
+                )}
+                <div className="pass-icon">{getIcon(card.icon)}</div>
+                <h3>{card.title}</h3>
+                <div className="pass-price">{card.price}</div>
+                <p className="pass-desc">{card.description}</p>
+                <ul className="pass-features">
+                  {(card.features || '').split('\n').map((feature, i) => {
+                    if (!feature.trim()) return null;
+                    return <li key={i}><Check size={16} /> {feature.trim()}</li>
+                  })}
+                </ul>
+              </div>
+            ))
+          ) : (
+            <div className="registration-soon glass-card" style={{ padding: '60px 40px', textAlign: 'center', margin: 'auto', gridColumn: '1 / -1' }}>
+              <h3 style={{ color: 'var(--color-accent)', marginBottom: '16px' }}>Information to be coming soon</h3>
+              <p style={{ color: 'var(--color-text-warm)' }}>Passes and registration details will be announced shortly. Stay tuned!</p>
+            </div>
+          )}
         </div>
       </section>
 
