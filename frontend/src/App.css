@@ -159,7 +159,7 @@
   scroll-padding-top: 100px;
 
   /* ── Sponsor form card ── */
-  --color-sponsor-form-bg: linear-gradient(135deg, var(--color-panel) 0%, var(--color-panel-muted) 100%);
+  --color-sponsor-form-bg: linear-gradient(135deg, var(--color-panel-inset) 0%, var(--color-panel-muted) 100%);
   --color-sponsor-form-shadow: rgba(0, 0, 0, 0.35);
   --color-sponsor-form-shine: rgba(14, 165, 233, 0.04);
   --color-sponsor-form-icon: var(--color-accent);
