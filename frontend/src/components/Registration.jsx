@@ -2,8 +2,9 @@ import * as LucideIcons from 'lucide-react'
 import { Check, ExternalLink, Ticket, Zap, Shield, Pencil, Trash2 } from 'lucide-react'
 import './Registration.css'
 
-export default function Registration({ siteConfig = {}, registrationCards = [], setRegistrationCards, adminMode, editRecord, deleteRecord }) {
+export default function Registration({ siteConfig = {}, registrationCards = [], setRegistrationCards, infoCards = [], setInfoCards, adminMode, editRecord, deleteRecord }) {
   const sortedCards = [...registrationCards].sort((a, b) => a.sortOrder - b.sortOrder)
+  const sortedInfoCards = [...infoCards].sort((a, b) => a.sortOrder - b.sortOrder)
 
   const getIcon = (iconName) => {
     const IconComponent = LucideIcons[iconName] || Ticket;
@@ -22,11 +23,11 @@ export default function Registration({ siteConfig = {}, registrationCards = [], 
         <div className="passes-grid">
           {sortedCards.length > 0 ? (
             sortedCards.map((card) => (
-              <div key={card.id} className="pass-card glass-card" style={{ position: 'relative' }}>
+              <div key={card.id} className={`pass-card glass-card ${card.type === 'featured' ? 'featured' : ''}`} style={{ position: 'relative' }}>
                 {adminMode && (
-                  <div className="admin-actions-overlay" style={{ position: 'absolute', top: '10px', right: '10px', display: 'flex', gap: '8px' }}>
-                    <button type="button" className="btn-icon btn-edit" onClick={() => editRecord('registration-cards', card)} title="Edit Card"><Pencil size={14} /></button>
-                    <button type="button" className="btn-icon btn-delete" onClick={() => deleteRecord('registration-cards', card.id, setRegistrationCards)} title="Delete Card"><Trash2 size={14} /></button>
+                  <div className="admin-card-controls admin-card-actions" style={{ position: 'absolute', top: '10px', right: '10px', display: 'flex', gap: '8px', zIndex: 10 }}>
+                    <button type="button" className="btn btn-admin-mini" onClick={() => editRecord('registration-cards', card)}>Edit</button>
+                    <button type="button" className="btn-delete" onClick={() => deleteRecord('registration-cards', card.id, setRegistrationCards)}>Delete</button>
                   </div>
                 )}
                 <div className="pass-icon">{getIcon(card.icon)}</div>
@@ -62,19 +63,29 @@ export default function Registration({ siteConfig = {}, registrationCards = [], 
             </div>
 
             <div className="contact-details-cards">
-              <div className="contact-detail-card glass-card">
-                <div>
-                  <h4>Important Dates</h4>
-                  <p><strong>Registration Opens:</strong> July 1, 2026</p>
-                  <p><strong>Registration Closes:</strong> August 10, 2026</p>
+              {sortedInfoCards.length > 0 ? (
+                sortedInfoCards.map((info) => (
+                  <div key={info.id} className="contact-detail-card glass-card" style={{ position: 'relative' }}>
+                    {adminMode && (
+                      <div className="admin-card-controls admin-card-actions" style={{ position: 'absolute', top: '10px', right: '10px', display: 'flex', gap: '8px', zIndex: 10 }}>
+                        <button type="button" className="btn btn-admin-mini" onClick={() => editRecord('info-cards', info)}>Edit</button>
+                        <button type="button" className="btn-delete" onClick={() => deleteRecord('info-cards', info.id, setInfoCards)}>Delete</button>
+                      </div>
+                    )}
+                    <div>
+                      <h4>{info.title}</h4>
+                      <div dangerouslySetInnerHTML={{ __html: info.content }} />
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="contact-detail-card glass-card">
+                  <div>
+                    <h4>No Information Available</h4>
+                    <p>Details will be updated soon.</p>
+                  </div>
                 </div>
-              </div>
-              <div className="contact-detail-card glass-card">
-                <div>
-                  <h4>Group Registrations</h4>
-                  <p>Coming with a university lab or corporate team? Please indicate this in the form to get grouped together.</p>
-                </div>
-              </div>
+              )}
             </div>
           </div>
 

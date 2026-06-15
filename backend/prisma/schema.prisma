@@ -156,3 +156,16 @@ model RegistrationCard {
   @@index([published])
   @@index([sortOrder])
 }
+
+model InfoCard {
+  id          Int      @id @default(autoincrement())
+  title       String
+  content     String   @db.Text
+  sortOrder   Int      @default(0)
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([published])
+  @@index([sortOrder])
+}

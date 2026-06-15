@@ -69,6 +69,7 @@ function App() {
   const [schedule, setSchedule] = useState([])
   const [team, setTeam] = useState([])
   const [registrationCards, setRegistrationCards] = useState([])
+  const [infoCards, setInfoCards] = useState([])
   const [apiError, setApiError] = useState('')
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [formStatus, setFormStatus] = useState('')
@@ -342,6 +343,7 @@ function App() {
       sponsors: setSponsors,
       team: setTeam,
       'registration-cards': setRegistrationCards,
+      'info-cards': setInfoCards,
     }[resource]
     if (setter) setter((prev) => updater(prev))
   }
@@ -385,6 +387,12 @@ function App() {
       { key: 'description', label: 'Description', type: 'textarea' },
       { key: 'features', label: 'Features (one per line)', type: 'textarea' },
       { key: 'icon', label: 'Lucide Icon Name (e.g. Ticket, Zap)', type: 'text' },
+      { key: 'type', label: 'Card Type', type: 'select', options: ['normal', 'featured'] },
+      { key: 'sortOrder', label: 'Sort Order', type: 'number' },
+    ],
+    'info-cards': [
+      { key: 'title', label: 'Card Title', type: 'text' },
+      { key: 'content', label: 'HTML Content', type: 'textarea' },
       { key: 'sortOrder', label: 'Sort Order', type: 'number' },
     ],
   }
@@ -395,6 +403,7 @@ function App() {
     events: 'Schedule Slot',
     team: 'Team Member',
     'registration-cards': 'Registration Card',
+    'info-cards': 'Info Card',
   }
 
   const getDefaultModalData = (resource) => {
@@ -403,7 +412,8 @@ function App() {
       sponsors: { name: '', category: '', website: '', logoURL: uploadUrl || '', sortOrder: sponsors.length + 1, published: true },
       events: { title: '', description: '', date: '', time: '', type: '', sortOrder: schedule.length + 1, published: true },
       team: { name: '', role: '', department: 'Student Coordinators', contact: '', photoURL: uploadUrl || '', sortOrder: team.length + 1, published: true },
-      'registration-cards': { title: '', price: '', description: '', features: '', icon: 'Ticket', sortOrder: registrationCards.length + 1, published: true },
+      'registration-cards': { title: '', price: '', description: '', features: '', icon: 'Ticket', type: 'normal', sortOrder: registrationCards.length + 1, published: true },
+      'info-cards': { title: '', content: '', sortOrder: infoCards.length + 1, published: true },
     }
     return defaults[resource] || {}
   }
@@ -493,6 +503,7 @@ function App() {
         { path: '/api/events', setter: setSchedule, name: 'events' },
         { path: '/api/team', setter: setTeam, name: 'team' },
         { path: '/api/registration-cards', setter: setRegistrationCards, name: 'registration-cards' },
+        { path: '/api/info-cards', setter: setInfoCards, name: 'info-cards' },
       ]
 
       await Promise.all(
@@ -540,6 +551,7 @@ function App() {
         events: schedule,
         team,
         'registration-cards': registrationCards,
+        'info-cards': infoCards,
       }[resource]
 
       const updates = reorderedItems.filter((item) => {
@@ -927,6 +939,7 @@ function App() {
                 <button type="button" className="btn btn-admin-quick" onClick={() => openModal('events', 'create')}>+ Add Schedule Slot</button>
                 <button type="button" className="btn btn-admin-quick" onClick={() => openModal('team', 'create')}>+ Add Team Member</button>
                 <button type="button" className="btn btn-admin-quick" onClick={() => openModal('registration-cards', 'create')}>+ Add Registration Card</button>
+                <button type="button" className="btn btn-admin-quick" onClick={() => openModal('info-cards', 'create')}>+ Add Info Card</button>
               </div>
             </div>
           </div>
@@ -1001,6 +1014,8 @@ function App() {
                   adminMode={adminMode}
                   registrationCards={registrationCards}
                   setRegistrationCards={setRegistrationCards}
+                  infoCards={infoCards}
+                  setInfoCards={setInfoCards}
                   openModal={openModal}
                   editRecord={editRecord}
                   deleteRecord={deleteRecord}
@@ -1069,18 +1084,20 @@ function App() {
                   )}
                 </div>
               ))}
-              <div className="modal-upload-row">
-                <div>
-                  <p className="field-tip">Use upload or paste image/URL fields for live preview.</p>
-                  <ImageUploader onUpload={setModalImage} label="Upload image or logo" />
-                </div>
-                {((modalResource === 'sponsors' ? modalData.logoURL : modalData.photoURL) || '').length > 0 && (
-                  <div className="modal-preview-box">
-                    <span>Preview</span>
-                    <img src={modalResource === 'sponsors' ? modalData.logoURL : modalData.photoURL} alt="Preview" loading="lazy" />
+              {modalResource !== 'events' && modalResource !== 'registration-cards' && modalResource !== 'info-cards' && (
+                <div className="modal-upload-row">
+                  <div>
+                    <p className="field-tip">Use upload or paste image/URL fields for live preview.</p>
+                    <ImageUploader onUpload={setModalImage} label="Upload image or logo" />
                   </div>
-                )}
-              </div>
+                  {((modalResource === 'sponsors' ? modalData.logoURL : modalData.photoURL) || '').length > 0 && (
+                    <div className="modal-preview-box">
+                      <span>Preview</span>
+                      <img src={modalResource === 'sponsors' ? modalData.logoURL : modalData.photoURL} alt="Preview" loading="lazy" />
+                    </div>
+                  )}
+                </div>
+              )}
               {modalError && <p className="admin-status-message error modal-error">{modalError}</p>}
             </div>
             <div className="admin-modal-actions">
