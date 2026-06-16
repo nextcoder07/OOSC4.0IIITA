@@ -23,7 +23,7 @@ export default function AboutPage({ siteConfig = {}, about = {} }) {
       {/* Logos and contact row */}
       <div className="about-hero-header-row">
         <div className="about-hero-logos">
-          <img src="/OOSC_logo.png" alt="OOSC Logo" className="about-logo-oosc" />
+          <img src="/OOSC_LOGO_COMPLETE.svg" alt="OOSC Logo" className="about-logo-oosc" />
           <span className="logo-divider">|</span>
           <img src="/IIIT_logo_transparent.gif" alt="IIITA Logo" className="about-logo-iiita" />
         </div>
