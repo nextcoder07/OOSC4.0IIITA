@@ -42,7 +42,7 @@ const knowledgeBase = [
     intents: ['who are the speakers', 'who is speaking', 'who are the guests', 'tell me about speakers'],
     phrases: ['keynote speaker', 'guest speaker', 'speaker list'],
     words: ['speakers', 'keynote', 'presenters'],
-    answer: `🎤 We have an incredible lineup of **20+ speakers** from academia, startups, and enterprise engineering. They'll cover topics like distributed systems, AI, open source governance, and more.`,
+    answer: `🎤 We have an incredible lineup of speakers. You can learn more about them on our Speakers page.`,
     nav: { label: 'Meet the Speakers', route: 'speakers' },
   },
   {
@@ -58,7 +58,7 @@ const knowledgeBase = [
     intents: ['what is the schedule', 'what happens each day', 'tell me the agenda', 'what are the sessions'],
     phrases: ['day 1', 'day 2', 'day 3', 'conference schedule', 'event schedule'],
     words: ['schedule', 'agenda', 'timeline', 'itinerary', 'timetable', 'sessions'],
-    answer: `📋 The 3-day schedule is packed:\n• **Day 1 (Aug 28)** — Opening Keynote, Hackathon Launch, Networking\n• **Day 2 (Aug 29)** — Workshops, Talks, Mentor Hours\n• **Day 3 (Aug 30)** — Panels, Closing Presentations, Awards`,
+    answer: `📋 You can find the detailed 3-day schedule on our Schedule page.`,
     nav: { label: 'View Full Schedule', route: 'schedule' },
   },
   {
@@ -66,7 +66,7 @@ const knowledgeBase = [
     intents: ['who organized this', 'who made this', 'who built this', 'who is behind this', 'who runs this', 'who created this', 'who developed this', 'who are the organizers', 'tell me about the team', 'who made this website'],
     phrases: ['organizing committee', 'core team', 'organizing team', 'event organizers', 'made this website', 'built this website', 'created this website', 'developed this website'],
     words: ['organizers', 'organizer', 'committee', 'volunteers'],
-    answer: `👥 OOSC'26 is organized by the student and faculty community of **IIIT Allahabad**. Our team includes Faculty Coordinators, Student Coordinators, Technical Team, Design Team, and Hospitality & Logistics.`,
+    answer: `👥 OOSC'26 is organized by the student and faculty community of **IIIT Allahabad**. Meet our team on the Team page!`,
     nav: { label: 'Meet the Team', route: 'team' },
   },
   {
@@ -74,7 +74,7 @@ const knowledgeBase = [
     intents: ['tell me about the hackathon', 'what is the hackathon', 'hackathon details', 'how does the hackathon work'],
     phrases: ['hackathon tracks', 'coding challenge', 'hackathon competition'],
     words: ['hackathon', 'hacking'],
-    answer: `⚡ The **OOSC'26 Hackathon** is a 36-hour competition with a prize pool of **₹1,00,000+**! Teams of 2–4 members work on AI × Open Source challenges across 3 tracks:\n\n• **Track A** — Intelligent DevOps\n• **Track B** — Smart Data Systems\n• **Track C** — Open AI Infra`,
+    answer: `⚡ You can find all the details about the OOSC'26 Hackathon, including tracks and prizes, on our Hackathon page.`,
     nav: { label: 'Hackathon Details', route: 'hackathon' },
   },
   {
@@ -82,7 +82,7 @@ const knowledgeBase = [
     intents: ['what are the prizes', 'how much is the prize', 'what do winners get', 'tell me about prizes'],
     phrases: ['prize pool', 'prize money', 'cash prize', 'prize breakdown'],
     words: ['prizes', 'rewards', 'winner', 'winning'],
-    answer: `🏆 **Prize breakdown:**\n• 🥇 1st Place — ₹50,000 + trophies + internship fast-track\n• 🥈 2nd Place — ₹30,000 + mentorship sessions\n• 🥉 3rd Place — ₹20,000 + swag kits\n\n**Special Awards:** Best Innovation (₹10K), Best Open-Source Impact (₹10K), Best UI/UX (₹5K), Best Rookie (₹5K), Best AI Integration (₹5K)`,
+    answer: `🏆 You can find the full details of the hackathon prizes and special awards on our Hackathon page.`,
     nav: { label: 'See All Prizes', route: 'hackathon' },
   },
   {
@@ -90,7 +90,7 @@ const knowledgeBase = [
     intents: ['what are the rules', 'what are the guidelines', 'is plagiarism allowed', 'what is not allowed'],
     phrases: ['hackathon rules', 'code of conduct', 'hackathon guidelines'],
     words: ['rules', 'guidelines', 'plagiarism'],
-    answer: `📋 Key rules:\n• All code must be written during Aug 28–30\n• Projects must be open-sourced (MIT/Apache/GPL)\n• Submit prototype + 3-min demo video + README\n• No undisclosed AI-generated code\n• Max 1 team per participant\n• Must follow OOSC Code of Conduct`,
+    answer: `📋 You can find the complete rules and guidelines for the hackathon on our Hackathon page.`,
     nav: { label: 'Full Rules & Guidelines', route: 'hackathon' },
   },
   {
@@ -98,7 +98,7 @@ const knowledgeBase = [
     intents: ['who can participate', 'who can join', 'am i eligible', 'what is the team size', 'can alumni join', 'can international students join'],
     phrases: ['team size', 'students only', 'eligibility criteria'],
     words: ['eligible', 'eligibility'],
-    answer: `👤 **Eligibility:**\n• UG & PG students from any Indian university\n• Research scholars & PhD students welcome\n• IIIT Allahabad students get priority registration\n• International students in Indian universities eligible\n• Alumni (≤2 years) as wild-card entries\n• **Team size:** 2–4 members, cross-institution allowed`,
+    answer: `👤 You can find all eligibility criteria and team size details on our Hackathon page.`,
     nav: { label: 'Check Eligibility', route: 'hackathon' },
   },
   {
@@ -106,7 +106,7 @@ const knowledgeBase = [
     intents: ['how to contact', 'how to reach you', 'what is the email', 'what is the phone number', 'how to get in touch'],
     phrases: ['contact organizers', 'contact info', 'email address', 'phone number', 'get in touch'],
     words: ['contact', 'email', 'phone', 'whatsapp'],
-    answer: `📬 You can reach the organizers:\n• ✉️ **Email:** oosc@iiita.ac.in\n• 📞 **Call/WhatsApp:** +91 98919 07290 \n\nOr use the contact form on our website!`,
+    answer: `📬 You can reach the organizers:\n• ✉️ **Email:** oosc@iiita.ac.in\n• 📞 **Call/WhatsApp:** +91 9236 518 179 \n\nOr use the contact form on our website!`,
     nav: { label: 'Go to Contact Page', route: 'contact' },
   },
   {
@@ -130,7 +130,7 @@ const knowledgeBase = [
     intents: ['is it free', 'how much does it cost', 'what is the entry fee', 'do i need to pay', 'is there a fee'],
     phrases: ['entry fee', 'ticket price', 'registration fee'],
     words: ['free', 'cost', 'fee', 'ticket', 'price', 'charges'],
-    answer: `💰 Registration details including any fees are available on our registration page. IIIT Allahabad students may receive priority/subsidized access. Check the registration form for current pricing!`,
+    answer: `💰 Registration details including any fees are available on our registration page. Check the registration form for current pricing!`,
     nav: { label: 'Check Registration', route: 'register' },
   },
   {
@@ -177,7 +177,7 @@ const knowledgeBase = [
     intents: ['how to submit', 'what is the submission deadline', 'where to submit', 'how to submit hackathon project'],
     phrases: ['submission deadline', 'submit on devpost', 'hackathon submission'],
     words: ['submission', 'devpost'],
-    answer: `📤 **Hackathon submissions:**\n• **Deadline:** August 30, 9:00 PM IST\n• **Platform:** DevPost\n• **Required:** GitHub repo link + 3-min demo video + project description\n• Top 10 teams present live to the jury (5 min each)`,
+    answer: `📤 You can find the hackathon submission details and deadlines on our Hackathon page.`,
     nav: { label: 'Hackathon Details', route: 'hackathon' },
   },
   {
