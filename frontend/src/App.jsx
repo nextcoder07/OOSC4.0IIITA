@@ -342,8 +342,9 @@ function App() {
 
   const apiFetch = useCallback(async (path, options = {}) => {
     const headers = { ...(options.headers || {}) }
+    const baseUrl = import.meta.env.VITE_API_URL || ''
 
-    const response = await fetch(path, {
+    const response = await fetch(`${baseUrl}${path}`, {
       ...options,
       credentials: 'include',
       headers,

@@ -197,13 +197,13 @@ const setAuthCookie = (res, token) => {
   res.cookie('ooscAccessToken', token, {
     httpOnly: true,
     secure: COOKIE_SECURE,
-    sameSite: 'strict',
+    sameSite: COOKIE_SECURE ? 'none' : 'strict',
     maxAge: 24 * 60 * 60 * 1000,
   })
 }
 
 const clearAuthCookie = (res) => {
-  res.clearCookie('ooscAccessToken', { httpOnly: true, secure: COOKIE_SECURE, sameSite: 'strict' })
+  res.clearCookie('ooscAccessToken', { httpOnly: true, secure: COOKIE_SECURE, sameSite: COOKIE_SECURE ? 'none' : 'strict' })
 }
 
 // ── Input sanitization ─────────────────────────────────────────────────────────
