@@ -45,7 +45,7 @@ export default function SpeakersPage({
       <div className="section-heading split">
         <div>
           <span>{siteConfig.speakersEyebrow || 'Experts'}</span>
-          <h2>{siteConfig.speakersTitle || 'Thought Leadership'}</h2>
+          <h1>{siteConfig.speakersTitle || 'Thought Leadership'}</h1>
           <p>{siteConfig.speakersSubtitle || 'Featured technology leaders, academics, and research engineers guiding our tracks.'}</p>
         </div>
         {adminMode && (

@@ -671,6 +671,7 @@
   line-height: 1.75;
 }
 
+.content-section .section-heading h1,
 .content-section .section-heading h2 {
   color: var(--color-text-snow);
 }

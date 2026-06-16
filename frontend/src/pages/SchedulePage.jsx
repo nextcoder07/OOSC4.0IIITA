@@ -25,7 +25,7 @@ export default function SchedulePage({
       <div className="section-heading split">
         <div>
           <span>{siteConfig.scheduleEyebrow || 'Timeline'}</span>
-          <h2>{siteConfig.scheduleTitle || 'Conference Schedule'}</h2>
+          <h1>{siteConfig.scheduleTitle || 'Conference Schedule'}</h1>
           <p>{siteConfig.scheduleSubtitle || 'Track opening talks, workshops, hackathon check-ins, and panel discussions.'}</p>
         </div>
         {adminMode && (

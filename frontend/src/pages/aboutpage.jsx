@@ -19,6 +19,28 @@ export default function AboutPage({ siteConfig = {}, about = {} }) {
         <meta property="og:type" content="website" />
         <meta name="twitter:title" content="About — OOSC 4.0 | IIIT Allahabad" />
         <meta name="twitter:description" content="Learn about OOSC 4.0 — the Open Source Systems Conference at IIIT Allahabad. Discover our history, host city, and past speakers." />
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "AboutPage",
+              "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://oosc.iiita.ac.in/about"
+              },
+              "name": "About — OOSC 4.0 | IIIT Allahabad",
+              "description": "Learn about OOSC 4.0 — the Open Source Systems Conference at IIIT Allahabad, Aug 28–30, 2026. Discover our history, host city Prayagraj, past keynote speakers, and what to expect.",
+              "publisher": {
+                "@type": "Organization",
+                "name": "OOSC IIITA Team",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://oosc.iiita.ac.in/OOSC_logo.png"
+                }
+              }
+            }
+          `}
+        </script>
       </Helmet>
       {/* Logos and contact row */}
       <div className="about-hero-header-row">
@@ -41,7 +63,7 @@ export default function AboutPage({ siteConfig = {}, about = {} }) {
       {/* ─── SECTION 2: WHAT TO EXPECT AT OOSC 4.0 ──────────────────────────────── */}
       <section className="about-expect-section" id="expectations">
         <div className="about-eyebrow">About the Event</div>
-        <h2 className="about-section-title">What to Expect at OOSC 4.0</h2>
+        <h1 className="about-section-title">What to Expect at OOSC 4.0</h1>
 
         <div className="about-expect-intro">
           <p>

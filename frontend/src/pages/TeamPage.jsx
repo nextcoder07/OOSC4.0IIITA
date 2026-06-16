@@ -44,7 +44,7 @@ export default function TeamPage({
       <div className="section-heading split">
         <div>
           <span>{siteConfig.teamEyebrow || 'Steering Committee'}</span>
-          <h2>{siteConfig.teamTitle || 'The Organizing Team'}</h2>
+          <h1>{siteConfig.teamTitle || 'The Organizing Team'}</h1>
           <p>{siteConfig.teamSubtitle || 'Meet the faculty directors and student committees hosting OOSC 4.0 at IIIT Allahabad.'}</p>
         </div>
         {adminMode && (

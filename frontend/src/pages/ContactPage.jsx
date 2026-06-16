@@ -16,12 +16,34 @@ export default function ContactPage({ siteConfig, form, setForm, formStatus, han
         <meta property="og:type" content="website" />
         <meta name="twitter:title" content="Contact — OOSC 4.0 | IIIT Allahabad" />
         <meta name="twitter:description" content="Reach out to the OOSC 4.0 organizing team at IIIT Allahabad." />
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "ContactPage",
+              "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://oosc.iiita.ac.in/contact"
+              },
+              "name": "Contact — OOSC 4.0 | IIIT Allahabad",
+              "description": "Get in touch with the OOSC 4.0 organizing team at IIIT Allahabad for inquiries, sponsorships, hackathon registration, and venue information.",
+              "publisher": {
+                "@type": "Organization",
+                "name": "OOSC IIITA Team",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://oosc.iiita.ac.in/OOSC_logo.png"
+                }
+              }
+            }
+          `}
+        </script>
       </Helmet>
       {/* Top Section: Quick Channels */}
       <section className="content-section">
         <div className="section-heading text-center">
           <span>{siteConfig.contactEyebrow || 'Connect'}</span>
-          <h2>{siteConfig.contactTitle || 'Get in Touch'}</h2>
+          <h1>{siteConfig.contactTitle || 'Get in Touch'}</h1>
           <p>{siteConfig.contactSubtitle || 'Have questions about OOSC 4.0? Reach out to our dedicated teams below.'}</p>
         </div>
 

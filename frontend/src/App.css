@@ -857,6 +857,7 @@ body::after {
   margin-bottom: 10px;
 }
 
+.section-heading h1,
 .section-heading h2 {
   font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(1.9rem, 3.5vw, 2.75rem);
@@ -2099,6 +2100,7 @@ body::after {
     margin-bottom: 28px;
   }
 
+  .section-heading h1,
   .section-heading h2 {
     font-size: clamp(1.5rem, 2.5vw, 2rem);
   }
@@ -2182,6 +2184,7 @@ body::after {
     margin-bottom: 20px;
   }
 
+  .section-heading h1,
   .section-heading h2 {
     font-size: clamp(1.25rem, 2vw, 1.75rem);
     margin-bottom: 10px;
@@ -2283,6 +2286,7 @@ body::after {
     gap: 12px;
   }
 
+  .section-heading h1,
   .section-heading h2 {
     font-size: clamp(1.1rem, 1.8vw, 1.5rem);
   }

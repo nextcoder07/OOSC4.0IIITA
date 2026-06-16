@@ -71,7 +71,7 @@ export default function SponsorsPage({
       <div className="section-heading split">
         <div>
           <span>{siteConfig.sponsorsEyebrow || 'Partners'}</span>
-          <h2>{siteConfig.sponsorsTitle || 'Conference Supporters'}</h2>
+          <h1>{siteConfig.sponsorsTitle || 'Conference Supporters'}</h1>
           <p>{siteConfig.sponsorsSubtitle || 'Academic institutions and corporate engineering partners supporting open systems research.'}</p>
         </div>
         {adminMode && (

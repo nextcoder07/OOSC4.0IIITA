@@ -12,7 +12,7 @@ export default function PrivacyPolicyPage() {
         <meta name="robots" content="noindex, follow" />
       </Helmet>
       <div className="policy-container glass-card">
-        <h2>Privacy Policy</h2>
+        <h1>Privacy Policy</h1>
         <p className="policy-date">Effective Date: August 28, 2026</p>
         
         <h3>1. Information We Collect</h3>

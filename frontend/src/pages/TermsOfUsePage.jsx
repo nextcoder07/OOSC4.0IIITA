@@ -12,7 +12,7 @@ export default function TermsOfUsePage() {
         <meta name="robots" content="noindex, follow" />
       </Helmet>
       <div className="policy-container glass-card">
-        <h2>Terms of Use</h2>
+        <h1>Terms of Use</h1>
         <p className="policy-date">Effective Date: August 28, 2026</p>
         
         <h3>1. Acceptance of Terms</h3>

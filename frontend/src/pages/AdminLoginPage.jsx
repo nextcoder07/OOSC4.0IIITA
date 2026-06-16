@@ -9,7 +9,7 @@ export default function AdminLoginPage({
     <section className="content-section admin-login-section" id="admin-login">
       <div className="section-heading text-center">
         <span>{siteConfig.adminEyebrow || 'Admin Gateway'}</span>
-        <h2>{siteConfig.adminTitle || 'OOSC 4.0 Dashboard Access'}</h2>
+        <h1>{siteConfig.adminTitle || 'OOSC 4.0 Dashboard Access'}</h1>
         <p className="subtitle">{siteConfig.adminSubtitle || 'Whitelist authentication system for authorized organizers.'}</p>
       </div>
       
