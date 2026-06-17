@@ -115,7 +115,7 @@
   --color-text-sub: var(--color-text-on-panel-sub);
   --color-text-muted: var(--color-text-on-panel-muted);
 
-  --color-header-bg: rgba(11, 17, 32, 0.85);
+  --color-header-bg: rgba(11, 17, 32, 0.95);
   --color-header-border: rgba(255, 255, 255, 0.06);
   --color-header-glow-strong: rgba(14, 165, 233, 0.12);
   --color-header-glow-mid: rgba(14, 165, 233, 0.04);
@@ -149,6 +149,7 @@
 
   --color-card-heading: #E8EDF4;
   --color-card-copy: #B8C5D6;
+  --color-nav-link-background-hover: rgba(255, 255, 255, 0.04);
 
   --radius-card: 16px;
   --radius-btn: 8px;
@@ -315,7 +316,7 @@
   --color-text-sub: var(--color-text-on-panel-sub);
   --color-text-muted: var(--color-text-on-panel-muted);
 
-  --color-header-bg: rgba(248, 250, 252, 0.88);
+  --color-header-bg: rgba(248, 250, 252, 0.97);
   --color-header-border: rgba(13, 148, 136, 0.10);
   --color-header-glow-strong: rgba(14, 165, 233, 0.10);
   --color-header-glow-mid: rgba(14, 165, 233, 0.04);
@@ -349,6 +350,7 @@
 
   --color-card-heading: #0F172A;
   --color-card-copy: #334155;
+  --color-nav-link-background-hover: rgba(14, 165, 233, 0.18);
 
   --shadow-brutal: 0 4px 12px rgba(15, 23, 42, 0.06);
   --shadow-panel: 0 8px 20px rgba(15, 23, 42, 0.08);
@@ -610,7 +612,7 @@ body::after {
 .nav-link:focus-visible {
   color: var(--color-text-on-dark);
   border-color: transparent;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--color-nav-link-background-hover);
 }
 
 .nav-link.active {
@@ -2004,7 +2006,7 @@ body::after {
     border: 2px solid var(--color-text-on-dark);
     border-radius: var(--radius-card);
     padding: 12px;
-    box-shadow: 3px 3px 0 var(--color-accent);
+    /*box-shadow: 3px 3px 0 var(--color-accent);*/
     transform: translateY(-20px);
     opacity: 0;
     pointer-events: none;
