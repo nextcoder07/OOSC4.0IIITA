@@ -654,6 +654,12 @@ body::after {
   width: 100%;
 }
 
+.nav-shortcuts {
+  display: none;
+  align-items: center;
+  gap: 4px;
+}
+
 .nav-action-btn {
   display: none;
   width: 100%;
@@ -1942,13 +1948,7 @@ body::after {
 }
 
 /* ─── RESPONSIVE ─────────────────────────────────────────────────────────────── */
-@media (max-width: 1024px) {
-  .card-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 868px) {
+@media (max-width: 1200px) {
   .site-header {
     display: flex;
     align-items: center;
@@ -1968,7 +1968,6 @@ body::after {
     display: flex !important;
     align-items: center;
     gap: 12px;
-    margin-left: auto;
   }
 
   .header-actions .btn-admin {
@@ -2057,6 +2056,22 @@ body::after {
 
   .hamburger-toggle.open .toggle-bar:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .nav-shortcuts {
+    display: flex;
+  }
+}
+
+@media (max-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 868px) {
+  .nav-shortcuts {
+    display: none;
   }
 
   .admin-tools-grid {

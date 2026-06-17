@@ -931,9 +931,26 @@ function App() {
           <img src="/OOSC_LOGO_COMPLETE.svg" alt="OOSC 4.0 Open Source Systems Conference logo" className="brand-logo" />
         </button>
 
+        {/* Tablet shortcut nav — visible only at tablet breakpoint */}
+        <nav className="nav-shortcuts" aria-label="Quick navigation">
+          {[
+            { key: 'about', label: 'About' },
+            { key: 'schedule', label: 'Schedule' },
+            { key: 'speakers', label: 'Speakers' },
+            { key: 'sponsors', label: 'Sponsors' },
+          ].map((route) => (
+            <button
+              key={route.key}
+              type="button"
+              className={route.key === currentPage ? 'nav-link active' : 'nav-link'}
+              onClick={() => navigateTo(route.key)}
+            >
+              {route.label}
+            </button>
+          ))}
+        </nav>
 
-
-        {/* Main Nav */}
+        {/* Full nav — inline on desktop, dropdown on tablet & mobile */}
         <nav className={`main-nav ${mobileMenuOpen ? 'mobile-open' : ''}`} aria-label="Primary navigation">
           {pageRoutes.map((route) => (
             <button
@@ -982,19 +999,6 @@ function App() {
             Call for Proposal
           </a>
 
-          {/* Mobile Hamburger menu toggle button */}
-          <button
-            type="button"
-            className={`hamburger-toggle ${mobileMenuOpen ? 'open' : ''}`}
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle navigation menu"
-          >
-            <span className="toggle-bar"></span>
-            <span className="toggle-bar"></span>
-            <span className="toggle-bar"></span>
-          </button>
-
-
           <button
             type="button"
             className="btn btn-nav-cta"
@@ -1007,6 +1011,18 @@ function App() {
               Logout
             </button>
           )}
+
+          {/* Hamburger toggle — visible on tablet & mobile */}
+          <button
+            type="button"
+            className={`hamburger-toggle ${mobileMenuOpen ? 'open' : ''}`}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle navigation menu"
+          >
+            <span className="toggle-bar"></span>
+            <span className="toggle-bar"></span>
+            <span className="toggle-bar"></span>
+          </button>
         </div>
       </header>
 
