@@ -963,22 +963,29 @@
 
 @media (max-width: 480px) {
   .hero-section {
-    padding: 32px 12px 14px;
+    padding: 28px 12px 12px;
     min-height: calc(100dvh - 72px);
   }
 
   .eyebrow-accent {
-    --hero-eyebrow-size: clamp(1.4rem, 7vw, 2.0rem);
+    --hero-eyebrow-size: clamp(1.4rem, 7vw, 1.8rem);
     font-size: var(--hero-eyebrow-size);
   }
 
   .hero-copy h1 {
-    font-size: clamp(0.9rem, calc(var(--hero-eyebrow-size) / 2), 1.8rem);
+    font-size: clamp(0.9rem, calc(var(--hero-eyebrow-size) / 2), 1.6rem);
+    line-height: 1.2;
+  }
+
+  .hero-copy p {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    max-width: 100%;
   }
 
   .hero-actions .btn {
     padding: 7px 12px;
-    font-size: 0.7rem;
+    font-size: 0.72rem;
   }
 }
 

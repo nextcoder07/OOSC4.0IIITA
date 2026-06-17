@@ -2124,43 +2124,47 @@ body::after {
 }
 
 @media (max-width: 580px) {
+  html {
+    font-size: 15px;
+  }
+
   .app-shell {
-    padding: 0 0 32px;
+    padding: 0 0 28px;
   }
 
   .page-body {
-    padding: 0 12px;
+    padding: 0 10px;
   }
 
   .site-footer {
-    margin-left: 12px;
-    margin-right: 12px;
-    width: calc(100% - 24px);
+    margin-left: 10px;
+    margin-right: 10px;
+    width: calc(100% - 20px);
   }
 
   .admin-tools-bar {
-    margin-left: 12px;
-    margin-right: 12px;
-    width: calc(100% - 24px);
+    margin-left: 10px;
+    margin-right: 10px;
+    width: calc(100% - 20px);
   }
 
   .site-header {
-    padding: 5px 18px;
+    padding: 5px 16px;
     margin: 0;
     border-bottom: 0.5px solid var(--color-header-border);
   }
 
   .brand-logo {
-    width: 48px;
+    width: 46px;
   }
 
   .brand-mark {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 
   .btn-nav-cta {
     padding: 5px 12px;
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     box-shadow: 1px 1px 0 var(--color-shadow-black);
   }
 
@@ -2169,8 +2173,8 @@ body::after {
   }
 
   .nav-link {
-    padding: 6px 5px;
-    font-size: 0.64rem;
+    padding: 6px 6px;
+    font-size: 0.65rem;
   }
 
   .main-nav {
@@ -2184,11 +2188,11 @@ body::after {
 
   .nav-action-btn {
     padding: 8px;
-    font-size: 0.7rem;
+    font-size: 0.68rem;
   }
 
   .content-section {
-    padding: 18px 16px;
+    padding: 16px 14px;
     border-radius: 12px;
   }
 
@@ -2198,17 +2202,18 @@ body::after {
   }
 
   .section-heading {
-    margin-bottom: 20px;
+    margin-bottom: 18px;
   }
 
   .section-heading h1,
   .section-heading h2 {
-    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    font-size: clamp(1.15rem, 2vw, 1.6rem);
     margin-bottom: 10px;
   }
 
   .section-heading p {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    line-height: 1.55;
   }
 
   .footer-grid-outer {
@@ -2223,17 +2228,17 @@ body::after {
   }
 
   .btn {
-    padding: 8px 16px;
-    font-size: 0.8rem;
+    padding: 8px 15px;
+    font-size: 0.78rem;
   }
 
   .btn-primary {
-    padding: 10px 20px;
+    padding: 9px 18px;
   }
 
   .admin-tools-grid {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 22px;
     padding: 0;
   }
 
@@ -2328,6 +2333,53 @@ body::after {
 
   .toggle-bar {
     height: 1.5px;
+  }
+
+  /* global mobile type scaling */
+  body {
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 1.2;
+  }
+
+  h1 {
+    font-size: clamp(1.1rem, 4.5vw, 1.6rem);
+  }
+
+  h2 {
+    font-size: clamp(1.05rem, 4vw, 1.4rem);
+  }
+
+  h3 {
+    font-size: clamp(1rem, 3.8vw, 1.2rem);
+  }
+
+  p,
+  li,
+  span,
+  a,
+  button,
+  input,
+  label {
+    font-size: 0.88rem;
+  }
+
+  .content-section,
+  .contact-form-panel,
+  .card,
+  .overview-card,
+  .timeline-card,
+  .hk-card {
+    padding-left: 12px;
+    padding-right: 12px;
   }
 }
 

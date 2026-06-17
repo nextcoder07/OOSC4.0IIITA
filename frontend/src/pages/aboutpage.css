@@ -35,13 +35,7 @@
   margin-bottom: 1.5rem;
 }
 
-.about-section-desc {
-  font-size: 1.15rem;
-  line-height: 1.6;
-  color: var(--color-text-on-dark-sub);
-  max-width: 800px;
-  margin-bottom: 2.5rem;
-}
+
 
 .about-sub-title {
   font-size: 1.5rem;

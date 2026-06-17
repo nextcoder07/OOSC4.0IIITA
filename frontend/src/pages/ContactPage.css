@@ -306,17 +306,39 @@
 
 @media (max-width: 580px) {
   .contact-form-panel {
-    padding: 24px;
+    padding: 22px;
+  }
+
+  .contact-form-panel h3 {
+    font-size: 1.5rem;
+  }
+
+  .contact-form-panel p {
+    font-size: 0.92rem;
+    line-height: 1.6;
   }
 
   .contact-detail-card {
     padding: 16px;
-    gap: 16px;
+    gap: 14px;
   }
 }
 
 @media (max-width: 480px) {
   .contact-form-panel {
-    padding: 20px;
+    padding: 18px;
+  }
+
+  .contact-form-panel h3 {
+    font-size: 1.3rem;
+  }
+
+  .contact-form-panel p {
+    font-size: 0.86rem;
+  }
+
+  .btn-block {
+    padding: 14px;
+    font-size: 1rem;
   }
 }

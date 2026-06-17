@@ -489,20 +489,32 @@
 
 @media (max-width: 480px) {
   .hackathon-hero {
-    padding: 32px 12px;
+    padding: 28px 12px;
     min-height: calc(100dvh - 72px);
   }
 
   .hackathon-hero h2 {
-    font-size: clamp(1.1rem, 1.6vw, 1.5rem);
+    font-size: clamp(1rem, 1.6vw, 1.4rem);
+    line-height: 1.2;
+  }
+
+  .hackathon-hero p {
+    font-size: 0.85rem;
+    line-height: 1.6;
   }
 
   .hackathon-cta-strip {
     padding: 12px;
+    gap: 10px;
   }
 
   .hk-card {
     padding: 12px;
+    font-size: 0.88rem;
+  }
+
+  .hk-card h3 {
+    font-size: 0.95rem;
   }
 }
 
