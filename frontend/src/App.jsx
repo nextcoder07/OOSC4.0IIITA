@@ -79,7 +79,7 @@ function App() {
   const [team, setTeam] = useState(() => loadFromStorage('oosc-team', []))
   const [registrationCards, setRegistrationCards] = useState(() => loadFromStorage('oosc-registration-cards', []))
   const [infoCards, setInfoCards] = useState(() => loadFromStorage('oosc-info-cards', []))
-  
+
   const [hkTracks, setHkTracks] = useState(() => loadFromStorage('oosc-hackathon-tracks', []))
   const [hkEligibility, setHkEligibility] = useState(() => loadFromStorage('oosc-hackathon-eligibility', []))
   const [hkTeamComp, setHkTeamComp] = useState(() => loadFromStorage('oosc-hackathon-team-comp', []))
@@ -938,6 +938,8 @@ function App() {
             { key: 'schedule', label: 'Schedule' },
             { key: 'speakers', label: 'Speakers' },
             { key: 'sponsors', label: 'Sponsors' },
+            { key: 'register', label: 'Register' },
+            { key: 'contact', label: 'Contact' },
           ].map((route) => (
             <button
               key={route.key}
@@ -1139,9 +1141,9 @@ function App() {
                 />
               } />
               <Route path="/hackathon" element={
-                <HackathonPage 
-                  siteConfig={siteConfig} 
-                  navigateTo={navigateTo} 
+                <HackathonPage
+                  siteConfig={siteConfig}
+                  navigateTo={navigateTo}
                   adminMode={adminMode}
                   hkTracks={hkTracks} setHkTracks={setHkTracks}
                   hkEligibility={hkEligibility} setHkEligibility={setHkEligibility}
@@ -1370,7 +1372,7 @@ function App() {
                               rows="6"
                             />
                           ) : field.type === 'checkbox' ? (
-                            <div className="checkbox-wrapper" style={{display:'flex', alignItems:'center', gap:'10px'}}>
+                            <div className="checkbox-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                               <input
                                 type="checkbox"
                                 checked={siteConfig[field.key] === 'true'}
@@ -1379,7 +1381,7 @@ function App() {
                                   setSiteConfig(prev => ({ ...prev, [field.key]: val }));
                                   saveSiteConfig(field.key, val);
                                 }}
-                                style={{width:'20px', height:'20px', cursor:'pointer'}}
+                                style={{ width: '20px', height: '20px', cursor: 'pointer' }}
                               />
                               <span className="field-tip">Check to hide the content from the public.</span>
                             </div>

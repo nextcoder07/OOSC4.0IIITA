@@ -968,7 +968,7 @@
   }
 
   .eyebrow-accent {
-    --hero-eyebrow-size: clamp(1.8rem, 8vw, 3.5rem);
+    --hero-eyebrow-size: clamp(1.4rem, 7vw, 2.0rem);
     font-size: var(--hero-eyebrow-size);
   }
 
