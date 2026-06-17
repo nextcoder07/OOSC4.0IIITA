@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "postbuild": "react-snap",
+    "prerender": "react-snap",
     "lint": "eslint .",
     "preview": "vite preview"
   },
