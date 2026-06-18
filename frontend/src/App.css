@@ -2216,6 +2216,11 @@ body::after {
   .section-heading h2 {
     font-size: clamp(1.6rem, 2.4vw, 2.1rem);
   }
+
+  .site-footer {
+    margin-top: 32px;
+    padding: 32px 24px;
+  }
 }
 
 @media (max-width: 580px) {
@@ -2237,9 +2242,11 @@ body::after {
   }
 
   .site-footer {
+    margin-top: 24px;
     margin-left: 10px;
     margin-right: 10px;
     width: calc(100% - 20px);
+    padding: 24px 16px;
   }
 
   .admin-tools-bar {
@@ -2317,14 +2324,22 @@ body::after {
   }
 
   .footer-grid-outer {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+  }
+
+  .footer-brand-column {
+    grid-column: 1 / -1;
   }
 
   .footer-bottom-bar {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
+  }
+
+  .mobile-hidden-policies {
+    display: none;
   }
 
   .btn {
@@ -2377,6 +2392,11 @@ body::after {
     margin-left: 8px;
     margin-right: 8px;
     width: calc(100% - 16px);
+  }
+
+  .site-footer {
+    margin-top: 16px;
+    padding: 20px 12px;
   }
 
   .site-header {

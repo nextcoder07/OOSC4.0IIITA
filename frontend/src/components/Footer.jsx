@@ -75,10 +75,12 @@ export default function Footer() {
         </div>
         <div className="footer-policies">
 
-          <Link to="/privacy" onClick={scrollToTop}>Privacy Policy</Link>
-          <span className="dot">•</span>
-          <Link to="/terms" onClick={scrollToTop}>Terms of Use</Link>
-          <span className="dot">•</span>
+          <span className="mobile-hidden-policies">
+            <Link to="/privacy" onClick={scrollToTop}>Privacy Policy</Link>
+            <span className="dot">•</span>
+            <Link to="/terms" onClick={scrollToTop}>Terms of Use</Link>
+            <span className="dot">•</span>
+          </span>
 
           <span className="made-with-love" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
             Made with <Heart size={14} color="var(--color-brand-red)" fill="var(--color-brand-red)" /> at IIITA
