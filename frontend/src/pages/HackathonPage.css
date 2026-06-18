@@ -450,12 +450,33 @@
     min-height: calc(100dvh - 76px);
   }
 
+  .hackathon-hero h1 {
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    line-height: 1.2;
+  }
+
+  .theme-label {
+    font-size: 0.85rem;
+  }
+
+  .theme-name {
+    font-size: 1.2rem;
+  }
+
   .hackathon-hero h2 {
     font-size: clamp(1.3rem, 2vw, 1.8rem);
   }
 
   .hackathon-hero p {
     font-size: 0.9rem;
+  }
+
+  .hstat-value {
+    font-size: 1.1rem;
+  }
+
+  .hstat-label {
+    font-size: 0.85rem;
   }
 
   .hackathon-cta-strip {
@@ -469,6 +490,17 @@
 
   .hk-card h3 {
     font-size: 1rem;
+  }
+
+  .problem-statement-text,
+  .panel-subheading,
+  .rule-item p,
+  .eligibility-item p,
+  .prize-card p,
+  .step-content p,
+  .date-info p {
+    font-size: 0.92rem;
+    line-height: 1.6;
   }
 
   .hackathon-stat-strip {
@@ -493,6 +525,19 @@
     min-height: calc(100dvh - 72px);
   }
 
+  .hackathon-hero h1 {
+    font-size: clamp(1.6rem, 5vw, 2rem);
+    line-height: 1.2;
+  }
+
+  .theme-label {
+    font-size: 0.8rem;
+  }
+
+  .theme-name {
+    font-size: 1.1rem;
+  }
+
   .hackathon-hero h2 {
     font-size: clamp(1rem, 1.6vw, 1.4rem);
     line-height: 1.2;
@@ -501,6 +546,14 @@
   .hackathon-hero p {
     font-size: 0.85rem;
     line-height: 1.6;
+  }
+
+  .hstat-value {
+    font-size: 1rem;
+  }
+
+  .hstat-label {
+    font-size: 0.8rem;
   }
 
   .hackathon-cta-strip {
@@ -515,6 +568,22 @@
 
   .hk-card h3 {
     font-size: 0.95rem;
+  }
+
+  .problem-statement-text,
+  .panel-subheading,
+  .rule-item p,
+  .eligibility-item p,
+  .prize-card p,
+  .step-content p,
+  .date-info p {
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .date-label,
+  .date-value {
+    font-size: 0.9rem;
   }
 }
 

@@ -711,6 +711,18 @@
   color: var(--color-text-snow-soft);
 }
 
+.text-highlight {
+  color: var(--color-accent);
+  font-weight: 700;
+  background: rgba(13, 148, 136, 0.08);
+  padding: 0 0.2rem;
+  border-radius: 4px;
+}
+
+.text-highlight strong {
+  color: var(--color-accent);
+}
+
 .highlight-bullet {
   display: inline-flex;
   align-items: center;

@@ -188,7 +188,7 @@ export default function HomePage({ hero, about, siteConfig, navigateTo }) {
           </div>
           <div className="transitional-info-card glass-card">
             <h4>Why Join OOSC 4.0?</h4>
-            <p>Connect with leading maintainers, explore high-throughput systems, and participate in collaborative hackathons with academic guidance.</p>
+            <p>Connect with <strong>leading maintainers</strong>, explore <span className="text-highlight">high-throughput systems</span>, and participate in <strong>collaborative hackathons</strong> with academic guidance.</p>
           </div>
           <div className="transitional-info-card glass-card highlight-border">
             <h4>Open Source &amp; Academia</h4>
@@ -248,33 +248,33 @@ export default function HomePage({ hero, about, siteConfig, navigateTo }) {
         <div className="section-heading text-center">
           <span>Core Activities</span>
           <h2>Conference Focus Areas</h2>
-          <p className="subtitle">From research panels to coding sprints, explore the structural core of OOSC 4.0.</p>
+          <p className="subtitle">From <span className="text-highlight">research panels</span> to <strong>coding sprints</strong>, explore the structural core of OOSC 4.0.</p>
         </div>
         <div className="event-overview-grid">
           <div className="overview-card glass-card">
             <span className="overview-icon"><Mic size={32} color="var(--color-brand-purple)" /></span>
             <h3>Research Talks</h3>
-            <p>In-depth technical sessions on server design, kernel optimizations, and state-of-the-art databases.</p>
+            <p>In-depth technical sessions on <strong>server design</strong>, kernel optimizations, and <strong>state-of-the-art databases</strong>.</p>
           </div>
           <div className="overview-card glass-card">
             <span className="overview-icon"><Settings size={32} color="var(--color-brand-slate)" /></span>
             <h3>Workshops</h3>
-            <p>Interactive labs guiding developers through deployment orchestrations, API architectures, and systems diagnostics.</p>
+            <p>Interactive labs guiding developers through <strong>deployment orchestrations</strong>, <strong>API architectures</strong>, and systems diagnostics.</p>
           </div>
           <div className="overview-card glass-card">
             <span className="overview-icon"><Zap size={32} color="var(--color-brand-yellow)" /></span>
             <h3>Hackathons</h3>
-            <p>A multi-hour competitive sprint solving high-priority systems issues with direct coordinator support.</p>
+            <p>A multi-hour <strong>competitive sprint</strong> solving high-priority systems issues with <span className="text-highlight">direct coordinator support</span>.</p>
           </div>
           <div className="overview-card glass-card">
             <span className="overview-icon"><Handshake size={32} color="var(--color-success)" /></span>
             <h3>Networking Hub</h3>
-            <p>Build links between leading research faculties, open source contributors, and corporate engineering advocates.</p>
+            <p>Build links between <strong>leading research faculties</strong>, <strong>open source contributors</strong>, and corporate engineering advocates.</p>
           </div>
           <div className="overview-card glass-card">
             <span className="overview-icon"><Globe size={32} color="var(--color-brand-blue)" /></span>
             <h3>Code Sprints</h3>
-            <p>Directly push contributions to whitelisted repositories and explore open system governance protocols.</p>
+            <p>Directly push contributions to <strong>whitelisted repositories</strong> and explore <span className="text-highlight">open system governance protocols</span>.</p>
           </div>
         </div>
       </section>

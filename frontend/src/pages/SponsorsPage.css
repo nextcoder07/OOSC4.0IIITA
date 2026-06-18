@@ -42,35 +42,36 @@
   justify-content: center;
   justify-items: center;
   align-items: stretch;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-auto-flow: dense;
   gap: 16px;
-  width: min(100%, 1040px);
+  width: min(100%, 880px);
   margin: 0 auto;
 }
 
 .sponsor-card-outer {
   position: relative;
-  width: min(100%, 360px);
-  max-width: 360px;
+  width: min(100%, 280px);
+  max-width: 280px;
+  justify-self: center;
 }
 
 .sponsor-card {
-  padding: 0 0 16px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
   justify-content: flex-start;
 
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   text-align: center;
-  gap: 12px;
+  gap: 10px;
 
-  border-radius: 24px;
+  border-radius: 18px;
   border: 1px solid var(--color-border);
-  background: var(--color-panel);
+  background: rgba(var(--color-panel), 0.4);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
 }
 
 .sponsor-card:hover {
@@ -82,26 +83,27 @@
 /* ---------------------- */
 /* Sponsor Hierarchy      */
 /* ---------------------- */
+/* Default values scaled 4× from the current sizes. */
 
 .sponsor-card--title {
-  --logo-size: 220px;
+  --logo-size: 296px;
 }
 
 .sponsor-card--co-title {
-  --logo-size: 190px;
+  --logo-size: 248px;
 }
 
 .sponsor-card--platinum {
-  --logo-size: 165px;
+  --logo-size: 212px;
 }
 
 .sponsor-card--gold {
-  --logo-size: 145px;
+  --logo-size: 176px;
 }
 
 .sponsor-card--bronze,
 .sponsor-card--supporter {
-  --logo-size: 125px;
+  --logo-size: 148px;
 }
 
 /* ---------------------- */
@@ -109,17 +111,25 @@
 /* ---------------------- */
 
 .logo-container {
-  width: 100%;
+  width: min(var(--logo-size), 100%);
   aspect-ratio: 1 / 1;
-  overflow: hidden;
-  border-radius: 24px 24px 0 0;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 16px;
   background: transparent;
+
+  padding: 0;
 }
 
 .logo-container img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+
+  object-fit: contain;
   display: block;
 }
 
@@ -135,13 +145,13 @@
 
   font-size: 0.95rem;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.25;
 
   color: var(--color-text-on-panel);
 
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
 }
 
 .drag-hint {
@@ -157,113 +167,122 @@
 /* ---------------------- */
 /* Tablet                 */
 /* ---------------------- */
+/* Values increased 20% from the current values. */
 
 @media (max-width: 768px) {
 
   .sponsor-card--title {
-    --logo-size: 170px;
+    --logo-size: 284px;
   }
 
   .sponsor-card--co-title {
-    --logo-size: 145px;
+    --logo-size: 236px;
   }
 
   .sponsor-card--platinum {
-    --logo-size: 120px;
+    --logo-size: 200px;
   }
 
   .sponsor-card--gold {
-    --logo-size: 100px;
+    --logo-size: 168px;
   }
 
   .sponsor-card--bronze,
   .sponsor-card--supporter {
-    --logo-size: 85px;
+    --logo-size: 140px;
+  }
+
+  .sponsor-card-outer {
+    width: min(100%, 220px);
+    max-width: 220px;
   }
 }
 
 /* ---------------------- */
 /* Mobile                 */
 /* ---------------------- */
+/* Values increased 20% from the current values. */
 
 @media (max-width: 580px) {
 
   .sponsors-wrapper {
-    gap: 28px;
+    gap: 24px;
   }
 
   .sponsor-tier-group {
-    gap: 14px;
+    gap: 12px;
   }
 
   .sponsor-logo-grid {
-    grid-template-columns: repeat(auto-fit, minmax(min(38vw, 238px), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(36vw, 200px), 1fr));
     gap: 12px;
   }
 
   .sponsor-card-outer {
     width: 100%;
-    max-width: 38vw;
+    max-width: 220px;
   }
 
   .sponsor-card {
-    padding: 6px;
-    gap: 2px;
+    padding: 8px;
+    gap: 8px;
   }
 
   .sponsor-card--title {
-    --logo-size: 130px;
+    --logo-size: 240px;
   }
 
   .sponsor-card--co-title {
-    --logo-size: 110px;
+    --logo-size: 200px;
   }
 
   .sponsor-card--platinum {
-    --logo-size: 95px;
+    --logo-size: 168px;
   }
 
   .sponsor-card--gold {
-    --logo-size: 80px;
+    --logo-size: 144px;
   }
 
   .sponsor-card--bronze,
   .sponsor-card--supporter {
-    --logo-size: 65px;
+    --logo-size: 120px;
   }
 
   .sponsor-name {
-    font-size: 0.68rem;
+    font-size: 0.84rem;
   }
 }
 
 /* ---------------------- */
 /* Small Phones           */
 /* ---------------------- */
+/* Values increased 20% from the current values. */
 
 @media (max-width: 480px) {
 
   .sponsor-card--title {
-    --logo-size: 120px;
+    --logo-size: 200px;
   }
 
   .sponsor-card--co-title {
-    --logo-size: 100px;
+    --logo-size: 168px;
   }
 
   .sponsor-card--platinum {
-    --logo-size: 85px;
+    --logo-size: 140px;
   }
 
   .sponsor-card--gold {
-    --logo-size: 72px;
+    --logo-size: 120px;
   }
 
   .sponsor-card--bronze,
   .sponsor-card--supporter {
-    --logo-size: 60px;
+    --logo-size: 96px;
   }
 }
+
 
 /* ──────────────────────────────────────────── */
 /* Sponsorship Prospectus                       */
@@ -272,7 +291,7 @@
 .sponsorship-prospectus {
   margin: 4rem 0 0;
   width: 100%;
-  padding: 2rem;
+  padding: 1rem;
   background: var(--color-panel-surface);
   border-radius: 12px;
   border: 1px solid var(--color-border-soft);
@@ -361,7 +380,7 @@
 
 .tier-card__slots {
   margin: 0 0 14px 0;
-    font-size: 0.82rem;
+  font-size: 0.82rem;
 }
 
 .tier-card__price-usd {
@@ -436,13 +455,16 @@
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
   margin-bottom: 20px;
+  justify-items: stretch;
+  align-items: stretch;
 }
 
 .contact-cards-grid--two-col {
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
 .contact-card {
+  width: 100%;
   background: var(--color-panel-inset);
   border-radius: 12px;
   padding: 28px 24px;
@@ -471,7 +493,7 @@
 
 .coordinator-role {
   margin: 0 0 20px 0;
-    font-size: 0.85rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
   color: var(--color-accent);
 }
@@ -730,7 +752,7 @@
 
 .partnerships-eyebrow {
   display: block;
-    font-size: 0.85rem;
+  font-size: 0.85rem;
   color: var(--color-accent);
   text-transform: uppercase;
   margin-bottom: 0.5rem;
@@ -903,7 +925,7 @@
 
 .why-sponsor-eyebrow {
   display: block;
-    font-size: 0.85rem;
+  font-size: 0.85rem;
   color: var(--color-accent);
   text-transform: uppercase;
   margin-bottom: 0.5rem;
@@ -1132,7 +1154,7 @@
 
 .exposure-eyebrow {
   display: block;
-    font-size: 0.85rem;
+  font-size: 0.85rem;
   color: var(--color-accent);
   text-transform: uppercase;
   margin-bottom: 0.5rem;
@@ -1229,7 +1251,7 @@
 .sponsor-tag {
   display: inline-block;
   padding: 0.5rem 1.25rem;
-    font-size: 0.9rem;
+  font-size: 0.9rem;
   color: var(--color-accent);
   border: 1.5px solid var(--color-accent);
   border-radius: 100px;
@@ -1349,5 +1371,11 @@
   .sponsor-tag {
     padding: 0.4rem 1rem;
     font-size: 0.9rem;
+  }
+
+
+  sponsor-form-card {
+    padding-inline: 20px;
+
   }
 }
