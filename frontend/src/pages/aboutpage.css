@@ -10,6 +10,22 @@
   color: var(--color-text-on-dark);
 }
 
+.about-page-container p,
+.about-expect-intro,
+.about-section-desc,
+.about-description-col p,
+.about-expect-card p,
+.about-audience-card p,
+.about-why-attend-list p,
+.about-ecosystem-item p,
+.about-track-list p,
+.about-track-banner-card p,
+.about-speaker-card p,
+.about-sponsor-why-card p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
 /* ─── TYPOGRAPHY & TAGLINES ──────────────────────────────────────────────── */
 .about-eyebrow {
   font-size: 0.85rem;
@@ -77,8 +93,8 @@
 }
 
 .about-description-col p {
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: 1.05rem;
+  line-height: 1.75;
   color: var(--color-text-on-dark-sub);
 }
 
@@ -129,7 +145,7 @@
 }
 
 .banner-item-label {
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-weight: 700;
@@ -160,7 +176,7 @@
 }
 
 .about-logo-oosc {
-  height: 36px;
+  height: 48px;
   object-fit: contain;
 }
 
@@ -214,8 +230,8 @@
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  font-size: 1.15rem;
-  line-height: 1.6;
+  font-size: 1.05rem;
+  line-height: 1.75;
   color: var(--color-text-on-dark-sub);
   max-width: 950px;
   margin-bottom: 3rem;
@@ -251,8 +267,8 @@
 }
 
 .about-expect-card p {
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: 1.05rem;
+  line-height: 1.75;
   color: var(--color-text-on-dark-sub);
 }
 
@@ -283,7 +299,7 @@
 }
 
 .about-page-header-line .header-line-label {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.15em;
@@ -321,8 +337,8 @@
 }
 
 .about-audience-card p {
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: 1.05rem;
+  line-height: 1.75;
   color: var(--color-text-on-dark-sub);
 }
 
@@ -352,6 +368,7 @@
 
 .about-why-attend-list p {
   font-size: 1.05rem;
+  line-height: 1.75;
   color: var(--color-text-on-dark-sub);
   margin: 0;
 }
@@ -384,8 +401,8 @@
 }
 
 .about-ecosystem-item p {
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: 1.05rem;
+  line-height: 1.75;
   color: var(--color-text-on-dark-sub);
 }
 
@@ -426,7 +443,7 @@
 
 .about-track-list p {
   font-size: 1.05rem;
-  line-height: 1.5;
+  line-height: 1.75;
   color: var(--color-text-on-dark-sub);
   margin: 0;
 }
@@ -481,8 +498,8 @@
 }
 
 .about-track-banner-card p {
-  font-size: 1.1rem;
-  line-height: 1.6;
+  font-size: 1.05rem;
+  line-height: 1.75;
   color: var(--color-text-on-dark);
   margin: 0;
   text-align: justify;
@@ -530,8 +547,8 @@
 }
 
 .about-speaker-card p {
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.75;
   color: var(--color-text-on-dark-sub);
   margin: 0;
 }
@@ -593,10 +610,7 @@
 .about-sponsor-tag {
   display: inline-block;
   padding: 0.5rem 1.25rem;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+    font-size: 0.85rem;
   color: var(--color-accent);
   border: 1.5px solid var(--color-accent);
   border-radius: 100px;
@@ -654,8 +668,8 @@
 }
 
 .about-sponsor-why-card p {
-  font-size: 1rem;
-  line-height: 1.5;
+  font-size: 1.05rem;
+  line-height: 1.75;
   color: var(--color-text-on-dark-sub);
   margin: 0;
 }
@@ -745,6 +759,26 @@
     font-size: 3rem;
   }
 
+  .about-section-title {
+    font-size: 2.2rem;
+  }
+
+  .about-page-container p,
+  .about-expect-intro,
+  .about-section-desc,
+  .about-description-col p,
+  .about-expect-card p,
+  .about-audience-card p,
+  .about-why-attend-list p,
+  .about-ecosystem-item p,
+  .about-track-list p,
+  .about-track-banner-card p,
+  .about-speaker-card p,
+  .about-sponsor-why-card p {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
   .about-hero-description-grid {
     gap: 1.5rem;
   }
@@ -776,12 +810,39 @@
   .about-sponsor-logos-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .about-speakers-photo-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    justify-content: center;
+    width: 100%;
+    justify-self: center;
+  }
 }
+
+
+
 
 @media (max-width: 640px) {
   .about-page-container {
     padding: 0.25rem 0.75rem 3rem;
     gap: 2.5rem;
+  }
+
+  .about-page-container p,
+  .about-expect-intro,
+  .about-section-desc,
+  .about-description-col p,
+  .about-expect-card p,
+  .about-audience-card p,
+  .about-why-attend-list p,
+  .about-ecosystem-item p,
+  .about-track-list p,
+  .about-track-banner-card p,
+  .about-speaker-card p,
+  .about-sponsor-why-card p {
+    font-size: 0.95rem;
+    line-height: 1.65;
   }
 
   .about-hero-title {
@@ -832,6 +893,14 @@
   .about-speakers-photo-gallery {
     grid-template-columns: 1fr;
     gap: 0.5rem;
+    justify-content: center;
+    width: 60%;
+    justify-self: center;
+  }
+
+  .about-speakers-photo-wrapper {
+    aspect-ratio: 1 / 1;
+    width: 100%;
   }
 
   .about-speaker-card {
@@ -849,6 +918,35 @@
 
   .about-sponsor-tag {
     padding: 0.4rem 1rem;
-    font-size: 0.7rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .about-hero-title {
+    font-size: clamp(3.8rem, 4.5vw, 4.5rem);
+  }
+
+  .about-section-title {
+    font-size: clamp(2.6rem, 3vw, 3.2rem);
+  }
+
+  .about-page-container p,
+  .about-description-col p,
+  .about-expect-card p,
+  .about-audience-card p,
+  .about-ecosystem-item p,
+  .about-track-list p,
+  .about-speaker-card p,
+  .about-sponsor-why-card p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .about-hero-banner-card,
+  .about-expect-card,
+  .about-audience-card,
+  .about-sponsor-why-card {
+    padding: 2.75rem;
   }
 }

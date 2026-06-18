@@ -175,6 +175,7 @@
       inset 0 1px 0 rgba(255, 255, 255, 0.06);
     border-color: rgba(14, 165, 233, 0.35);
   }
+
   100% {
     box-shadow:
       0 0 40px rgba(14, 165, 233, 0.25),
@@ -193,22 +194,25 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(14, 165, 233, 0.06) 40%,
-    rgba(14, 165, 233, 0.12) 50%,
-    rgba(14, 165, 233, 0.06) 60%,
-    transparent 100%
-  );
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(14, 165, 233, 0.06) 40%,
+      rgba(14, 165, 233, 0.12) 50%,
+      rgba(14, 165, 233, 0.06) 60%,
+      transparent 100%);
   animation: countdown-shimmer 6s ease-in-out infinite;
   pointer-events: none;
   z-index: 0;
 }
 
 @keyframes countdown-shimmer {
-  0% { left: -100%; }
-  100% { left: 200%; }
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 200%;
+  }
 }
 
 /* Accent glow line at the top edge */
@@ -226,7 +230,7 @@
 
 .countdown-header {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.82rem;
+  font-size: 0.9rem;
   font-weight: 700;
   text-transform: uppercase;
   color: var(--color-accent);
@@ -283,7 +287,7 @@
 
 .countdown-label {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.72rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
   color: rgba(14, 165, 233, 0.7);
   letter-spacing: 0.1em;
@@ -304,8 +308,15 @@
 }
 
 @keyframes divider-blink {
-  0%, 100% { opacity: 0.8; }
-  50% { opacity: 0.3; }
+
+  0%,
+  100% {
+    opacity: 0.8;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
 }
 
 .countdown-finished {
@@ -561,7 +572,7 @@
   }
 
   .countdown-header {
-    font-size: 0.68rem;
+    font-size: 0.82rem;
   }
 }
 
@@ -846,7 +857,8 @@
   .hero-section {
     padding: 70px 18px 32px;
     min-height: calc(100dvh - 76px);
-    align-items: flex-start; /* Prevents top cropping when content overflows */
+    align-items: flex-start;
+    /* Prevents top cropping when content overflows */
   }
 
   .eyebrow-wrapper {
@@ -896,7 +908,8 @@
   .hero-section {
     padding: 70px 14px 18px;
     min-height: calc(100dvh - 72px);
-    align-items: flex-start; /* Prevents top cropping when content overflows */
+    align-items: flex-start;
+    /* Prevents top cropping when content overflows */
   }
 
   .hero-copy {
@@ -945,7 +958,7 @@
   }
 
   .transitional-info-card p {
-    font-size: 0.8rem;
+    font-size: 0.95rem;
   }
 
   .overview-card {
@@ -957,7 +970,7 @@
   }
 
   .overview-card p {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
   }
 }
 
@@ -978,14 +991,14 @@
   }
 
   .hero-copy p {
-    font-size: 0.88rem;
+    font-size: 0.95rem;
     line-height: 1.6;
     max-width: 100%;
   }
 
   .hero-actions .btn {
     padding: 7px 12px;
-    font-size: 0.72rem;
+    font-size: 0.85rem;
   }
 }
 

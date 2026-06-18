@@ -79,6 +79,26 @@ label, .tag, .label, [class*="-tagline"], [class*="-label"] {
 
 button, input, textarea, select { font: inherit; color: inherit; }
 
+strong {
+  font-weight: 700;
+  color: var(--color-page-heading);
+}
+
+em {
+  font-style: italic;
+  color: var(--color-page-copy-muted);
+}
+
+.text-bold {
+  font-weight: 700;
+  color: var(--color-page-accent);
+}
+
+.text-italic {
+  font-style: italic;
+  color: var(--color-page-copy-muted);
+}
+
 a { color: inherit; text-decoration: none; transition: color 0.15s ease; }
 
 img { display: block; max-width: 100%; height: auto; }

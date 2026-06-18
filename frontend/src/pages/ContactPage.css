@@ -166,9 +166,10 @@
   transform: scale(1.08);
 }
 
-.contact-detail-card h4 {
+..contact-detail-card h4 {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
+  font-size: 0.84rem;
+  line-height: 1.4;
   color: var(--color-text-on-panel);
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -281,9 +282,8 @@
 
 .registration-form-label {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.8rem;
-  color: var(--color-text-on-panel-muted);
-  text-transform: uppercase;
+    font-size: 0.9rem;
+    line-height: 1.4;
   letter-spacing: 0.1em;
 }
 
@@ -334,7 +334,8 @@
   }
 
   .contact-form-panel p {
-    font-size: 0.86rem;
+    font-size: 0.92rem;
+    line-height: 1.6;
   }
 
   .btn-block {

@@ -158,7 +158,8 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
   color: var(--color-text-on-dark-muted);
 }
 
@@ -369,9 +370,7 @@
 
 .tier-card__slots {
   margin: 0 0 14px 0;
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  opacity: 0.8;
+    font-size: 0.82rem;
 }
 
 .tier-card__price-usd {
@@ -481,9 +480,7 @@
 
 .coordinator-role {
   margin: 0 0 20px 0;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+    font-size: 0.85rem;
   text-transform: uppercase;
   color: var(--color-accent);
 }
@@ -742,9 +739,7 @@
 
 .partnerships-eyebrow {
   display: block;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+    font-size: 0.85rem;
   color: var(--color-accent);
   text-transform: uppercase;
   margin-bottom: 0.5rem;
@@ -917,9 +912,7 @@
 
 .why-sponsor-eyebrow {
   display: block;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+    font-size: 0.85rem;
   color: var(--color-accent);
   text-transform: uppercase;
   margin-bottom: 0.5rem;
@@ -1148,9 +1141,7 @@
 
 .exposure-eyebrow {
   display: block;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+    font-size: 0.85rem;
   color: var(--color-accent);
   text-transform: uppercase;
   margin-bottom: 0.5rem;
@@ -1247,10 +1238,7 @@
 .sponsor-tag {
   display: inline-block;
   padding: 0.5rem 1.25rem;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+    font-size: 0.9rem;
   color: var(--color-accent);
   border: 1.5px solid var(--color-accent);
   border-radius: 100px;
@@ -1369,6 +1357,6 @@
 
   .sponsor-tag {
     padding: 0.4rem 1rem;
-    font-size: 0.7rem;
+    font-size: 0.9rem;
   }
 }

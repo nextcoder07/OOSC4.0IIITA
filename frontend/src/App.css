@@ -2100,13 +2100,22 @@ body::after {
 }
 
 @media (max-width: 768px) {
+  html {
+    font-size: 15.5px;
+  }
+
+  body {
+    font-size: 0.98rem;
+    line-height: 1.65;
+  }
+
   .page-body {
     gap: 32px;
     margin-top: 12px;
   }
 
   .content-section {
-    padding: 32px 20px;
+    padding: 30px 18px;
   }
 
   .card-grid {
@@ -2114,18 +2123,23 @@ body::after {
   }
 
   .section-heading {
-    margin-bottom: 28px;
+    margin-bottom: 26px;
   }
 
   .section-heading h1,
   .section-heading h2 {
-    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-size: clamp(1.6rem, 2.4vw, 2.1rem);
   }
 }
 
 @media (max-width: 580px) {
   html {
     font-size: 15px;
+  }
+
+  body {
+    font-size: 0.96rem;
+    line-height: 1.65;
   }
 
   .app-shell {
@@ -2249,52 +2263,58 @@ body::after {
   .modal-upload-row {
     grid-template-columns: 1fr;
   }
+
+
 }
 
 @media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+
+  body {
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
   .app-shell {
-    padding: 0 0 28px;
+    padding: 0 0 24px;
   }
 
   .page-body {
     padding: 0 10px;
-    gap: 16px;
+    gap: 14px;
   }
 
-  .site-footer {
-    margin-left: 10px;
-    margin-right: 10px;
-    width: calc(100% - 20px);
-  }
-
+  .site-footer,
   .admin-tools-bar {
-    margin-left: 10px;
-    margin-right: 10px;
-    width: calc(100% - 20px);
+    margin-left: 8px;
+    margin-right: 8px;
+    width: calc(100% - 16px);
   }
 
   .site-header {
-    padding: 4px 14px;
+    padding: 4px 12px;
     margin: 0;
     border-bottom: 0.5px solid var(--color-header-border);
   }
 
   .brand-logo {
-    width: 42px;
+    width: 40px;
   }
 
   .brand-mark {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
 
   .btn-nav-cta {
-    padding: 4px 10px;
-    font-size: 0.65rem;
+    padding: 5px 12px;
+    font-size: 0.7rem;
   }
 
   .nav-link {
-    padding: 5px 4px;
-    font-size: 0.6rem;
+    padding: 5px 6px;
+    font-size: 0.64rem;
   }
 
   .main-nav {
@@ -2311,20 +2331,21 @@ body::after {
 
   .section-heading h1,
   .section-heading h2 {
-    font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
   }
 
   .section-heading p {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    line-height: 1.65;
   }
 
   .btn {
     padding: 7px 14px;
-    font-size: 0.75rem;
+    font-size: 0.74rem;
   }
 
   .card-content {
-    padding: 16px;
+    padding: 14px;
   }
 
   .card h3 {
@@ -2335,31 +2356,31 @@ body::after {
     height: 1.5px;
   }
 
-  /* global mobile type scaling */
-  body {
-    font-size: 0.95rem;
-    line-height: 1.55;
-  }
-
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    line-height: 1.2;
+    line-height: 1.35;
   }
 
   h1 {
-    font-size: clamp(1.1rem, 4.5vw, 1.6rem);
+    font-size: clamp(1.15rem, 4.5vw, 1.7rem);
   }
 
   h2 {
-    font-size: clamp(1.05rem, 4vw, 1.4rem);
+    font-size: clamp(1rem, 4vw, 1.4rem);
   }
 
   h3 {
-    font-size: clamp(1rem, 3.8vw, 1.2rem);
+    font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+  }
+
+  h4,
+  h5,
+  h6 {
+    font-size: 0.95rem;
   }
 
   p,
@@ -2369,7 +2390,13 @@ body::after {
   button,
   input,
   label {
-    font-size: 0.88rem;
+    font-size: 0.92rem;
+  }
+
+  span.eyebrow-text {
+    --hero-eyebrow-size: clamp(1.8rem, 8vw, 3rem);
+    font-size: var(--hero-eyebrow-size);
+    letter-spacing: 0.08em;
   }
 
   .content-section,
