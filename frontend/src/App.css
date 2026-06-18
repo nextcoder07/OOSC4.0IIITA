@@ -2499,11 +2499,7 @@ body::after {
     font-size: 0.92rem;
   }
 
-  span.eyebrow-text {
-    --hero-eyebrow-size: clamp(1.2rem, 6vw, 1.8rem);
-    font-size: var(--hero-eyebrow-size);
-    letter-spacing: 0.08em;
-  }
+
 
   .content-section,
   .contact-form-panel,

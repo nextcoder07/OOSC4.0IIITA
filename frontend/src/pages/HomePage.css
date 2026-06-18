@@ -102,6 +102,11 @@
   width: 100%;
 }
 
+.eyebrow-wrapper span {
+  font-size: inherit;
+  letter-spacing: inherit;
+}
+
 .eyebrow-text {
   color: var(--color-text-snow);
 }
