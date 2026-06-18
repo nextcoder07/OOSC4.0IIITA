@@ -906,14 +906,14 @@
 
 @media (max-width: 580px) {
   .hero-section {
-    padding: 70px 14px 18px;
+    padding: 56px 12px 16px;
     min-height: calc(100dvh - 72px);
     align-items: flex-start;
     /* Prevents top cropping when content overflows */
   }
 
   .hero-copy {
-    gap: 14px;
+    gap: 12px;
   }
 
   .eyebrow-wrapper {
@@ -929,6 +929,7 @@
   .hero-copy h1 {
     font-size: clamp(1.1rem, calc(var(--hero-eyebrow-size) / 2), 2.2rem);
     line-height: 1.05;
+    max-width: 100%;
   }
 
   .hero-subtitle {
@@ -940,16 +941,29 @@
   }
 
   .hero-actions {
-    gap: 8px;
+    gap: 6px;
+  }
+
+  .hero-actions .btn {
+    padding: 8px 12px;
+  }
+
+  .hero-countdown {
+    padding: 16px 14px;
+    gap: 10px;
+  }
+
+  .countdown-grid {
+    gap: 10px;
   }
 
   .transitional-grid {
     grid-template-columns: 1fr;
-    gap: 14px;
+    gap: 12px;
   }
 
   .transitional-info-card {
-    padding: 12px;
+    padding: 10px;
   }
 
   .transitional-info-card h4 {
@@ -962,7 +976,7 @@
   }
 
   .overview-card {
-    padding: 16px;
+    padding: 14px;
   }
 
   .overview-card h3 {
@@ -972,11 +986,16 @@
   .overview-card p {
     font-size: 0.95rem;
   }
+
+  .stats-dashboard {
+    gap: 12px;
+    margin-top: 18px;
+  }
 }
 
 @media (max-width: 480px) {
   .hero-section {
-    padding: 28px 12px 12px;
+    padding: 22px 10px 12px;
     min-height: calc(100dvh - 72px);
   }
 
@@ -988,6 +1007,7 @@
   .hero-copy h1 {
     font-size: clamp(0.9rem, calc(var(--hero-eyebrow-size) / 2), 1.6rem);
     line-height: 1.2;
+    max-width: 100%;
   }
 
   .hero-copy p {
@@ -997,8 +1017,31 @@
   }
 
   .hero-actions .btn {
-    padding: 7px 12px;
-    font-size: 0.85rem;
+    padding: 6px 10px;
+    font-size: 0.82rem;
+  }
+
+  .hero-countdown {
+    padding: 14px 10px;
+    gap: 8px;
+  }
+
+  .countdown-grid {
+    gap: 8px;
+  }
+
+  .transitional-info-card {
+    padding: 10px;
+  }
+
+  .overview-card {
+    padding: 12px;
+  }
+
+  .transitional-grid,
+  .about-grid,
+  .stats-dashboard {
+    gap: 12px;
   }
 }
 

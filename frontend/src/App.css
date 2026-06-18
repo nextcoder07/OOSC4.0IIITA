@@ -2408,6 +2408,12 @@ body::after {
     padding-left: 12px;
     padding-right: 12px;
   }
+
+  .stat-card-gradient {
+    padding: 10px;
+
+  }
+
 }
 
 /* ─── DRAG AND DROP STYLES ─────────────────────────────────────────────────── */
