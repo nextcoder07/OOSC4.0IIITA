@@ -266,24 +266,24 @@
 @media (max-width: 480px) {
 
   .sponsor-card--title {
-    --logo-size: 200px;
+    --logo-size: 160px;
   }
 
   .sponsor-card--co-title {
-    --logo-size: 168px;
+    --logo-size: 135px;
   }
 
   .sponsor-card--platinum {
-    --logo-size: 140px;
+    --logo-size: 110px;
   }
 
   .sponsor-card--gold {
-    --logo-size: 120px;
+    --logo-size: 95px;
   }
 
   .sponsor-card--bronze,
   .sponsor-card--supporter {
-    --logo-size: 96px;
+    --logo-size: 80px;
   }
 }
 
@@ -1394,11 +1394,11 @@
   .prospectus-heading,
   .partnerships-title,
   .contact-us-heading {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
   
   .partnership-card,
   .contact-card {
-    padding: 20px 16px;
+    padding: 16px 12px;
   }
 }

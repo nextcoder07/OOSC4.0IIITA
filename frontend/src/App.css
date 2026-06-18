@@ -2355,12 +2355,12 @@ body::after {
 
 @media (max-width: 480px) {
   html {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   body {
-    font-size: 0.92rem;
-    line-height: 1.6;
+    font-size: 0.9rem;
+    line-height: 1.5;
   }
 
   .app-shell {
@@ -2480,7 +2480,7 @@ body::after {
   }
 
   span.eyebrow-text {
-    --hero-eyebrow-size: clamp(1.8rem, 8vw, 3rem);
+    --hero-eyebrow-size: clamp(1.2rem, 6vw, 1.8rem);
     font-size: var(--hero-eyebrow-size);
     letter-spacing: 0.08em;
   }
