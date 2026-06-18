@@ -950,3 +950,24 @@
     padding: 2.75rem;
   }
 }
+
+@media (max-width: 480px) {
+  .about-hero-title {
+    font-size: 1.8rem;
+  }
+  .about-section-title {
+    font-size: 1.5rem;
+  }
+  .about-speakers-photo-gallery {
+    width: 100%;
+  }
+  .about-hero-contacts {
+    align-items: flex-start;
+  }
+  .about-hero-logos {
+    gap: 0.75rem;
+  }
+  .about-logo-oosc, .about-logo-iiita {
+    height: 36px;
+  }
+}

@@ -1373,9 +1373,28 @@
     font-size: 0.9rem;
   }
 
-
-  sponsor-form-card {
+  .sponsor-form-card {
     padding-inline: 20px;
+  }
+}
 
+@media (max-width: 480px) {
+  .partnership-cards-grid,
+  .partnership-cards-grid.two-col,
+  .contact-cards-grid,
+  .contact-cards-grid--two-col,
+  .tier-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .prospectus-heading,
+  .partnerships-title,
+  .contact-us-heading {
+    font-size: 1.8rem;
+  }
+  
+  .partnership-card,
+  .contact-card {
+    padding: 20px 16px;
   }
 }

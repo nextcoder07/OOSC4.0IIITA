@@ -166,7 +166,7 @@
   transform: scale(1.08);
 }
 
-..contact-detail-card h4 {
+.contact-detail-card h4 {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.84rem;
   line-height: 1.4;
@@ -305,6 +305,23 @@
 }
 
 @media (max-width: 580px) {
+  .channels-grid {
+    gap: 1.5rem;
+  }
+  
+  .channel-card {
+    padding: 1.5rem;
+  }
+  
+  .channel-card h3 {
+    font-size: 1.3rem;
+  }
+  
+  .channel-icon {
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
   .contact-form-panel {
     padding: 22px;
   }
@@ -319,12 +336,32 @@
   }
 
   .contact-detail-card {
-    padding: 16px;
-    gap: 14px;
+    padding: 14px;
+    gap: 12px;
+  }
+  
+  .contact-detail-card .icon {
+    width: 42px;
+    min-width: 42px;
+    height: 42px;
+    min-height: 42px;
+    font-size: 1.1rem;
+  }
+  
+  .contact-detail-card h4 {
+    font-size: 0.75rem;
+  }
+  
+  .contact-detail-card p {
+    font-size: 0.9rem;
   }
 }
 
 @media (max-width: 480px) {
+  .channels-grid {
+    grid-template-columns: 1fr;
+  }
+
   .contact-form-panel {
     padding: 18px;
   }
