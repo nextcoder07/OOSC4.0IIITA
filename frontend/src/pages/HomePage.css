@@ -640,8 +640,8 @@
 
 .transitional-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: clamp(12px, 2vw, 16px);
 }
 
 .transitional-info-card {
@@ -737,8 +737,8 @@
 
 .stats-dashboard {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
+  gap: clamp(12px, 2vw, 16px);
   margin-top: 24px;
 }
 
@@ -842,10 +842,6 @@
 }
 
 @media (max-width: 1024px) {
-  .transitional-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .hero-section {
     padding: 40px 20px 28px;
     min-height: calc(100dvh - 80px);
@@ -853,10 +849,7 @@
 }
 
 @media (max-width: 980px) {
-
-  .transitional-grid,
-  .about-grid,
-  .stats-dashboard {
+  .about-grid {
     grid-template-columns: 1fr;
   }
 
@@ -901,14 +894,6 @@
 
   .hero-actions .btn {
     width: 100%;
-  }
-
-  .stats-dashboard {
-    grid-template-columns: 1fr;
-  }
-
-  .transitional-grid {
-    grid-template-columns: 1fr;
   }
 
   .transitional-info-card {
@@ -969,11 +954,6 @@
     gap: 10px;
   }
 
-  .transitional-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
   .transitional-info-card {
     padding: 10px;
   }
@@ -1000,7 +980,6 @@
   }
 
   .stats-dashboard {
-    gap: 12px;
     margin-top: 18px;
   }
 }
@@ -1048,12 +1027,6 @@
 
   .overview-card {
     padding: 12px;
-  }
-
-  .transitional-grid,
-  .about-grid,
-  .stats-dashboard {
-    gap: 12px;
   }
 }
 

@@ -1579,11 +1579,91 @@ body::after {
   color: var(--color-text-on-panel-muted);
 }
 
-.upload-preview {
-  max-width: 120px;
-  border: 2px solid var(--color-border);
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: clamp(16px, 3vw, 24px);
 }
 
+.card {
+  background: var(--color-panel);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent);
+  box-shadow: 0 12px 32px var(--color-shadow-black);
+}
+
+.card-image-wrap {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: var(--color-panel-inset);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .card-image {
+  transform: scale(1.05);
+}
+
+.card-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card h3 {
+  font-size: 1.15rem;
+  color: var(--color-card-heading);
+  margin-bottom: 8px;
+}
+
+.card p {
+  color: var(--color-card-copy);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ─── HACKATHON STYLES ───────────────────────────────────────────────────────── */
+.hk-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.hk-card {
+  background: var(--color-panel);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-card);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hk-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-accent);
+}
 
 .pill-row {
   display: flex;
@@ -1694,6 +1774,17 @@ body::after {
   border-radius: var(--radius-card);
   background: var(--color-panel-inset);
   border: 2px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.hk-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--color-panel-inset);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2065,11 +2156,6 @@ body::after {
   }
 }
 
-@media (max-width: 1024px) {
-  .card-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
 
 @media (max-width: 868px) {
   .nav-shortcuts {

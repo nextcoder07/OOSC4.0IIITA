@@ -248,7 +248,7 @@ export default function HomePage({ hero, about, siteConfig, navigateTo }) {
         <div className="section-heading text-center">
           <span>Core Activities</span>
           <h2>Conference Focus Areas</h2>
-          <p className="subtitle">From <span className="text-highlight">research panels</span> to <strong>coding sprints</strong>, explore the structural core of OOSC 4.0.</p>
+          <p className="subtitle">From research panels to <strong>coding sprints</strong>, explore the structural core of OOSC 4.0.</p>
         </div>
         <div className="event-overview-grid">
           <div className="overview-card glass-card">
