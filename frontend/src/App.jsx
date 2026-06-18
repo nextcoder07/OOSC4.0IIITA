@@ -934,6 +934,7 @@ function App() {
         {/* Tablet shortcut nav — visible only at tablet breakpoint */}
         <nav className="nav-shortcuts" aria-label="Quick navigation">
           {[
+            { key: 'home', label: 'Home' },
             { key: 'about', label: 'About' },
             { key: 'schedule', label: 'Schedule' },
             { key: 'speakers', label: 'Speakers' },
