@@ -349,10 +349,18 @@
 /* ─── QUICK ACTION CHIPS ────────────────────────────────────────────────────── */
 .cb-quick-actions {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
   gap: 6px;
-  padding: 8px 16px 12px;
+  padding: 10px 16px;
   border-top: 1px solid var(--color-border-soft);
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  flex-shrink: 0;
+}
+
+.cb-quick-actions::-webkit-scrollbar {
+  display: none;
 }
 
 .cb-quick-chip {
@@ -450,7 +458,7 @@
     left: 12px;
     bottom: 85px;
     width: auto;
-    max-height: 400px;
+    max-height: calc(100dvh - 110px);
   }
 
   .cb-toggle-btn {
