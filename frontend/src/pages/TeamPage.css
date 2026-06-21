@@ -144,7 +144,7 @@
   .team-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-    padding: 0 16px;
+    padding: 0 8px;
   }
 
   .team-card,
@@ -155,7 +155,7 @@
   }
 
   .team-card .card-content {
-    padding: 16px;
+    padding: 10px;
   }
 
   .team-card .card-content h3 {
@@ -182,7 +182,7 @@
   .team-grid {
     grid-template-columns: 1fr;
     gap: 20px;
-    padding: 0 16px;
+    padding: 0 5px;
   }
 }
 
