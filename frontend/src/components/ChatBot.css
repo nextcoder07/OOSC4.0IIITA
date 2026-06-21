@@ -300,7 +300,7 @@
   border: 1.5px solid var(--color-accent);
   color: var(--color-accent);
   font-family: 'JetBrains Mono', monospace;
-    font-size: 0.85rem;
+  font-size: 0.85rem;
   box-shadow: 2px 2px 0 var(--color-shadow-black);
 }
 
@@ -462,7 +462,7 @@
   }
 
   .cb-toggle-btn {
-    bottom: 20px;
+    bottom: 10px;
     right: 20px;
     width: 52px;
     height: 52px;

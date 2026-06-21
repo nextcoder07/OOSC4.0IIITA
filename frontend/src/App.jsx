@@ -1085,7 +1085,10 @@ function App() {
       {/* Page Content Body */}
       <main className={`page-body ${currentPage === 'home' ? 'page-body--home' : currentPage === 'hackathon' ? 'page-body--hackathon' : 'page-body--inner'}`}>
         {apiError && (
-          <div className="api-error-banner" style={{ margin: '0 1rem 1rem', padding: '1rem', background: 'rgba(248, 113, 113, 0.1)', color: '#FCA5A5', borderRadius: '10px', border: '1px solid #FCA5A5' }}>
+          <div className="api-error-banner" style={{
+            margin: '0 1rem 1rem', padding: '1rem', background: 'rgba(var(--color-accent), 0.1)',
+            color: 'var(--color-text-muted-strong)', borderRadius: '10px', border: '1px solid var(--color-accent)'
+          }}>
             <strong>Data load issue:</strong> {apiError}
           </div>
         )}
