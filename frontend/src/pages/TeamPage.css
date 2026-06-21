@@ -178,7 +178,7 @@
 
 
 
-@media (max-width: 440px) {
+@media (max-width: 380px) {
   .team-grid {
     grid-template-columns: 1fr;
     gap: 20px;
