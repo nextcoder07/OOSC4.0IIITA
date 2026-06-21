@@ -11,7 +11,6 @@
 }
 
 .about-page-container p,
-.about-expect-intro,
 .about-section-desc,
 .about-description-col p,
 .about-expect-card p,
@@ -226,7 +225,7 @@
   width: 100%;
 }
 
-.about-expect-intro {
+.about-section-desc {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
@@ -764,7 +763,6 @@
   }
 
   .about-page-container p,
-  .about-expect-intro,
   .about-section-desc,
   .about-description-col p,
   .about-expect-card p,
@@ -830,7 +828,6 @@
   }
 
   .about-page-container p,
-  .about-expect-intro,
   .about-section-desc,
   .about-description-col p,
   .about-expect-card p,
@@ -874,6 +871,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    padding-bottom:0.8rem;
   }
 
   .about-hero-contacts {
@@ -903,7 +901,7 @@
     width: 100%;
   }
 
-  .about-speaker-card {
+  .about-speaker-card,.about-audience-card,.about-expect-card {
     padding: 1.5rem;
   }
 

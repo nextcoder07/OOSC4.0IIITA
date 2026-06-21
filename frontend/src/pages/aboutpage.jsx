@@ -65,7 +65,7 @@ export default function AboutPage({ siteConfig = {}, about = {} }) {
         <div className="about-eyebrow">About the Event</div>
         <h1 className="about-section-title">What to Expect at OOSC 4.0</h1>
 
-        <div className="about-expect-intro">
+        <div className="about-section-desc">
           <p>
             The event features a variety of activities including talks, panels, Q&A sessions,
             interactive workshops, demos, and hackathons. It offers a unique opportunity for both
