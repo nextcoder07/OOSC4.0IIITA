@@ -79,6 +79,7 @@ model TeamMember {
   department String?
   email      String?
   github     String?
+  instagram  String?
   linkedin   String?
   twitter    String?
   website    String?

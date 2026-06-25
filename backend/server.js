@@ -212,7 +212,7 @@ const allowedFields = {
   speakers: ['name', 'title', 'bio', 'photoURL', 'linkedin', 'github', 'sortOrder', 'published'],
   sponsors: ['name', 'logoURL', 'category', 'website', 'sortOrder', 'published'],
   events: ['title', 'description', 'date', 'time', 'type', 'sortOrder', 'published'],
-  team: ['name', 'role', 'department', 'contact', 'photoURL', 'sortOrder', 'published'],
+  team: ['name', 'role', 'department', 'contact', 'linkedin', 'instagram', 'photoURL', 'sortOrder', 'published'],
   'registration-cards': ['title', 'price', 'description', 'features', 'icon', 'sortOrder', 'published', 'type'],
   'info-cards': ['title', 'content', 'sortOrder', 'published'],
   'hackathon-tracks': ['title', 'description', 'sortOrder', 'published'],

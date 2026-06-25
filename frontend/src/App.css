@@ -2357,6 +2357,36 @@ body::after {
     padding: 0;
   }
 
+  .admin-tools-bar {
+    padding: 18px 14px;
+    width: calc(100% - 20px);
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .admin-tools-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .admin-tools-header h3 {
+    font-size: 1.05rem;
+  }
+
+  .actions-flex {
+    gap: 8px;
+  }
+
+  .btn-admin-quick {
+    padding: 8px 12px;
+    font-size: 0.78rem;
+    flex: 1 1 auto;
+    min-width: 0;
+    text-align: center;
+    white-space: nowrap;
+  }
+
   .admin-modal-panel {
     padding: 14px;
   }
@@ -2392,6 +2422,37 @@ body::after {
     margin-left: 8px;
     margin-right: 8px;
     width: calc(100% - 16px);
+  }
+
+  .admin-tools-bar {
+    padding: 14px 10px;
+  }
+
+  .actions-flex {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .btn-admin-quick {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 0.8rem;
+  }
+
+  .quick-management-actions h4 {
+    font-size: 0.95rem;
+  }
+
+  .quick-management-actions p {
+    font-size: 0.82rem;
+  }
+
+  .uploader-tool h4 {
+    font-size: 0.95rem;
+  }
+
+  .uploader-tool p {
+    font-size: 0.82rem;
   }
 
   .site-footer {
