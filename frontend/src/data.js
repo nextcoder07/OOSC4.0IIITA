@@ -1,15 +1,3 @@
-export const navItems = [
-  { id: 'home', label: 'Home' },
-  { id: 'about', label: 'About' },
-  { id: 'events', label: 'Events' },
-  { id: 'speakers', label: 'Speakers' },
-  { id: 'sponsors', label: 'Sponsors' },
-  { id: 'schedule', label: 'Schedule' },
-  { id: 'team', label: 'Team' },
-  { id: 'merch', label: 'Merchandise' },
-  { id: 'contact', label: 'Contact' },
-];
-
 export const heroData = {
   title: 'OOSC 4.0',
   subtitle: 'Open Source Systems Conference at IIITA',
