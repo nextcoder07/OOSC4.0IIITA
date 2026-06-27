@@ -308,7 +308,7 @@
 
 .prospectus-heading {
   margin-bottom: 1.5rem;
-  font-size: 2.2rem;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -456,7 +456,7 @@
 
 .contact-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
   gap: 20px;
   margin-bottom: 20px;
   justify-items: stretch;
@@ -765,7 +765,7 @@
 
 
 .partnerships-title {
-  font-size: 2.5rem;
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
   font-weight: 900;
   color: var(--color-text-snow);
   margin-bottom: 1rem;
@@ -783,12 +783,12 @@
 
 .partnership-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
   gap: 24px;
 }
 
 .partnership-cards-grid.two-col {
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
 }
 
 .partnership-card {
@@ -937,7 +937,7 @@
 
 
 .why-sponsor-title {
-  font-size: 2.5rem;
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
   font-weight: 900;
   color: var(--color-text-snow);
   margin-bottom: 1.5rem;
@@ -1166,7 +1166,7 @@
 
 
 .exposure-title {
-  font-size: 2.5rem;
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
   font-weight: 900;
   color: var(--color-text-snow);
   margin-bottom: 1.5rem;

@@ -97,7 +97,7 @@
   grid-auto-rows: auto;
 
   grid-template-columns: repeat(auto-fit,
-      minmax(260px, 260px));
+      minmax(min(100%, 240px), 260px));
 
   justify-content: center;
   justify-items: center;
@@ -143,23 +143,28 @@
 @media (max-width: 480px) {
   .team-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    padding: 0 8px;
+    gap: 14px;
+    padding: 0;
   }
 
   .team-card,
   .team-grid>article {
     width: 100%;
-    max-width: 320px;
+    max-width: 100%;
     margin: 0 auto;
   }
 
   .team-card .card-content {
-    padding: 10px;
+    padding: 8px;
   }
 
   .team-card .card-content h3 {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
+  }
+
+  .team-card .card-subtitle,
+  .team-card .contact-info-text {
+    font-size: 0.78rem;
   }
 }
 

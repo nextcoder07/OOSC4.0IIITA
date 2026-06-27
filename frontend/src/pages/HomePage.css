@@ -100,6 +100,7 @@
   line-height: 1;
   padding: 24px 0;
   width: 100%;
+  overflow-wrap: break-word;
 }
 
 .eyebrow-wrapper span {
@@ -809,7 +810,7 @@
 
 .event-overview-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
   gap: 16px;
 }
 
@@ -867,16 +868,16 @@
   }
 
   .eyebrow-wrapper {
-    --hero-eyebrow-size: clamp(3.8rem, 7vw, 6rem);
+    --hero-eyebrow-size: clamp(2.4rem, 6vw, 3.8rem);
     font-size: var(--hero-eyebrow-size);
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     display: flex;
     flex-direction: column;
     gap: 4px;
   }
 
   .hero-copy h1 {
-    font-size: clamp(1.8rem, 2.2vw, 2.4rem);
+    font-size: clamp(1.4rem, 2.5vw, 2.4rem);
   }
 
   .hero-subtitle {
@@ -910,14 +911,15 @@
   }
 
   .hero-copy {
-    gap: 12px;
+    gap: 16px;
   }
 
   .eyebrow-wrapper {
-    --hero-eyebrow-size: clamp(2.4rem, 11vw, 3.5rem);
+    --hero-eyebrow-size: clamp(1.8rem, 8vw, 2.5rem);
     font-size: var(--hero-eyebrow-size);
     letter-spacing: 0.04em;
-    word-break: break-word;
+    word-break: normal;
+    overflow-wrap: break-word;
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -926,17 +928,17 @@
   }
 
   .hero-copy h1 {
-    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
     line-height: 1.15;
     max-width: 100%;
   }
 
   .hero-subtitle {
-    font-size: 0.9rem;
+    font-size: 1.05rem;
   }
 
   .hero-description {
-    font-size: 0.88rem;
+    font-size: 1rem;
   }
 
   .hero-actions {
@@ -993,19 +995,20 @@
   }
 
   .eyebrow-wrapper {
-    --hero-eyebrow-size: clamp(2.2rem, 13vw, 2.8rem);
+    --hero-eyebrow-size: clamp(1.4rem, 7vw, 2rem);
     font-size: var(--hero-eyebrow-size);
     letter-spacing: 0.02em;
+    word-break: normal;
   }
 
   .hero-copy h1 {
-    font-size: clamp(1.3rem, 5vw, 1.6rem);
+    font-size: clamp(1.4rem, 6vw, 1.8rem);
     line-height: 1.2;
     max-width: 100%;
   }
 
   .hero-copy p {
-    font-size: 0.9rem;
+    font-size: 1rem;
     line-height: 1.5;
     max-width: 100%;
   }

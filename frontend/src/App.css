@@ -437,7 +437,7 @@ body::after {
   max-width: 1280px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 clamp(10px, 3vw, 20px);
 }
 
 .page-body--inner {
@@ -1720,7 +1720,7 @@ body::after {
 
 .footer-grid-outer {
   display: grid;
-  grid-template-columns: minmax(220px, 1.3fr) repeat(3, minmax(180px, 1fr));
+  grid-template-columns: minmax(220px, 1.3fr) repeat(3, minmax(140px, 1fr));
   gap: 40px;
   align-items: start;
 }
@@ -2314,7 +2314,7 @@ body::after {
 
   .section-heading h1,
   .section-heading h2 {
-    font-size: clamp(1.15rem, 2vw, 1.6rem);
+    font-size: clamp(1.3rem, 5vw, 1.6rem);
     margin-bottom: 10px;
   }
 
@@ -2324,8 +2324,8 @@ body::after {
   }
 
   .footer-grid-outer {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 
   .footer-brand-column {
@@ -2400,12 +2400,12 @@ body::after {
 
 @media (max-width: 480px) {
   html {
-    font-size: 13px;
+    font-size: 14.5px;
   }
 
   body {
-    font-size: 0.9rem;
-    line-height: 1.5;
+    font-size: 0.95rem;
+    line-height: 1.6;
   }
 
   .app-shell {
@@ -2498,12 +2498,12 @@ body::after {
 
   .section-heading h1,
   .section-heading h2 {
-    font-size: clamp(1.2rem, 2vw, 1.6rem);
+    font-size: clamp(1.2rem, 5vw, 1.6rem);
   }
 
   .section-heading p {
-    font-size: 0.95rem;
-    line-height: 1.65;
+    font-size: 0.92rem;
+    line-height: 1.6;
   }
 
   .btn {
@@ -2533,31 +2533,21 @@ body::after {
   }
 
   h1 {
-    font-size: clamp(1.15rem, 4.5vw, 1.7rem);
+    font-size: clamp(1.25rem, 5vw, 1.7rem);
   }
 
   h2 {
-    font-size: clamp(1rem, 4vw, 1.4rem);
+    font-size: clamp(1.1rem, 4.5vw, 1.4rem);
   }
 
   h3 {
-    font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+    font-size: clamp(1rem, 4vw, 1.15rem);
   }
 
   h4,
   h5,
   h6 {
     font-size: 0.95rem;
-  }
-
-  p,
-  li,
-  span,
-  a,
-  button,
-  input,
-  label {
-    font-size: 0.92rem;
   }
 
 
