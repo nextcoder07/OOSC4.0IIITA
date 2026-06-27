@@ -915,9 +915,9 @@
   }
 
   .eyebrow-wrapper {
-    --hero-eyebrow-size: clamp(1.8rem, 8vw, 2.5rem);
+    --hero-eyebrow-size: clamp(2.2rem, 9vw, 2.8rem);
     font-size: var(--hero-eyebrow-size);
-    letter-spacing: 0.04em;
+    letter-spacing: 0.02em;
     word-break: normal;
     overflow-wrap: break-word;
     display: flex;
@@ -928,7 +928,7 @@
   }
 
   .hero-copy h1 {
-    font-size: clamp(1.6rem, 6vw, 2.2rem);
+    font-size: clamp(1.8rem, 7vw, 2.4rem);
     line-height: 1.15;
     max-width: 100%;
   }
@@ -995,14 +995,14 @@
   }
 
   .eyebrow-wrapper {
-    --hero-eyebrow-size: clamp(1.4rem, 7vw, 2rem);
+    --hero-eyebrow-size: clamp(1.9rem, 9.5vw, 2.4rem);
     font-size: var(--hero-eyebrow-size);
-    letter-spacing: 0.02em;
+    letter-spacing: 0;
     word-break: normal;
   }
 
   .hero-copy h1 {
-    font-size: clamp(1.4rem, 6vw, 1.8rem);
+    font-size: clamp(1.6rem, 7vw, 2rem);
     line-height: 1.2;
     max-width: 100%;
   }

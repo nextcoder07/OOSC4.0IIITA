@@ -2324,11 +2324,15 @@ body::after {
   }
 
   .footer-grid-outer {
-    grid-template-columns: 1fr;
-    gap: 24px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 16px;
   }
 
   .footer-brand-column {
+    grid-column: 1 / -1;
+  }
+
+  .footer-links-column:last-child {
     grid-column: 1 / -1;
   }
 
